@@ -1,0 +1,22 @@
+meta {
+  name: Run Experiment
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/run-experiment
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "target": "SUNPHARMA",
+    "horizon": 5
+  }
+}
+
+settings {
+  encodeUrl: true
+}

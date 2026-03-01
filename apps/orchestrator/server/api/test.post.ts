@@ -6,9 +6,9 @@ export default defineEventHandler(async (event) => {
     const response = await $fetch("http://localhost:8000/forecast", {
         method: "POST",
         body: {
-        target: "INFY",
-        neighbors: ["TCS"],
-        horizon: 5
+            target: "COALINDIA",
+            neighbors: ["VEDL"],
+            horizon: 5
         }
     })
 

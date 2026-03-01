@@ -1,0 +1,22 @@
+meta {
+  name: Agent Experiment
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/run-agent-experiment
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "target": "TCS",
+    "horizon": 5
+  }
+}
+
+settings {
+  encodeUrl: true
+}

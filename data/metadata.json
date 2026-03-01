@@ -1,0 +1,1411 @@
+{
+  "INFY": {
+    "sector": "IT",
+    "volatility_30d": 0.022610746387677228,
+    "top_correlated": [
+      {
+        "symbol": "TCS",
+        "corr": 0.710147043474254
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.6809354886535951
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6688128286634527
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.6328849041388925
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3179529097740156
+      }
+    ],
+    "same_sector": [
+      "TCS",
+      "WIPRO",
+      "HCLTECH",
+      "TECHM"
+    ]
+  },
+  "TCS": {
+    "sector": "IT",
+    "volatility_30d": 0.021140411492509534,
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.710147043474254
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.6634612882641868
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6153271913739019
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.6108943110476635
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.30395311352234594
+      }
+    ],
+    "same_sector": [
+      "INFY",
+      "WIPRO",
+      "HCLTECH",
+      "TECHM"
+    ]
+  },
+  "HDFCBANK": {
+    "sector": "Banking",
+    "volatility_30d": 0.009771488972454029,
+    "top_correlated": [
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.5089001053509566
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.4776998356273517
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.4266980671612383
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4015695551293087
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.39996089736878526
+      }
+    ],
+    "same_sector": [
+      "ICICIBANK",
+      "AXISBANK",
+      "KOTAKBANK",
+      "SBIN",
+      "INDUSINDBK"
+    ]
+  },
+  "ICICIBANK": {
+    "sector": "Banking",
+    "volatility_30d": 0.011749216150997176,
+    "top_correlated": [
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5838679022805137
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.5357859772636832
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.5089001053509566
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.46252222099573637
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.4144772117674442
+      }
+    ],
+    "same_sector": [
+      "HDFCBANK",
+      "AXISBANK",
+      "KOTAKBANK",
+      "SBIN",
+      "INDUSINDBK"
+    ]
+  },
+  "RELIANCE": {
+    "sector": "Energy",
+    "volatility_30d": 0.013296519228729034,
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4367930985217254
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4164188121191187
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.39818186229819735
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.3977839038938004
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.378155741399357
+      }
+    ],
+    "same_sector": [
+      "ONGC",
+      "IOC",
+      "BPCL",
+      "COALINDIA"
+    ]
+  },
+  "ITC": {
+    "sector": "FMCG",
+    "volatility_30d": 0.01557972657225511,
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.31433561504838275
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.30393898486713705
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.3033152098183747
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.28903006619583504
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.28288735108341995
+      }
+    ],
+    "same_sector": [
+      "HINDUNILVR",
+      "NESTLEIND",
+      "BRITANNIA"
+    ]
+  },
+  "LT": {
+    "sector": "Infrastructure",
+    "volatility_30d": 0.014105574454631859,
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4509645947669424
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.4164188121191187
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.41535277744467
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.40397168778657444
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3964444578984235
+      }
+    ],
+    "same_sector": []
+  },
+  "SBIN": {
+    "sector": "Banking",
+    "volatility_30d": 0.020158774962793644,
+    "top_correlated": [
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5481333699257213
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.5357859772636832
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.46933898125683055
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.4617308083767106
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4509645947669424
+      }
+    ],
+    "same_sector": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "AXISBANK",
+      "KOTAKBANK",
+      "INDUSINDBK"
+    ]
+  },
+  "AXISBANK": {
+    "sector": "Banking",
+    "volatility_30d": 0.017667256451475325,
+    "top_correlated": [
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.5838679022805137
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.5481333699257213
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.4266980671612383
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.4104474516343128
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.4098765911142139
+      }
+    ],
+    "same_sector": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "KOTAKBANK",
+      "SBIN",
+      "INDUSINDBK"
+    ]
+  },
+  "KOTAKBANK": {
+    "sector": "Banking",
+    "volatility_30d": 0.014397734828328559,
+    "top_correlated": [
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.4776998356273517
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.46252222099573637
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.4098765911142139
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.3865400826825864
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.38227941592179265
+      }
+    ],
+    "same_sector": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "AXISBANK",
+      "SBIN",
+      "INDUSINDBK"
+    ]
+  },
+  "HINDUNILVR": {
+    "sector": "FMCG",
+    "volatility_30d": 0.014302047928196436,
+    "top_correlated": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.5000011170543337
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.47432974374460224
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.3905849308054773
+      },
+      {
+        "symbol": "ITC",
+        "corr": 0.31433561504838275
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.26872053850521777
+      }
+    ],
+    "same_sector": [
+      "ITC",
+      "NESTLEIND",
+      "BRITANNIA"
+    ]
+  },
+  "BHARTIARTL": {
+    "sector": "Telecom",
+    "volatility_30d": 0.0116023612371366,
+    "top_correlated": [
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.3241535131653047
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.32368792364082893
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.32301249744081717
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.302895198088827
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.3023656774917234
+      }
+    ],
+    "same_sector": []
+  },
+  "ASIANPAINT": {
+    "sector": "Paints",
+    "volatility_30d": 0.015326095436452034,
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.3905849308054773
+      },
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.3504511040397247
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.3278877561009695
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.32222296650131355
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.30858206131454885
+      }
+    ],
+    "same_sector": []
+  },
+  "DMART": {
+    "sector": "Retail",
+    "volatility_30d": 0.01406872426308867,
+    "top_correlated": [
+      {
+        "symbol": "TITAN",
+        "corr": 0.33972472399200027
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.2823816619348888
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.26133690498167567
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.2586810200080738
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.25502053037859546
+      }
+    ],
+    "same_sector": []
+  },
+  "TITAN": {
+    "sector": "Consumer",
+    "volatility_30d": 0.01222399538926751,
+    "top_correlated": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3734221771308216
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3572049921122516
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.3518324557797977
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.3397916654784405
+      },
+      {
+        "symbol": "DMART",
+        "corr": 0.33972472399200027
+      }
+    ],
+    "same_sector": []
+  },
+  "SUNPHARMA": {
+    "sector": "Pharma",
+    "volatility_30d": 0.014995980844331215,
+    "top_correlated": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.39610009665396
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.3883546256797092
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.3320059875638191
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.28770507245019467
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.2866973461069675
+      }
+    ],
+    "same_sector": [
+      "CIPLA",
+      "DRREDDY",
+      "DIVISLAB"
+    ]
+  },
+  "MARUTI": {
+    "sector": "Auto",
+    "volatility_30d": 0.014399808761190474,
+    "top_correlated": [
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.4707115629261811
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.4467684508442386
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.430682548463166
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.33257375677974665
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.3313528297896553
+      }
+    ],
+    "same_sector": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "M&M"
+    ]
+  },
+  "ULTRACEMCO": {
+    "sector": "Cement",
+    "volatility_30d": 0.011995769789598263,
+    "top_correlated": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.6159763119864446
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.5854424591718773
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3838509612480022
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3816054731680291
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.37262638351419136
+      }
+    ],
+    "same_sector": [
+      "SHREECEM",
+      "GRASIM"
+    ]
+  },
+  "WIPRO": {
+    "sector": "IT",
+    "volatility_30d": 0.021502586434238278,
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.6328849041388925
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6193683043869949
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6108943110476635
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.5966682143732431
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3441914302877225
+      }
+    ],
+    "same_sector": [
+      "INFY",
+      "TCS",
+      "HCLTECH",
+      "TECHM"
+    ]
+  },
+  "TECHM": {
+    "sector": "IT",
+    "volatility_30d": 0.023412407224620672,
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.6688128286634527
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.6193683043869949
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.6177868497292122
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6153271913739019
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3245337036916799
+      }
+    ],
+    "same_sector": [
+      "INFY",
+      "TCS",
+      "WIPRO",
+      "HCLTECH"
+    ]
+  },
+  "HCLTECH": {
+    "sector": "IT",
+    "volatility_30d": 0.019730477100565757,
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.6809354886535951
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6634612882641868
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6177868497292122
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.5966682143732431
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3117978224936644
+      }
+    ],
+    "same_sector": [
+      "INFY",
+      "TCS",
+      "WIPRO",
+      "TECHM"
+    ]
+  },
+  "INDUSINDBK": {
+    "sector": "Banking",
+    "volatility_30d": 0.013938587163699924,
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4481567167634934
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.3970166983932928
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3827447066970944
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.3656829014190966
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.34484293084647544
+      }
+    ],
+    "same_sector": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "AXISBANK",
+      "KOTAKBANK",
+      "SBIN"
+    ]
+  },
+  "BAJFINANCE": {
+    "sector": "Financial Services",
+    "volatility_30d": 0.019639168177944786,
+    "top_correlated": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.7769336906632588
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4249252249088209
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.4144772117674442
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.39996089736878526
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.39075188669687705
+      }
+    ],
+    "same_sector": [
+      "BAJAJFINSV"
+    ]
+  },
+  "ADANIENT": {
+    "sector": "Conglomerate",
+    "volatility_30d": 0.03358867306595909,
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4123676855204977
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.34572594477007007
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3454528047532871
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.3406529929384182
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3295444070654759
+      }
+    ],
+    "same_sector": []
+  },
+  "NTPC": {
+    "sector": "Utilities",
+    "volatility_30d": 0.013802782875106783,
+    "top_correlated": [
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.600244189519968
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5469779062896242
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.501037589996733
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.4932619199512654
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.46933898125683055
+      }
+    ],
+    "same_sector": [
+      "POWERGRID"
+    ]
+  },
+  "POWERGRID": {
+    "sector": "Utilities",
+    "volatility_30d": 0.019189557418478647,
+    "top_correlated": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.600244189519968
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.4131605496992842
+      },
+      {
+        "symbol": "BPCL",
+        "corr": 0.3971431054041591
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.3898933664083017
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.34988708681918457
+      }
+    ],
+    "same_sector": [
+      "NTPC"
+    ]
+  },
+  "TATASTEEL": {
+    "sector": "Metals",
+    "volatility_30d": 0.020126477403653528,
+    "top_correlated": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.7789861727996675
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.7190020138216934
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.6308145493544223
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5101014078568609
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.44171751679215043
+      }
+    ],
+    "same_sector": [
+      "JSWSTEEL",
+      "HINDALCO",
+      "VEDL"
+    ]
+  },
+  "JSWSTEEL": {
+    "sector": "Metals",
+    "volatility_30d": 0.01377500404644373,
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.7789861727996675
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6263639792481798
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.538213754711548
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.4778444224916582
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.4090741083544177
+      }
+    ],
+    "same_sector": [
+      "TATASTEEL",
+      "HINDALCO",
+      "VEDL"
+    ]
+  },
+  "ONGC": {
+    "sector": "Energy",
+    "volatility_30d": 0.023971846840661303,
+    "top_correlated": [
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5398781250159764
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.4932619199512654
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.46846654188174025
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.426805059347211
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.4149570392170649
+      }
+    ],
+    "same_sector": [
+      "RELIANCE",
+      "IOC",
+      "BPCL",
+      "COALINDIA"
+    ]
+  },
+  "COALINDIA": {
+    "sector": "Energy",
+    "volatility_30d": 0.019737508067648783,
+    "top_correlated": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.5469779062896242
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.5398781250159764
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.5101014078568609
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.4959305165736611
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.4726279812282959
+      }
+    ],
+    "same_sector": [
+      "RELIANCE",
+      "ONGC",
+      "IOC",
+      "BPCL"
+    ]
+  },
+  "IOC": {
+    "sector": "Energy",
+    "volatility_30d": 0.013951927803144776,
+    "top_correlated": [
+      {
+        "symbol": "BPCL",
+        "corr": 0.7754836572269901
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.501037589996733
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.4959305165736611
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.46846654188174025
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4617308083767106
+      }
+    ],
+    "same_sector": [
+      "RELIANCE",
+      "ONGC",
+      "BPCL",
+      "COALINDIA"
+    ]
+  },
+  "BPCL": {
+    "sector": "Energy",
+    "volatility_30d": 0.01530770037157551,
+    "top_correlated": [
+      {
+        "symbol": "IOC",
+        "corr": 0.7754836572269901
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.44566292271076846
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4404147516341324
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.43431053215183696
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.3971431054041591
+      }
+    ],
+    "same_sector": [
+      "RELIANCE",
+      "ONGC",
+      "IOC",
+      "COALINDIA"
+    ]
+  },
+  "HINDALCO": {
+    "sector": "Metals",
+    "volatility_30d": 0.023614833113077313,
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.7190020138216934
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.6314065744104421
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.6263639792481798
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.45726768351656616
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.416453561000019
+      }
+    ],
+    "same_sector": [
+      "TATASTEEL",
+      "JSWSTEEL",
+      "VEDL"
+    ]
+  },
+  "VEDL": {
+    "sector": "Metals",
+    "volatility_30d": 0.03114988583309188,
+    "top_correlated": [
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6314065744104421
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6308145493544223
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.538213754711548
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.4726279812282959
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.426805059347211
+      }
+    ],
+    "same_sector": [
+      "TATASTEEL",
+      "JSWSTEEL",
+      "HINDALCO"
+    ]
+  },
+  "BRITANNIA": {
+    "sector": "FMCG",
+    "volatility_30d": 0.013049761003032583,
+    "top_correlated": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.49626994166785643
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.47432974374460224
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.32222296650131355
+      },
+      {
+        "symbol": "ITC",
+        "corr": 0.3033152098183747
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.22492393105412292
+      }
+    ],
+    "same_sector": [
+      "HINDUNILVR",
+      "ITC",
+      "NESTLEIND"
+    ]
+  },
+  "DIVISLAB": {
+    "sector": "Pharma",
+    "volatility_30d": 0.017806937102563248,
+    "top_correlated": [
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3320059875638191
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.3313054687393905
+      },
+      {
+        "symbol": "CIPLA",
+        "corr": 0.32074219255806385
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.26997268847144423
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.2573386887773189
+      }
+    ],
+    "same_sector": [
+      "SUNPHARMA",
+      "CIPLA",
+      "DRREDDY"
+    ]
+  },
+  "CIPLA": {
+    "sector": "Pharma",
+    "volatility_30d": 0.01217133523070056,
+    "top_correlated": [
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.42314930629713504
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.39610009665396
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.32074219255806385
+      },
+      {
+        "symbol": "UPL",
+        "corr": 0.17652877607005693
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.16053307016464097
+      }
+    ],
+    "same_sector": [
+      "SUNPHARMA",
+      "DRREDDY",
+      "DIVISLAB"
+    ]
+  },
+  "DRREDDY": {
+    "sector": "Pharma",
+    "volatility_30d": 0.017352602634872403,
+    "top_correlated": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.42314930629713504
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3883546256797092
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.3313054687393905
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.24924111072802865
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.23660962616375467
+      }
+    ],
+    "same_sector": [
+      "SUNPHARMA",
+      "CIPLA",
+      "DIVISLAB"
+    ]
+  },
+  "EICHERMOT": {
+    "sector": "Auto",
+    "volatility_30d": 0.01860019819233919,
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.4707115629261811
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.41650966584639987
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.3859887380759996
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.37505057095213273
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.3439839565189361
+      }
+    ],
+    "same_sector": [
+      "MARUTI",
+      "HEROMOTOCO",
+      "M&M"
+    ]
+  },
+  "BAJAJFINSV": {
+    "sector": "Financial Services",
+    "volatility_30d": 0.013889680977131953,
+    "top_correlated": [
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.7769336906632588
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.43212241117336525
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.414496555614217
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.4104474516343128
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.4083561974728848
+      }
+    ],
+    "same_sector": [
+      "BAJFINANCE"
+    ]
+  },
+  "GRASIM": {
+    "sector": "Cement",
+    "volatility_30d": 0.014599658684524414,
+    "top_correlated": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.6159763119864446
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.4778444224916582
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.4651341058133163
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.44171751679215043
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.42859014703018544
+      }
+    ],
+    "same_sector": [
+      "ULTRACEMCO",
+      "SHREECEM"
+    ]
+  },
+  "HEROMOTOCO": {
+    "sector": "Auto",
+    "volatility_30d": 0.01704307136401988,
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.430682548463166
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.4086629461574375
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.3859887380759996
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.32197144885506485
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.3182741941978536
+      }
+    ],
+    "same_sector": [
+      "MARUTI",
+      "EICHERMOT",
+      "M&M"
+    ]
+  },
+  "M&M": {
+    "sector": "Auto",
+    "volatility_30d": 0.015724116220720126,
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.4467684508442386
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.41650966584639987
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.4086629461574375
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.36572558637562963
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.3614764941788922
+      }
+    ],
+    "same_sector": [
+      "MARUTI",
+      "EICHERMOT",
+      "HEROMOTOCO"
+    ]
+  },
+  "NESTLEIND": {
+    "sector": "FMCG",
+    "volatility_30d": 0.012112175222743006,
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.5000011170543337
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.49626994166785643
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.3504511040397247
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.2971021393771476
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.28493951971644366
+      }
+    ],
+    "same_sector": [
+      "HINDUNILVR",
+      "ITC",
+      "BRITANNIA"
+    ]
+  },
+  "SHREECEM": {
+    "sector": "Cement",
+    "volatility_30d": 0.011196383199688955,
+    "top_correlated": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.5854424591718773
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.4651341058133163
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3039934930441753
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.2972321973792241
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.2892747259817665
+      }
+    ],
+    "same_sector": [
+      "ULTRACEMCO",
+      "GRASIM"
+    ]
+  },
+  "UPL": {
+    "sector": "Chemicals",
+    "volatility_30d": 0.035420000098837896,
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.438897260541025
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.39446582343328923
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.3865192086772844
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.37105201852149783
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3688917527728982
+      }
+    ],
+    "same_sector": []
+  }
+}
