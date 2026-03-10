@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody } from "h3"
 import { generateText, Output } from "ai"
 import { z } from "zod"
-import { openrouter } from "../lib/openai"
+import { google } from "@ai-sdk/google"
 
 const FASTAPI = "http://localhost:8000"
 
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
   // ROUND 1 — Exploration
   // -----------------------------------
   const { output: round1 } = await generateText({
-    model: openrouter("anthropic/claude-sonnet-4.6"),
+    model: google("gemini-flash-latest"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
@@ -78,7 +78,7 @@ export default defineEventHandler(async (event) => {
   // ROUND 2 — Refinement
   // -----------------------------------
   const { output: round2 } = await generateText({
-    model: openrouter("anthropic/claude-sonnet-4.6"),
+    model: google("gemini-flash-latest"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
@@ -112,7 +112,7 @@ export default defineEventHandler(async (event) => {
   // ROUND 3 — Mutation Search
   // -----------------------------------
   const { output: round3 } = await generateText({
-    model: openrouter("anthropic/claude-sonnet-4.6"),
+    model: google("gemini-flash-latest"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `

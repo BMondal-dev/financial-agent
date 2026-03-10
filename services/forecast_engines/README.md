@@ -10,6 +10,37 @@ This forms the Data Layer + Forecasting Module of the project.
 ## Generate Data
 ```uv run python scripts/generate_data.py```
 
+## Run Full Experiment Sweep (All Stocks)
+Use this to run orchestrator experiments automatically for all stocks found in `services/data/raw`.
+
+```bash
+uv run python scripts/run_full_experiment.py --rounds 10 --horizon 5
+```
+
+For larger sweeps (10-20 rounds) while reducing rate-limit pressure:
+
+```bash
+uv run python scripts/run_full_experiment.py \
+  --rounds 20 \
+  --inter-request-delay 2.0 \
+  --inter-round-delay 20 \
+  --max-retries 8 \
+  --base-backoff 2.5
+```
+
+Default endpoint is `http://localhost:3000/api/experiment-agent`. Override with `--endpoint` if needed.
+
+If a run is interrupted (for example with `Ctrl+C`), resume it with:
+
+```bash
+uv run python scripts/run_full_experiment.py \
+  --rounds 20 \
+  --horizon 5 \
+  --resume-file ../data/experiments_runs/full_experiment_YYYYMMDD_HHMMSS.jsonl
+```
+
+The script will skip already completed `(round, stock)` entries and continue from the remaining work.
+
 - `metadata.json` Structure
 
 Example:

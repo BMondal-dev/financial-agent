@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Agent — Experiment Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --bg: #0c0c0c;
+            --surface: #161616;
+            --card: #1e1e1e;
+            --border: #272727;
+            --border2: #333;
+            --text: #f0ece3;
+            --muted: #6e6458;
+            --muted2: #9e9080;
+            --coral: #ff6b2b;
+            --gold: #f5c518;
+            --crimson: #e63950;
+            --violet: #c97dff;
+            --peach: #ffb347;
+            --pink: #ff8fb1;
+            --dust: #d4a4a4;
+            --tan: #c4aa80;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-display: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, Menlo, Monaco, Consolas, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            font-size: 14px;
+            line-height: 1.55;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Scrollbar ───────────────────────────────────────────────────────────── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 3px;
+        }
+
+        /* ── Header ─────────────────────────────────────────────────────────────── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(12, 12, 12, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            font-family: var(--font-display);
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--coral);
+            box-shadow: 0 0 8px var(--coral);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .6;
+                transform: scale(.85)
+            }
+        }
+
+        .header-meta {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* ── Layout ─────────────────────────────────────────────────────────────── */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* ── Section ────────────────────────────────────────────────────────────── */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.35px;
+            font-family: var(--font-display);
+        }
+
+        .section-sub {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        .section-divider {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border), transparent);
+        }
+
+        /* ── Stat Cards ─────────────────────────────────────────────────────────── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .stat-card.c1::before {
+            background: var(--coral);
+        }
+
+        .stat-card.c2::before {
+            background: var(--gold);
+        }
+
+        .stat-card.c3::before {
+            background: var(--crimson);
+        }
+
+        .stat-card.c4::before {
+            background: var(--violet);
+        }
+
+        .stat-card.c5::before {
+            background: var(--peach);
+        }
+
+        .stat-card.c6::before {
+            background: var(--pink);
+        }
+
+        .stat-val {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+            font-family: var(--font-display);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-card.c1 .stat-val {
+            color: var(--coral);
+        }
+
+        .stat-card.c2 .stat-val {
+            color: var(--gold);
+        }
+
+        .stat-card.c3 .stat-val {
+            color: var(--crimson);
+        }
+
+        .stat-card.c4 .stat-val {
+            color: var(--violet);
+        }
+
+        .stat-card.c5 .stat-val {
+            color: var(--peach);
+        }
+
+        .stat-card.c6 .stat-val {
+            color: var(--pink);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ── Grid Layouts ───────────────────────────────────────────────────────── */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media(max-width:1100px) {
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Chart Card ─────────────────────────────────────────────────────────── */
+        .chart-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+        }
+
+        .chart-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted2);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-display);
+        }
+
+        .chart-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+            background: rgba(255, 107, 43, 0.12);
+            color: var(--coral);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .chart-wrap {
+            position: relative;
+        }
+
+        /* ── Network Graph ───────────────────────────────────────────────────────── */
+        #network-svg {
+            width: 100%;
+            height: 560px;
+            border-radius: var(--radius-sm);
+            background: radial-gradient(ellipse at center, #1a1510 0%, #0c0c0c 70%);
+        }
+
+        .node-label {
+            font-size: 10px;
+            fill: var(--text);
+            pointer-events: none;
+            font-weight: 500;
+        }
+
+        .network-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--muted2);
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── Heatmap ─────────────────────────────────────────────────────────────── */
+        #heatmap-wrap {
+            overflow-x: auto;
+        }
+
+        .heatmap-outer {
+            min-width: 600px;
+        }
+
+        .heatmap-row-label {
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            color: var(--muted2);
+            white-space: nowrap;
+            padding-right: 8px;
+            min-width: 130px;
+            flex-shrink: 0;
+        }
+
+        .heatmap-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+
+        .heatmap-cell {
+            width: 54px;
+            height: 38px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: filter .15s;
+            position: relative;
+        }
+
+        .heatmap-cell:hover {
+            filter: brightness(1.4);
+        }
+
+        .heatmap-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .heatmap-col-label {
+            width: 54px;
+            flex-shrink: 0;
+            font-size: 9px;
+            color: var(--muted);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform: rotate(-35deg);
+            transform-origin: bottom left;
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            padding-left: 4px;
+        }
+
+        .heatmap-legend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 11px;
+            color: var(--muted2);
+        }
+
+        .heatmap-grad {
+            width: 120px;
+            height: 10px;
+            border-radius: 3px;
+            background: linear-gradient(to right, var(--crimson), #3a2a1a, var(--gold));
+        }
+
+        /* ── Table ───────────────────────────────────────────────────────────────── */
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background .12s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 10px 14px;
+        }
+
+        .rank-num {
+            font-size: 11px;
+            color: var(--muted);
+            font-variant-numeric: tabular-nums;
+            font-family: var(--font-mono);
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .return-pos {
+            color: var(--gold);
+        }
+
+        .return-neg {
+            color: var(--crimson);
+        }
+
+        .neighbors-cell {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .nbr-tag {
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--muted2);
+            border: 1px solid var(--border2);
+        }
+
+        .mae-bar-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mae-bar-bg {
+            flex: 1;
+            height: 4px;
+            background: var(--border2);
+            border-radius: 2px;
+            overflow: hidden;
+            max-width: 80px;
+        }
+
+        .mae-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: var(--coral);
+        }
+
+        /* ── Tooltip ────────────────────────────────────────────────────────────── */
+        #tooltip {
+            position: fixed;
+            z-index: 9999;
+            background: #1e1e1e;
+            border: 1px solid var(--border2);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--text);
+            pointer-events: none;
+            display: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            max-width: 220px;
+            line-height: 1.6;
+        }
+
+        #tooltip.show {
+            display: block;
+        }
+
+        /* ── Loading ─────────────────────────────────────────────────────────────── */
+        #loading {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid var(--border2);
+            border-top-color: var(--coral);
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loading p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* ── View Toggle Buttons ─────────────────────────────────────────────── */
+        .view-btn {
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--muted);
+            border-radius: var(--radius-sm);
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background .15s, color .15s, border-color .15s;
+        }
+
+        .view-btn:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .view-btn.active {
+            background: rgba(255, 107, 43, 0.15);
+            color: var(--coral);
+            border-color: var(--coral);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Loading experiment data…</p>
+    </div>
+
+    <div id="tooltip"></div>
+
+    <header>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Financial Agent — Experiment Dashboard
+        </div>
+        <div class="header-meta" id="header-meta">NIFTY 50 · XGBoost · Agentic Discovery</div>
+    </header>
+
+    <main id="app" style="display:none">
+
+        <!-- Summary Stats -->
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <!-- Predictor Intelligence -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(255,107,43,0.12)">🎯</div>
+                <div>
+                    <div class="section-title">Predictor Intelligence</div>
+                    <div class="section-sub">Which stocks were most used as predictive signals by the agent</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid-2">
+                <div class="chart-card">
+                    <div class="chart-card-title">Top 20 Predictor Stocks <span class="chart-badge">by usage
+                            count</span></div>
+                    <div class="chart-wrap" style="height:380px">
+                        <canvas id="chart-predictors"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-card-title">Top Cross-Sector Predictive Pairs <span
+                            class="chart-badge">source→target</span></div>
+                    <div class="chart-wrap" style="height:380px; overflow-y:auto">
+                        <table id="cross-sector-table" style="margin-top:4px">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Predictor</th>
+                                    <th>Sector</th>
+                                    <th>→</th>
+                                    <th>Target</th>
+                                    <th>Sector</th>
+                                    <th>Times</th>
+                                    <th>Avg MAE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cross-sector-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAE Performance -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(245,197,24,0.12)">📊</div>
+                <div>
+                    <div class="section-title">Forecast Performance per Target</div>
+                    <div class="section-sub">Best, mean, and worst MAE across all experiments for each stock</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-card-title">MAE Distribution by Target Stock <span class="chart-badge">lower =
+                        better</span></div>
+                <div class="chart-wrap" style="height:320px">
+                    <canvas id="chart-mae"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sector Influence Matrix -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(201,125,255,0.12)">🧩</div>
+                <div>
+                    <div class="section-title">Sector Influence Matrix</div>
+                    <div class="section-sub">How well stocks from sector X predict stocks in sector Y (warm = stronger
+                        signal)</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-card-title">Predictor Sector (rows) → Target Sector (columns)</div>
+                <div id="heatmap-wrap">
+                    <div class="heatmap-outer" id="heatmap-container"></div>
+                </div>
+                <div class="heatmap-legend">
+                    <span>Weak →</span>
+                    <div class="heatmap-grad"></div>
+                    <span>→ Strong</span>
+                    <span style="margin-left:16px;color:var(--muted)">Score = % improvement over global avg MAE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signal Network -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(230,57,80,0.12)">🕸️</div>
+                <div>
+                    <div class="section-title">Signal Network</div>
+                    <div class="section-sub">Force-directed graph of predictor → target relationships (top 150 edges)
+                    </div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                    <div class="chart-card-title" style="margin:0">Stock Relationship Web <span class="chart-badge">drag
+                            nodes · scroll to zoom</span></div>
+                    <div style="font-size:11px;color:var(--muted)">Node size = predictor importance · Edge width = usage
+                        frequency</div>
+                </div>
+                <svg id="network-svg"></svg>
+                <div class="network-legend" id="network-legend"></div>
+            </div>
+        </div>
+
+        <!-- Stock Explorer -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(230,57,80,0.12)">📈</div>
+                <div>
+                    <div class="section-title">Stock Price Explorer</div>
+                    <div class="section-sub" id="stock-explorer-sub">365 days of price history with agent's predicted return overlaid</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card" style="padding:20px">
+                <!-- Selector row -->
+                <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px">
+                    <div style="display:flex;align-items:center;gap:8px">
+                        <label
+                            style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">Stock</label>
+                        <select id="stock-select" style="
+                            background:var(--surface);border:1px solid var(--border2);
+                            color:var(--text);border-radius:6px;padding:6px 12px;
+                            font-size:13px;cursor:pointer;outline:none;
+                            appearance:none;-webkit-appearance:none;
+                            padding-right:28px;
+                            background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%236e6458%22/></svg>');
+                            background-repeat:no-repeat;background-position:right 10px center;
+                        "></select>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                        <label
+                            style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">View</label>
+                        <div style="display:flex;gap:4px" id="view-toggle">
+                            <button class="view-btn active" data-mode="price">Price</button>
+                            <button class="view-btn" data-mode="return">Daily Return %</button>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                        <label
+                            style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">Focus</label>
+                        <button class="view-btn" id="zoom-pred-btn" type="button">Zoom Prediction</button>
+                    </div>
+                    <div id="stock-info-pills" style="display:flex;gap:8px;flex-wrap:wrap;margin-left:auto"></div>
+                </div>
+                <!-- Chart -->
+                <div style="position:relative;height:360px">
+                    <canvas id="chart-stock"></canvas>
+                </div>
+                <!-- Chart legend key -->
+                <div id="stock-chart-legend" style="display:flex;gap:20px;flex-wrap:wrap;margin-top:10px;padding:0 2px">
+                    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted2)">
+                        <svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="currentColor" stroke-width="2"/></svg>
+                        Price history
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted2)" id="pred-legend-item">
+                        <svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#f5c518" stroke-width="3" stroke-dasharray="2,5" stroke-linecap="round"/></svg>
+                        <span id="pred-legend-label" style="color:#f5c518">Predicted (▲ bullish)</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted2)">
+                        <svg width="28" height="10"><rect x="0" y="2" width="28" height="6" fill="#f5c51822" rx="1"/></svg>
+                        ± MAE uncertainty band
+                    </div>
+                </div>
+                <!-- Prediction callout -->
+                <div id="pred-callout" style="
+                    display:none;margin-top:16px;
+                    background:rgba(255,255,255,0.03);border:1px solid var(--border2);
+                    border-radius:8px;padding:14px 18px;
+                    display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+                "></div>
+            </div>
+        </div>
+
+        <!-- Best Configurations -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(255,179,71,0.12)">🏆</div>
+                <div>
+                    <div class="section-title">Best Discovered Configurations</div>
+                    <div class="section-sub">Optimal neighbor set per target found by the agent</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Target</th>
+                                <th>Sector</th>
+                                <th>Best MAE</th>
+                                <th>Worst MAE</th>
+                                <th>Δ Range</th>
+                                <th>Predicted Return</th>
+                                <th>Best Neighbor Set</th>
+                            </tr>
+                        </thead>
+                        <tbody id="best-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // ── Utilities ──────────────────────────────────────────────────────────────
+        const $ = id => document.getElementById(id);
+        const tooltip = $('tooltip');
+
+        function showTip(html, e) {
+            tooltip.innerHTML = html;
+            tooltip.classList.add('show');
+            moveTip(e);
+        }
+        function moveTip(e) {
+            const x = e.clientX + 14, y = e.clientY - 10;
+            tooltip.style.left = Math.min(x, window.innerWidth - 240) + 'px';
+            tooltip.style.top = Math.max(0, y) + 'px';
+        }
+        function hideTip() { tooltip.classList.remove('show'); }
+        document.addEventListener('mousemove', e => tooltip.classList.contains('show') && moveTip(e));
+
+        // ── Sector → Color mapping (no blue/green) ─────────────────────────────────
+        const SECTOR_COLORS = {
+            'Financial Services': '#e63950',
+            'Energy': '#ff6b2b',
+            'Basic Materials': '#c97dff',
+            'Consumer Cyclical': '#f5c518',
+            'Consumer Defensive': '#ffb347',
+            'Technology': '#ff8fb1',
+            'Healthcare': '#ff9966',
+            'Utilities': '#d4a4a4',
+            'Communication Services': '#e0a87c',
+            'Industrials': '#c4aa80',
+            'Unknown': '#5a5040',
+        };
+        const SECTOR_LIST = Object.keys(SECTOR_COLORS);
+
+        function secColor(sec) { return SECTOR_COLORS[sec] || '#5a5040'; }
+
+        function fmtMAE(v) { return (v * 100).toFixed(4) + '%'; }
+        function fmtPct(v) { return (v >= 0 ? '+' : '') + (v * 100).toFixed(3) + '%'; }
+
+        // ── Main render ────────────────────────────────────────────────────────────
+        async function init() {
+            const resp = await fetch('./analysis.json');
+            const D = await resp.json();
+
+            $('loading').remove();
+            $('app').style.display = '';
+
+            const s = D.summary;
+            horizonDays = Number(s?.horizon_days || 5);
+            $('header-meta').textContent =
+                `NIFTY 50 · ${s.total_experiments} Experiments · ${s.total_targets} Targets · ${s.sectors_covered} Sectors`;
+            const sub = $('stock-explorer-sub');
+            if (sub) {
+                sub.textContent = `365 days of price history with agent's predicted ${horizonDays}-day return overlaid`;
+            }
+
+            renderStats(s);
+            renderPredictorChart(D.predictor_frequency);
+            renderCrossSector(D.cross_sector_pairs);
+            renderMAEChart(D.mae_distribution);
+            renderHeatmap(D.sector_matrix);
+            renderNetwork(D.network);
+            renderStockExplorer(D.stocks_history);
+            renderBestTable(D.best_per_target);
+        }
+
+        // ── Stats Cards ────────────────────────────────────────────────────────────
+        function renderStats(s) {
+            const cards = [
+                { cls: 'c1', val: s.total_experiments.toLocaleString(), label: 'Total Experiments' },
+                { cls: 'c2', val: s.total_targets, label: 'Unique Targets' },
+                { cls: 'c3', val: s.total_unique_predictors, label: 'Unique Predictors' },
+                { cls: 'c4', val: fmtMAE(s.global_avg_mae), label: 'Avg MAE' },
+                { cls: 'c5', val: fmtMAE(s.global_min_mae), label: 'Best MAE' },
+                { cls: 'c6', val: s.sectors_covered, label: 'Sectors Covered' },
+            ];
+            $('stats-grid').innerHTML = cards.map(c =>
+                `<div class="stat-card ${c.cls}">
+      <div class="stat-val">${c.val}</div>
+      <div class="stat-label">${c.label}</div>
+    </div>`
+            ).join('');
+        }
+
+        // ── Top Predictors Bar Chart ───────────────────────────────────────────────
+        function renderPredictorChart(data) {
+            const labels = data.map(d => d.symbol);
+            const counts = data.map(d => d.count);
+            const colors = data.map(d => secColor(d.sector));
+
+            new Chart($('chart-predictors'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{ data: counts, backgroundColor: colors, borderRadius: 4, borderSkipped: false }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    const d = data[ctx.dataIndex];
+                                    return ` ${d.count}x appearances · ${d.sector}`;
+                                }
+                            },
+                            backgroundColor: '#1e1e1e', titleColor: '#f0ece3',
+                            bodyColor: '#9e9080', borderColor: '#333', borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: '#1f1f1f' },
+                            ticks: { color: '#6e6458' }
+                        },
+                        y: { grid: { display: false }, ticks: { color: '#f0ece3', font: { weight: '600' } } }
+                    }
+                }
+            });
+        }
+
+        // ── Cross-Sector Table ─────────────────────────────────────────────────────
+        function renderCrossSector(pairs) {
+            const tbody = $('cross-sector-body');
+            tbody.innerHTML = pairs.map((p, i) => {
+                const sc = secColor(p.source_sector);
+                const tc = secColor(p.target_sector);
+                return `<tr>
+      <td class="rank-num">${i + 1}</td>
+      <td><b>${p.source}</b></td>
+      <td><span class="pill" style="background:${sc}22;color:${sc}">${p.source_sector}</span></td>
+      <td style="color:var(--muted)">→</td>
+      <td><b>${p.target}</b></td>
+      <td><span class="pill" style="background:${tc}22;color:${tc}">${p.target_sector}</span></td>
+      <td>${p.count}×</td>
+      <td style="color:var(--muted2)">${fmtMAE(p.avg_mae)}</td>
+    </tr>`;
+            }).join('');
+        }
+
+        // ── MAE Distribution Chart ─────────────────────────────────────────────────
+        function renderMAEChart(data) {
+            const labels = data.map(d => d.target);
+            const minMAEs = data.map(d => d.min_mae * 100);
+            const meanMAEs = data.map(d => d.mean_mae * 100);
+            const maxMAEs = data.map(d => d.max_mae * 100);
+
+            new Chart($('chart-mae'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Best MAE',
+                            data: minMAEs,
+                            backgroundColor: 'rgba(245,197,24,0.85)',
+                            borderRadius: 2, borderSkipped: false, barPercentage: 0.7,
+                        },
+                        {
+                            label: 'Mean MAE',
+                            data: meanMAEs,
+                            backgroundColor: 'rgba(255,107,43,0.5)',
+                            borderRadius: 2, borderSkipped: false, barPercentage: 0.7,
+                        },
+                        {
+                            label: 'Worst MAE',
+                            data: maxMAEs,
+                            backgroundColor: 'rgba(230,57,80,0.3)',
+                            borderRadius: 2, borderSkipped: false, barPercentage: 0.7,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#9e9080', boxWidth: 12, font: { size: 11 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(4)}%`
+                            },
+                            backgroundColor: '#1e1e1e', titleColor: '#f0ece3',
+                            bodyColor: '#9e9080', borderColor: '#333', borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6e6458', font: { size: 10 }, maxRotation: 45 }
+                        },
+                        y: {
+                            grid: { color: '#1a1a1a' },
+                            ticks: {
+                                color: '#6e6458',
+                                callback: v => v.toFixed(3) + '%'
+                            },
+                            title: { display: true, text: 'MAE (%)', color: '#6e6458', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ── Sector Heatmap ─────────────────────────────────────────────────────────
+        function renderHeatmap(matrix) {
+            const labels = matrix.labels;
+            const data = matrix.data;
+            const container = $('heatmap-container');
+
+            // Build column headers
+            const headerRow = document.createElement('div');
+            headerRow.className = 'heatmap-header';
+            headerRow.style.paddingLeft = '138px';
+            labels.forEach(l => {
+                const el = document.createElement('div');
+                el.className = 'heatmap-col-label';
+                el.textContent = l;
+                headerRow.appendChild(el);
+            });
+            container.appendChild(headerRow);
+
+            // Find score range for color scaling
+            let minScore = Infinity, maxScore = -Infinity;
+            data.forEach(row => row.forEach(cell => {
+                if (cell) { minScore = Math.min(minScore, cell.score); maxScore = Math.max(maxScore, cell.score); }
+            }));
+
+            function scoreToColor(score) {
+                if (score === null) return 'rgba(255,255,255,0.03)';
+                // negative = crimson, zero = dark, positive = gold
+                const t = (score - minScore) / (maxScore - minScore + 0.001);
+                if (t < 0.5) {
+                    const r = Math.round(230 + (30 - 230) * (t * 2));
+                    const g = Math.round(57 + (26 - 57) * (t * 2));
+                    const b = Math.round(80 + (26 - 80) * (t * 2));
+                    return `rgba(${r},${g},${b},0.75)`;
+                } else {
+                    const u = (t - 0.5) * 2;
+                    const r = Math.round(30 + (245 - 30) * u);
+                    const g = Math.round(26 + (197 - 26) * u);
+                    const b = Math.round(26 + (24 - 26) * u);
+                    return `rgba(${r},${g},${b},0.8)`;
+                }
+            }
+
+            data.forEach((row, ri) => {
+                const rowEl = document.createElement('div');
+                rowEl.className = 'heatmap-row';
+
+                const lbl = document.createElement('div');
+                lbl.className = 'heatmap-row-label';
+                lbl.textContent = labels[ri];
+                lbl.style.color = secColor(labels[ri]);
+                rowEl.appendChild(lbl);
+
+                row.forEach((cell, ci) => {
+                    const el = document.createElement('div');
+                    el.className = 'heatmap-cell';
+                    el.style.background = scoreToColor(cell ? cell.score : null);
+                    el.textContent = cell ? (cell.score > 0 ? '+' : '') + cell.score : '';
+                    el.style.color = cell ? (cell.score > 2 ? '#000' : '#f0ece3') : '#333';
+
+                    if (cell) {
+                        el.addEventListener('mouseenter', e => {
+                            showTip(`<b>${labels[ri]} → ${labels[ci]}</b><br>
+            Score: ${cell.score > 0 ? '+' : ''}${cell.score}%<br>
+            Avg MAE: ${fmtMAE(cell.avg_mae)}<br>
+            Experiments: ${cell.count}`, e);
+                        });
+                        el.addEventListener('mouseleave', hideTip);
+                    }
+                    rowEl.appendChild(el);
+                });
+                container.appendChild(rowEl);
+            });
+        }
+
+        // ── Force Network ──────────────────────────────────────────────────────────
+        function renderNetwork(network) {
+            const svg = d3.select('#network-svg');
+            const W = svg.node().getBoundingClientRect().width || 900;
+            const H = 560;
+            svg.attr('viewBox', `0 0 ${W} ${H}`);
+
+            const nodes = network.nodes.map(d => ({ ...d }));
+            const edges = network.edges.map(d => ({ ...d }));
+
+            const nodeMap = {};
+            nodes.forEach(n => nodeMap[n.id] = n);
+
+            const countExtent = d3.extent(nodes, d => d.predictor_count);
+            const rScale = d3.scaleSqrt().domain(countExtent).range([5, 18]);
+            const edgeCountExtent = d3.extent(edges, d => d.count);
+            const wScale = d3.scaleLinear().domain(edgeCountExtent).range([0.4, 2.5]);
+            const opScale = d3.scaleLinear().domain(edgeCountExtent).range([0.15, 0.6]);
+
+            const simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(edges).id(d => d.id).distance(60).strength(0.3))
+                .force('charge', d3.forceManyBody().strength(-120))
+                .force('center', d3.forceCenter(W / 2, H / 2))
+                .force('collide', d3.forceCollide().radius(d => rScale(d.predictor_count || 0) + 4));
+
+            // Edge layer
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(edges)
+                .join('line')
+                .attr('stroke', d => secColor(d.source_sector))
+                .attr('stroke-width', d => wScale(d.count))
+                .attr('stroke-opacity', d => opScale(d.count));
+
+            // Node layer
+            const nodeG = svg.append('g')
+                .selectAll('g')
+                .data(nodes)
+                .join('g')
+                .call(d3.drag()
+                    .on('start', (event, d) => {
+                        if (!event.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x; d.fy = d.y;
+                    })
+                    .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                    .on('end', (event, d) => {
+                        if (!event.active) simulation.alphaTarget(0);
+                        d.fx = null; d.fy = null;
+                    })
+                );
+
+            nodeG.append('circle')
+                .attr('r', d => rScale(d.predictor_count || 0))
+                .attr('fill', d => secColor(d.sector))
+                .attr('fill-opacity', 0.85)
+                .attr('stroke', d => secColor(d.sector))
+                .attr('stroke-width', d => d.is_target ? 2 : 0.5)
+                .attr('stroke-opacity', 0.5)
+                .on('mouseenter', function (event, d) {
+                    d3.select(this).attr('fill-opacity', 1);
+                    showTip(`<b>${d.id}</b><br>
+        Sector: ${d.sector}<br>
+        As predictor: ${d.predictor_count}×<br>
+        ${d.is_target ? '⚡ Also a target stock' : ''}`, event);
+                })
+                .on('mouseleave', function (event, d) {
+                    d3.select(this).attr('fill-opacity', 0.85);
+                    hideTip();
+                });
+
+            nodeG.append('text')
+                .attr('class', 'node-label')
+                .attr('text-anchor', 'middle')
+                .attr('dy', d => rScale(d.predictor_count || 0) + 11)
+                .text(d => d.id)
+                .style('display', d => d.predictor_count > 30 ? 'block' : 'none');
+
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+                nodeG.attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+
+            // Legend
+            const legend = $('network-legend');
+            Object.entries(SECTOR_COLORS).filter(([s]) => s !== 'Unknown').forEach(([sec, col]) => {
+                const el = document.createElement('div');
+                el.className = 'legend-item';
+                el.innerHTML = `<div class="legend-dot" style="background:${col}"></div>${sec}`;
+                legend.appendChild(el);
+            });
+        }
+
+        // ── Stock Price Explorer ────────────────────────────────────────────────────
+        let stockChart = null;
+        let currentMode = 'price';
+        let stocksData = {};
+        let horizonDays = 5;
+        let zoomPrediction = false;
+
+        function renderStockExplorer(stocks) {
+            if (!stocks || !Object.keys(stocks).length) return;
+            stocksData = stocks;
+
+            // Populate dropdown
+            const sel = $('stock-select');
+            const symbols = Object.keys(stocks).sort();
+            sel.innerHTML = symbols.map(s =>
+                `<option value="${s}">${s}</option>`
+            ).join('');
+
+            // View toggle
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentMode = btn.dataset.mode;
+                    drawStockChart(sel.value);
+                });
+            });
+
+            const zoomBtn = $('zoom-pred-btn');
+            if (zoomBtn) {
+                zoomBtn.addEventListener('click', () => {
+                    zoomPrediction = !zoomPrediction;
+                    zoomBtn.classList.toggle('active', zoomPrediction);
+                    zoomBtn.textContent = zoomPrediction ? 'Full Range' : 'Zoom Prediction';
+                    drawStockChart(sel.value);
+                });
+            }
+
+            sel.addEventListener('change', () => drawStockChart(sel.value));
+            drawStockChart(symbols[0]);
+        }
+
+        function drawStockChart(symbol) {
+            const stock = stocksData[symbol];
+            if (!stock || !stock.history || !stock.history.length) return;
+
+            const history = stock.history;
+            const labels = history.map(r => r.date);
+            const sc = secColor(stock.sector);
+            const n = labels.length;
+
+            // ── Series values ──────────────────────────────────────────────
+            let values, yLabel, gradFrom, gradTo;
+            if (currentMode === 'price') {
+                values = history.map(r => r.close);
+                yLabel = 'Close Price (₹)';
+                gradFrom = sc + '55';
+                gradTo = sc + '00';
+            } else {
+                values = history.map(r => r.return);
+                yLabel = 'Daily Return (%)';
+                gradFrom = 'rgba(245,197,24,0.3)';
+                gradTo = 'rgba(245,197,24,0)';
+            }
+
+            // ── Prediction maths ───────────────────────────────────────────
+            const lastClose = history[n - 1].close;
+            const lastValue = values[n - 1];
+            const predReturn = stock.predicted_return;            // in %
+            const predPrice = predReturn != null
+                ? +(lastClose * (1 + predReturn / 100)).toFixed(2) : null;
+            const predValue = currentMode === 'price' ? predPrice : predReturn;
+            const isUp = predReturn != null && predReturn >= 0;
+            const predColor = isUp ? '#f5c518' : '#e63950';
+
+            // MAE band in same units as chart
+            const maeRaw = stock.best_mae || 0;   // decimal fraction
+            const maeBand = currentMode === 'price'
+                ? lastClose * maeRaw                 // price offset
+                : maeRaw * 100;                      // return % offset
+
+            // ── Labels: one extra point for the prediction ─────────────────
+            const allLabels = [...labels, `+${horizonDays}d →`];
+
+            // Dataset 1 (history): real values + null placeholder for future
+            const histData = [...values, null];
+
+            // Dataset 2 (prediction bridge): nulls until last real point,
+            // then bridge = [lastValue, predValue] — creates the connected segment
+            const bridgeData = [
+                ...Array(n - 1).fill(null),
+                lastValue,
+                predValue,
+            ];
+
+            // Dataset 3 & 4 (MAE band upper/lower — only the last two points)
+            const bandUpper = [...Array(n - 1).fill(null), lastValue, predValue != null ? predValue + maeBand : null];
+            const bandLower = [...Array(n - 1).fill(null), lastValue, predValue != null ? predValue - maeBand : null];
+
+            if (stockChart) { stockChart.destroy(); stockChart = null; }
+
+            // ── Gradient plugin (history fill) ─────────────────────────────
+            const gradPlugin = {
+                id: 'stockGrad',
+                beforeDraw(chart) {
+                    const { ctx: c, chartArea } = chart;
+                    if (!chartArea) return;
+                    const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                    g.addColorStop(0, gradFrom);
+                    g.addColorStop(1, gradTo);
+                    chart.data.datasets[0].backgroundColor = g;
+                }
+            };
+
+            // ── Divider line plugin (vertical dashed at junction) ──────────
+            const dividerPlugin = {
+                id: 'predDivider',
+                afterDraw(chart) {
+                    const { ctx: c, chartArea, scales } = chart;
+                    if (!chartArea || !scales.x) return;
+                    const xPos = scales.x.getPixelForValue(n - 1);  // last real index
+                    c.save();
+                    c.setLineDash([4, 4]);
+                    c.strokeStyle = 'rgba(255,255,255,0.12)';
+                    c.lineWidth = 1;
+                    c.beginPath();
+                    c.moveTo(xPos, chartArea.top);
+                    c.lineTo(xPos, chartArea.bottom);
+                    c.stroke();
+                    // label
+                    c.setLineDash([]);
+                    c.fillStyle = 'rgba(255,255,255,0.18)';
+                    c.font = '10px system-ui';
+                    c.textAlign = 'right';
+                    c.fillText('today', xPos - 4, chartArea.top + 12);
+                    c.restore();
+                }
+            };
+
+            stockChart = new Chart($('chart-stock'), {
+                type: 'line',
+                plugins: [gradPlugin, dividerPlugin],
+                data: {
+                    labels: allLabels,
+                    datasets: [
+                        // ── 0: History line ────────────────────────────────
+                        {
+                            label: symbol,
+                            data: histData,
+                            borderColor: sc,
+                            borderWidth: 1.8,
+                            pointRadius: 0,
+                            fill: true,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            spanGaps: false,
+                            order: 3,
+                        },
+                        // ── 1: Prediction continuation line ────────────────
+                        {
+                            label: 'Predicted',
+                            data: bridgeData,
+                            borderColor: predColor,
+                            borderWidth: 3,
+                            borderDash: [2, 5],
+                            borderCapStyle: 'round',
+                            pointRadius: bridgeData.map((_, i) => i === n ? 7 : 0),
+                            pointBackgroundColor: predColor,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            fill: false,
+                            tension: 0,
+                            spanGaps: false,
+                            order: 1,
+                        },
+                        // ── 2: MAE upper band ──────────────────────────────
+                        {
+                            label: '+MAE',
+                            data: bandUpper,
+                            borderColor: predColor + '44',
+                            borderWidth: 1,
+                            borderDash: [2, 4],
+                            borderCapStyle: 'round',
+                            pointRadius: 0,
+                            fill: '+1',          // fill down to dataset index 3
+                            backgroundColor: predColor + '18',
+                            tension: 0,
+                            spanGaps: false,
+                            order: 2,
+                        },
+                        // ── 3: MAE lower band ──────────────────────────────
+                        {
+                            label: '-MAE',
+                            data: bandLower,
+                            borderColor: predColor + '44',
+                            borderWidth: 1,
+                            borderDash: [2, 4],
+                            borderCapStyle: 'round',
+                            pointRadius: 0,
+                            fill: false,
+                            tension: 0,
+                            spanGaps: false,
+                            order: 2,
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    animation: { duration: 300 },
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            filter: item => item.parsed.y != null,
+                            callbacks: {
+                                title: items => {
+                                    const i = items[0].dataIndex;
+                                    return i === n ? '📍 Agent Prediction' : allLabels[i];
+                                },
+                                label: ctx => {
+                                    const v = ctx.parsed.y;
+                                    if (v == null) return null;
+                                    const lbl = ctx.dataset.label;
+                                    if (lbl === '+MAE') return ` Upper band: ${currentMode === 'price' ? '₹' + v.toFixed(2) : v.toFixed(3) + '%'}`;
+                                    if (lbl === '-MAE') return ` Lower band: ${currentMode === 'price' ? '₹' + v.toFixed(2) : v.toFixed(3) + '%'}`;
+                                    if (lbl === 'Predicted') return ` Predicted: ${currentMode === 'price' ? '₹' + v.toFixed(2) : (v >= 0 ? '+' : '') + v.toFixed(3) + '%'}`;
+                                    return currentMode === 'price' ? ` ₹${v.toFixed(2)}` : ` ${(v >= 0 ? '+' : '') + v.toFixed(3)}%`;
+                                }
+                            },
+                            backgroundColor: '#1e1e1e', titleColor: '#f0ece3',
+                            bodyColor: '#9e9080', borderColor: '#333', borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            min: zoomPrediction ? Math.max(0, n - 35) : undefined,
+                            max: zoomPrediction ? n : undefined,
+                            grid: { display: false },
+                            ticks: {
+                                color: '#6e6458', font: { size: 10 },
+                                maxTicksLimit: zoomPrediction ? 8 : 12, maxRotation: 0,
+                                callback: (val, i) => {
+                                    if (i === n) return `→ +${horizonDays}d`;
+                                    const stride = zoomPrediction ? Math.ceil(35 / 8) : Math.ceil(n / 12);
+                                    return i % Math.max(1, stride) === 0
+                                        ? allLabels[i].slice(0, 7) : '';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: { color: '#1a1a1a' },
+                            ticks: {
+                                color: '#6e6458', font: { size: 10 },
+                                callback: v => currentMode === 'price'
+                                    ? '₹' + v.toLocaleString()
+                                    : v.toFixed(2) + '%'
+                            },
+                            title: { display: true, text: yLabel, color: '#6e6458', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+
+            // Update chart legend key
+            const predLegLabel = $('pred-legend-label');
+            const predLegItem  = $('pred-legend-item');
+            if (predLegLabel && predReturn != null) {
+                const dir = isUp ? '▲ bullish' : '▼ bearish';
+                predLegLabel.textContent = `Predicted +${horizonDays}d (${dir})`;
+                predLegLabel.style.color = predColor;
+                predLegItem.querySelector('line').setAttribute('stroke', predColor);
+                // band swatch
+                const bandSwatch = $('stock-chart-legend').querySelector('rect');
+                if (bandSwatch) bandSwatch.setAttribute('fill', predColor + '22');
+            }
+
+            // Info pills
+            const pills = $('stock-info-pills');
+            const sc2 = secColor(stock.sector);
+            pills.innerHTML = [
+                `<span class="pill" style="background:${sc2}22;color:${sc2}">${stock.sector}</span>`,
+                stock.best_mae != null
+                    ? `<span class="pill" style="background:rgba(245,197,24,0.1);color:#f5c518">Best MAE ${fmtMAE(stock.best_mae)}</span>`
+                    : '',
+                stock.best_neighbors && stock.best_neighbors.length
+                    ? `<span style="font-size:11px;color:var(--muted)">Best neighbors: ${stock.best_neighbors.map(n => `<b style="color:var(--muted2)">${n}</b>`).join(', ')}</span>`
+                    : ''
+            ].join('');
+
+            // Prediction callout
+            const callout = $('pred-callout');
+            if (predReturn != null) {
+                const isUp = predReturn >= 0;
+                const arrow = isUp ? '▲' : '▼';
+                const col = isUp ? '#f5c518' : '#e63950';
+                callout.style.display = 'flex';
+                callout.innerHTML = `
+                    <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px">Agent Prediction</div>
+                    <div style="font-size:22px;font-weight:700;color:${col};letter-spacing:-0.5px">
+                        ${arrow} ${Math.abs(predReturn).toFixed(3)}%
+                    </div>
+                    <div style="font-size:12px;color:var(--muted2)">
+                        Predicted next-${horizonDays}-day return &nbsp;·&nbsp;
+                        Est. price <b style="color:${col}">₹${predPrice != null ? predPrice.toFixed(2) : '—'}</b>
+                        from last close <b>₹${lastClose.toFixed(2)}</b>
+                    </div>
+                    <div style="margin-left:auto;font-size:11px;color:var(--muted);text-align:right">
+                        MAE ±${stock.best_mae != null ? fmtMAE(stock.best_mae) : '—'}<br>
+                        Neighbors: ${(stock.best_neighbors || []).join(', ') || '—'}
+                    </div>`;
+            } else {
+                callout.style.display = 'none';
+            }
+        }
+
+        // ── Best Configurations Table ──────────────────────────────────────────────
+        function renderBestTable(data) {
+            const maxMAE = Math.max(...data.map(d => d.worst_mae));
+            const tbody = $('best-table-body');
+            tbody.innerHTML = data.map((d, i) => {
+                const sc = secColor(d.sector);
+                const fillPct = Math.round((d.best_mae / maxMAE) * 100);
+                const retCls = d.predicted_return >= 0 ? 'return-pos' : 'return-neg';
+                const rangePct = ((d.worst_mae - d.best_mae) / d.worst_mae * 100).toFixed(1);
+                return `<tr>
+      <td class="rank-num">${i + 1}</td>
+      <td><b>${d.target}</b></td>
+      <td><span class="pill" style="background:${sc}22;color:${sc};font-size:10px">${d.sector}</span></td>
+      <td>
+        <div class="mae-bar-wrap">
+          <span style="color:var(--gold);font-variant-numeric:tabular-nums;font-size:12px">${fmtMAE(d.best_mae)}</span>
+          <div class="mae-bar-bg"><div class="mae-bar-fill" style="width:${fillPct}%"></div></div>
+        </div>
+      </td>
+      <td style="color:var(--muted);font-size:12px">${fmtMAE(d.worst_mae)}</td>
+      <td style="color:var(--crimson);font-size:12px">−${rangePct}%</td>
+      <td class="${retCls}" style="font-size:12px;font-variant-numeric:tabular-nums">
+        ${d.predicted_return >= 0 ? '▲' : '▼'} ${Math.abs(d.predicted_return).toFixed(3)}%
+      </td>
+      <td>
+        <div class="neighbors-cell">
+          ${d.best_neighbors.map(n => `<span class="nbr-tag">${n}</span>`).join('')}
+        </div>
+      </td>
+    </tr>`;
+            }).join('');
+        }
+
+        // ── Kick off ───────────────────────────────────────────────────────────────
+        init().catch(err => {
+            $('loading').innerHTML = `
+    <div style="color:#e63950;font-size:14px">
+      <b>Failed to load analysis.json</b><br>
+      <span style="color:#6e6458;font-size:12px">Run the analysis script first, then serve this folder with:<br>
+      <code style="color:#f5c518">python -m http.server 8080</code></span>
+    </div>`;
+            console.error(err);
+        });
+    </script>
+</body>
+
+</html>
