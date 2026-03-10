@@ -1,0 +1,2862 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "ADANIENT"
+    },
+    {
+      "id": "ASIANPAINT"
+    },
+    {
+      "id": "AXISBANK"
+    },
+    {
+      "id": "BAJAJFINSV"
+    },
+    {
+      "id": "BAJFINANCE"
+    },
+    {
+      "id": "BHARTIARTL"
+    },
+    {
+      "id": "BPCL"
+    },
+    {
+      "id": "BRITANNIA"
+    },
+    {
+      "id": "CIPLA"
+    },
+    {
+      "id": "COALINDIA"
+    },
+    {
+      "id": "DIVISLAB"
+    },
+    {
+      "id": "DMART"
+    },
+    {
+      "id": "DRREDDY"
+    },
+    {
+      "id": "EICHERMOT"
+    },
+    {
+      "id": "GRASIM"
+    },
+    {
+      "id": "HCLTECH"
+    },
+    {
+      "id": "HDFCBANK"
+    },
+    {
+      "id": "HEROMOTOCO"
+    },
+    {
+      "id": "HINDALCO"
+    },
+    {
+      "id": "HINDUNILVR"
+    },
+    {
+      "id": "ICICIBANK"
+    },
+    {
+      "id": "INDUSINDBK"
+    },
+    {
+      "id": "INFY"
+    },
+    {
+      "id": "IOC"
+    },
+    {
+      "id": "ITC"
+    },
+    {
+      "id": "JSWSTEEL"
+    },
+    {
+      "id": "KOTAKBANK"
+    },
+    {
+      "id": "LT"
+    },
+    {
+      "id": "M&M"
+    },
+    {
+      "id": "MARUTI"
+    },
+    {
+      "id": "NESTLEIND"
+    },
+    {
+      "id": "NTPC"
+    },
+    {
+      "id": "ONGC"
+    },
+    {
+      "id": "POWERGRID"
+    },
+    {
+      "id": "RELIANCE"
+    },
+    {
+      "id": "SBIN"
+    },
+    {
+      "id": "SHREECEM"
+    },
+    {
+      "id": "SUNPHARMA"
+    },
+    {
+      "id": "TATASTEEL"
+    },
+    {
+      "id": "TCS"
+    },
+    {
+      "id": "TECHM"
+    },
+    {
+      "id": "TITAN"
+    },
+    {
+      "id": "ULTRACEMCO"
+    },
+    {
+      "id": "UPL"
+    },
+    {
+      "id": "VEDL"
+    },
+    {
+      "id": "WIPRO"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "ASIANPAINT"
+    },
+    {
+      "weight": 0.13118935325152262,
+      "source": "ADANIENT",
+      "target": "BAJAJFINSV"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "BPCL"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "COALINDIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.1385697426856912,
+      "source": "ADANIENT",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.4,
+      "source": "ADANIENT",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "BAJAJFINSV"
+    },
+    {
+      "weight": 0.1289400616865818,
+      "source": "ASIANPAINT",
+      "target": "BRITANNIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "COALINDIA"
+    },
+    {
+      "weight": 0.4,
+      "source": "ASIANPAINT",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.6000000000000001,
+      "source": "ASIANPAINT",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.4,
+      "source": "ASIANPAINT",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.3563994118351049,
+      "source": "ASIANPAINT",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.3406916432015554,
+      "source": "ASIANPAINT",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.4,
+      "source": "ASIANPAINT",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.12391978797636133,
+      "source": "ASIANPAINT",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.4,
+      "source": "ASIANPAINT",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.5626385330893764,
+      "source": "AXISBANK",
+      "target": "BAJAJFINSV"
+    },
+    {
+      "weight": 0.4,
+      "source": "AXISBANK",
+      "target": "BAJFINANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "BPCL"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "COALINDIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.4,
+      "source": "AXISBANK",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.3699152356679039,
+      "source": "AXISBANK",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.4325481578000624,
+      "source": "AXISBANK",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.3583956742554123,
+      "source": "AXISBANK",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.4,
+      "source": "AXISBANK",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.5635613961775614,
+      "source": "AXISBANK",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.4184834612675825,
+      "source": "AXISBANK",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "AXISBANK",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.5104421492357007,
+      "source": "BAJAJFINSV",
+      "target": "BAJFINANCE"
+    },
+    {
+      "weight": 0.3046049521617874,
+      "source": "BAJAJFINSV",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.5524029376161731,
+      "source": "BAJAJFINSV",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJAJFINSV",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.6000000000000001,
+      "source": "BAJAJFINSV",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.5476479484709917,
+      "source": "BAJAJFINSV",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJAJFINSV",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJAJFINSV",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJAJFINSV",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.3502396333647538,
+      "source": "BAJAJFINSV",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "BHARTIARTL"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "BPCL"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "COALINDIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.15640976707438697,
+      "source": "BAJFINANCE",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.5596538958205425,
+      "source": "BAJFINANCE",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.5644613173817038,
+      "source": "BAJFINANCE",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.34588658140707623,
+      "source": "BAJFINANCE",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.3539052833260984,
+      "source": "BAJFINANCE",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJFINANCE",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.4,
+      "source": "BAJFINANCE",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJFINANCE",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.11269423165127895,
+      "source": "BAJFINANCE",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.14118922840625717,
+      "source": "BAJFINANCE",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "BRITANNIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "CIPLA"
+    },
+    {
+      "weight": 0.1210023807388291,
+      "source": "BHARTIARTL",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.12967623805549033,
+      "source": "BHARTIARTL",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.4,
+      "source": "BHARTIARTL",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.4,
+      "source": "BHARTIARTL",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BHARTIARTL",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "BRITANNIA"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "CIPLA"
+    },
+    {
+      "weight": 0.4,
+      "source": "BPCL",
+      "target": "COALINDIA"
+    },
+    {
+      "weight": 0.4,
+      "source": "BPCL",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.4,
+      "source": "BPCL",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.4,
+      "source": "BPCL",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.7104181153231739,
+      "source": "BPCL",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "LT"
+    },
+    {
+      "weight": 0.1784214792419103,
+      "source": "BPCL",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.3589651836730914,
+      "source": "BPCL",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.35232359873256913,
+      "source": "BPCL",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.17682137715732016,
+      "source": "BPCL",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.4,
+      "source": "BRITANNIA",
+      "target": "CIPLA"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.09024761937200715,
+      "source": "BRITANNIA",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.38975064146673355,
+      "source": "BRITANNIA",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.3212807987060799,
+      "source": "BRITANNIA",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.5986550497517791,
+      "source": "BRITANNIA",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.4,
+      "source": "BRITANNIA",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.5282904961961805,
+      "source": "CIPLA",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.569788674289291,
+      "source": "CIPLA",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "HDFCBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.06356505649752352,
+      "source": "CIPLA",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.4,
+      "source": "CIPLA",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.3584636327127791,
+      "source": "CIPLA",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "DMART"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.4,
+      "source": "COALINDIA",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.38242182165014554,
+      "source": "COALINDIA",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.7981909848317004,
+      "source": "COALINDIA",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.21868768081125559,
+      "source": "COALINDIA",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.415955794669291,
+      "source": "COALINDIA",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.5557630770201587,
+      "source": "COALINDIA",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.3592870784738446,
+      "source": "COALINDIA",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.6041010011650406,
+      "source": "COALINDIA",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.3889496526620728,
+      "source": "COALINDIA",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "COALINDIA",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.16316161018511025,
+      "source": "COALINDIA",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.7321493003377608,
+      "source": "DIVISLAB",
+      "target": "DRREDDY"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.4,
+      "source": "DIVISLAB",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.10220565606660102,
+      "source": "DIVISLAB",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.33233131656751835,
+      "source": "DIVISLAB",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.10741901060584574,
+      "source": "DIVISLAB",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.4,
+      "source": "DMART",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "DMART",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.4,
+      "source": "DMART",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.4,
+      "source": "DMART",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.13630132860764518,
+      "source": "DMART",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "DMART",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.09343844624376875,
+      "source": "DRREDDY",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.4,
+      "source": "DRREDDY",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.35514421967768184,
+      "source": "DRREDDY",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "DRREDDY",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.09842685387138009,
+      "source": "DRREDDY",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "GRASIM"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "HCLTECH"
+    },
+    {
+      "weight": 0.5548935105671868,
+      "source": "EICHERMOT",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.4,
+      "source": "EICHERMOT",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "LT"
+    },
+    {
+      "weight": 0.3668899502746875,
+      "source": "EICHERMOT",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.38900213911612136,
+      "source": "EICHERMOT",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.4,
+      "source": "EICHERMOT",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.1381475951517875,
+      "source": "EICHERMOT",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "EICHERMOT",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.5668871263201632,
+      "source": "GRASIM",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.3157460556521307,
+      "source": "GRASIM",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.39210899153814804,
+      "source": "GRASIM",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.17223608490183717,
+      "source": "GRASIM",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.3853863592070729,
+      "source": "GRASIM",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.5771836810026423,
+      "source": "GRASIM",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.4460320546455062,
+      "source": "GRASIM",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.4,
+      "source": "GRASIM",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.15960632391672214,
+      "source": "GRASIM",
+      "target": "LT"
+    },
+    {
+      "weight": 0.14337033448420056,
+      "source": "GRASIM",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "HEROMOTOCO"
+    },
+    {
+      "weight": 0.8723266500325892,
+      "source": "HCLTECH",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.46523586799220806,
+      "source": "HCLTECH",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.44705388102911936,
+      "source": "HCLTECH",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4385929943612178,
+      "source": "HCLTECH",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "HINDUNILVR"
+    },
+    {
+      "weight": 0.802820954897894,
+      "source": "HDFCBANK",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.33734968659158193,
+      "source": "HDFCBANK",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.39157503456693216,
+      "source": "HDFCBANK",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.4,
+      "source": "HDFCBANK",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "INFY"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "LT"
+    },
+    {
+      "weight": 0.3637964113793024,
+      "source": "HEROMOTOCO",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.3724787139613794,
+      "source": "HEROMOTOCO",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.44961194351820266,
+      "source": "HINDALCO",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.3667805093779027,
+      "source": "HINDALCO",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.6866503723707994,
+      "source": "HINDALCO",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDALCO",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.5528577537430381,
+      "source": "HINDALCO",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.8532665678170734,
+      "source": "HINDALCO",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.4,
+      "source": "HINDALCO",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.11410055437302002,
+      "source": "HINDALCO",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.5257172929495975,
+      "source": "HINDUNILVR",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.4000419142113055,
+      "source": "HINDUNILVR",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.4,
+      "source": "HINDUNILVR",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "HINDUNILVR",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.10762491599372488,
+      "source": "HINDUNILVR",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "INDUSINDBK"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.38486140077405906,
+      "source": "ICICIBANK",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.6130039923003329,
+      "source": "ICICIBANK",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.31995050328322283,
+      "source": "ICICIBANK",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ICICIBANK",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.4,
+      "source": "INDUSINDBK",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "IOC"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.4838505414239158,
+      "source": "INFY",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.46760610714539697,
+      "source": "INFY",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4534932509691612,
+      "source": "INFY",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "IOC",
+      "target": "LT"
+    },
+    {
+      "weight": 0.2,
+      "source": "IOC",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.20044296305822118,
+      "source": "IOC",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.3864873640898739,
+      "source": "IOC",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.5651510981790195,
+      "source": "IOC",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "IOC",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.1849543952011731,
+      "source": "IOC",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "IOC",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "IOC",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "IOC",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.4,
+      "source": "ITC",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.4,
+      "source": "ITC",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.4,
+      "source": "ITC",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.4,
+      "source": "ITC",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.4,
+      "source": "ITC",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ITC",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.5231128643287506,
+      "source": "JSWSTEEL",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "JSWSTEEL",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.5110755624583856,
+      "source": "JSWSTEEL",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.4,
+      "source": "JSWSTEEL",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.7550339493191869,
+      "source": "JSWSTEEL",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.3567719483512597,
+      "source": "JSWSTEEL",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.4154354914288058,
+      "source": "JSWSTEEL",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.4,
+      "source": "KOTAKBANK",
+      "target": "M&M"
+    },
+    {
+      "weight": 0.4,
+      "source": "KOTAKBANK",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.4,
+      "source": "KOTAKBANK",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "KOTAKBANK",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "KOTAKBANK",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "KOTAKBANK",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "KOTAKBANK",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "KOTAKBANK",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "KOTAKBANK",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.16143163284174264,
+      "source": "LT",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "LT",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.3676212751113175,
+      "source": "LT",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.3800905944777291,
+      "source": "LT",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "LT",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.3217098026668984,
+      "source": "LT",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.12966414587609654,
+      "source": "LT",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.15593673005600625,
+      "source": "LT",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.14864109187740496,
+      "source": "LT",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.13848195608642755,
+      "source": "LT",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.7792522205576204,
+      "source": "M&M",
+      "target": "MARUTI"
+    },
+    {
+      "weight": 0.4,
+      "source": "M&M",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "M&M",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "M&M",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.4,
+      "source": "M&M",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.4,
+      "source": "M&M",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "M&M",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "MARUTI",
+      "target": "NTPC"
+    },
+    {
+      "weight": 0.2,
+      "source": "MARUTI",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "MARUTI",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.13506082525130686,
+      "source": "MARUTI",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "MARUTI",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.4,
+      "source": "MARUTI",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "MARUTI",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "SHREECEM"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.39763393943897807,
+      "source": "NTPC",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.43985648470224253,
+      "source": "NTPC",
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "NTPC",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.18736638569814734,
+      "source": "NTPC",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "NTPC",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "NTPC",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "NTPC",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.37041869432589375,
+      "source": "ONGC",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "ONGC",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.13911070960952673,
+      "source": "POWERGRID",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
+      "source": "POWERGRID",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "POWERGRID",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "POWERGRID",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.2,
+      "source": "RELIANCE",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "RELIANCE",
+      "target": "SUNPHARMA"
+    },
+    {
+      "weight": 0.15756452620640252,
+      "source": "RELIANCE",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "RELIANCE",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.4,
+      "source": "SBIN",
+      "target": "TCS"
+    },
+    {
+      "weight": 0.2,
+      "source": "SBIN",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "SBIN",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "SBIN",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "SBIN",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.1514348034736996,
+      "source": "SBIN",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "SHREECEM",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "SHREECEM",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "SHREECEM",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.6337724783389596,
+      "source": "SHREECEM",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "SHREECEM",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "SHREECEM",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.11334929003751751,
+      "source": "SUNPHARMA",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.2,
+      "source": "SUNPHARMA",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.2,
+      "source": "SUNPHARMA",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "TATASTEEL",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.3740433951302296,
+      "source": "TATASTEEL",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.6532075789213354,
+      "source": "TATASTEEL",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "TATASTEEL",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.646107937900644,
+      "source": "TCS",
+      "target": "TECHM"
+    },
+    {
+      "weight": 0.2,
+      "source": "TCS",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "TCS",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.6442858768449746,
+      "source": "TCS",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.4,
+      "source": "TECHM",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "TECHM",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.6481047109199007,
+      "source": "TECHM",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.4,
+      "source": "TITAN",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ULTRACEMCO",
+      "target": "UPL"
+    },
+    {
+      "weight": 0.2,
+      "source": "ULTRACEMCO",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.4,
+      "source": "UPL",
+      "target": "VEDL"
+    },
+    {
+      "weight": 0.2,
+      "source": "UPL",
+      "target": "WIPRO"
+    },
+    {
+      "weight": 0.4,
+      "source": "VEDL",
+      "target": "WIPRO"
+    }
+  ]
+}

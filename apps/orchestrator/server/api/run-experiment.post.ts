@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // ---- Baseline (no neighbors) ----
-  const baseline = await $fetch("http://localhost:8000/forecast", {
+  const baseline = await $fetch("http://localhost:8000/run-forecast", {
     method: "POST",
     body: {
       target,
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
       ?.slice(0, 3)
       .map((n: any) => n.symbol) || []
 
-  const correlated = await $fetch("http://localhost:8000/forecast", {
+  const correlated = await $fetch("http://localhost:8000/run-forecast", {
     method: "POST",
     body: {
       target,
@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
     metadata[target].same_sector
       ?.slice(0, 3) || []
 
-  const sector = await $fetch("http://localhost:8000/forecast", {
+  const sector = await $fetch("http://localhost:8000/run-forecast", {
     method: "POST",
     body: {
       target,

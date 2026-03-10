@@ -1,0 +1,5451 @@
+{
+  "ADANIENT": {
+    "sector": "Energy",
+    "industry": "Thermal Coal",
+    "market_cap": 2746433142784,
+    "market_cap_bucket": "Large",
+    "beta": 0.396,
+    "volatility_30d": 0.03374560489397137,
+    "volatility_bucket": "High",
+    "momentum_20d": 0.06474895843510198,
+    "momentum_60d": -0.042066733755164565,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.713466010897248,
+    "current_drawdown": -0.206172405029713,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.41197001205145845
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.346424356714228
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3448815085156174
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.3411289283774343
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.32797338312880653
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.6516277966443276
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.5829140578750633
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5767314263788172
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.49786427384432586
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.48588647296686166
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.46596526670260646
+      }
+    ],
+    "same_sector": [
+      "BPCL",
+      "COALINDIA",
+      "IOC",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "same_industry": [
+      "COALINDIA"
+    ],
+    "same_market_cap_bucket": [
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "ASIANPAINT": {
+    "sector": "Basic Materials",
+    "industry": "Specialty Chemicals",
+    "market_cap": 2211573137408,
+    "market_cap_bucket": "Large",
+    "beta": 0.127,
+    "volatility_30d": 0.015699073187121177,
+    "volatility_bucket": "Low",
+    "momentum_20d": -0.03950870205818069,
+    "momentum_60d": -0.21983628576011727,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.36872690702515976,
+    "current_drawdown": -0.22280609814510696,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.39099852958776216
+      },
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.3517291080038885
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.3290958258018138
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.32235015421645447
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.3097994699409033
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.5798905594976153
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.42363479684704247
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.4081725129049033
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.3833163774816786
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.37001412268436396
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.3454156141138263
+      }
+    ],
+    "same_sector": [
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "AXISBANK": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 4263810170880,
+    "market_cap_bucket": "Mega",
+    "beta": 0.311,
+    "volatility_30d": 0.017744078565873962,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.046359167997045425,
+    "momentum_60d": 0.07210941314697261,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.28027026628468804,
+    "current_drawdown": -0.021881647307109765,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.5813703945001559
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.5462086531689562
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.4247880891697597
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.40890349044390323
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.40659633272344076
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.6295990932121646
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6024652673935526
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.5767314263788172
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.48588647296686166
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.43987423368138007
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.43478360976859903
+      }
+    ],
+    "same_sector": [
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_market_cap_bucket": [
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "BAJAJFINSV": {
+    "sector": "Financial Services",
+    "industry": "Financial Conglomerates",
+    "market_cap": 3102179852288,
+    "market_cap_bucket": "Mega",
+    "beta": 0.207,
+    "volatility_30d": 0.014664323036202912,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.006113698242259602,
+    "momentum_60d": -0.05236186283161437,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4267470844843607,
+    "current_drawdown": -0.10782875250943484,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.7761053730892518
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4285577499486047
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.41626487312973365
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.40659633272344076
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.4027687475567299
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.7349323386979548
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.6516277966443276
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.5655937911513533
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.785842404056999
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.44633398753772874
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.39359583208203536
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "BAJFINANCE": {
+    "sector": "Financial Services",
+    "industry": "Credit Services",
+    "market_cap": 6081139965952,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.134,
+    "volatility_30d": 0.01995404603532108,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.08249417592780772,
+    "momentum_60d": -0.04941208511542827,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.33362342767715003,
+    "current_drawdown": -0.10592699522730359,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.7761053730892518
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4231559281029097
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.41115329345425944
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.3991347395513561
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3910244176859674
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.7349323386979548
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.45602928576214885
+      },
+      {
+        "symbol": "MARUTI",
+        "corr": 0.42381873410858295
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.785842404056999
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.31376753359845977
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.30022699994998847
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "BHARTIARTL": {
+    "sector": "Communication Services",
+    "industry": "Telecom Services",
+    "market_cap": 11410545311744,
+    "market_cap_bucket": "UltraMega",
+    "beta": -0.061,
+    "volatility_30d": 0.011602872015346172,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": -0.04691160684689355,
+    "momentum_60d": -0.1096112236448995,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.1737253003775844,
+    "current_drawdown": -0.13386045523473206,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.32419059513872583
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.3237344567889331
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.32194049107666484
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.30250595184707274
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3009231158949779
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.459660054573479
+      },
+      {
+        "symbol": "MARUTI",
+        "corr": 0.4111868231204612
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.40002827814395747
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.35906680372315347
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.2598134906782571
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.24220738257563224
+      }
+    ],
+    "same_sector": [],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "BPCL": {
+    "sector": "Energy",
+    "industry": "Oil & Gas Refining & Marketing",
+    "market_cap": 1626071891968,
+    "market_cap_bucket": "Mid",
+    "beta": 0.873,
+    "volatility_30d": 0.01607970623766749,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.022088833695932397,
+    "momentum_60d": 0.08250731355610275,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.34588784104428943,
+    "current_drawdown": -0.034766933876902,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "IOC",
+        "corr": 0.776045288307935
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.4460536981047757
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4420534428933004
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.43467141698256007
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.39741295918272834
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "IOC",
+        "corr": 0.8030509693343912
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.5785151058064473
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.5360761265587985
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "IOC",
+        "corr": 0.7480468997818011
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.42344799505503006
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3977832394777336
+      }
+    ],
+    "same_sector": [
+      "ADANIENT",
+      "COALINDIA",
+      "IOC",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "same_industry": [
+      "IOC",
+      "RELIANCE"
+    ],
+    "same_market_cap_bucket": [
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "BRITANNIA": {
+    "sector": "Consumer Defensive",
+    "industry": "Packaged Foods",
+    "market_cap": 1435334082560,
+    "market_cap_bucket": "Mid",
+    "beta": 0.531,
+    "volatility_30d": 0.013124631809128408,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": 0.011972488749256938,
+    "momentum_60d": 0.01403896877392996,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2902319760455698,
+    "current_drawdown": -0.054202047456551064,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.4966376243794476
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.4743766036668338
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.32235015421645447
+      },
+      {
+        "symbol": "ITC",
+        "corr": 0.3032019967651997
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.22561904843001784
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.6187020602188845
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.37754637575177014
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.37317453800957023
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.5334066654686543
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.29506614095127154
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.2928745799342736
+      }
+    ],
+    "same_sector": [
+      "DMART",
+      "HINDUNILVR",
+      "ITC",
+      "NESTLEIND"
+    ],
+    "same_industry": [
+      "NESTLEIND"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "CIPLA": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic",
+    "market_cap": 1091796336640,
+    "market_cap_bucket": "Mid",
+    "beta": -0.042,
+    "volatility_30d": 0.011331009625260326,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": 0.030497103342908005,
+    "momentum_60d": -0.11137411204080372,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.26508443508147517,
+    "current_drawdown": -0.18754508570493955,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.4244716857232273
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3961590817819477
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.32072624049045145
+      },
+      {
+        "symbol": "UPL",
+        "corr": 0.17669952097187264
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.1589126412438088
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.49598530873330354
+      },
+      {
+        "symbol": "MARUTI",
+        "corr": 0.46861986383278886
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.46496495997429255
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.38925059473361223
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.369764123346224
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.36387826044483024
+      }
+    ],
+    "same_sector": [
+      "DIVISLAB",
+      "DRREDDY",
+      "SUNPHARMA"
+    ],
+    "same_industry": [
+      "DIVISLAB",
+      "DRREDDY",
+      "SUNPHARMA"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "COALINDIA": {
+    "sector": "Energy",
+    "industry": "Thermal Coal",
+    "market_cap": 2626862972928,
+    "market_cap_bucket": "Large",
+    "beta": null,
+    "volatility_30d": 0.01982672534367464,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.019798936784609422,
+    "momentum_60d": 0.1393875478682165,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.30840145232648397,
+    "current_drawdown": -0.05236454969988134,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.546719202028139
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.5398894866732274
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.5102525029126015
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.49547746207925103
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.47237413165518205
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.7031730471227136
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6062004007841206
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.542919297798057
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.5688451360018969
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.49273533423232785
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.48247017035385914
+      }
+    ],
+    "same_sector": [
+      "ADANIENT",
+      "BPCL",
+      "IOC",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "same_industry": [
+      "ADANIENT"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "DIVISLAB": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic",
+    "market_cap": 1699928080384,
+    "market_cap_bucket": "Mid",
+    "beta": 0.123,
+    "volatility_30d": 0.01743587699028009,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.07576648467030656,
+    "momentum_60d": -0.010125212552171914,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.39273782553859415,
+    "current_drawdown": -0.07887771486045887,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.33082829141879583
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.3303732508444019
+      },
+      {
+        "symbol": "CIPLA",
+        "corr": 0.32072624049045145
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.26854752651461433
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.25551414016650253
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.49598530873330354
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.4529222223333043
+      },
+      {
+        "symbol": "DMART",
+        "corr": 0.4502782946209061
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.35507084119061866
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3366572853217359
+      },
+      {
+        "symbol": "DMART",
+        "corr": 0.3113304133642326
+      }
+    ],
+    "same_sector": [
+      "CIPLA",
+      "DRREDDY",
+      "SUNPHARMA"
+    ],
+    "same_industry": [
+      "CIPLA",
+      "DRREDDY",
+      "SUNPHARMA"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "DMART": {
+    "sector": "Consumer Defensive",
+    "industry": "Discount Stores",
+    "market_cap": 2474412343296,
+    "market_cap_bucket": "Large",
+    "beta": 0.222,
+    "volatility_30d": 0.013986051985554714,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.03491917983048376,
+    "momentum_60d": -0.028313711559456056,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.39317208778469126,
+    "current_drawdown": -0.21261877419390063,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "TITAN",
+        "corr": 0.3407533215191129
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.28173557912819736
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.26151238040446845
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.260479450448783
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.2578214536010667
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "TITAN",
+        "corr": 0.5195855087878027
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.4788867381931416
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.4502782946209061
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "TITAN",
+        "corr": 0.4224012598993404
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.38502818711690584
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3381283234611344
+      }
+    ],
+    "same_sector": [
+      "BRITANNIA",
+      "HINDUNILVR",
+      "ITC",
+      "NESTLEIND"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "DRREDDY": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic",
+    "market_cap": 1077860433920,
+    "market_cap_bucket": "Mid",
+    "beta": 0.311,
+    "volatility_30d": 0.017210151878741527,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.09463004178779078,
+    "momentum_60d": 0.013149694074172213,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.30092633122836715,
+    "current_drawdown": -0.04409673407774443,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.4244716857232273
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3878605491942046
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.3303732508444019
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.2460671346784502
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.23359611560942187
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.5142264606865434
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.47690133465827556
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.4695752213730123
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.4477425814542818
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.4067697349888205
+      },
+      {
+        "symbol": "CIPLA",
+        "corr": 0.369764123346224
+      }
+    ],
+    "same_sector": [
+      "CIPLA",
+      "DIVISLAB",
+      "SUNPHARMA"
+    ],
+    "same_industry": [
+      "CIPLA",
+      "DIVISLAB",
+      "SUNPHARMA"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "EICHERMOT": {
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "market_cap": 2146782937088,
+    "market_cap_bucket": "Large",
+    "beta": 0.092,
+    "volatility_30d": 0.019138950547305245,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.1203206642330541,
+    "momentum_60d": 0.10225352112676056,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2592035365111422,
+    "current_drawdown": -0.044444444444444446,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.4725053477903034
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.41722487568671873
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.3872337764179671
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3763763891558871
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.34536898787946874
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.5616312130879947
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.44300664783411636
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.4180104397995594
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.4856071930221526
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.34504949259734474
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.3202886479130099
+      }
+    ],
+    "same_sector": [
+      "HEROMOTOCO",
+      "M&M",
+      "MARUTI",
+      "TITAN"
+    ],
+    "same_industry": [
+      "HEROMOTOCO",
+      "M&M",
+      "MARUTI"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "GRASIM": {
+    "sector": "Basic Materials",
+    "industry": "Building Materials",
+    "market_cap": 1884137717760,
+    "market_cap_bucket": "Large",
+    "beta": 0.17,
+    "volatility_30d": 0.014645062029067513,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.0009730956090412413,
+    "momentum_60d": 0.017177024671044094,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.3302496874194864,
+    "current_drawdown": -0.0613106787904943,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.6150801366137655
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.4802724788453701
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.4634658980176823
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.4429592025066056
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.43059021225459293
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.763505785275627
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6387079683486461
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.5402629847836894
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.54052375810452
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.5301186577681023
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.505798885086294
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [
+      "SHREECEM",
+      "ULTRACEMCO"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "HCLTECH": {
+    "sector": "Technology",
+    "industry": "Information Technology Services",
+    "market_cap": 3709449535488,
+    "market_cap_bucket": "Mega",
+    "beta": 0.155,
+    "volatility_30d": 0.018893706199487097,
+    "volatility_bucket": "Medium",
+    "momentum_20d": -0.1823712070153154,
+    "momentum_60d": -0.16539840460703048,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.33036111588711115,
+    "current_drawdown": -0.20733116364924462,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.680816625081473
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6630896699805201
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6176347025727983
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.5964824859030444
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.312362817785824
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.8132907566758593
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.7712053056450671
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.7344981221393065
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.7757410414594981
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.711428023429941
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.7012598904636151
+      }
+    ],
+    "same_sector": [
+      "INFY",
+      "TCS",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_industry": [
+      "INFY",
+      "TCS",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "HDFCBANK": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 13532221407232,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.364,
+    "volatility_30d": 0.009774356583141762,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": -0.052472742649442905,
+    "momentum_60d": -0.1181307524578249,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2324285762918761,
+    "current_drawdown": -0.13179977962506845,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.507052387244735
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.47893758641733036
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.4247880891697597
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.3991347395513561
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.3989366844091561
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.5372026305064352
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.49757302961464384
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.45516363905757395
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.47104096222624303
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.4270192826826436
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.3904448194752098
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [
+      "AXISBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "HEROMOTOCO": {
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "market_cap": 1118802018304,
+    "market_cap_bucket": "Mid",
+    "beta": 0.593,
+    "volatility_30d": 0.017477037934032002,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.013780246595750167,
+    "momentum_60d": -0.10086968702134003,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.42157896890415597,
+    "current_drawdown": -0.1023562596337996,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.43119678490344837
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.409491028448256
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.3872337764179671
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.32474382439388294
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.31916052816178647
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "M&M",
+        "corr": 0.5586385736438062
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.5140109342293291
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.5113948520825299
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.3823665806593371
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.370214419303273
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.3568787886608168
+      }
+    ],
+    "same_sector": [
+      "EICHERMOT",
+      "M&M",
+      "MARUTI",
+      "TITAN"
+    ],
+    "same_industry": [
+      "EICHERMOT",
+      "M&M",
+      "MARUTI"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "HINDALCO": {
+    "sector": "Basic Materials",
+    "industry": "Aluminum",
+    "market_cap": 2101722742784,
+    "market_cap_bucket": "Large",
+    "beta": 0.84,
+    "volatility_30d": 0.02348138658780797,
+    "volatility_bucket": "High",
+    "momentum_20d": 0.010209564750134348,
+    "momentum_60d": 0.1593488087718391,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4987328093774792,
+    "current_drawdown": -0.08207611427225452,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.7166259309269984
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.6331664195426837
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.6240298587955067
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.4560545541253638
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.417217815800408
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "VEDL",
+        "corr": 0.7697961705072897
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6520778945712302
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.6062004007841206
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "VEDL",
+        "corr": 0.6940417600879587
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.5839369259483691
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.48247017035385914
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "HINDUNILVR": {
+    "sector": "Consumer Defensive",
+    "industry": "Household & Personal Products",
+    "market_cap": 5453253705728,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.28,
+    "volatility_30d": 0.0143517801243547,
+    "volatility_bucket": "Low",
+    "momentum_20d": -0.015568638023029546,
+    "momentum_60d": -0.05750948595715433,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.30132023231920246,
+    "current_drawdown": -0.13138146233693032,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.5001047855282638
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.4743766036668338
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.39099852958776216
+      },
+      {
+        "symbol": "ITC",
+        "corr": 0.31429323237399337
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.2690622899843122
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.4494120363903978
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.39579521822261327
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.382467602043641
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.4457262392403943
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.37920261340358685
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3597450018086821
+      }
+    ],
+    "same_sector": [
+      "BRITANNIA",
+      "DMART",
+      "ITC",
+      "NESTLEIND"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "ICICIBANK": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 9833700917248,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.177,
+    "volatility_30d": 0.011730072557876179,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": 0.01567116381333644,
+    "momentum_60d": -0.009158398802237233,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.1952596140979609,
+    "current_drawdown": -0.06986302309425062,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5813703945001559
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.5325099807508321
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.507052387244735
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.4621535019351476
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.41115329345425944
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.41771065227799953
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.40402993340504156
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.38673701032145646
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3912399483849754
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.35393074651474005
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.34957231844260467
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [
+      "AXISBANK",
+      "HDFCBANK",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "LT",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ITC",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "INDUSINDBK": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 734279237632,
+    "market_cap_bucket": "Mid",
+    "beta": 0.244,
+    "volatility_30d": 0.014097674001656402,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.035429826970612366,
+    "momentum_60d": 0.09212050984936271,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.5892993261746771,
+    "current_drawdown": -0.099550927708761,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.44558050688525797
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.39598918563853075
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3810073440404327
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.36471645351769055
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.3433742164789548
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.5036914935671409
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.4794316544563222
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.4708226596242094
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.42035334735208085
+      },
+      {
+        "symbol": "UPL",
+        "corr": 0.40803899483731637
+      },
+      {
+        "symbol": "BPCL",
+        "corr": 0.3906399786879433
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "ICICIBANK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_industry": [
+      "AXISBANK",
+      "HDFCBANK",
+      "ICICIBANK",
+      "KOTAKBANK",
+      "SBIN"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "INFY": {
+    "sector": "Technology",
+    "industry": "Information Technology Services",
+    "market_cap": 5214490329088,
+    "market_cap_bucket": "Mega",
+    "beta": 0.184,
+    "volatility_30d": 0.019238746808363245,
+    "volatility_bucket": "Medium",
+    "momentum_20d": -0.20897262483007806,
+    "momentum_60d": -0.19322731340093813,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.30152018682298604,
+    "current_drawdown": -0.24928196428520644,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "TCS",
+        "corr": 0.7096263535597895
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.680816625081473
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6690152678634923
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.633733127422903
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3174124799497829
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "TCS",
+        "corr": 0.815268038284938
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.8132907566758593
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.8038809163385201
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.7757410414594981
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.7705631698755714
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.7553666319919128
+      }
+    ],
+    "same_sector": [
+      "HCLTECH",
+      "TCS",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_industry": [
+      "HCLTECH",
+      "TCS",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "IOC",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "IOC": {
+    "sector": "Energy",
+    "industry": "Oil & Gas Refining & Marketing",
+    "market_cap": 2529254965248,
+    "market_cap_bucket": "Large",
+    "beta": 0.757,
+    "volatility_30d": 0.016592642585152657,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.0880869931731727,
+    "momentum_60d": 0.13417793607234985,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.37966656432741863,
+    "current_drawdown": -0.0445938046402932,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "BPCL",
+        "corr": 0.776045288307935
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.501107407645553
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.49547746207925103
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.46621841022468463
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.46238598800293274
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BPCL",
+        "corr": 0.8030509693343912
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.5497960299595565
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4738115430778165
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "BPCL",
+        "corr": 0.7480468997818011
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.4263564231036515
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.38597826304238464
+      }
+    ],
+    "same_sector": [
+      "ADANIENT",
+      "BPCL",
+      "COALINDIA",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "same_industry": [
+      "BPCL",
+      "RELIANCE"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "LT",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "ITC": {
+    "sector": "Consumer Defensive",
+    "industry": "Tobacco",
+    "market_cap": 3945454370816,
+    "market_cap_bucket": "Mega",
+    "beta": -0.241,
+    "volatility_30d": 0.015339558735710392,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.021606451778338975,
+    "momentum_60d": -0.2023332809988967,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2961684684256539,
+    "current_drawdown": -0.260728812348656,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.31429323237399337
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.30448380720261714
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.3032019967651997
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.28936513913032674
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.28326706849014827
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.3405276116656303
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.2864430937381791
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.27575999141665863
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.25853751264100716
+      },
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.23569239665612354
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.23091351662701706
+      }
+    ],
+    "same_sector": [
+      "BRITANNIA",
+      "DMART",
+      "HINDUNILVR",
+      "NESTLEIND"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "SHREECEM",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "JSWSTEEL": {
+    "sector": "Basic Materials",
+    "industry": "Steel",
+    "market_cap": 3095838851072,
+    "market_cap_bucket": "Mega",
+    "beta": 0.597,
+    "volatility_30d": 0.013768207255088876,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": 0.056787942319128426,
+    "momentum_60d": 0.10142540910689535,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.31177961066430054,
+    "current_drawdown": -0.010385699680907091,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.7776889061459639
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6240298587955067
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.5385887285720145
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.4802724788453701
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.4079040254627756
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.689237261483975
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.6295990932121646
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.5829140578750633
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6921902136062215
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.505798885086294
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.47152823975632424
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [
+      "TATASTEEL"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "KOTAKBANK": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 4108483035136,
+    "market_cap_bucket": "Mega",
+    "beta": 0.143,
+    "volatility_30d": 0.014376664433367544,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.012003904335992743,
+    "momentum_60d": -0.032733869317907005,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2571293280035333,
+    "current_drawdown": -0.08855722431495147,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.47893758641733036
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.4621535019351476
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.40890349044390323
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.38476320831524596
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.38315447770149574
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.5387010902959073
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.529685336762744
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.45282402140074074
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "M&M",
+        "corr": 0.45060929340762124
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.3904448194752098
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.37920261340358685
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "SBIN"
+    ],
+    "same_industry": [
+      "AXISBANK",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "SBIN"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "LT": {
+    "sector": "Industrials",
+    "industry": "Engineering & Construction",
+    "market_cap": 5594199097344,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.269,
+    "volatility_30d": 0.017083998479352634,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.03707951458272185,
+    "momentum_60d": 0.020860490882234073,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2887792451646091,
+    "current_drawdown": -0.07953648371859855,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4502264861943226
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.4190531877782937
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.41418817322109475
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.40357908210435656
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.39901580979180534
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.5538275853354941
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.5222410383593316
+      },
+      {
+        "symbol": "BPCL",
+        "corr": 0.5049012155720333
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.40858536899158165
+      },
+      {
+        "symbol": "RELIANCE",
+        "corr": 0.4040917338801335
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.39696126475489835
+      }
+    ],
+    "same_sector": [],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "RELIANCE",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "POWERGRID",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "M&M": {
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "market_cap": 4002736504832,
+    "market_cap_bucket": "Mega",
+    "beta": 0.291,
+    "volatility_30d": 0.015974107595812782,
+    "volatility_bucket": "Low",
+    "momentum_20d": -0.03721988454641001,
+    "momentum_60d": -0.09186731666213843,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.23482245056263715,
+    "current_drawdown": -0.1231064237160048,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.44813055139405134
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.41722487568671873
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.409491028448256
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.36911987117747924
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.36526332078414886
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "MARUTI",
+        "corr": 0.590638436321029
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.5655937911513533
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.5586385736438062
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.45060929340762124
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.4083182089376521
+      },
+      {
+        "symbol": "MARUTI",
+        "corr": 0.40333513494377365
+      }
+    ],
+    "same_sector": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "MARUTI",
+      "TITAN"
+    ],
+    "same_industry": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "MARUTI"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "MARUTI": {
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "market_cap": 4523623972864,
+    "market_cap_bucket": "Mega",
+    "beta": 0.111,
+    "volatility_30d": 0.01508905184366328,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.0002780867630700623,
+    "momentum_60d": -0.10041265474552963,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2064372146778649,
+    "current_drawdown": -0.16793893129770993,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.4725053477903034
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.44813055139405134
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "corr": 0.43119678490344837
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.3376520631282671
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.33253594033214545
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "M&M",
+        "corr": 0.590638436321029
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.5798905594976153
+      },
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.5616312130879947
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "EICHERMOT",
+        "corr": 0.4856071930221526
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.40333513494377365
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.39522388224201627
+      }
+    ],
+    "same_sector": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "M&M",
+      "TITAN"
+    ],
+    "same_industry": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "M&M"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "NTPC",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "NESTLEIND": {
+    "sector": "Consumer Defensive",
+    "industry": "Packaged Foods",
+    "market_cap": 2467663708160,
+    "market_cap_bucket": "Large",
+    "beta": 0.258,
+    "volatility_30d": 0.01215165100315822,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": -0.016579395253619622,
+    "momentum_60d": 0.03558371780934366,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2197786903111089,
+    "current_drawdown": -0.034367174551135984,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.5001047855282638
+      },
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.4966376243794476
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "corr": 0.3517291080038885
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.29750832977526886
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.2865532490253015
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.6187020602188845
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.47569869639695844
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.45513913042768317
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "BRITANNIA",
+        "corr": 0.5334066654686543
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "corr": 0.4457262392403943
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.41587113827832406
+      }
+    ],
+    "same_sector": [
+      "BRITANNIA",
+      "DMART",
+      "HINDUNILVR",
+      "ITC"
+    ],
+    "same_industry": [
+      "BRITANNIA"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "NTPC": {
+    "sector": "Utilities",
+    "industry": "Utilities - Regulated Electric",
+    "market_cap": 3660976488448,
+    "market_cap_bucket": "Mega",
+    "beta": 0.283,
+    "volatility_30d": 0.013915678621055217,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.08577251059635826,
+    "momentum_60d": 0.17789249490390024,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.3230229465235652,
+    "current_drawdown": -0.0190958852171151,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.5996412117556063
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.546719202028139
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.501107407645553
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.49408484859744517
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.46841596424536835
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.7031730471227136
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.615351385689661
+      },
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5569081863739814
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5688451360018969
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.551238890181175
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.5252997581050789
+      }
+    ],
+    "same_sector": [
+      "POWERGRID"
+    ],
+    "same_industry": [
+      "POWERGRID"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "RELIANCE",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "ONGC": {
+    "sector": "Energy",
+    "industry": "Oil & Gas Integrated",
+    "market_cap": 3550154850304,
+    "market_cap_bucket": "Mega",
+    "beta": 0.217,
+    "volatility_30d": 0.02391619575514769,
+    "volatility_bucket": "High",
+    "momentum_20d": 0.1373917858638838,
+    "momentum_60d": 0.1924231452693852,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.35303558748579333,
+    "current_drawdown": 0.0,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5398894866732274
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.49408484859744517
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.46621841022468463
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.42604673581473435
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.4169512734447567
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.5970951660960969
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.542919297798057
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.5019096793518668
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.49273533423232785
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.47242221169402293
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.4461903777287511
+      }
+    ],
+    "same_sector": [
+      "ADANIENT",
+      "BPCL",
+      "COALINDIA",
+      "IOC",
+      "RELIANCE"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "POWERGRID": {
+    "sector": "Utilities",
+    "industry": "Utilities - Regulated Electric",
+    "market_cap": 2760419049472,
+    "market_cap_bucket": "Large",
+    "beta": 0.22,
+    "volatility_30d": 0.01922965777758749,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.10995535089639441,
+    "momentum_60d": 0.11531739131880747,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.29559042650491063,
+    "current_drawdown": -0.04218626602180424,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.5996412117556063
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.41287774544754885
+      },
+      {
+        "symbol": "BPCL",
+        "corr": 0.39741295918272834
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.3894076925503966
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.3477767740238168
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.549648250793441
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.5416233937856616
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.5372026305064352
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "NTPC",
+        "corr": 0.5252997581050789
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.46596526670260646
+      },
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.4270192826826436
+      }
+    ],
+    "same_sector": [
+      "NTPC"
+    ],
+    "same_industry": [
+      "NTPC"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "TATASTEEL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "TATASTEEL"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "RELIANCE",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "RELIANCE": {
+    "sector": "Energy",
+    "industry": "Oil & Gas Refining & Marketing",
+    "market_cap": 18377097609216,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.205,
+    "volatility_30d": 0.014016120385155437,
+    "volatility_bucket": "Low",
+    "momentum_20d": -0.023302663870217066,
+    "momentum_60d": -0.11565510446050298,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2717575060184879,
+    "current_drawdown": -0.1471456645376362,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "SBIN",
+        "corr": 0.4353653601634172
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4190531877782937
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.3982176961846115
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.3939113155160063
+      },
+      {
+        "symbol": "BPCL",
+        "corr": 0.3808089968314228
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "BPCL",
+        "corr": 0.5785151058064473
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.5497960299595565
+      },
+      {
+        "symbol": "POWERGRID",
+        "corr": 0.5199204075686018
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "HDFCBANK",
+        "corr": 0.47104096222624303
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.4263564231036515
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4040917338801335
+      }
+    ],
+    "same_sector": [
+      "ADANIENT",
+      "BPCL",
+      "COALINDIA",
+      "IOC",
+      "ONGC"
+    ],
+    "same_industry": [
+      "BPCL",
+      "IOC"
+    ],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "SBIN",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "SUNPHARMA"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "TECHM",
+      "UPL"
+    ]
+  },
+  "SBIN": {
+    "sector": "Financial Services",
+    "industry": "Banks - Regional",
+    "market_cap": 10983511687168,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.301,
+    "volatility_30d": 0.020283853451395314,
+    "volatility_bucket": "High",
+    "momentum_20d": 0.15670271302973382,
+    "momentum_60d": 0.25503644663495484,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.23944130419643325,
+    "current_drawdown": -0.0308682382365404,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "AXISBANK",
+        "corr": 0.5462086531689562
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.5325099807508321
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.46841596424536835
+      },
+      {
+        "symbol": "IOC",
+        "corr": 0.46238598800293274
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.4502264861943226
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.5402629847836894
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.5142264606865434
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.4647811332372757
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.4067697349888205
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3897763499121803
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.37753175549542556
+      }
+    ],
+    "same_sector": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "BAJFINANCE",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK"
+    ],
+    "same_industry": [
+      "AXISBANK",
+      "HDFCBANK",
+      "ICICIBANK",
+      "INDUSINDBK",
+      "KOTAKBANK"
+    ],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "TCS"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "SHREECEM": {
+    "sector": "Basic Materials",
+    "industry": "Building Materials",
+    "market_cap": 942609530880,
+    "market_cap_bucket": "Mid",
+    "beta": 0.168,
+    "volatility_30d": 0.010978523799681348,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": -0.025186567164179108,
+    "momentum_60d": -0.012287334593572785,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4176085319795424,
+    "current_drawdown": -0.19001283892627774,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.584431195847399
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.4634658980176823
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3077821608218765
+      },
+      {
+        "symbol": "ICICIBANK",
+        "corr": 0.299876258208057
+      },
+      {
+        "symbol": "TITAN",
+        "corr": 0.2907413844198656
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.6105595535883542
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.42320264610461145
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.4036342131299662
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.4754488818964212
+      },
+      {
+        "symbol": "NTPC",
+        "corr": 0.41686128889389984
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.4007889366055285
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [
+      "GRASIM",
+      "ULTRACEMCO"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "TECHM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "TCS",
+      "WIPRO"
+    ]
+  },
+  "SUNPHARMA": {
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic",
+    "market_cap": 4204834324480,
+    "market_cap_bucket": "Mega",
+    "beta": 0.118,
+    "volatility_30d": 0.01458535735375289,
+    "volatility_bucket": "Low",
+    "momentum_20d": 0.0835332751181348,
+    "momentum_60d": -0.02992692937136554,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.19128605173775518,
+    "current_drawdown": -0.039047336581426804,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "CIPLA",
+        "corr": 0.3961590817819477
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.3878605491942046
+      },
+      {
+        "symbol": "DIVISLAB",
+        "corr": 0.33082829141879583
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.28525138593255006
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.28337322509379376
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.47848570334396073
+      },
+      {
+        "symbol": "MARUTI",
+        "corr": 0.47043965362336143
+      },
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.4695752213730123
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "DRREDDY",
+        "corr": 0.4477425814542818
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.42261723588943745
+      },
+      {
+        "symbol": "M&M",
+        "corr": 0.4083182089376521
+      }
+    ],
+    "same_sector": [
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY"
+    ],
+    "same_industry": [
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "ASIANPAINT",
+      "BAJAJFINSV",
+      "DMART",
+      "GRASIM",
+      "HINDUNILVR",
+      "INDUSINDBK",
+      "ITC",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "RELIANCE"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "TATASTEEL": {
+    "sector": "Basic Materials",
+    "industry": "Steel",
+    "market_cap": 2631684587520,
+    "market_cap_bucket": "Large",
+    "beta": 0.852,
+    "volatility_30d": 0.02013868939304855,
+    "volatility_bucket": "Medium",
+    "momentum_20d": 0.1193570667638213,
+    "momentum_60d": 0.2652754638184085,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4186365786157207,
+    "current_drawdown": -0.020926177042588482,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.7776889061459639
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.7166259309269984
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.6330189473033384
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5102525029126015
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.4429592025066056
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.689237261483975
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6520778945712302
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.6387079683486461
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.6921902136062215
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.5845901099620495
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.5839369259483691
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "ULTRACEMCO",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [
+      "JSWSTEEL"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "EICHERMOT",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "IOC",
+      "LT",
+      "POWERGRID"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TITAN",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "TCS": {
+    "sector": "Technology",
+    "industry": "Information Technology Services",
+    "market_cap": 9455871721472,
+    "market_cap_bucket": "UltraMega",
+    "beta": 0.199,
+    "volatility_30d": 0.020462036525257674,
+    "volatility_bucket": "High",
+    "momentum_20d": -0.1754480314622202,
+    "momentum_60d": -0.17595359184188442,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.33441409926066434,
+    "current_drawdown": -0.2643866715327795,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.7096263535597895
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.6630896699805201
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6152698447516098
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.6107146921124366
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.304274506667246
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.815268038284938
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.7429557082503914
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.7344981221393065
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.7705631698755714
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.7389849372003363
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.711428023429941
+      }
+    ],
+    "same_sector": [
+      "HCLTECH",
+      "INFY",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_industry": [
+      "HCLTECH",
+      "INFY",
+      "TECHM",
+      "WIPRO"
+    ],
+    "same_market_cap_bucket": [
+      "BAJFINANCE",
+      "BHARTIARTL",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "LT",
+      "RELIANCE",
+      "SBIN"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TECHM",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "WIPRO"
+    ]
+  },
+  "TECHM": {
+    "sector": "Technology",
+    "industry": "Information Technology Services",
+    "market_cap": 1191645544448,
+    "market_cap_bucket": "Mid",
+    "beta": 0.175,
+    "volatility_30d": 0.020836344118461664,
+    "volatility_bucket": "High",
+    "momentum_20d": -0.2196055542841865,
+    "momentum_60d": -0.13883378201054164,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4656718996533774,
+    "current_drawdown": -0.23919927287953743,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.6690152678634923
+      },
+      {
+        "symbol": "WIPRO",
+        "corr": 0.6202617772997518
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.6176347025727983
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6152698447516098
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.32416036469024134
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.8038809163385201
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.7712053056450671
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.7429557082503914
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.7553666319919128
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.7389849372003363
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.7012598904636151
+      }
+    ],
+    "same_sector": [
+      "HCLTECH",
+      "INFY",
+      "TCS",
+      "WIPRO"
+    ],
+    "same_industry": [
+      "HCLTECH",
+      "INFY",
+      "TCS",
+      "WIPRO"
+    ],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "UPL"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "UPL",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "UPL"
+    ]
+  },
+  "TITAN": {
+    "sector": "Consumer Cyclical",
+    "industry": "Luxury Goods",
+    "market_cap": 3787949080576,
+    "market_cap_bucket": "Mega",
+    "beta": 0.152,
+    "volatility_30d": 0.012436841027490474,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": 0.08021346186185818,
+    "momentum_60d": 0.1236448569672779,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.2862777689891812,
+    "current_drawdown": -0.01664907920205945,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3755990834118844
+      },
+      {
+        "symbol": "GRASIM",
+        "corr": 0.3584258362105014
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "corr": 0.3529730710156429
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "corr": 0.3420582724560792
+      },
+      {
+        "symbol": "DMART",
+        "corr": 0.3407533215191129
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "DMART",
+        "corr": 0.5195855087878027
+      },
+      {
+        "symbol": "ADANIENT",
+        "corr": 0.3828686249938674
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.3613384341790827
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "DMART",
+        "corr": 0.4224012598993404
+      },
+      {
+        "symbol": "NESTLEIND",
+        "corr": 0.3062571217562311
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "corr": 0.2713663790380092
+      }
+    ],
+    "same_sector": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "M&M",
+      "MARUTI"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "ULTRACEMCO"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "ULTRACEMCO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "VEDL"
+    ]
+  },
+  "ULTRACEMCO": {
+    "sector": "Basic Materials",
+    "industry": "Building Materials",
+    "market_cap": 3683351265280,
+    "market_cap_bucket": "Mega",
+    "beta": 0.371,
+    "volatility_30d": 0.012121056435772817,
+    "volatility_bucket": "VeryLow",
+    "momentum_20d": -0.001116872756282361,
+    "momentum_60d": 0.07865265334252247,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.36970187335213944,
+    "current_drawdown": -0.04068342016549188,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.6150801366137655
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.584431195847399
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3898418251400156
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3875848732979673
+      },
+      {
+        "symbol": "SBIN",
+        "corr": 0.37858700868424894
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.763505785275627
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.6105595535883542
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6027371615438174
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "GRASIM",
+        "corr": 0.54052375810452
+      },
+      {
+        "symbol": "SHREECEM",
+        "corr": 0.4754488818964212
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.4578760565953674
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "UPL",
+      "VEDL"
+    ],
+    "same_industry": [
+      "GRASIM",
+      "SHREECEM"
+    ],
+    "same_market_cap_bucket": [
+      "AXISBANK",
+      "BAJAJFINSV",
+      "HCLTECH",
+      "INFY",
+      "ITC",
+      "JSWSTEEL",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NTPC",
+      "ONGC",
+      "SUNPHARMA",
+      "TITAN"
+    ],
+    "same_volatility_bucket": [
+      "BHARTIARTL",
+      "BRITANNIA",
+      "CIPLA",
+      "HDFCBANK",
+      "ICICIBANK",
+      "JSWSTEEL",
+      "NESTLEIND",
+      "SHREECEM",
+      "TITAN"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "VEDL"
+    ]
+  },
+  "UPL": {
+    "sector": "Basic Materials",
+    "industry": "Agricultural Inputs",
+    "market_cap": 526485225472,
+    "market_cap_bucket": "Mid",
+    "beta": 0.479,
+    "volatility_30d": 0.03536829191310881,
+    "volatility_bucket": "High",
+    "momentum_20d": -0.10836735169977085,
+    "momentum_60d": -0.17661449463302936,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.3961749507439618,
+    "current_drawdown": -0.2266095555130811,
+    "trend_regime": "Sideways",
+    "top_correlated": [
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.43510848782557393
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.3919298708781492
+      },
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.38214438435759507
+      },
+      {
+        "symbol": "VEDL",
+        "corr": 0.37315648177505956
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3716027296935124
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "INDUSINDBK",
+        "corr": 0.40662542667384877
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "corr": 0.387683478124961
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.33935311574532695
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "INDUSINDBK",
+        "corr": 0.40803899483731637
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.34640813529058295
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "corr": 0.3333641148482397
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "VEDL"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "BPCL",
+      "BRITANNIA",
+      "CIPLA",
+      "DIVISLAB",
+      "DRREDDY",
+      "HEROMOTOCO",
+      "INDUSINDBK",
+      "SHREECEM",
+      "TECHM"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "VEDL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "ASIANPAINT",
+      "BHARTIARTL",
+      "BRITANNIA",
+      "DIVISLAB",
+      "DRREDDY",
+      "GRASIM",
+      "HCLTECH",
+      "HEROMOTOCO",
+      "INFY",
+      "KOTAKBANK",
+      "M&M",
+      "MARUTI",
+      "NESTLEIND",
+      "POWERGRID",
+      "RELIANCE",
+      "TECHM"
+    ]
+  },
+  "VEDL": {
+    "sector": "Basic Materials",
+    "industry": "Other Industrial Metals & Mining",
+    "market_cap": 2826975313920,
+    "market_cap_bucket": "Large",
+    "beta": 0.727,
+    "volatility_30d": 0.031126892363341083,
+    "volatility_bucket": "High",
+    "momentum_20d": 0.09490645402985387,
+    "momentum_60d": 0.3657130977878458,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4700529553724382,
+    "current_drawdown": -0.05611013423354384,
+    "trend_regime": "Bullish",
+    "top_correlated": [
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6331664195426837
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6330189473033384
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "corr": 0.5385887285720145
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.47237413165518205
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.42604673581473435
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.7697961705072897
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.6098208275623205
+      },
+      {
+        "symbol": "COALINDIA",
+        "corr": 0.5297972927423311
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "HINDALCO",
+        "corr": 0.6940417600879587
+      },
+      {
+        "symbol": "TATASTEEL",
+        "corr": 0.5845901099620495
+      },
+      {
+        "symbol": "ONGC",
+        "corr": 0.4461903777287511
+      }
+    ],
+    "same_sector": [
+      "ASIANPAINT",
+      "GRASIM",
+      "HINDALCO",
+      "JSWSTEEL",
+      "SHREECEM",
+      "TATASTEEL",
+      "ULTRACEMCO",
+      "UPL"
+    ],
+    "same_industry": [],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "WIPRO"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "WIPRO"
+    ],
+    "same_trend_regime": [
+      "AXISBANK",
+      "BAJFINANCE",
+      "BPCL",
+      "COALINDIA",
+      "EICHERMOT",
+      "HINDALCO",
+      "INDUSINDBK",
+      "IOC",
+      "JSWSTEEL",
+      "LT",
+      "NTPC",
+      "ONGC",
+      "SBIN",
+      "SUNPHARMA",
+      "TATASTEEL",
+      "TITAN",
+      "ULTRACEMCO"
+    ]
+  },
+  "WIPRO": {
+    "sector": "Technology",
+    "industry": "Information Technology Services",
+    "market_cap": 2080319340544,
+    "market_cap_bucket": "Large",
+    "beta": 0.365,
+    "volatility_30d": 0.02044705478329093,
+    "volatility_bucket": "High",
+    "momentum_20d": -0.18047872545093557,
+    "momentum_60d": -0.20719027852703598,
+    "relative_strength_vs_nifty": null,
+    "max_drawdown_1y": -0.4749293249577781,
+    "current_drawdown": -0.2960405770207801,
+    "trend_regime": "Bearish",
+    "top_correlated": [
+      {
+        "symbol": "INFY",
+        "corr": 0.633733127422903
+      },
+      {
+        "symbol": "TECHM",
+        "corr": 0.6202617772997518
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6107146921124366
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.5964824859030444
+      },
+      {
+        "symbol": "LT",
+        "corr": 0.3462048902160689
+      }
+    ],
+    "rolling_corr_60d": [
+      {
+        "symbol": "TCS",
+        "corr": 0.7211869814583521
+      },
+      {
+        "symbol": "INFY",
+        "corr": 0.6807288021604847
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.547144277681088
+      }
+    ],
+    "rolling_corr_120d": [
+      {
+        "symbol": "INFY",
+        "corr": 0.6823912122081358
+      },
+      {
+        "symbol": "TCS",
+        "corr": 0.6762017656314738
+      },
+      {
+        "symbol": "HCLTECH",
+        "corr": 0.5936092231345895
+      }
+    ],
+    "same_sector": [
+      "HCLTECH",
+      "INFY",
+      "TCS",
+      "TECHM"
+    ],
+    "same_industry": [
+      "HCLTECH",
+      "INFY",
+      "TCS",
+      "TECHM"
+    ],
+    "same_market_cap_bucket": [
+      "ADANIENT",
+      "ASIANPAINT",
+      "COALINDIA",
+      "DMART",
+      "EICHERMOT",
+      "GRASIM",
+      "HINDALCO",
+      "IOC",
+      "NESTLEIND",
+      "POWERGRID",
+      "TATASTEEL",
+      "VEDL"
+    ],
+    "same_volatility_bucket": [
+      "ADANIENT",
+      "HINDALCO",
+      "ONGC",
+      "SBIN",
+      "TCS",
+      "TECHM",
+      "UPL",
+      "VEDL"
+    ],
+    "same_trend_regime": [
+      "ADANIENT",
+      "BAJAJFINSV",
+      "CIPLA",
+      "DMART",
+      "HDFCBANK",
+      "HINDUNILVR",
+      "ICICIBANK",
+      "ITC",
+      "SHREECEM",
+      "TCS"
+    ]
+  }
+}
