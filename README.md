@@ -18,24 +18,24 @@ Automated discovery of predictive relationships
 ```
 
 
-1️⃣ What problem you’re solving
-2️⃣ What you have already built
-3️⃣ What architecture you now have
-4️⃣ What is your novelty (important for professor)
+1️⃣ What problem we’re solving
+2️⃣ What we have already built
+3️⃣ What architecture we now have
+4️⃣ What is wer novelty (important for professor)
 5️⃣ What remains to finish the project
 
 1. Project Goal
 
-Your MCA project is about:
+wer MCA project is about:
 Agentic AI for Time Series Forecasting in Stock Markets
 
 More specifically:
 Building an AI agent that automatically discovers predictive relationships between stocks and runs forecasting experiments.
-Instead of a normal ML project where you:
+Instead of a normal ML project where we:
 
 > pick features → train model → evaluate
 
-your system does:
+wer system does:
 
 > agent proposes features → system runs experiment → agent learns → improves
 
@@ -43,7 +43,7 @@ This is agentic experimentation.
 
 2. Dataset
 
-You are currently using:
+we are currently using:
 
 NIFTY 50 stocks
 5 years of daily data
@@ -60,11 +60,11 @@ Each file contains:
 Date
 Close price
 
-From this you compute:
+From this we compute:
 daily returns
 
 3. Metadata Engine
-> You built a metadata generator.
+> we built a metadata generator.
 
 It computes for each stock:
 
@@ -84,7 +84,7 @@ data/metadata/metadata.json
 
 4. Forecast Engine (FastAPI)
 
-You built a forecast service.
+we built a forecast service.
 
 Endpoint:
 
@@ -135,7 +135,7 @@ Example record:
 This allows the system to remember past experiments.
 
 6. Experiment Memory API
-You built an endpoint:
+we built an endpoint:
 
 GET /best-neighbors/{symbol}
 It returns the best performing neighbor combinations.
@@ -149,7 +149,7 @@ Example:
 This is used by the agent to learn from past results.
 
 7. Stock Similarity Graph
-You upgraded the system with a graph model.
+we upgraded the system with a graph model.
 
 Graph structure:
 
@@ -182,7 +182,7 @@ This allows graph-based reasoning.
 
 8. Agent System (Nitro + AI SDK)
 
-You built an LLM agent.
+we built an LLM agent.
 
 The agent receives:
 
@@ -225,7 +225,7 @@ Finally:
 best configuration is returned
 10. Final Architecture
 
-Your system now looks like this:
+wer system now looks like this:
 
 Market Data
      ↓
@@ -243,11 +243,11 @@ Experiment Memory
 
 This is a full agentic experimentation system.
 
-11. Novelty of Your Approach
+11. Novelty of wer Approach
 
-This answers your professor’s question.
+This answers wer professor’s question.
 
-Your novelty is:
+wer novelty is:
 
 1️⃣ Agent-driven feature discovery
 
@@ -256,7 +256,7 @@ Instead of manually selecting neighbors:
 agent proposes features
 2️⃣ Graph-guided reasoning
 
-You model stock relationships as a similarity graph.
+we model stock relationships as a similarity graph.
 
 3️⃣ Automated experimentation
 
@@ -271,7 +271,7 @@ This is AI-driven research loop.
 
 12. What Remains to Complete the Project
 
-You are now 80–85% done.
+we are now 80–85% done.
 
 Remaining tasks are mostly analysis and presentation.
 
@@ -294,7 +294,7 @@ Goal:
 
 200–500 experiments
 
-This generates your research dataset.
+This generates wer research dataset.
 
 Step 2 — Analyze Experiments
 
@@ -308,7 +308,7 @@ Which stocks predict others?
 Which sectors influence others?
 Which neighbor combinations work best?
 
-This becomes your research results.
+This becomes wer research results.
 
 Step 3 — Build Visualization Dashboard
 
@@ -334,7 +334,7 @@ Network graph of stock relationships.
 
 Step 4 — Write Thesis Results
 
-Your thesis sections will be:
+wer thesis sections will be:
 
 Introduction
 
@@ -356,15 +356,15 @@ Discussion
 
 Why certain stocks influence others.
 
-13. What You Have Built (Honest Evaluation)
+13. What we Have Built (Honest Evaluation)
 
-Your project is much stronger than a typical MCA project.
+wer project is much stronger than a typical MCA project.
 
 Most MCA projects are:
 
 LSTM stock prediction
 
-You built:
+we built:
 
 agentic experimentation platform
 graph-based financial relationships
@@ -374,7 +374,7 @@ That is closer to real quantitative research pipelines.
 
 14. Final Step (Optional but Powerful)
 
-If you want one extra impressive feature, add:
+If we want one extra impressive feature, add:
 
 automatic discovery of predictive relationships
 
@@ -386,4 +386,4 @@ ENERGY predicts INFRASTRUCTURE
 
 That would make the project conference-paper level.
 
-✅ If you want, I can also show you the exact final project structure (folders + files) so the whole system stays clean and scalable.
+✅ If we want, I can also show we the exact final project structure (folders + files) so the whole system stays clean and scalable.
