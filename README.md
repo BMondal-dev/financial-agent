@@ -21,12 +21,12 @@ Automated discovery of predictive relationships
 1️⃣ What problem we’re solving
 2️⃣ What we have already built
 3️⃣ What architecture we now have
-4️⃣ What is wer novelty (important for professor)
+4️⃣ What is our novelty (important for professor)
 5️⃣ What remains to finish the project
 
 1. Project Goal
 
-wer MCA project is about:
+our MCA project is about:
 Agentic AI for Time Series Forecasting in Stock Markets
 
 More specifically:
@@ -35,7 +35,7 @@ Instead of a normal ML project where we:
 
 > pick features → train model → evaluate
 
-wer system does:
+our system does:
 
 > agent proposes features → system runs experiment → agent learns → improves
 
@@ -225,7 +225,7 @@ Finally:
 best configuration is returned
 10. Final Architecture
 
-wer system now looks like this:
+our system now looks like this:
 
 Market Data
      ↓
@@ -243,11 +243,11 @@ Experiment Memory
 
 This is a full agentic experimentation system.
 
-11. Novelty of wer Approach
+11. Novelty of our Approach
 
-This answers wer professor’s question.
+This ansours our professor’s question.
 
-wer novelty is:
+our novelty is:
 
 1️⃣ Agent-driven feature discovery
 
@@ -294,7 +294,7 @@ Goal:
 
 200–500 experiments
 
-This generates wer research dataset.
+This generates our research dataset.
 
 Step 2 — Analyze Experiments
 
@@ -302,13 +302,13 @@ Extract insights from:
 
 experiments.json
 
-Questions to answer:
+Questions to ansour:
 
 Which stocks predict others?
 Which sectors influence others?
 Which neighbor combinations work best?
 
-This becomes wer research results.
+This becomes our research results.
 
 Step 3 — Build Visualization Dashboard
 
@@ -334,7 +334,7 @@ Network graph of stock relationships.
 
 Step 4 — Write Thesis Results
 
-wer thesis sections will be:
+our thesis sections will be:
 
 Introduction
 
@@ -358,7 +358,7 @@ Why certain stocks influence others.
 
 13. What we Have Built (Honest Evaluation)
 
-wer project is much stronger than a typical MCA project.
+our project is much stronger than a typical MCA project.
 
 Most MCA projects are:
 
@@ -372,7 +372,7 @@ automated feature discovery
 
 That is closer to real quantitative research pipelines.
 
-14. Final Step (Optional but Powerful)
+14. Final Step (Optional but Poourful)
 
 If we want one extra impressive feature, add:
 
