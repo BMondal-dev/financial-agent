@@ -11744,5 +11744,1919 @@
     "mae": 0.011976982905078487,
     "predicted_return": -0.004003901965916157,
     "timestamp": "2026-03-10T16:58:43.373983"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "TCS",
+      "HCLTECH",
+      "TECHM"
+    ],
+    "mae": 0.012151908168356616,
+    "predicted_return": -0.005085662938654423,
+    "timestamp": "2026-03-11T08:27:19.166202"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "AXISBANK",
+      "ITC",
+      "RELIANCE"
+    ],
+    "mae": 0.011916527452932155,
+    "predicted_return": -0.001234420808032155,
+    "timestamp": "2026-03-11T08:27:20.819847"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "WIPRO",
+      "LT",
+      "SUNPHARMA"
+    ],
+    "mae": 0.012144229338007188,
+    "predicted_return": -0.004963504150509834,
+    "timestamp": "2026-03-11T08:27:23.259111"
+  },
+  {
+    "target": "DRREDDY",
+    "neighbors": [
+      "CIPLA",
+      "SUNPHARMA",
+      "DIVISLAB"
+    ],
+    "mae": 0.009536607471110818,
+    "predicted_return": 0.0016210065223276615,
+    "timestamp": "2026-03-11T08:27:28.707443"
+  },
+  {
+    "target": "DRREDDY",
+    "neighbors": [
+      "DIVISLAB",
+      "HEROMOTOCO",
+      "BRITANNIA"
+    ],
+    "mae": 0.009567317593377544,
+    "predicted_return": 0.0005572722875513136,
+    "timestamp": "2026-03-11T08:27:30.787817"
+  },
+  {
+    "target": "DRREDDY",
+    "neighbors": [
+      "SHREECEM",
+      "BPCL",
+      "GRASIM"
+    ],
+    "mae": 0.009654566512379984,
+    "predicted_return": 0.0005728615797124803,
+    "timestamp": "2026-03-11T08:27:34.097172"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "HINDALCO",
+      "TATASTEEL",
+      "JSWSTEEL"
+    ],
+    "mae": 0.014768204356747562,
+    "predicted_return": 0.0027501247823238373,
+    "timestamp": "2026-03-11T08:27:39.496592"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "HINDALCO",
+      "ONGC",
+      "UPL"
+    ],
+    "mae": 0.015028379591989736,
+    "predicted_return": 0.0032629219349473715,
+    "timestamp": "2026-03-11T08:27:41.191716"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "COALINDIA",
+      "ULTRACEMCO",
+      "GRASIM"
+    ],
+    "mae": 0.014749183513771844,
+    "predicted_return": 0.0029413276351988316,
+    "timestamp": "2026-03-11T08:27:44.178922"
+  },
+  {
+    "target": "HDFCBANK",
+    "neighbors": [
+      "ICICIBANK",
+      "KOTAKBANK",
+      "AXISBANK"
+    ],
+    "mae": 0.007572683940913587,
+    "predicted_return": -0.0035496498458087444,
+    "timestamp": "2026-03-11T08:27:50.482404"
+  },
+  {
+    "target": "HDFCBANK",
+    "neighbors": [
+      "HINDUNILVR",
+      "LT",
+      "RELIANCE"
+    ],
+    "mae": 0.007463912433320699,
+    "predicted_return": -0.0046260301023721695,
+    "timestamp": "2026-03-11T08:27:52.188444"
+  },
+  {
+    "target": "HDFCBANK",
+    "neighbors": [
+      "TCS",
+      "BAJAJFINSV",
+      "SBIN"
+    ],
+    "mae": 0.007663368990888651,
+    "predicted_return": -0.0031954022124409676,
+    "timestamp": "2026-03-11T08:27:55.478861"
+  },
+  {
+    "target": "BHARTIARTL",
+    "neighbors": [
+      "RELIANCE",
+      "ICICIBANK",
+      "GRASIM"
+    ],
+    "mae": 0.009387402744956272,
+    "predicted_return": 0.0016204755520448089,
+    "timestamp": "2026-03-11T08:28:00.393114"
+  },
+  {
+    "target": "BHARTIARTL",
+    "neighbors": [
+      "HINDUNILVR",
+      "LT",
+      "JSWSTEEL"
+    ],
+    "mae": 0.009593420704591776,
+    "predicted_return": 0.00074291747296229,
+    "timestamp": "2026-03-11T08:28:02.735321"
+  },
+  {
+    "target": "BHARTIARTL",
+    "neighbors": [
+      "BAJFINANCE",
+      "SBIN",
+      "EICHERMOT"
+    ],
+    "mae": 0.009539810766111703,
+    "predicted_return": 0.0031376604456454515,
+    "timestamp": "2026-03-11T08:28:05.470262"
+  },
+  {
+    "target": "TATASTEEL",
+    "neighbors": [
+      "JSWSTEEL",
+      "HINDALCO",
+      "GRASIM"
+    ],
+    "mae": 0.013603355747725969,
+    "predicted_return": -0.0027268228586763144,
+    "timestamp": "2026-03-11T08:28:12.149969"
+  },
+  {
+    "target": "TATASTEEL",
+    "neighbors": [
+      "JSWSTEEL",
+      "HINDALCO",
+      "VEDL"
+    ],
+    "mae": 0.013609675134357579,
+    "predicted_return": -0.00244164583273232,
+    "timestamp": "2026-03-11T08:28:14.458941"
+  },
+  {
+    "target": "TATASTEEL",
+    "neighbors": [
+      "SHREECEM",
+      "ULTRACEMCO",
+      "NESTLEIND"
+    ],
+    "mae": 0.013337603551337474,
+    "predicted_return": 0.0027067060582339764,
+    "timestamp": "2026-03-11T08:28:16.291413"
+  },
+  {
+    "target": "ONGC",
+    "neighbors": [
+      "COALINDIA",
+      "IOC",
+      "BPCL"
+    ],
+    "mae": 0.010592154117972303,
+    "predicted_return": -0.0018335608765482903,
+    "timestamp": "2026-03-11T08:28:23.178919"
+  },
+  {
+    "target": "ONGC",
+    "neighbors": [
+      "HINDALCO",
+      "VEDL",
+      "ADANIENT"
+    ],
+    "mae": 0.010869902505641897,
+    "predicted_return": -0.0006790325278416276,
+    "timestamp": "2026-03-11T08:28:25.381483"
+  },
+  {
+    "target": "ONGC",
+    "neighbors": [
+      "NTPC",
+      "TITAN",
+      "ULTRACEMCO"
+    ],
+    "mae": 0.010699763101858788,
+    "predicted_return": 0.0011876869248226285,
+    "timestamp": "2026-03-11T08:28:28.401783"
+  },
+  {
+    "target": "NESTLEIND",
+    "neighbors": [
+      "BRITANNIA",
+      "HINDUNILVR",
+      "ITC"
+    ],
+    "mae": 0.009272363530763232,
+    "predicted_return": -0.0031534309964627028,
+    "timestamp": "2026-03-11T08:28:34.463291"
+  },
+  {
+    "target": "NESTLEIND",
+    "neighbors": [
+      "ULTRACEMCO",
+      "ASIANPAINT",
+      "TITAN"
+    ],
+    "mae": 0.009031488559557665,
+    "predicted_return": -0.0005560620338656008,
+    "timestamp": "2026-03-11T08:28:36.240585"
+  },
+  {
+    "target": "NESTLEIND",
+    "neighbors": [
+      "COALINDIA",
+      "HINDALCO",
+      "TATASTEEL"
+    ],
+    "mae": 0.009253307310192844,
+    "predicted_return": -0.0018217716133221984,
+    "timestamp": "2026-03-11T08:28:38.740279"
+  },
+  {
+    "target": "M&M",
+    "neighbors": [
+      "MARUTI",
+      "EICHERMOT",
+      "HEROMOTOCO"
+    ],
+    "mae": 0.012018972910150777,
+    "predicted_return": 0.0002683696511667222,
+    "timestamp": "2026-03-11T08:28:44.744942"
+  },
+  {
+    "target": "M&M",
+    "neighbors": [
+      "KOTAKBANK",
+      "INFY",
+      "RELIANCE"
+    ],
+    "mae": 0.011655065744710811,
+    "predicted_return": 0.00041840816265903413,
+    "timestamp": "2026-03-11T08:28:46.235940"
+  },
+  {
+    "target": "M&M",
+    "neighbors": [
+      "BAJAJFINSV",
+      "SUNPHARMA",
+      "ITC"
+    ],
+    "mae": 0.011683205514307411,
+    "predicted_return": -0.0007850859547033906,
+    "timestamp": "2026-03-11T08:28:47.607392"
+  },
+  {
+    "target": "TECHM",
+    "neighbors": [
+      "INFY",
+      "HCLTECH",
+      "TCS"
+    ],
+    "mae": 0.012157498659502662,
+    "predicted_return": -0.0010534230386838317,
+    "timestamp": "2026-03-11T08:28:53.145112"
+  },
+  {
+    "target": "TECHM",
+    "neighbors": [
+      "DIVISLAB",
+      "BPCL",
+      "INFY"
+    ],
+    "mae": 0.011993511709504441,
+    "predicted_return": -0.0024132472462952137,
+    "timestamp": "2026-03-11T08:28:55.772025"
+  },
+  {
+    "target": "TECHM",
+    "neighbors": [
+      "HEROMOTOCO",
+      "DRREDDY",
+      "BRITANNIA"
+    ],
+    "mae": 0.012098862957756515,
+    "predicted_return": -0.003268222091719508,
+    "timestamp": "2026-03-11T08:28:57.411330"
+  },
+  {
+    "target": "BRITANNIA",
+    "neighbors": [
+      "NESTLEIND",
+      "HINDUNILVR",
+      "ITC"
+    ],
+    "mae": 0.00968263549364296,
+    "predicted_return": -0.0022988675627857447,
+    "timestamp": "2026-03-11T08:29:02.211516"
+  },
+  {
+    "target": "BRITANNIA",
+    "neighbors": [
+      "SHREECEM",
+      "TECHM",
+      "UPL"
+    ],
+    "mae": 0.009475760937146185,
+    "predicted_return": -0.0011794149177148938,
+    "timestamp": "2026-03-11T08:29:04.697513"
+  },
+  {
+    "target": "BRITANNIA",
+    "neighbors": [
+      "CIPLA",
+      "DIVISLAB",
+      "EICHERMOT"
+    ],
+    "mae": 0.009551052660221819,
+    "predicted_return": 0.00018906993500422686,
+    "timestamp": "2026-03-11T08:29:06.699967"
+  },
+  {
+    "target": "JSWSTEEL",
+    "neighbors": [
+      "TATASTEEL",
+      "HINDALCO",
+      "VEDL"
+    ],
+    "mae": 0.010996219583770294,
+    "predicted_return": -0.0004450645938050002,
+    "timestamp": "2026-03-11T08:29:11.155023"
+  },
+  {
+    "target": "JSWSTEEL",
+    "neighbors": [
+      "GRASIM",
+      "ULTRACEMCO",
+      "COALINDIA"
+    ],
+    "mae": 0.011390874867887228,
+    "predicted_return": 0.0033459479454904795,
+    "timestamp": "2026-03-11T08:29:13.057065"
+  },
+  {
+    "target": "JSWSTEEL",
+    "neighbors": [
+      "NTPC",
+      "MARUTI",
+      "SUNPHARMA"
+    ],
+    "mae": 0.011205502841781966,
+    "predicted_return": 0.00357558554969728,
+    "timestamp": "2026-03-11T08:29:15.931991"
+  },
+  {
+    "target": "SBIN",
+    "neighbors": [
+      "AXISBANK",
+      "ICICIBANK",
+      "HDFCBANK"
+    ],
+    "mae": 0.009267475896278238,
+    "predicted_return": -0.002078596968203783,
+    "timestamp": "2026-03-11T08:29:21.500375"
+  },
+  {
+    "target": "SBIN",
+    "neighbors": [
+      "LT",
+      "NTPC",
+      "RELIANCE"
+    ],
+    "mae": 0.009102373131071711,
+    "predicted_return": -0.002358486410230398,
+    "timestamp": "2026-03-11T08:29:23.216395"
+  },
+  {
+    "target": "SBIN",
+    "neighbors": [
+      "TCS",
+      "HINDUNILVR",
+      "BAJAJFINSV"
+    ],
+    "mae": 0.00899804773040707,
+    "predicted_return": -0.0014320494374260306,
+    "timestamp": "2026-03-11T08:29:25.799644"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "MARUTI",
+      "M&M",
+      "EICHERMOT"
+    ],
+    "mae": 0.012514842446625563,
+    "predicted_return": -0.005320678930729628,
+    "timestamp": "2026-03-11T08:29:31.630803"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "MARUTI",
+      "TITAN",
+      "M&M"
+    ],
+    "mae": 0.012567377892794123,
+    "predicted_return": -0.003284874139353633,
+    "timestamp": "2026-03-11T08:29:33.675551"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "BPCL",
+      "SHREECEM",
+      "DRREDDY"
+    ],
+    "mae": 0.012357148616328858,
+    "predicted_return": -0.006855729967355728,
+    "timestamp": "2026-03-11T08:29:35.946411"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "ICICIBANK",
+      "SBIN",
+      "HDFCBANK"
+    ],
+    "mae": 0.010064980189599941,
+    "predicted_return": -0.0022226532455533743,
+    "timestamp": "2026-03-11T08:29:42.757473"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "BAJFINANCE",
+      "INDUSINDBK",
+      "KOTAKBANK"
+    ],
+    "mae": 0.010430432042662415,
+    "predicted_return": -0.0019231069600209594,
+    "timestamp": "2026-03-11T08:29:44.399054"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "HCLTECH",
+      "INFY",
+      "SUNPHARMA"
+    ],
+    "mae": 0.010463795214893499,
+    "predicted_return": -0.00352685758844018,
+    "timestamp": "2026-03-11T08:29:46.115420"
+  },
+  {
+    "target": "ICICIBANK",
+    "neighbors": [
+      "AXISBANK",
+      "SBIN",
+      "HDFCBANK"
+    ],
+    "mae": 0.008046855225337825,
+    "predicted_return": 0.0007032986613921821,
+    "timestamp": "2026-03-11T08:29:52.184402"
+  },
+  {
+    "target": "ICICIBANK",
+    "neighbors": [
+      "KOTAKBANK",
+      "BAJAJFINSV",
+      "BHARTIARTL"
+    ],
+    "mae": 0.007932533069475037,
+    "predicted_return": -0.0008794913301244378,
+    "timestamp": "2026-03-11T08:29:53.896039"
+  },
+  {
+    "target": "ICICIBANK",
+    "neighbors": [
+      "RELIANCE",
+      "TCS",
+      "HINDUNILVR"
+    ],
+    "mae": 0.008120630041752935,
+    "predicted_return": -3.092266706516966e-05,
+    "timestamp": "2026-03-11T08:29:55.156504"
+  },
+  {
+    "target": "TITAN",
+    "neighbors": [
+      "ULTRACEMCO",
+      "ITC",
+      "HCLTECH"
+    ],
+    "mae": 0.009456154966903219,
+    "predicted_return": 0.00040440066368319094,
+    "timestamp": "2026-03-11T08:30:00.795526"
+  },
+  {
+    "target": "TITAN",
+    "neighbors": [
+      "KOTAKBANK",
+      "DMART",
+      "SUNPHARMA"
+    ],
+    "mae": 0.009770199449367925,
+    "predicted_return": 0.0006286425050348043,
+    "timestamp": "2026-03-11T08:30:03.942600"
+  },
+  {
+    "target": "TITAN",
+    "neighbors": [
+      "MARUTI",
+      "HEROMOTOCO",
+      "BAJAJFINSV"
+    ],
+    "mae": 0.009535138256468173,
+    "predicted_return": -0.002297383965924382,
+    "timestamp": "2026-03-11T08:30:05.617397"
+  },
+  {
+    "target": "COALINDIA",
+    "neighbors": [
+      "NTPC",
+      "ONGC",
+      "TATASTEEL"
+    ],
+    "mae": 0.010204102044835272,
+    "predicted_return": 0.003471355652436614,
+    "timestamp": "2026-03-11T08:30:10.098923"
+  },
+  {
+    "target": "COALINDIA",
+    "neighbors": [
+      "NTPC",
+      "HINDALCO",
+      "BPCL"
+    ],
+    "mae": 0.00984117968308939,
+    "predicted_return": 0.0020467822905629873,
+    "timestamp": "2026-03-11T08:30:12.802861"
+  },
+  {
+    "target": "COALINDIA",
+    "neighbors": [
+      "IOC",
+      "VEDL",
+      "RELIANCE"
+    ],
+    "mae": 0.009823677394942153,
+    "predicted_return": 0.0010688875336199999,
+    "timestamp": "2026-03-11T08:30:14.833905"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "MARUTI",
+      "M&M",
+      "HEROMOTOCO"
+    ],
+    "mae": 0.010376625319492391,
+    "predicted_return": -0.008389228954911232,
+    "timestamp": "2026-03-11T08:30:19.591313"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "MARUTI",
+      "SBIN",
+      "TATASTEEL"
+    ],
+    "mae": 0.010350371872147103,
+    "predicted_return": -0.003906578756868839,
+    "timestamp": "2026-03-11T08:30:21.087061"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "BPCL",
+      "IOC",
+      "POWERGRID"
+    ],
+    "mae": 0.009844339309602032,
+    "predicted_return": -0.010580051690340042,
+    "timestamp": "2026-03-11T08:30:22.466400"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "SBIN"
+    ],
+    "mae": 0.009687512735708542,
+    "predicted_return": 0.0012092647375538945,
+    "timestamp": "2026-03-11T08:30:26.981225"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "BAJFINANCE",
+      "M&M",
+      "MARUTI"
+    ],
+    "mae": 0.009594118051490139,
+    "predicted_return": -0.0006359738181345165,
+    "timestamp": "2026-03-11T08:30:29.817559"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "INDUSINDBK",
+      "SUNPHARMA",
+      "TITAN"
+    ],
+    "mae": 0.00974085999403069,
+    "predicted_return": 0.0013770476216450334,
+    "timestamp": "2026-03-11T08:30:31.322519"
+  },
+  {
+    "target": "BAJFINANCE",
+    "neighbors": [
+      "BAJAJFINSV",
+      "HDFCBANK",
+      "ICICIBANK"
+    ],
+    "mae": 0.01241599840394796,
+    "predicted_return": -0.000817966356407851,
+    "timestamp": "2026-03-11T08:30:35.695080"
+  },
+  {
+    "target": "BAJFINANCE",
+    "neighbors": [
+      "SBIN",
+      "AXISBANK",
+      "LT"
+    ],
+    "mae": 0.012752506723313529,
+    "predicted_return": -0.0014467105502262712,
+    "timestamp": "2026-03-11T08:30:37.913122"
+  },
+  {
+    "target": "BAJFINANCE",
+    "neighbors": [
+      "TCS",
+      "HINDUNILVR",
+      "RELIANCE"
+    ],
+    "mae": 0.012316549501590831,
+    "predicted_return": -0.0003116819425486028,
+    "timestamp": "2026-03-11T08:30:41.389961"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "NESTLEIND",
+      "BRITANNIA",
+      "ITC"
+    ],
+    "mae": 0.008825207106634432,
+    "predicted_return": -0.0007602620171383023,
+    "timestamp": "2026-03-11T08:30:46.119402"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "KOTAKBANK",
+      "SHREECEM",
+      "SUNPHARMA"
+    ],
+    "mae": 0.008914798641665235,
+    "predicted_return": -0.0012176298769190907,
+    "timestamp": "2026-03-11T08:30:47.810652"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "ASIANPAINT",
+      "TITAN",
+      "RELIANCE"
+    ],
+    "mae": 0.009004659529489915,
+    "predicted_return": -0.0016532462323084474,
+    "timestamp": "2026-03-11T08:30:50.896782"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "DRREDDY",
+      "SUNPHARMA",
+      "DIVISLAB"
+    ],
+    "mae": 0.009542673237805697,
+    "predicted_return": 3.7771133065689355e-05,
+    "timestamp": "2026-03-11T08:30:55.520067"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "INDUSINDBK",
+      "SHREECEM",
+      "BRITANNIA"
+    ],
+    "mae": 0.009637958271901888,
+    "predicted_return": 0.0012462232261896133,
+    "timestamp": "2026-03-11T08:30:58.174650"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "LT",
+      "HEROMOTOCO",
+      "UPL"
+    ],
+    "mae": 0.009583910284210642,
+    "predicted_return": -0.0002489296311978251,
+    "timestamp": "2026-03-11T08:30:59.759489"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "BPCL",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "mae": 0.01122832802730111,
+    "predicted_return": -0.011195726692676544,
+    "timestamp": "2026-03-11T08:31:06.260664"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "AXISBANK",
+      "SBIN",
+      "TATASTEEL"
+    ],
+    "mae": 0.010757930557412008,
+    "predicted_return": -0.006833486724644899,
+    "timestamp": "2026-03-11T08:31:08.580116"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "ADANIENT",
+      "COALINDIA",
+      "VEDL"
+    ],
+    "mae": 0.010865902336745606,
+    "predicted_return": -0.004637353587895632,
+    "timestamp": "2026-03-11T08:31:10.837874"
+  },
+  {
+    "target": "ADANIENT",
+    "neighbors": [
+      "COALINDIA",
+      "BPCL",
+      "ONGC"
+    ],
+    "mae": 0.014988120382868338,
+    "predicted_return": -0.0009801294654607773,
+    "timestamp": "2026-03-11T08:31:17.642252"
+  },
+  {
+    "target": "ADANIENT",
+    "neighbors": [
+      "NTPC",
+      "SBIN",
+      "GRASIM"
+    ],
+    "mae": 0.014870848011176727,
+    "predicted_return": -0.005518770776689053,
+    "timestamp": "2026-03-11T08:31:19.904345"
+  },
+  {
+    "target": "ADANIENT",
+    "neighbors": [
+      "HINDALCO",
+      "TATASTEEL",
+      "VEDL"
+    ],
+    "mae": 0.014771180606914132,
+    "predicted_return": -0.0037557652685791254,
+    "timestamp": "2026-03-11T08:31:23.280681"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "SBIN",
+      "AXISBANK",
+      "KOTAKBANK"
+    ],
+    "mae": 0.014991399972383329,
+    "predicted_return": 0.0008546646567992866,
+    "timestamp": "2026-03-11T08:31:29.284525"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "BRITANNIA",
+      "HINDUNILVR",
+      "ITC"
+    ],
+    "mae": 0.014764231997363148,
+    "predicted_return": 0.000495195563416928,
+    "timestamp": "2026-03-11T08:31:31.093403"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "BAJFINANCE"
+    ],
+    "mae": 0.014854953840271698,
+    "predicted_return": -0.0011506644077599049,
+    "timestamp": "2026-03-11T08:31:32.577887"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "EICHERMOT",
+      "HEROMOTOCO",
+      "M&M"
+    ],
+    "mae": 0.009654275410168835,
+    "predicted_return": -0.002495910506695509,
+    "timestamp": "2026-03-11T08:31:36.772180"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "INFY",
+      "ITC",
+      "SUNPHARMA"
+    ],
+    "mae": 0.009374718463714229,
+    "predicted_return": -0.00037770747439935803,
+    "timestamp": "2026-03-11T08:31:40.123696"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "KOTAKBANK",
+      "NTPC",
+      "TITAN"
+    ],
+    "mae": 0.009808912758106815,
+    "predicted_return": -0.0034675446804612875,
+    "timestamp": "2026-03-11T08:31:41.182905"
+  },
+  {
+    "target": "UPL",
+    "neighbors": [
+      "TATASTEEL",
+      "JSWSTEEL",
+      "HINDALCO"
+    ],
+    "mae": 0.01268386819976413,
+    "predicted_return": -0.008679595775902271,
+    "timestamp": "2026-03-11T08:31:50.503088"
+  },
+  {
+    "target": "UPL",
+    "neighbors": [
+      "SHREECEM",
+      "BRITANNIA",
+      "TECHM"
+    ],
+    "mae": 0.012785148209089551,
+    "predicted_return": -0.004636773839592934,
+    "timestamp": "2026-03-11T08:31:52.296569"
+  },
+  {
+    "target": "UPL",
+    "neighbors": [
+      "VEDL",
+      "INDUSINDBK",
+      "LT"
+    ],
+    "mae": 0.01341145998213705,
+    "predicted_return": -0.011213619261980057,
+    "timestamp": "2026-03-11T08:31:54.336987"
+  },
+  {
+    "target": "LT",
+    "neighbors": [
+      "SBIN",
+      "RELIANCE",
+      "TATASTEEL"
+    ],
+    "mae": 0.009869740181724793,
+    "predicted_return": -0.022350365296006203,
+    "timestamp": "2026-03-11T08:32:00.400914"
+  },
+  {
+    "target": "LT",
+    "neighbors": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "TCS"
+    ],
+    "mae": 0.009366063883218811,
+    "predicted_return": -0.019470900297164917,
+    "timestamp": "2026-03-11T08:32:01.487799"
+  },
+  {
+    "target": "LT",
+    "neighbors": [
+      "NTPC",
+      "BAJFINANCE",
+      "HINDUNILVR"
+    ],
+    "mae": 0.009516753695376563,
+    "predicted_return": -0.024139171466231346,
+    "timestamp": "2026-03-11T08:32:03.637963"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "INFY",
+      "TCS",
+      "TECHM"
+    ],
+    "mae": 0.011668154676254771,
+    "predicted_return": -0.006292347330600023,
+    "timestamp": "2026-03-11T08:32:10.670562"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "TATASTEEL",
+      "ADANIENT",
+      "DMART"
+    ],
+    "mae": 0.011939710248756879,
+    "predicted_return": -0.00629466213285923,
+    "timestamp": "2026-03-11T08:32:13.575667"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "HINDALCO",
+      "LT",
+      "HCLTECH"
+    ],
+    "mae": 0.011561077440932098,
+    "predicted_return": -0.007124609779566526,
+    "timestamp": "2026-03-11T08:32:16.663734"
+  },
+  {
+    "target": "NTPC",
+    "neighbors": [
+      "POWERGRID",
+      "COALINDIA",
+      "IOC"
+    ],
+    "mae": 0.010191718910604566,
+    "predicted_return": -0.0001794736017473042,
+    "timestamp": "2026-03-11T10:02:04.306925"
+  },
+  {
+    "target": "NTPC",
+    "neighbors": [
+      "COALINDIA",
+      "ONGC",
+      "SBIN"
+    ],
+    "mae": 0.009726896687195369,
+    "predicted_return": -0.0010354527039453387,
+    "timestamp": "2026-03-11T10:02:13.206854"
+  },
+  {
+    "target": "NTPC",
+    "neighbors": [
+      "ITC",
+      "MARUTI",
+      "KOTAKBANK"
+    ],
+    "mae": 0.00975454645641794,
+    "predicted_return": 0.00018293512403033674,
+    "timestamp": "2026-03-11T10:02:17.759739"
+  },
+  {
+    "target": "DMART",
+    "neighbors": [
+      "TITAN",
+      "ADANIENT",
+      "DIVISLAB"
+    ],
+    "mae": 0.011151414699286127,
+    "predicted_return": -0.0010778700234368443,
+    "timestamp": "2026-03-11T10:02:22.321801"
+  },
+  {
+    "target": "DMART",
+    "neighbors": [
+      "HINDUNILVR",
+      "ITC",
+      "NESTLEIND"
+    ],
+    "mae": 0.01119655681689508,
+    "predicted_return": -0.0007632477208971977,
+    "timestamp": "2026-03-11T10:02:23.686810"
+  },
+  {
+    "target": "DMART",
+    "neighbors": [
+      "ASIANPAINT",
+      "GRASIM",
+      "COALINDIA"
+    ],
+    "mae": 0.011530646795925841,
+    "predicted_return": -0.0020862459205091,
+    "timestamp": "2026-03-11T10:02:25.764399"
+  },
+  {
+    "target": "GRASIM",
+    "neighbors": [
+      "ULTRACEMCO",
+      "SHREECEM",
+      "JSWSTEEL"
+    ],
+    "mae": 0.009545586991387928,
+    "predicted_return": -0.0005313835572451353,
+    "timestamp": "2026-03-11T10:02:32.032643"
+  },
+  {
+    "target": "GRASIM",
+    "neighbors": [
+      "ULTRACEMCO",
+      "TATASTEEL",
+      "SBIN"
+    ],
+    "mae": 0.00970413472297226,
+    "predicted_return": 0.00041869719279929996,
+    "timestamp": "2026-03-11T10:02:33.315175"
+  },
+  {
+    "target": "GRASIM",
+    "neighbors": [
+      "NESTLEIND",
+      "EICHERMOT",
+      "POWERGRID"
+    ],
+    "mae": 0.009506987695339662,
+    "predicted_return": 0.0019091346766799688,
+    "timestamp": "2026-03-11T10:02:35.136477"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "TATASTEEL",
+      "JSWSTEEL",
+      "VEDL"
+    ],
+    "mae": 0.012749921513249378,
+    "predicted_return": -0.001989808166399598,
+    "timestamp": "2026-03-11T10:02:40.173557"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "ADANIENT",
+      "UPL",
+      "ULTRACEMCO"
+    ],
+    "mae": 0.013024113787864793,
+    "predicted_return": -0.001123068854212761,
+    "timestamp": "2026-03-11T10:02:46.158811"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "COALINDIA",
+      "GRASIM",
+      "EICHERMOT"
+    ],
+    "mae": 0.012748663796823585,
+    "predicted_return": -0.0002401103702140972,
+    "timestamp": "2026-03-11T10:02:50.588345"
+  },
+  {
+    "target": "POWERGRID",
+    "neighbors": [
+      "NTPC",
+      "IOC",
+      "BPCL"
+    ],
+    "mae": 0.011098658594704734,
+    "predicted_return": -0.003179187886416912,
+    "timestamp": "2026-03-11T10:02:55.247846"
+  },
+  {
+    "target": "POWERGRID",
+    "neighbors": [
+      "SBIN",
+      "NTPC",
+      "IOC"
+    ],
+    "mae": 0.010888243591154078,
+    "predicted_return": -0.0016546841943636537,
+    "timestamp": "2026-03-11T10:02:56.905835"
+  },
+  {
+    "target": "POWERGRID",
+    "neighbors": [
+      "COALINDIA",
+      "BPCL",
+      "IOC"
+    ],
+    "mae": 0.010907198179061875,
+    "predicted_return": -0.0040684170089662075,
+    "timestamp": "2026-03-11T10:03:00.991234"
+  },
+  {
+    "target": "SUNPHARMA",
+    "neighbors": [
+      "CIPLA",
+      "DRREDDY",
+      "DIVISLAB"
+    ],
+    "mae": 0.009311521718127378,
+    "predicted_return": 0.002806401578709483,
+    "timestamp": "2026-03-11T10:03:06.495930"
+  },
+  {
+    "target": "SUNPHARMA",
+    "neighbors": [
+      "INFY",
+      "KOTAKBANK",
+      "MARUTI"
+    ],
+    "mae": 0.009482839088698633,
+    "predicted_return": 0.005686482880264521,
+    "timestamp": "2026-03-11T10:03:07.153157"
+  },
+  {
+    "target": "SUNPHARMA",
+    "neighbors": [
+      "DRREDDY",
+      "HINDALCO",
+      "NTPC"
+    ],
+    "mae": 0.009704759096849336,
+    "predicted_return": 0.0042820824310183525,
+    "timestamp": "2026-03-11T10:03:08.120643"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "HINDUNILVR",
+      "BRITANNIA",
+      "NESTLEIND"
+    ],
+    "mae": 0.00821209139453284,
+    "predicted_return": 0.0034899769816547632,
+    "timestamp": "2026-03-11T10:03:13.303847"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "KOTAKBANK",
+      "RELIANCE",
+      "GRASIM"
+    ],
+    "mae": 0.008034991429351662,
+    "predicted_return": 0.0024988632649183273,
+    "timestamp": "2026-03-11T10:03:16.009322"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "DMART",
+      "SUNPHARMA",
+      "NTPC"
+    ],
+    "mae": 0.008051314199890018,
+    "predicted_return": 0.0001785630447557196,
+    "timestamp": "2026-03-11T10:03:21.283022"
+  },
+  {
+    "target": "RELIANCE",
+    "neighbors": [
+      "BPCL",
+      "IOC",
+      "ONGC"
+    ],
+    "mae": 0.009452787757551736,
+    "predicted_return": -0.002328638220205903,
+    "timestamp": "2026-03-11T10:03:28.147431"
+  },
+  {
+    "target": "RELIANCE",
+    "neighbors": [
+      "BPCL",
+      "COALINDIA",
+      "SBIN"
+    ],
+    "mae": 0.009414124453922982,
+    "predicted_return": -0.0010934071615338326,
+    "timestamp": "2026-03-11T10:03:32.061341"
+  },
+  {
+    "target": "RELIANCE",
+    "neighbors": [
+      "HDFCBANK",
+      "TCS",
+      "HINDUNILVR"
+    ],
+    "mae": 0.009347615860857911,
+    "predicted_return": -0.004842756781727076,
+    "timestamp": "2026-03-11T10:03:32.875741"
+  },
+  {
+    "target": "ULTRACEMCO",
+    "neighbors": [
+      "SHREECEM",
+      "GRASIM",
+      "HINDALCO"
+    ],
+    "mae": 0.00898663062884363,
+    "predicted_return": -0.0004680897982325405,
+    "timestamp": "2026-03-11T10:03:45.023077"
+  },
+  {
+    "target": "ULTRACEMCO",
+    "neighbors": [
+      "JSWSTEEL",
+      "LT",
+      "SBIN"
+    ],
+    "mae": 0.008846805975161647,
+    "predicted_return": -0.0023534868378192186,
+    "timestamp": "2026-03-11T10:03:58.253330"
+  },
+  {
+    "target": "ULTRACEMCO",
+    "neighbors": [
+      "TITAN",
+      "BRITANNIA",
+      "NESTLEIND"
+    ],
+    "mae": 0.009131772109171356,
+    "predicted_return": 0.00027054472593590617,
+    "timestamp": "2026-03-11T10:04:00.453307"
+  },
+  {
+    "target": "BPCL",
+    "neighbors": [
+      "IOC",
+      "RELIANCE",
+      "ONGC"
+    ],
+    "mae": 0.01255042505896511,
+    "predicted_return": -0.0022027180530130863,
+    "timestamp": "2026-03-11T10:04:11.545055"
+  },
+  {
+    "target": "BPCL",
+    "neighbors": [
+      "COALINDIA",
+      "NTPC",
+      "SBIN"
+    ],
+    "mae": 0.011941172883710972,
+    "predicted_return": -0.002601798390969634,
+    "timestamp": "2026-03-11T10:04:12.690084"
+  },
+  {
+    "target": "BPCL",
+    "neighbors": [
+      "AXISBANK",
+      "INFY",
+      "DIVISLAB"
+    ],
+    "mae": 0.012228019991540742,
+    "predicted_return": -0.0011779414489865303,
+    "timestamp": "2026-03-11T10:04:15.461470"
+  },
+  {
+    "target": "BAJAJFINSV",
+    "neighbors": [
+      "BAJFINANCE",
+      "AXISBANK",
+      "ICICIBANK"
+    ],
+    "mae": 0.01018115665842441,
+    "predicted_return": -0.0025234988424926996,
+    "timestamp": "2026-03-11T10:04:20.982076"
+  },
+  {
+    "target": "BAJAJFINSV",
+    "neighbors": [
+      "GRASIM",
+      "INDUSINDBK",
+      "BAJFINANCE"
+    ],
+    "mae": 0.010519960553195321,
+    "predicted_return": -0.0014433924807235599,
+    "timestamp": "2026-03-11T10:04:22.125016"
+  },
+  {
+    "target": "BAJAJFINSV",
+    "neighbors": [
+      "ITC",
+      "MARUTI",
+      "HDFCBANK"
+    ],
+    "mae": 0.010610254560275027,
+    "predicted_return": -0.0014502541162073612,
+    "timestamp": "2026-03-11T10:04:24.614387"
+  },
+  {
+    "target": "SHREECEM",
+    "neighbors": [
+      "ULTRACEMCO",
+      "GRASIM",
+      "HINDALCO"
+    ],
+    "mae": 0.00918117098226919,
+    "predicted_return": 0.0009865520987659693,
+    "timestamp": "2026-03-11T10:04:31.736157"
+  },
+  {
+    "target": "SHREECEM",
+    "neighbors": [
+      "ULTRACEMCO",
+      "JSWSTEEL",
+      "TITAN"
+    ],
+    "mae": 0.009329086872488962,
+    "predicted_return": 0.0001616131339687854,
+    "timestamp": "2026-03-11T10:04:33.322196"
+  },
+  {
+    "target": "SHREECEM",
+    "neighbors": [
+      "VEDL",
+      "ICICIBANK",
+      "CIPLA"
+    ],
+    "mae": 0.009033414348055272,
+    "predicted_return": -0.00015596796583849937,
+    "timestamp": "2026-03-11T10:04:35.074986"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "INFY",
+      "TCS",
+      "HCLTECH"
+    ],
+    "mae": 0.011679717620826792,
+    "predicted_return": -0.005784130189567804,
+    "timestamp": "2026-03-11T10:04:52.920140"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "ADANIENT",
+      "HINDALCO",
+      "VEDL"
+    ],
+    "mae": 0.011762917638094126,
+    "predicted_return": -0.005507107358425856,
+    "timestamp": "2026-03-11T10:04:53.879126"
+  },
+  {
+    "target": "WIPRO",
+    "neighbors": [
+      "NESTLEIND",
+      "ASIANPAINT",
+      "LT"
+    ],
+    "mae": 0.011504150169100646,
+    "predicted_return": -0.004775680135935545,
+    "timestamp": "2026-03-11T10:04:54.808531"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "HINDUNILVR",
+      "BRITANNIA",
+      "NESTLEIND"
+    ],
+    "mae": 0.00821209139453284,
+    "predicted_return": 0.0034899769816547632,
+    "timestamp": "2026-03-11T10:05:02.438050"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "RELIANCE",
+      "JSWSTEEL",
+      "NTPC"
+    ],
+    "mae": 0.008366495464467194,
+    "predicted_return": 0.0008433177135884762,
+    "timestamp": "2026-03-11T10:05:08.975925"
+  },
+  {
+    "target": "ITC",
+    "neighbors": [
+      "KOTAKBANK",
+      "BAJAJFINSV",
+      "DMART"
+    ],
+    "mae": 0.008106217007960907,
+    "predicted_return": -0.0016866102814674377,
+    "timestamp": "2026-03-11T10:05:11.613805"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "DRREDDY",
+      "SUNPHARMA",
+      "DIVISLAB"
+    ],
+    "mae": 0.009542673237805697,
+    "predicted_return": 3.7771133065689355e-05,
+    "timestamp": "2026-03-11T10:05:28.475367"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "INDUSINDBK",
+      "SHREECEM",
+      "BPCL"
+    ],
+    "mae": 0.009712094669345729,
+    "predicted_return": 0.0016905301017686725,
+    "timestamp": "2026-03-11T10:05:40.418720"
+  },
+  {
+    "target": "CIPLA",
+    "neighbors": [
+      "UPL",
+      "LT",
+      "DRREDDY"
+    ],
+    "mae": 0.009514408176010413,
+    "predicted_return": -0.0006759391981177032,
+    "timestamp": "2026-03-11T10:05:51.784264"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "HINDALCO",
+      "TATASTEEL",
+      "JSWSTEEL"
+    ],
+    "mae": 0.014768204356747562,
+    "predicted_return": 0.0027501247823238373,
+    "timestamp": "2026-03-11T10:06:01.783467"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "ADANIENT",
+      "NESTLEIND",
+      "EICHERMOT"
+    ],
+    "mae": 0.01498301128345092,
+    "predicted_return": 0.0014266971265897155,
+    "timestamp": "2026-03-11T10:06:10.406724"
+  },
+  {
+    "target": "VEDL",
+    "neighbors": [
+      "SHREECEM",
+      "GRASIM",
+      "UPL"
+    ],
+    "mae": 0.01450975340961081,
+    "predicted_return": -0.0008149142959155142,
+    "timestamp": "2026-03-11T10:06:17.703766"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "EICHERMOT",
+      "M&M",
+      "HEROMOTOCO"
+    ],
+    "mae": 0.00964339803197551,
+    "predicted_return": -0.002495910506695509,
+    "timestamp": "2026-03-11T10:06:25.311066"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "TITAN",
+      "KOTAKBANK",
+      "SUNPHARMA"
+    ],
+    "mae": 0.009744826492768161,
+    "predicted_return": -0.0019885592628270388,
+    "timestamp": "2026-03-11T10:06:29.401750"
+  },
+  {
+    "target": "MARUTI",
+    "neighbors": [
+      "SBIN",
+      "HCLTECH",
+      "ONGC"
+    ],
+    "mae": 0.009604266670444363,
+    "predicted_return": -0.004499418660998344,
+    "timestamp": "2026-03-11T10:06:32.681094"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "TATASTEEL",
+      "VEDL",
+      "GRASIM"
+    ],
+    "mae": 0.013042028325721362,
+    "predicted_return": -0.0006125448853708804,
+    "timestamp": "2026-03-11T10:06:41.710269"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "ADANIENT",
+      "JSWSTEEL",
+      "COALINDIA"
+    ],
+    "mae": 0.012844469795267422,
+    "predicted_return": -0.0012103087501600385,
+    "timestamp": "2026-03-11T10:06:51.698406"
+  },
+  {
+    "target": "HINDALCO",
+    "neighbors": [
+      "WIPRO",
+      "UPL",
+      "EICHERMOT"
+    ],
+    "mae": 0.012950343515281461,
+    "predicted_return": -0.00256975251249969,
+    "timestamp": "2026-03-11T10:06:58.240228"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "SBIN",
+      "AXISBANK",
+      "KOTAKBANK"
+    ],
+    "mae": 0.014991399972383329,
+    "predicted_return": 0.0008546646567992866,
+    "timestamp": "2026-03-11T10:07:11.326415"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "BAJFINANCE",
+      "HDFCBANK",
+      "BPCL"
+    ],
+    "mae": 0.01516928693736108,
+    "predicted_return": 0.0005746610113419592,
+    "timestamp": "2026-03-11T10:07:17.759926"
+  },
+  {
+    "target": "INDUSINDBK",
+    "neighbors": [
+      "BRITANNIA",
+      "DIVISLAB",
+      "BAJAJFINSV"
+    ],
+    "mae": 0.014918373706136762,
+    "predicted_return": -0.0005952088977210224,
+    "timestamp": "2026-03-11T10:07:21.145335"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "TCS",
+      "HCLTECH",
+      "TECHM"
+    ],
+    "mae": 0.012151908168356616,
+    "predicted_return": -0.005085662938654423,
+    "timestamp": "2026-03-11T10:07:31.649606"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "AXISBANK",
+      "ITC",
+      "RELIANCE"
+    ],
+    "mae": 0.011916527452932155,
+    "predicted_return": -0.001234420808032155,
+    "timestamp": "2026-03-11T10:07:39.047441"
+  },
+  {
+    "target": "INFY",
+    "neighbors": [
+      "LT",
+      "NTPC",
+      "WIPRO"
+    ],
+    "mae": 0.012051645663503377,
+    "predicted_return": -0.006312094163149595,
+    "timestamp": "2026-03-11T10:07:47.875541"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "ICICIBANK",
+      "SBIN",
+      "HDFCBANK"
+    ],
+    "mae": 0.010064980189599941,
+    "predicted_return": -0.0022226532455533743,
+    "timestamp": "2026-03-11T10:08:01.680124"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "KOTAKBANK",
+      "HDFCBANK",
+      "ITC"
+    ],
+    "mae": 0.010387404596962448,
+    "predicted_return": -0.001847925246693194,
+    "timestamp": "2026-03-11T10:08:08.230763"
+  },
+  {
+    "target": "AXISBANK",
+    "neighbors": [
+      "JSWSTEEL",
+      "NTPC",
+      "HCLTECH"
+    ],
+    "mae": 0.010307321851604588,
+    "predicted_return": -0.0030803231056779623,
+    "timestamp": "2026-03-11T10:08:10.388855"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "MARUTI",
+      "M&M",
+      "HEROMOTOCO"
+    ],
+    "mae": 0.010376625319492391,
+    "predicted_return": -0.008389228954911232,
+    "timestamp": "2026-03-11T10:08:18.749663"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "SBIN",
+      "TATASTEEL",
+      "HINDALCO"
+    ],
+    "mae": 0.01048859565940101,
+    "predicted_return": -0.005734004080295563,
+    "timestamp": "2026-03-11T10:08:22.214246"
+  },
+  {
+    "target": "EICHERMOT",
+    "neighbors": [
+      "NESTLEIND",
+      "POWERGRID",
+      "TITAN"
+    ],
+    "mae": 0.009993725150749352,
+    "predicted_return": -0.008039388805627823,
+    "timestamp": "2026-03-11T10:08:30.381498"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "NESTLEIND",
+      "BRITANNIA",
+      "ITC"
+    ],
+    "mae": 0.008825207106634432,
+    "predicted_return": -0.0007602620171383023,
+    "timestamp": "2026-03-11T10:08:38.655193"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "RELIANCE",
+      "HDFCBANK",
+      "NESTLEIND"
+    ],
+    "mae": 0.008998735717054542,
+    "predicted_return": -0.0009989484678953886,
+    "timestamp": "2026-03-11T10:08:41.152281"
+  },
+  {
+    "target": "HINDUNILVR",
+    "neighbors": [
+      "DMART",
+      "TCS",
+      "BAJFINANCE"
+    ],
+    "mae": 0.009166678969180041,
+    "predicted_return": -0.0015192480059340596,
+    "timestamp": "2026-03-11T10:08:45.779520"
+  },
+  {
+    "target": "HCLTECH",
+    "neighbors": [
+      "INFY",
+      "TCS",
+      "TECHM"
+    ],
+    "mae": 0.011689952679252498,
+    "predicted_return": -0.002674998715519905,
+    "timestamp": "2026-03-11T10:08:53.041081"
+  },
+  {
+    "target": "HCLTECH",
+    "neighbors": [
+      "AXISBANK",
+      "MARUTI",
+      "ITC"
+    ],
+    "mae": 0.011659538124814323,
+    "predicted_return": -0.0009195737075060606,
+    "timestamp": "2026-03-11T10:08:58.327855"
+  },
+  {
+    "target": "HCLTECH",
+    "neighbors": [
+      "WIPRO",
+      "LT",
+      "SUNPHARMA"
+    ],
+    "mae": 0.011487800121632922,
+    "predicted_return": -0.005277084186673164,
+    "timestamp": "2026-03-11T10:09:05.655369"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "BPCL",
+      "ONGC",
+      "RELIANCE"
+    ],
+    "mae": 0.01122832802730111,
+    "predicted_return": -0.011195726692676544,
+    "timestamp": "2026-03-11T10:09:14.613012"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "BPCL",
+      "COALINDIA",
+      "TATASTEEL"
+    ],
+    "mae": 0.010824265147236344,
+    "predicted_return": -0.010321018286049366,
+    "timestamp": "2026-03-11T10:09:17.276830"
+  },
+  {
+    "target": "IOC",
+    "neighbors": [
+      "SBIN",
+      "HINDALCO",
+      "NTPC"
+    ],
+    "mae": 0.010894993795802622,
+    "predicted_return": -0.011962027288973331,
+    "timestamp": "2026-03-11T10:09:21.625507"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "EICHERMOT",
+      "MARUTI",
+      "M&M"
+    ],
+    "mae": 0.012514842446625563,
+    "predicted_return": -0.005320678930729628,
+    "timestamp": "2026-03-11T10:09:35.543854"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "MARUTI",
+      "M&M",
+      "TITAN"
+    ],
+    "mae": 0.012567377892794123,
+    "predicted_return": -0.003284874139353633,
+    "timestamp": "2026-03-11T10:09:40.339196"
+  },
+  {
+    "target": "HEROMOTOCO",
+    "neighbors": [
+      "TITAN",
+      "LT",
+      "UPL"
+    ],
+    "mae": 0.01239459485838545,
+    "predicted_return": -0.006951828952878714,
+    "timestamp": "2026-03-11T10:09:45.522834"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "HDFCBANK",
+      "ICICIBANK",
+      "SBIN"
+    ],
+    "mae": 0.009687512735708542,
+    "predicted_return": 0.0012092647375538945,
+    "timestamp": "2026-03-11T10:09:56.862925"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "ITC",
+      "MARUTI",
+      "NTPC"
+    ],
+    "mae": 0.009501086127940593,
+    "predicted_return": 0.0007687631295993924,
+    "timestamp": "2026-03-11T10:10:01.262265"
+  },
+  {
+    "target": "KOTAKBANK",
+    "neighbors": [
+      "BAJAJFINSV",
+      "M&M",
+      "AXISBANK"
+    ],
+    "mae": 0.009779386742895411,
+    "predicted_return": 0.0007479056948795915,
+    "timestamp": "2026-03-11T10:10:08.320283"
+  },
+  {
+    "target": "TCS",
+    "neighbors": [
+      "INFY",
+      "HCLTECH",
+      "TECHM"
+    ],
+    "mae": 0.00986754444196786,
+    "predicted_return": -0.0037511864211410284,
+    "timestamp": "2026-03-11T10:10:13.768446"
+  },
+  {
+    "target": "TCS",
+    "neighbors": [
+      "RELIANCE",
+      "HDFCBANK",
+      "SBIN"
+    ],
+    "mae": 0.00972146378249965,
+    "predicted_return": -0.0010781728196889162,
+    "timestamp": "2026-03-11T10:10:17.741371"
+  },
+  {
+    "target": "TCS",
+    "neighbors": [
+      "WIPRO",
+      "LT",
+      "ICICIBANK"
+    ],
+    "mae": 0.009773233572195951,
+    "predicted_return": -0.0004545006377156824,
+    "timestamp": "2026-03-11T10:10:20.223081"
   }
 ]

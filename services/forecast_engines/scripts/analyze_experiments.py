@@ -9,6 +9,9 @@ import os
 from collections import Counter, defaultdict
 from pathlib import Path
 import statistics
+import pandas as pd
+from xgboost import XGBRegressor
+from sklearn.metrics import mean_absolute_error
 
 BASE = Path(__file__).parent.parent.parent / "data"
 EXPERIMENTS_FILE = BASE / "experiments.json"
@@ -24,6 +27,87 @@ def load_data():
     with open(METADATA_FILE) as f:
         metadata = json.load(f)
     return experiments, metadata
+
+
+def load_returns_with_date(symbol: str) -> pd.DataFrame:
+    """Load date + return series exactly like main.py input format."""
+    path = RAW_DIR / f"{symbol}.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=["Date", "return"])
+
+    df = pd.read_csv(
+        path,
+        skiprows=3,
+        header=None,
+        names=["Date", "Close"],
+    )
+    df["return"] = df["Close"].pct_change()
+    return df[["Date", "return"]].dropna().reset_index(drop=True)
+
+
+def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> dict:
+    """Recreate 80/20 test predictions (predicted vs actual) for one target."""
+    target_df = load_returns_with_date(target)
+    if target_df.empty:
+        return {"rows": [], "mae": None, "count": 0}
+
+    for lag in range(1, 6):
+        target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
+
+    target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
+    target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+
+    valid_neighbors = []
+    for neighbor in neighbors:
+        if neighbor == target:
+            continue
+        neighbor_df = load_returns_with_date(neighbor)
+        if neighbor_df.empty:
+            continue
+        target_df[f"{neighbor}_lag_1"] = neighbor_df["return"].shift(1)
+        valid_neighbors.append(neighbor)
+
+    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df = target_df.dropna().reset_index(drop=True)
+
+    if len(target_df) < 20:
+        return {"rows": [], "mae": None, "count": 0}
+
+    X = target_df.drop(columns=["Date", "return", "future_return"])
+    y = target_df["future_return"]
+    dates = target_df["Date"]
+
+    split = int(len(X) * 0.8)
+    X_train, X_test = X.iloc[:split], X.iloc[split:]
+    y_train, y_test = y.iloc[:split], y.iloc[split:]
+    d_test = dates.iloc[split:]
+
+    model = XGBRegressor(
+        n_estimators=120,
+        max_depth=4,
+        learning_rate=0.05,
+        random_state=42,
+    )
+    model.fit(X_train, y_train)
+    preds = model.predict(X_test)
+    mae = float(mean_absolute_error(y_test, preds))
+
+    rows = []
+    for dt, a, p in zip(d_test, y_test, preds):
+        rows.append(
+            {
+                "date": str(dt),
+                "actual_return": round(float(a) * 100, 4),
+                "predicted_return": round(float(p) * 100, 4),
+            }
+        )
+
+    return {
+        "rows": rows,
+        "mae": round(mae, 6),
+        "count": len(rows),
+        "neighbors": valid_neighbors,
+    }
 
 
 def load_price_history(symbol: str, days: int = 365) -> list[dict]:
@@ -246,6 +330,17 @@ def analyze(experiments, metadata):
             "best_neighbors": best_neighbors_map.get(sym, []),
         }
 
+    # ── 9. Backtest Prediction vs Actual (80/20 test split) ─────────────────
+    print("  Building backtest series (predicted vs actual on test split)…")
+    backtest = {}
+    for item in best_list:
+        target = item["target"]
+        backtest[target] = build_backtest_series(
+            target=target,
+            neighbors=item["best_neighbors"],
+            horizon=HORIZON_DAYS,
+        )
+
     return {
         "summary": summary,
         "predictor_frequency": predictor_frequency,
@@ -261,6 +356,10 @@ def analyze(experiments, metadata):
         "mae_distribution": mae_distribution,
         "cross_sector_pairs": cross_sector,
         "stocks_history": stocks_history,
+        "backtest": {
+            "horizon_days": HORIZON_DAYS,
+            "by_target": backtest,
+        },
     }
 
 
