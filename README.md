@@ -302,6 +302,13 @@ Extract insights from:
 
 experiments.json
 
+Build the dashboard dataset (writes services/data/analysis.json):
+
+```
+cd services/forecast_engines
+uv run python scripts/analyze_experiments.py
+```
+
 Questions to ansour:
 
 Which stocks predict others?
@@ -310,27 +317,25 @@ Which neighbor combinations work best?
 
 This becomes our research results.
 
-Step 3 — Build Visualization Dashboard
+Step 3 — Visualization Dashboard
 
-Show:
+The web UI lives in apps/dashboard/ and reads analysis.json (predictor frequency, sector matrix, network, MAE charts, calibrated vs legacy leaderboard).
 
-Chart 1
+From the repo root:
 
-Predictor frequency.
+```
+python3 apps/dashboard/serve.py
+```
 
-SUNPHARMA ██████
-RELIANCE  █████
-HDFCBANK  ████
-Chart 2
+This will regenerate analysis.json if experiments.json is newer, copy it into apps/dashboard/, then open http://localhost:8080 .
 
-Sector influence matrix.
+Manual sync without serving:
 
-Pharma → FMCG
-Energy → Metals
-Banking → Infrastructure
-Chart 3
+```
+cp services/data/analysis.json apps/dashboard/analysis.json
+```
 
-Network graph of stock relationships.
+Or from apps/dashboard: `npm run sync` then `python3 -m http.server 8080`.
 
 Step 4 — Write Thesis Results
 

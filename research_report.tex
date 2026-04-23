@@ -1,0 +1,475 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{multirow}
+
+\geometry{margin=1in}
+\onehalfspacing
+
+\title{LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns}
+\author{Your Name \\ Your Institution}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\chapter{Introduction}
+
+\section{Background and Motivation}
+Forecasting equity behavior is a long-standing problem in quantitative finance.
+Classical time-series models and machine learning methods often focus on a single asset in isolation, while practical markets are strongly interconnected through sectoral, macroeconomic, and correlation structures.
+For Indian equities, especially large-cap NIFTY constituents, cross-asset relationships are often informative, but selecting the right explanatory neighbors is non-trivial and context-dependent.
+
+This work proposes an integrated research framework that combines:
+\begin{itemize}
+    \item a \textbf{forecast engine} for return prediction with structured feature generation and model benchmarking, and
+    \item an \textbf{orchestrator} that automates experiment design, including static and LLM-driven neighbor selection.
+\end{itemize}
+
+The implementation is built in two collaborating services:
+\begin{itemize}
+    \item \texttt{services/forecast\_engines/}: data layer, metadata engineering, forecasting API, experiment logging, and analysis scripts.
+    \item \texttt{apps/orchestrator/}: experiment orchestration APIs that evaluate baseline, heuristic enrichment, and LLM-generated neighbor hypotheses.
+\end{itemize}
+
+\section{Problem Statement}
+Let $r_t^{(i)}$ denote the daily return of stock $i$ at time $t$, where return is defined as:
+\begin{equation}
+r_t^{(i)} = \frac{P_t^{(i)} - P_{t-1}^{(i)}}{P_{t-1}^{(i)}}.
+\end{equation}
+
+Given a target stock $y$, forecasting horizon $h$, and a selected neighbor set $\mathcal{N}(y)$, the objective is to predict:
+\begin{equation}
+r_{t+h}^{(y)} = f\!\left(\text{target lags}, \text{rolling statistics}, \text{neighbor lag features}\right),
+\end{equation}
+such that out-of-sample mean absolute error (MAE) is minimized:
+\begin{equation}
+\text{MAE} = \frac{1}{n}\sum_{k=1}^{n}\left| \hat{r}_{k} - r_{k}\right|.
+\end{equation}
+
+The central research question is:
+\textit{Does intelligent dataset enrichment via neighbor selection improve forecast quality over a no-neighbor baseline, and can an LLM orchestrator generate effective enrichment hypotheses automatically?}
+
+\section{Research Objectives}
+This study is designed around the following objectives:
+
+\begin{enumerate}[label=\textbf{O\arabic*:}]
+    \item Build a reproducible data and metadata pipeline for NIFTY equities.
+    \item Implement a forecasting API supporting both tabular (XGBoost) and sequence (LSTM) models.
+    \item Design static experiment modes:
+    \begin{itemize}
+        \item baseline (no neighbors),
+        \item top-correlated neighbors,
+        \item same-sector neighbors.
+    \end{itemize}
+    \item Introduce an LLM agent to propose diverse 3-stock neighbor sets and evaluate each proposal empirically.
+    \item Compare model families and enrichment strategies using MAE-based benchmarking and full run logging.
+\end{enumerate}
+
+\section{Scope of the Work}
+The system focuses on:
+\begin{itemize}
+    \item NIFTY stock universe (downloaded historically from Yahoo Finance),
+    \item single-step return prediction for configurable horizon $h$ (default $h=5$),
+    \item 80/20 chronological split for evaluation,
+    \item repeatable experiment sweeps over multiple rounds and stocks.
+\end{itemize}
+
+The scope deliberately excludes:
+\begin{itemize}
+    \item transaction costs and portfolio optimization,
+    \item live trading deployment,
+    \item full causal inference claims.
+\end{itemize}
+
+\section{System-Level Contribution}
+The project contributes a practical research architecture rather than only a model:
+\begin{itemize}
+    \item \textbf{Data-engineering contribution}: dynamic metadata (sector/industry, market-cap buckets, volatility buckets, rolling correlations, trend regime, drawdown, relative strength).
+    \item \textbf{Modeling contribution}: unified forecasting interface across XGBoost and LSTM.
+    \item \textbf{Orchestration contribution}: API-first experimentation from static heuristics to LLM-generated hypotheses.
+    \item \textbf{Operational contribution}: retry-aware full-universe experiment automation and post-run analytics.
+\end{itemize}
+
+\section{Chapter Organization}
+This report is organized as:
+\begin{itemize}
+    \item \textbf{Chapter 1}: Introduction and problem formulation.
+    \item \textbf{Chapter 2}: Literature survey and positioning of the approach.
+    \item \textbf{Chapter 3}: Proposed methodology and implementation details aligned with the codebase architecture.
+\end{itemize}
+
+\chapter{Literature Survey}
+
+\section{Overview}
+Financial forecasting literature spans econometrics, machine learning, deep learning, and more recently, AI-assisted workflow orchestration.
+This chapter reviews the streams most relevant to the implemented pipeline: return modeling, feature engineering, ensemble/tree models, recurrent neural networks, graph-based similarity, and LLM-assisted decision support.
+
+\section{Returns vs Price-Level Forecasting}
+A core methodological choice in quantitative forecasting is whether to model raw prices or transformed returns.
+Price series are generally non-stationary and trend-dominated, which can induce deceptively strong in-sample fit with weak generalization.
+Return transformation is widely used to reduce scale and trend artifacts and to make temporal patterns more learnable \cite{tsay2005analysis}.
+
+In this implementation, both feature construction and targets are return-based. This aligns with standard market microstructure and empirical asset-pricing practice, where predictive tasks are framed on relative change instead of absolute level.
+
+\section{Feature Engineering in Equity Forecasting}
+Traditional equity ML pipelines rely heavily on hand-crafted lag, volatility, and momentum features \cite{fama1970efficient,lo2000foundations}.
+Lag structures provide short memory, rolling mean/std introduce local regime information, and cross-asset lag terms encode contemporaneous dependence.
+
+The design uses:
+\begin{itemize}
+    \item target lags ($1 \ldots 5$),
+    \item rolling mean and rolling standard deviation over a 10-day window,
+    \item lag-1 returns of selected neighbor assets,
+    \item forward-shifted target return at horizon $h$.
+\end{itemize}
+This corresponds to a supervised framing widely adopted in tabular financial ML studies.
+
+\section{Tree-Based Methods for Tabular Financial Data}
+Gradient-boosted decision trees have become strong baselines in tabular prediction due to non-linear approximation capability and robustness to heterogeneous features \cite{chen2016xgboost}.
+In finance, tree ensembles are frequently competitive against linear models and can capture conditional dependencies without strict parametric assumptions.
+
+The project uses XGBoost as the default benchmark with:
+\begin{itemize}
+    \item fixed structural hyperparameters (\texttt{n\_estimators=120}, \texttt{max\_depth=4}),
+    \item a dynamic learning-rate heuristic based on horizon, sample count, and feature dimensionality.
+\end{itemize}
+This heuristic operationalizes bias-variance adaptation without expensive hyperparameter search in every experiment run.
+
+\section{Sequence Models and LSTM in Time-Series Forecasting}
+Long Short-Term Memory (LSTM) networks are designed to capture temporal dependencies through gated recurrent dynamics \cite{hochreiter1997lstm}.
+They are common in financial sequence modeling, though performance is highly sensitive to preprocessing and data volume.
+
+The implemented LSTM benchmark uses:
+\begin{itemize}
+    \item rolling sequence window of 20 trading days,
+    \item multi-feature sequence input (target plus neighbor return streams),
+    \item chronological train/test split,
+    \item MAE as evaluation criterion.
+\end{itemize}
+This complements the tabular XGBoost benchmark by providing a sequence-aware comparator under the same API.
+
+\section{Cross-Asset Relationships and Similarity Structures}
+Predictive interaction among stocks can be modeled through correlation matrices, sector membership, and graph topology \cite{mantegna1999hierarchical}.
+Neighbor selection based on these structures is a practical strategy for enrichment.
+
+The metadata and graph modules encode:
+\begin{itemize}
+    \item static and rolling correlation neighborhoods,
+    \item sector/industry and market-cap similarity buckets,
+    \item volatility and regime similarity,
+    \item weighted stock graph construction for neighbor exploration.
+\end{itemize}
+This design is consistent with network-inspired market representation approaches where dependencies are context-dependent and non-uniform.
+
+\section{Experiment Orchestration and AutoML-Inspired Search}
+ML research increasingly emphasizes orchestration, reproducibility, and search over data/model configurations \cite{hutter2019automl}.
+Instead of only tuning model weights, practical systems must evaluate many candidate feature spaces and data subsets.
+
+The orchestrator in this work operationalizes this principle:
+\begin{itemize}
+    \item deterministic static experiments (baseline/correlated/sector),
+    \item iterative runs across symbols and rounds with retry and backoff controls,
+    \item persistent logs for post hoc analysis.
+\end{itemize}
+
+\section{LLMs for Hypothesis Generation in Quant Workflows}
+Recent work suggests LLMs are effective in semantic reasoning and structured proposal generation, but require grounding and strict downstream validation in high-stakes domains \cite{bommasani2021opportunities,openai2023gpt4}.
+In quantitative settings, LLM outputs should be treated as hypotheses, not final decisions.
+
+The implemented LLM orchestration follows this principle:
+\begin{itemize}
+    \item metadata and candidate neighbors are supplied as context,
+    \item the model proposes multiple diverse neighbor triplets,
+    \item each proposal is validated only by empirical MAE from the forecast engine.
+\end{itemize}
+This creates a human-auditable, evidence-driven loop rather than an opaque end-to-end AI prediction.
+
+\section{Research Gap and Positioning}
+Most prior approaches focus on either:
+\begin{enumerate}
+    \item pure forecasting models without orchestration intelligence, or
+    \item AI-generated qualitative insights without strict quantitative evaluation.
+\end{enumerate}
+This system bridges both by integrating:
+\begin{itemize}
+    \item engineered financial metadata,
+    \item benchmark forecasting models,
+    \item deterministic and LLM-driven neighbor proposal strategies,
+    \item standardized MAE-based selection and logging.
+\end{itemize}
+Hence, the core contribution lies in a complete, testable research workflow architecture.
+
+\chapter{Proposed Methodology}
+
+\section{Methodology Overview}
+The proposed methodology is a multi-stage pipeline:
+\begin{enumerate}
+    \item \textbf{Data acquisition}: download historical NIFTY stock prices.
+    \item \textbf{Metadata engineering}: compute correlation and regime-aware descriptors.
+    \item \textbf{Forecast engine}: build datasets and train models (XGB/LSTM).
+    \item \textbf{Orchestration}: run baseline, heuristic, and LLM-generated enrichment experiments.
+    \item \textbf{Evaluation and logging}: compare MAE and archive all runs.
+    \item \textbf{Analysis}: derive cross-sector and predictor-frequency insights.
+\end{enumerate}
+
+\section{Implementation Architecture}
+\subsection{Service Partitioning}
+\textbf{Forecast Engine Service} (\texttt{services/forecast\_engines/}) is responsible for:
+\begin{itemize}
+    \item price loading and return generation,
+    \item metadata and candidate-neighbor APIs,
+    \item run-forecast and model-compare endpoints,
+    \item experiment persistence and analysis tooling.
+\end{itemize}
+
+\textbf{Orchestrator Service} (\texttt{apps/orchestrator/}) is responsible for:
+\begin{itemize}
+    \item invoking forecast APIs for controlled experiment plans,
+    \item selecting enrichment strategies (static and LLM-based),
+    \item assembling comparative outputs and best-strategy decisions.
+\end{itemize}
+
+\subsection{API Endpoints Used}
+Key forecast-engine endpoints:
+\begin{itemize}
+    \item \texttt{GET /metadata/\{symbol\}}
+    \item \texttt{GET /candidate-neighbors/\{symbol\}}
+    \item \texttt{POST /run-forecast}
+    \item \texttt{POST /compare-models}
+    \item \texttt{GET /best-neighbors/\{symbol\}}
+    \item \texttt{GET /graph-neighbors/\{symbol\}}
+\end{itemize}
+
+Key orchestrator endpoints:
+\begin{itemize}
+    \item \texttt{POST /api/run-experiment}
+    \item \texttt{POST /api/experiment-agent}
+    \item \texttt{POST /api/run-agent-experiment}
+    \item \texttt{POST /api/model-benchmark}
+\end{itemize}
+
+\section{Data Layer Methodology}
+\subsection{Universe and Data Source}
+The stock universe consists of NIFTY constituents downloaded from Yahoo Finance (\texttt{yfinance}) over approximately five years. Close prices are stored per symbol as CSV and consumed by forecasting and metadata scripts.
+
+\subsection{Return Construction}
+For each stock:
+\begin{equation}
+r_t = \frac{P_t - P_{t-1}}{P_{t-1}},
+\end{equation}
+and rows with undefined return due to differencing are removed.
+
+\subsection{Metadata Construction}
+Metadata generation includes:
+\begin{itemize}
+    \item \textbf{Fundamentals}: sector, industry, market cap, beta.
+    \item \textbf{Risk metrics}: 30-day rolling volatility and volatility bucket.
+    \item \textbf{Co-movement}: top static correlations, rolling 60-day and 120-day correlations.
+    \item \textbf{Trend/risk state}: momentum (20d/60d), drawdown, trend regime.
+    \item \textbf{Similarity sets}: same sector, same industry, same market-cap bucket, same volatility bucket, same trend regime.
+\end{itemize}
+
+These metadata fields support both deterministic and LLM neighbor selection.
+
+\section{Forecast Modeling Methodology}
+\subsection{Supervised Dataset (XGBoost Path)}
+For target $y$, neighbor set $\mathcal{N}$, and horizon $h$:
+\begin{itemize}
+    \item Features:
+    \begin{itemize}
+        \item $r_{t-1}^{(y)}, \dots, r_{t-5}^{(y)}$,
+        \item rolling mean and rolling standard deviation of target return over 10 days,
+        \item $r_{t-1}^{(n)}$ for each $n \in \mathcal{N}$.
+    \end{itemize}
+    \item Label: $r_{t+h}^{(y)}$.
+\end{itemize}
+Invalid neighbors (missing data or self-reference) are removed dynamically.
+
+\subsection{Sequence Dataset (LSTM Path)}
+For sequence window $w=20$:
+\begin{itemize}
+    \item input tensor shape: $(\text{samples}, w, \text{features})$,
+    \item features per step: target return plus neighbor returns,
+    \item target: horizon-shifted return $r_{t+h}^{(y)}$.
+\end{itemize}
+
+\subsection{Training and Evaluation Protocol}
+\begin{itemize}
+    \item chronological split: first 80\% train, last 20\% test,
+    \item metric: MAE on the held-out test segment,
+    \item after evaluation, model is retrained on full available data for latest prediction output.
+\end{itemize}
+
+\subsection{Dynamic Learning-Rate Heuristic}
+For XGBoost, learning rate $\eta$ is adjusted based on horizon, sample size, and feature count:
+\begin{itemize}
+    \item longer horizon implies slightly smaller $\eta$,
+    \item larger sample size implies mildly larger $\eta$,
+    \item higher feature count implies mild regularization via smaller $\eta$,
+    \item bounded range: $[0.02, 0.12]$.
+\end{itemize}
+This heuristic preserves speed while adapting to data regime.
+
+\section{Experiment Orchestration Methodology}
+\subsection{Static Enrichment Pipeline}
+The deterministic orchestration endpoint executes:
+\begin{enumerate}
+    \item \textbf{Baseline}: no neighbors.
+    \item \textbf{Correlated}: top-3 correlated stocks from metadata.
+    \item \textbf{Sector}: first-3 same-sector stocks.
+\end{enumerate}
+Best strategy is selected by minimum MAE across the three outcomes.
+
+\subsection{LLM-Driven Enrichment Pipeline}
+The agentic endpoint performs:
+\begin{enumerate}
+    \item fetch target metadata and candidate neighbors,
+    \item prompt the LLM to produce three distinct 3-stock neighbor hypotheses with rationale,
+    \item evaluate each hypothesis by calling \texttt{/run-forecast},
+    \item rank by MAE and return the best proposal.
+\end{enumerate}
+
+This establishes an explicit propose-evaluate-select loop:
+\begin{equation}
+\text{LLM proposal} \rightarrow \text{forecast API evaluation} \rightarrow \text{measured MAE} \rightarrow \arg\min(\text{MAE}).
+\end{equation}
+
+\section{Model Benchmarking}
+A dedicated compare endpoint runs both model types on identical target, neighbors, and horizon:
+\begin{itemize}
+    \item XGBoost result,
+    \item LSTM result,
+    \item side-by-side comparison table,
+    \item best model determined by lowest valid MAE.
+\end{itemize}
+This avoids anecdotal model selection and enforces comparable evaluation conditions.
+
+\section{Run Automation and Reliability Engineering}
+Full-universe experiments are automated by a script that:
+\begin{itemize}
+    \item discovers all stock CSVs,
+    \item iterates for configurable rounds,
+    \item supports randomized stock order per round,
+    \item applies retry logic for transient HTTP errors (429/5xx),
+    \item uses exponential backoff with jitter,
+    \item supports interruption-safe resume from JSONL logs.
+\end{itemize}
+
+This turns the pipeline from a single demonstration into an operational research harness capable of large-scale repeat experiments.
+
+\section{Experiment Logging and Post-Run Analysis}
+\subsection{Logging}
+Each forecast call appends structured records to \texttt{experiments.json} including:
+\begin{itemize}
+    \item target,
+    \item selected neighbors,
+    \item model type,
+    \item MAE,
+    \item predicted return,
+    \item timestamp.
+\end{itemize}
+
+\subsection{Analysis Outputs}
+The analysis module generates a rich \texttt{analysis.json} including:
+\begin{itemize}
+    \item predictor frequency ranking,
+    \item best and worst MAE per target,
+    \item sector influence matrix,
+    \item predictor-target network edges,
+    \item per-target MAE distribution,
+    \item cross-sector predictive pairs,
+    \item per-target historical series and backtest predictions.
+\end{itemize}
+
+These artifacts support dashboarding, interpretability, and research narrative generation.
+
+\section{Methodological Strengths}
+The methodology has several strengths:
+\begin{itemize}
+    \item modular separation of data, modeling, and orchestration layers,
+    \item reproducible API-first experimentation,
+    \item grounded LLM usage with strict empirical validation,
+    \item comparative model benchmarking under identical data constraints,
+    \item scalable run automation with resilience to rate limits and transient failures.
+\end{itemize}
+
+\section{Methodological Limitations}
+Current limitations include:
+\begin{itemize}
+    \item dependence on Yahoo Finance data quality and corporate action handling,
+    \item single-horizon single-step formulation in current experiments,
+    \item MAE-only objective without trading utility or risk-adjusted performance metrics,
+    \item limited hyperparameter optimization for LSTM.
+\end{itemize}
+
+These limitations define a clear path for future extensions (multi-horizon training, walk-forward validation, portfolio-level metrics, and probabilistic forecasts).
+
+\section{Chapter Conclusion}
+The proposed methodology combines rigorous financial feature engineering, practical model benchmarking, and intelligent orchestration.
+Most importantly, it reframes LLMs as experiment designers rather than black-box predictors: the model proposes, while the forecast engine validates.
+This separation provides both innovation and methodological discipline, making the framework suitable for academic research reporting and iterative industrial experimentation.
+
+\begin{thebibliography}{99}
+
+\bibitem{tsay2005analysis}
+R. S. Tsay,
+\textit{Analysis of Financial Time Series},
+Wiley, 2nd ed., 2005.
+
+\bibitem{fama1970efficient}
+E. F. Fama,
+"Efficient Capital Markets: A Review of Theory and Empirical Work,"
+\textit{The Journal of Finance}, vol. 25, no. 2, pp. 383--417, 1970.
+
+\bibitem{lo2000foundations}
+A. W. Lo and A. C. MacKinlay,
+\textit{A Non-Random Walk Down Wall Street},
+Princeton University Press, 2000.
+
+\bibitem{chen2016xgboost}
+T. Chen and C. Guestrin,
+"XGBoost: A Scalable Tree Boosting System,"
+in \textit{Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}, 2016, pp. 785--794.
+
+\bibitem{hochreiter1997lstm}
+S. Hochreiter and J. Schmidhuber,
+"Long Short-Term Memory,"
+\textit{Neural Computation}, vol. 9, no. 8, pp. 1735--1780, 1997.
+
+\bibitem{mantegna1999hierarchical}
+R. N. Mantegna,
+"Hierarchical Structure in Financial Markets,"
+\textit{The European Physical Journal B}, vol. 11, pp. 193--197, 1999.
+
+\bibitem{hutter2019automl}
+F. Hutter, L. Kotthoff, and J. Vanschoren,
+\textit{Automated Machine Learning: Methods, Systems, Challenges},
+Springer, 2019.
+
+\bibitem{bommasani2021opportunities}
+R. Bommasani et al.,
+"On the Opportunities and Risks of Foundation Models,"
+arXiv:2108.07258, 2021.
+
+\bibitem{openai2023gpt4}
+OpenAI,
+"GPT-4 Technical Report,"
+arXiv:2303.08774, 2023.
+
+\end{thebibliography}
+
+\end{document}

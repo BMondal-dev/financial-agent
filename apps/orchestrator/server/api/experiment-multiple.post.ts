@@ -5,10 +5,27 @@ import { google } from "@ai-sdk/google"
 
 const FASTAPI = "http://localhost:8000"
 
-async function runForecast(target: string, neighbors: string[], horizon: number) {
+function rankingMae(r: { mae_for_ranking?: number; mae?: number }) {
+  return r.mae_for_ranking ?? r.mae ?? Number.POSITIVE_INFINITY
+}
+
+async function runForecast(
+  target: string,
+  neighbors: string[],
+  horizon: number,
+  meta: { experiment_id: string; rationale: string; orchestrator_round: number }
+) {
   return await $fetch(`${FASTAPI}/run-forecast`, {
     method: "POST",
-    body: { target, neighbors, horizon }
+    body: {
+      target,
+      neighbors,
+      horizon,
+      source: "experiment-multiple",
+      experiment_id: meta.experiment_id,
+      rationale: meta.rationale,
+      orchestrator_round: meta.orchestrator_round
+    }
   })
 }
 
@@ -36,7 +53,7 @@ export default defineEventHandler(async (event) => {
 
   let pastExperiments: any[] = []
   try {
-    pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}`)
+    pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`)
   } catch { pastExperiments = [] }
 
   // -----------------------------------
@@ -65,14 +82,18 @@ export default defineEventHandler(async (event) => {
   const round1Results: any[] = []
   for (const exp of round1) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon)
+      const result: any = await runForecast(target, exp.neighbors, horizon, {
+        experiment_id: exp.experiment_id,
+        rationale: exp.rationale,
+        orchestrator_round: 1
+      })
       round1Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, ...result })
     } catch (e) {
       round1Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, mae: Infinity, error: String(e) })
     }
   }
 
-  const bestRound1 = [...round1Results].sort((a, b) => a.mae - b.mae)[0]
+  const bestRound1 = [...round1Results].sort((a, b) => rankingMae(a) - rankingMae(b))[0]
 
   // -----------------------------------
   // ROUND 2 — Refinement
@@ -99,14 +120,18 @@ export default defineEventHandler(async (event) => {
   const round2Results: any[] = []
   for (const exp of round2) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon)
+      const result: any = await runForecast(target, exp.neighbors, horizon, {
+        experiment_id: exp.experiment_id,
+        rationale: exp.rationale,
+        orchestrator_round: 2
+      })
       round2Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, ...result })
     } catch (e) {
       round2Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, mae: Infinity, error: String(e) })
     }
   }
 
-  const bestRound2 = [...round2Results].sort((a, b) => a.mae - b.mae)[0]
+  const bestRound2 = [...round2Results].sort((a, b) => rankingMae(a) - rankingMae(b))[0]
 
   // -----------------------------------
   // ROUND 3 — Mutation Search
@@ -132,7 +157,11 @@ export default defineEventHandler(async (event) => {
   const round3Results: any[] = []
   for (const exp of round3) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon)
+      const result: any = await runForecast(target, exp.neighbors, horizon, {
+        experiment_id: exp.experiment_id,
+        rationale: exp.rationale,
+        orchestrator_round: 3
+      })
       round3Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, ...result })
     } catch (e) {
       round3Results.push({ experiment_id: exp.experiment_id, rationale: exp.rationale, neighbors: exp.neighbors, mae: Infinity, error: String(e) })
@@ -141,8 +170,8 @@ export default defineEventHandler(async (event) => {
 
   // --- Final Best ---
   const finalResults = [...round1Results, ...round2Results, ...round3Results]
-    .filter(r => r.mae !== Infinity)
-    .sort((a, b) => a.mae - b.mae)
+    .filter(r => r.mae !== Infinity && typeof r.mae === "number")
+    .sort((a, b) => rankingMae(a) - rankingMae(b))
 
   return {
     target,

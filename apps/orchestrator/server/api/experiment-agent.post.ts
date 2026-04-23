@@ -5,6 +5,10 @@ import { z } from "zod"
 
 const FASTAPI = "http://localhost:8000"
 
+function rankingMae(r: { mae_for_ranking?: number; mae?: number }) {
+  return r.mae_for_ranking ?? r.mae ?? Number.POSITIVE_INFINITY
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
@@ -18,7 +22,7 @@ export default defineEventHandler(async (event) => {
   
   // Fetch past experiments for memory
   const pastExperiments = await $fetch(
-    `${FASTAPI}/best-neighbors/${target}`
+    `${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`
   )
 
   // 2️⃣ Ask LLM for experiments
@@ -60,7 +64,9 @@ export default defineEventHandler(async (event) => {
       body: {
         target,
         neighbors: exp.neighbors,
-        horizon
+        horizon,
+        source: "experiment-agent",
+        rationale: exp.explanation
       }
     })
 
@@ -73,7 +79,7 @@ export default defineEventHandler(async (event) => {
 
   // 4️⃣ Select best experiment
   // Added a check to ensure results exist before sorting
-  results.sort((a, b) => (a.mae ?? 0) - (b.mae ?? 0))
+  results.sort((a, b) => rankingMae(a) - rankingMae(b))
 
   const best = results[0]
 

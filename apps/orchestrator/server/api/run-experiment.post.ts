@@ -26,7 +26,9 @@ export default defineEventHandler(async (event) => {
     body: {
       target,
       neighbors: [],
-      horizon
+      horizon,
+      source: "run-experiment",
+      rationale: "baseline: no neighbors"
     }
   })
 
@@ -41,7 +43,9 @@ export default defineEventHandler(async (event) => {
     body: {
       target,
       neighbors: correlatedNeighbors,
-      horizon
+      horizon,
+      source: "run-experiment",
+      rationale: "top correlated (metadata)"
     }
   })
 
@@ -55,25 +59,29 @@ export default defineEventHandler(async (event) => {
     body: {
       target,
       neighbors: sectorNeighbors,
-      horizon
+      horizon,
+      source: "run-experiment",
+      rationale: "same sector (metadata)"
     }
   })
 
-  // ---- Determine Best ----
+  // ---- Determine Best (ranking prefers models that beat zero baseline) ----
   const results = {
     baseline,
     correlated,
     sector
   }
 
+  const rank = (v: any) => v?.mae_for_ranking ?? v?.mae ?? Number.POSITIVE_INFINITY
+
   const best = Object.entries(results).reduce((bestSoFar, current) => {
     const [name, value]: any = current
-    if (!value?.mae) return bestSoFar
+    if (value?.error || typeof value?.mae !== "number") return bestSoFar
 
-    if (!bestSoFar) return { name, mae: value.mae }
+    if (!bestSoFar) return { name, mae: value.mae, mae_for_ranking: rank(value) }
 
-    return value.mae < bestSoFar.mae
-      ? { name, mae: value.mae }
+    return rank(value) < bestSoFar.mae_for_ranking
+      ? { name, mae: value.mae, mae_for_ranking: rank(value) }
       : bestSoFar
   }, null as any)
 

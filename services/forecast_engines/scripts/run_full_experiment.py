@@ -15,8 +15,16 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Run experiment-agent for all discovered stocks over multiple rounds "
-            "with retry/backoff and pacing to reduce API/model rate limits."
-        )
+            "with retry/backoff and pacing to reduce API/model rate limits.\n\n"
+            "Why this is slow: each stock triggers 1 LLM call plus 3 POST /run-forecast "
+            "calls (each trains XGB several times). Defaults add ~1.5s between stocks and "
+            "12s between rounds.\n\n"
+            "Speed tips: use --rounds 1 for a single pass; lower --inter-request-delay and "
+            "--inter-round-delay when your LLM quota allows; start the forecast API with "
+            "FORECAST_ENGINES_SKIP_CV=1 to skip time-series CV inside /run-forecast "
+            "(faster, slightly less info in logs)."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
         "--endpoint",

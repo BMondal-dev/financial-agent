@@ -618,6 +618,21 @@
             border-color: var(--coral);
             font-weight: 600;
         }
+
+        .methodology-banner {
+            margin: 0 0 20px;
+            padding: 12px 16px;
+            background: rgba(245, 197, 24, 0.08);
+            border: 1px solid rgba(245, 197, 24, 0.25);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            line-height: 1.45;
+            color: var(--muted);
+        }
+
+        .methodology-banner strong {
+            color: var(--text);
+        }
     </style>
 </head>
 
@@ -643,6 +658,8 @@
         <!-- Summary Stats -->
         <div class="stats-grid" id="stats-grid"></div>
 
+        <div id="methodology-banner" class="methodology-banner" style="display:none"></div>
+
         <!-- Predictor Intelligence -->
         <div class="section">
             <div class="section-header">
@@ -657,7 +674,7 @@
                 <div class="chart-card">
                     <div class="chart-card-title">Top 20 Predictor Stocks <span class="chart-badge">by usage
                             count</span></div>
-                    <div class="chart-wrap" style="height:380px">
+                    <div class="chart-wrap" style="height:440px">
                         <canvas id="chart-predictors"></canvas>
                     </div>
                 </div>
@@ -832,13 +849,46 @@
             </div>
         </div>
 
+        <!-- Calibrated leaderboard (date-aligned + baseline metrics) -->
+        <div class="section" id="section-calibrated" style="display:none">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(100,200,180,0.12)">✓</div>
+                <div>
+                    <div class="section-title">Calibrated leaderboard</div>
+                    <div class="section-sub">Best MAE per target using only runs with calendar-aligned data and zero-return
+                        baseline (horizon matches analysis setting)</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="chart-card">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Target</th>
+                                <th>Sector</th>
+                                <th>MAE</th>
+                                <th>Zero baseline</th>
+                                <th>Beats 0?</th>
+                                <th>Predicted Return</th>
+                                <th>Neighbors</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calibrated-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- Best Configurations -->
         <div class="section">
             <div class="section-header">
                 <div class="section-icon" style="background:rgba(255,179,71,0.12)">🏆</div>
                 <div>
                     <div class="section-title">Best Discovered Configurations</div>
-                    <div class="section-sub">Optimal neighbor set per target found by the agent</div>
+                    <div class="section-sub">Optimal neighbor set per target over all logged experiments (includes legacy
+                        row-aligned runs — see banner above)</div>
                 </div>
                 <div class="section-divider"></div>
             </div>
@@ -922,6 +972,19 @@
                 sub.textContent = `365 days of price history with agent's predicted ${horizonDays}-day return overlaid`;
             }
 
+            const banner = $('methodology-banner');
+            if (banner && s.methodology_note) {
+                const lc = s.legacy_experiment_count ?? 0;
+                const cc = s.calibrated_experiment_count ?? 0;
+                const pct = s.calibrated_beats_baseline_pct;
+                banner.style.display = 'block';
+                banner.innerHTML = `<strong>Methodology.</strong> ${s.methodology_note}` +
+                    (cc > 0
+                        ? ` <strong>Counts:</strong> ${lc.toLocaleString()} legacy · ${cc.toLocaleString()} calibrated` +
+                          (pct != null ? ` · <strong>Beats zero baseline</strong> (calibrated): ${pct}%` : '')
+                        : '');
+            }
+
             renderStats(s);
             renderPredictorChart(D.predictor_frequency);
             renderCrossSector(D.cross_sector_pairs);
@@ -929,6 +992,11 @@
             renderHeatmap(D.sector_matrix);
             renderNetwork(D.network);
             renderStockExplorer(D.stocks_history);
+            const cal = D.best_per_target_calibrated || [];
+            if (cal.length) {
+                $('section-calibrated').style.display = '';
+                renderCalibratedTable(cal);
+            }
             renderBestTable(D.best_per_target);
         }
 
@@ -938,10 +1006,31 @@
                 { cls: 'c1', val: s.total_experiments.toLocaleString(), label: 'Total Experiments' },
                 { cls: 'c2', val: s.total_targets, label: 'Unique Targets' },
                 { cls: 'c3', val: s.total_unique_predictors, label: 'Unique Predictors' },
-                { cls: 'c4', val: fmtMAE(s.global_avg_mae), label: 'Avg MAE' },
-                { cls: 'c5', val: fmtMAE(s.global_min_mae), label: 'Best MAE' },
+                { cls: 'c4', val: fmtMAE(s.global_avg_mae), label: 'Avg MAE (all runs)' },
+                { cls: 'c5', val: fmtMAE(s.global_min_mae), label: 'Best MAE (all runs)' },
                 { cls: 'c6', val: s.sectors_covered, label: 'Sectors Covered' },
             ];
+            if (s.calibrated_experiment_count > 0) {
+                cards.push({
+                    cls: 'c1',
+                    val: s.calibrated_experiment_count.toLocaleString(),
+                    label: 'Calibrated runs',
+                });
+            }
+            if (s.global_avg_mae_calibrated != null) {
+                cards.push({
+                    cls: 'c4',
+                    val: fmtMAE(s.global_avg_mae_calibrated),
+                    label: 'Avg MAE (calibrated only)',
+                });
+            }
+            if (s.calibrated_beats_baseline_pct != null) {
+                cards.push({
+                    cls: 'c5',
+                    val: s.calibrated_beats_baseline_pct + '%',
+                    label: 'Beats zero baseline',
+                });
+            }
             $('stats-grid').innerHTML = cards.map(c =>
                 `<div class="stat-card ${c.cls}">
       <div class="stat-val">${c.val}</div>
@@ -983,9 +1072,16 @@
                             grid: { color: '#1f1f1f' },
                             ticks: { color: '#6e6458' }
                         },
-                        y: { grid: { display: false }, ticks: { color: '#f0ece3', font: { weight: '600' } } }
-                    }
-                }
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#f0ece3',
+                                font: { weight: '600', size: 11 },
+                                autoSkip: false,
+                            },
+                        },
+                    },
+                },
             });
         }
 
@@ -1676,6 +1772,28 @@
             } else {
                 callout.style.display = 'none';
             }
+        }
+
+        function renderCalibratedTable(data) {
+            const tbody = $('calibrated-table-body');
+            tbody.innerHTML = data.map((d, i) => {
+                const sc = secColor(d.sector);
+                const retCls = d.predicted_return >= 0 ? 'return-pos' : 'return-neg';
+                const beats = d.beats_baseline_zero === true ? 'Yes' : d.beats_baseline_zero === false ? 'No' : '—';
+                const beatsStyle = d.beats_baseline_zero === true ? 'color:#6fcf97' : d.beats_baseline_zero === false ? 'color:#e63950' : '';
+                return `<tr>
+      <td class="rank-num">${i + 1}</td>
+      <td><b>${d.target}</b></td>
+      <td><span class="pill" style="background:${sc}22;color:${sc};font-size:10px">${d.sector}</span></td>
+      <td style="font-variant-numeric:tabular-nums">${fmtMAE(d.best_mae)}</td>
+      <td style="font-variant-numeric:tabular-nums;color:var(--muted)">${d.mae_baseline_zero != null ? fmtMAE(d.mae_baseline_zero) : '—'}</td>
+      <td style="font-weight:600;${beatsStyle}">${beats}</td>
+      <td class="${retCls}" style="font-size:12px;font-variant-numeric:tabular-nums">
+        ${d.predicted_return >= 0 ? '▲' : '▼'} ${Math.abs(d.predicted_return).toFixed(3)}%
+      </td>
+      <td><div class="neighbors-cell">${(d.best_neighbors || []).map(n => `<span class="nbr-tag">${n}</span>`).join('')}</div></td>
+    </tr>`;
+            }).join('');
         }
 
         // ── Best Configurations Table ──────────────────────────────────────────────

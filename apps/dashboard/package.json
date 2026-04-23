@@ -1,0 +1,8 @@
+{
+  "name": "financial-agent-dashboard",
+  "private": true,
+  "scripts": {
+    "serve": "python3 serve.py",
+    "sync": "cp ../../services/data/analysis.json ./analysis.json && echo 'Copied analysis.json'"
+  }
+}
