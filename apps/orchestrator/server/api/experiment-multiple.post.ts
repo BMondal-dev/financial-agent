@@ -29,13 +29,6 @@ async function runForecast(
   })
 }
 
-async function runBenchmark(target: string, neighbors: string[], horizon: number) {
-  return await $fetch(`${FASTAPI}/compare-models`, {
-    method: "POST",
-    body: { target, neighbors, horizon }
-  })
-}
-
 const ExperimentSchema = z.object({
   experiment_id: z.string(),
   rationale: z.string(),
@@ -46,7 +39,6 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const target = body.target
   const horizon = body.horizon || 5
-  const enableBenchmark = body.enable_benchmark !== false
 
   // --- Data Loading ---
   const [metadata, candidates] = await Promise.all([
@@ -183,22 +175,12 @@ export default defineEventHandler(async (event) => {
 
   const best = finalResults[0] ?? null
 
-  let benchmark: any = null
-  if (enableBenchmark && best?.neighbors?.length) {
-    try {
-      benchmark = await runBenchmark(target, best.neighbors, horizon)
-    } catch (e) {
-      benchmark = { error: String(e) }
-    }
-  }
-
   return {
     target,
     horizon,
     round1: round1Results,
     round2: round2Results,
     round3: round3Results,
-    best,
-    benchmark
+    best
   }
 })
