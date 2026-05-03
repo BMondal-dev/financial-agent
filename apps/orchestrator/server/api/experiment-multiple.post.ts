@@ -35,6 +35,36 @@ const ExperimentSchema = z.object({
   neighbors: z.array(z.string()).max(3)
 })
 
+const SentimentSchema = z.object({
+  sentiment: z.enum(["Bullish", "Bearish", "Neutral"]),
+  semantic_sentiment: z.string(),
+  market_mood_index: z.number().describe("Float between 0.00 and 1.00. 1.00 is extremely Bullish (optimistic), 0.00 is extremely Bearish (pessimistic), and 0.50 is Neutral.")
+})
+
+async function fetchRealSentiment(target: string) {
+  try {
+    const rssResponse = await $fetch<string>(`https://news.google.com/rss/search?q=${target}+stock&hl=en-US&gl=US&ceid=US:en`);
+    // Simple regex to grab the first 10 <title> contents, skipping the main feed title
+    const titles = [...rssResponse.matchAll(/<title>(.*?)<\/title>/g)].map(m => m[1]).filter(t => !t.includes('Google News')).slice(0, 10);
+
+    if (titles.length === 0) return null;
+
+    const { output } = await generateText({
+      model: google("gemini-flash-latest"),
+      output: Output.object({
+        schema: SentimentSchema
+      }),
+      system: "You are a quant researcher analyzing the sentiment and market mood for a given stock based on recent news headlines. Provide a sentiment label, a concise semantic description of the news, and a market mood index (0.00 to 1.00).",
+      prompt: `Analyze the following news headlines for ${target}:\n${titles.join("\n")}`
+    });
+
+    return output;
+  } catch (e) {
+    console.error("Failed to fetch or generate sentiment:", e);
+    return null;
+  }
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const target = body.target
@@ -45,6 +75,8 @@ export default defineEventHandler(async (event) => {
     $fetch(`${FASTAPI}/metadata/${target}`),
     $fetch(`${FASTAPI}/candidate-neighbors/${target}`)
   ])
+
+  const sentimentData = await fetchRealSentiment(target)
 
   let graphNeighbors: any[] = []
   try {
@@ -65,6 +97,7 @@ export default defineEventHandler(async (event) => {
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
       Target: ${target}
+      News Sentiment & Market Mood: ${JSON.stringify(sentimentData)}
       Metadata: ${JSON.stringify(metadata)}
       Candidates: ${JSON.stringify(candidates)}
       Graph Neighbors: ${JSON.stringify(graphNeighbors)}
@@ -72,10 +105,10 @@ export default defineEventHandler(async (event) => {
       
       Propose 3 DIFFERENT neighbor sets. Each must have:
       - experiment_id: unique string (e.g. "r1_exp1")
-      - rationale: brief explanation
+      - rationale: brief explanation (incorporating sentiment/mood analysis if applicable)
       - neighbors: array of up to 3 ticker strings
       
-      Reference past successful experiments where relevant.
+      Reference past successful experiments where relevant. Consider sentiment alignment or divergence when selecting neighbors.
     `
   })
 
@@ -103,6 +136,8 @@ export default defineEventHandler(async (event) => {
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
+      Target: ${target}
+      News Sentiment & Market Mood: ${JSON.stringify(sentimentData)}
       Best from Round 1: ${JSON.stringify(bestRound1)}
       All Round 1 Results: ${JSON.stringify(round1Results)}
       Past Successful Tickers: ${JSON.stringify(pastExperiments)}
@@ -110,10 +145,10 @@ export default defineEventHandler(async (event) => {
       
       Refine 3 NEW neighbor sets building on what worked. Each must have:
       - experiment_id: unique string (e.g. "r2_exp1")
-      - rationale: brief explanation
+      - rationale: brief explanation (incorporating sentiment/mood analysis)
       - neighbors: array of up to 3 ticker strings
       
-      Do NOT replicate failed patterns from Round 1.
+      Do NOT replicate failed patterns from Round 1. Consider market mood alignment.
     `
   })
 
@@ -141,16 +176,18 @@ export default defineEventHandler(async (event) => {
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
+      Target: ${target}
+      News Sentiment & Market Mood: ${JSON.stringify(sentimentData)}
       Best from Round 1: ${JSON.stringify(bestRound1)}
       Best from Round 2: ${JSON.stringify(bestRound2)}
       Historical Context: ${JSON.stringify(pastExperiments)}
       
       Generate 3 mutated combinations using cross-sector signals. Each must have:
       - experiment_id: unique string (e.g. "r3_exp1")
-      - rationale: brief explanation
+      - rationale: brief explanation (incorporating sentiment/mood analysis)
       - neighbors: array of up to 3 ticker strings
       
-      Be creative — try unconventional cross-sector pairings that could surface hidden correlations.
+      Be creative — try unconventional cross-sector pairings that could surface hidden correlations. Use sentiment or market mood context to find counter-intuitive matches.
     `
   })
 
