@@ -234,7 +234,7 @@ def build_metadata():
     with open(METADATA_PATH, "w") as f:
         json.dump(metadata, f, indent=2)
 
-    print("✅ Research-grade dynamic metadata built successfully.")
+    print("Dynamic metadata built successfully.")
 
 
 if __name__ == "__main__":

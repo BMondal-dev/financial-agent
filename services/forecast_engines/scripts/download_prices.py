@@ -12,7 +12,7 @@ NIFTY_50 = [
     "JIOFIN.NS", "JSWSTEEL.NS", "KOTAKBANK.NS", "LT.NS", "M&M.NS",
     "MARUTI.NS", "MAXHEALTH.NS", "NESTLEIND.NS", "NTPC.NS", "ONGC.NS",
     "POWERGRID.NS", "RELIANCE.NS", "SBILIFE.NS", "SBIN.NS", "SHRIRAMFIN.NS",
-    "SUNPHARMA.NS", "TATACONSUM.NS", "TATAMOTORS.NS", "TATASTEEL.NS", "TCS.NS",
+    "SUNPHARMA.NS", "TATACONSUM.NS", "TMCV.NS", "TATASTEEL.NS", "TCS.NS",
     "TECHM.NS", "TITAN.NS", "TMPV.NS", "TRENT.NS", "ULTRACEMCO.NS", "WIPRO.NS"
 ]
 
@@ -36,4 +36,5 @@ def download_prices():
         )
 
 if __name__ == "__main__":
+    print(f"Starting price download for {len(NIFTY_50)} stocks...")
     download_prices()
