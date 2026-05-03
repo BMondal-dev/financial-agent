@@ -4690,7 +4690,7 @@
     "market_cap": 2267213725696,
     "market_cap_bucket": "Large",
     "beta": 0.253,
-    "volatility_30d": NaN,
+    "volatility_30d": null,
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.07882786002509734,
     "momentum_60d": -0.10285094133454298,
@@ -4723,29 +4723,29 @@
     "rolling_corr_60d": [
       {
         "symbol": "TECHM",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "HCLTECH",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "BAJAJ-AUTO",
-        "corr": NaN
+        "corr": null
       }
     ],
     "rolling_corr_120d": [
       {
         "symbol": "TECHM",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "HCLTECH",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "BAJAJ-AUTO",
-        "corr": NaN
+        "corr": null
       }
     ],
     "same_sector": [
@@ -5302,7 +5302,7 @@
     "market_cap": 1632164511744,
     "market_cap_bucket": "Large",
     "beta": 0.623,
-    "volatility_30d": NaN,
+    "volatility_30d": null,
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.09937522716257763,
     "momentum_60d": -0.031945009362721044,
@@ -5335,29 +5335,29 @@
     "rolling_corr_60d": [
       {
         "symbol": "TECHM",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "HCLTECH",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "BAJAJ-AUTO",
-        "corr": NaN
+        "corr": null
       }
     ],
     "rolling_corr_120d": [
       {
         "symbol": "TECHM",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "HCLTECH",
-        "corr": NaN
+        "corr": null
       },
       {
         "symbol": "BAJAJ-AUTO",
-        "corr": NaN
+        "corr": null
       }
     ],
     "same_sector": [

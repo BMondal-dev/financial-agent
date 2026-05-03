@@ -15,6 +15,11 @@ NIFTY_SYMBOL = "^NSEI"
 # Utility Functions
 # -------------------------------
 
+def safe_float(val):
+    if pd.isna(val):
+        return None
+    return float(val)
+
 def percentile_bucket(value, all_values, labels):
     percentile = (all_values < value).mean()
 
@@ -103,7 +108,7 @@ def build_metadata():
         if len(close) < 250:
             continue
 
-        vol = float(volatility.get(stock, 0))
+        vol = safe_float(volatility.get(stock, 0))
         mcap = fundamentals[stock]["market_cap"]
 
         # Static Correlation
@@ -136,8 +141,8 @@ def build_metadata():
         )
 
         # Momentum
-        momentum_20d = float(close.pct_change(20).iloc[-1])
-        momentum_60d = float(close.pct_change(60).iloc[-1])
+        momentum_20d = safe_float(close.pct_change(20).iloc[-1])
+        momentum_60d = safe_float(close.pct_change(60).iloc[-1])
 
         # Relative Strength
         stock_returns = close.pct_change()
@@ -148,7 +153,7 @@ def build_metadata():
                 (1 + aligned.iloc[:, 0]).cumprod()
                 / (1 + aligned.iloc[:, 1]).cumprod()
             )
-            relative_strength = float(rs.iloc[-1])
+            relative_strength = safe_float(rs.iloc[-1])
         else:
             relative_strength = None
 
@@ -177,23 +182,23 @@ def build_metadata():
             "momentum_60d": momentum_60d,
             "relative_strength_vs_nifty": relative_strength,
 
-            "max_drawdown_1y": float(max_dd),
-            "current_drawdown": float(current_dd),
+            "max_drawdown_1y": safe_float(max_dd),
+            "current_drawdown": safe_float(current_dd),
 
             "trend_regime": regime,
 
             "top_correlated": [
-                {"symbol": s, "corr": float(c)}
+                {"symbol": s, "corr": safe_float(c)}
                 for s, c in top_corr.items()
             ],
 
             "rolling_corr_60d": [
-                {"symbol": s, "corr": float(c)}
+                {"symbol": s, "corr": safe_float(c)}
                 for s, c in rolling_corr_60.items()
             ],
 
             "rolling_corr_120d": [
-                {"symbol": s, "corr": float(c)}
+                {"symbol": s, "corr": safe_float(c)}
                 for s, c in rolling_corr_120.items()
             ]
         }
