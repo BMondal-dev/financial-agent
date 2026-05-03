@@ -58,7 +58,7 @@ def build_metadata():
     price_df = pd.DataFrame()
     fundamentals = {}
 
-    print("📥 Loading price data...")
+    print("Loading price data...")
 
     for file in os.listdir(RAW_DIR):
         if not file.endswith(".csv"):
@@ -81,7 +81,7 @@ def build_metadata():
 
     returns = price_df.pct_change()
 
-    print("📊 Downloading NIFTY benchmark...")
+    print("Downloading NIFTY benchmark...")
     nifty = yf.download(NIFTY_SYMBOL, period="5y", progress=False)["Close"]
     nifty_returns = nifty.pct_change()
 
@@ -95,7 +95,7 @@ def build_metadata():
 
     metadata = {}
 
-    print("🧠 Computing metadata...")
+    print("Computing metadata...")
 
     for stock in price_df.columns:
 
@@ -106,9 +106,7 @@ def build_metadata():
         vol = float(volatility.get(stock, 0))
         mcap = fundamentals[stock]["market_cap"]
 
-        # -----------------------
         # Static Correlation
-        # -----------------------
         top_corr = (
             correlation[stock]
             .drop(stock)
@@ -116,9 +114,7 @@ def build_metadata():
             .head(5)
         )
 
-        # -----------------------
         # Rolling Correlation
-        # -----------------------
         rolling_corr_60 = (
             returns[stock]
             .rolling(60)
@@ -139,15 +135,11 @@ def build_metadata():
             .head(3)
         )
 
-        # -----------------------
         # Momentum
-        # -----------------------
         momentum_20d = float(close.pct_change(20).iloc[-1])
         momentum_60d = float(close.pct_change(60).iloc[-1])
 
-        # -----------------------
         # Relative Strength
-        # -----------------------
         stock_returns = close.pct_change()
         aligned = pd.concat([stock_returns, nifty_returns], axis=1).dropna()
 
@@ -160,14 +152,9 @@ def build_metadata():
         else:
             relative_strength = None
 
-        # -----------------------
         # Drawdown
-        # -----------------------
         max_dd, current_dd = compute_drawdown(close)
-
-        # -----------------------
         # Trend Regime
-        # -----------------------
         regime = compute_trend_regime(close)
 
         metadata[stock] = {
@@ -211,10 +198,7 @@ def build_metadata():
             ]
         }
 
-    # -----------------------
     # Build Similarity Sets
-    # -----------------------
-
     for stock in metadata:
 
         metadata[stock]["same_sector"] = [
