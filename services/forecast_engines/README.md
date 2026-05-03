@@ -145,6 +145,44 @@ Because the whole research idea is:
 If we reused the same model, the experiment would be invalid.
 Each dataset proposal must be trained fresh.
 
+## Model Options
+
+The forecast endpoint now supports two benchmark model types:
+- `xgb` (default): XGBoost regressor with dynamic learning-rate heuristic
+- `lstm`: sequence benchmark using a 20-day rolling window
+
+Example request body:
+
+```json
+{
+  "target": "INFY",
+  "neighbors": ["TCS", "HCLTECH", "WIPRO"],
+  "horizon": 5,
+  "model_type": "lstm"
+}
+```
+
+## Presentation-Ready Benchmark Output
+
+Use this API for side-by-side benchmark output between XGB and LSTM:
+
+- `POST /compare-models`
+
+Request:
+
+```json
+{
+  "target": "INFY",
+  "neighbors": ["TCS", "HCLTECH", "WIPRO"],
+  "horizon": 5
+}
+```
+
+Response includes:
+- model-wise comparison rows (`mae`, `predicted_return`, `error`)
+- `best_model`
+- `presentation` block (title/subtitle/key message/table) ready to show in slides
+
 ## Is This Expensive?
 Not really.<br>
 XGBoost with:<br>

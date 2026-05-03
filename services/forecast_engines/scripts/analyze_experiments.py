@@ -149,7 +149,9 @@ def load_price_history(symbol: str, days: int = 365) -> list[dict]:
         parts = line.split(",")
         if len(parts) >= 2 and parts[1].strip():
             try:
-                rows.append({"date": parts[0].strip(), "close": float(parts[1].strip())})
+                rows.append(
+                    {"date": parts[0].strip(), "close": float(parts[1].strip())}
+                )
             except ValueError:
                 continue
     rows = rows[-days:]
@@ -206,6 +208,7 @@ def analyze(experiments, metadata):
             {
                 "target": t,
                 "sector": get_sector(t, metadata),
+                "model_type": v.get("model_type", "xgb"),
                 "best_mae": round(v["mae"], 6),
                 "worst_mae": round(worst_per_target[t]["mae"], 6),
                 "best_neighbors": v["neighbors"],
@@ -262,8 +265,20 @@ def analyze(experiments, metadata):
             sector_mae[(n_sector, t_sector)].append(e["mae"])
 
     # Get unique sectors
-    all_sectors = sorted(set(get_sector(s, metadata) for s in targets if get_sector(s, metadata) != "Unknown"))
-    neighbor_sectors = sorted(set(get_sector(n, metadata) for n in neighbor_counts if get_sector(n, metadata) != "Unknown"))
+    all_sectors = sorted(
+        set(
+            get_sector(s, metadata)
+            for s in targets
+            if get_sector(s, metadata) != "Unknown"
+        )
+    )
+    neighbor_sectors = sorted(
+        set(
+            get_sector(n, metadata)
+            for n in neighbor_counts
+            if get_sector(n, metadata) != "Unknown"
+        )
+    )
     all_sectors_union = sorted(set(all_sectors + neighbor_sectors))
 
     # Build matrix: lower MAE = stronger predictive power
@@ -343,7 +358,9 @@ def analyze(experiments, metadata):
             "std_mae": round(statistics.stdev(maes) if len(maes) > 1 else 0, 6),
             "count": len(maes),
         }
-        for t, maes in sorted(mae_by_target.items(), key=lambda x: statistics.mean(x[1]))
+        for t, maes in sorted(
+            mae_by_target.items(), key=lambda x: statistics.mean(x[1])
+        )
     ]
 
     # ── 6. Top Cross-Sector Predictive Pairs ─────────────────────────────────
@@ -388,7 +405,7 @@ def analyze(experiments, metadata):
     print("  Loading price history for each target…")
     # Build lookup: target → best predicted_return
     best_pred_return = {b["target"]: b["predicted_return"] for b in best_list}
-    best_mae_map     = {b["target"]: b["best_mae"]         for b in best_list}
+    best_mae_map = {b["target"]: b["best_mae"] for b in best_list}
     best_neighbors_map = {b["target"]: b["best_neighbors"] for b in best_list}
 
     stocks_history = {}
@@ -472,7 +489,9 @@ if __name__ == "__main__":
 
     print(f"\n── Top 5 Best-Predicted Targets ─────────")
     for b in result["best_per_target"][:5]:
-        print(f"  {b['target']:15s} MAE={b['best_mae']:.6f}  neighbors={b['best_neighbors']}")
+        print(
+            f"  {b['target']:15s} MAE={b['best_mae']:.6f}  neighbors={b['best_neighbors']}"
+        )
 
     print(f"\nWriting to {OUTPUT_FILE}...")
     with open(OUTPUT_FILE, "w") as f:

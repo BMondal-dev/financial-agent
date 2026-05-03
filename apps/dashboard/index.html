@@ -633,6 +633,29 @@
         .methodology-banner strong {
             color: var(--text);
         }
+
+        .model-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+        }
+
+        .model-badge.xgb {
+            color: var(--gold);
+            background: rgba(245, 197, 24, 0.14);
+            border-color: rgba(245, 197, 24, 0.35);
+        }
+
+        .model-badge.lstm {
+            color: var(--violet);
+            background: rgba(201, 125, 255, 0.16);
+            border-color: rgba(201, 125, 255, 0.36);
+        }
     </style>
 </head>
 
@@ -659,6 +682,47 @@
         <div class="stats-grid" id="stats-grid"></div>
 
         <div id="methodology-banner" class="methodology-banner" style="display:none"></div>
+
+        <!-- Model Benchmark -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(201,125,255,0.12)">🧪</div>
+                <div>
+                    <div class="section-title">Model Benchmark</div>
+                    <div class="section-sub">XGBoost vs LSTM performance across recorded experiments</div>
+                </div>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid-2">
+                <div class="chart-card">
+                    <div class="chart-card-title">Average MAE by Model <span class="chart-badge">lower = better</span>
+                    </div>
+                    <div class="chart-wrap" style="height:280px">
+                        <canvas id="chart-model-benchmark"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-card-title">Benchmark Snapshot <span class="chart-badge">presentation-ready</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Runs</th>
+                                    <th>Avg MAE</th>
+                                    <th>Min MAE</th>
+                                    <th>Avg Pred Return</th>
+                                </tr>
+                            </thead>
+                            <tbody id="benchmark-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div id="benchmark-summary"
+                        style="margin-top:12px;font-size:12px;color:var(--muted2);line-height:1.6"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Predictor Intelligence -->
         <div class="section">
@@ -855,7 +919,8 @@
                 <div class="section-icon" style="background:rgba(100,200,180,0.12)">✓</div>
                 <div>
                     <div class="section-title">Calibrated leaderboard</div>
-                    <div class="section-sub">Best MAE per target using only runs with calendar-aligned data and zero-return
+                    <div class="section-sub">Best MAE per target using only runs with calendar-aligned data and
+                        zero-return
                         baseline (horizon matches analysis setting)</div>
                 </div>
                 <div class="section-divider"></div>
@@ -887,7 +952,8 @@
                 <div class="section-icon" style="background:rgba(255,179,71,0.12)">🏆</div>
                 <div>
                     <div class="section-title">Best Discovered Configurations</div>
-                    <div class="section-sub">Optimal neighbor set per target over all logged experiments (includes legacy
+                    <div class="section-sub">Optimal neighbor set per target over all logged experiments (includes
+                        legacy
                         row-aligned runs — see banner above)</div>
                 </div>
                 <div class="section-divider"></div>
@@ -899,6 +965,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Target</th>
+                                <th>Model</th>
                                 <th>Sector</th>
                                 <th>Best MAE</th>
                                 <th>Worst MAE</th>
@@ -953,6 +1020,7 @@
 
         function fmtMAE(v) { return (v * 100).toFixed(4) + '%'; }
         function fmtPct(v) { return (v >= 0 ? '+' : '') + (v * 100).toFixed(3) + '%'; }
+        function fmtModel(name) { return String(name || '').toUpperCase(); }
 
         // ── Main render ────────────────────────────────────────────────────────────
         async function init() {
@@ -981,11 +1049,12 @@
                 banner.innerHTML = `<strong>Methodology.</strong> ${s.methodology_note}` +
                     (cc > 0
                         ? ` <strong>Counts:</strong> ${lc.toLocaleString()} legacy · ${cc.toLocaleString()} calibrated` +
-                          (pct != null ? ` · <strong>Beats zero baseline</strong> (calibrated): ${pct}%` : '')
+                        (pct != null ? ` · <strong>Beats zero baseline</strong> (calibrated): ${pct}%` : '')
                         : '');
             }
 
             renderStats(s);
+            renderModelBenchmark(D);
             renderPredictorChart(D.predictor_frequency);
             renderCrossSector(D.cross_sector_pairs);
             renderMAEChart(D.mae_distribution);
@@ -1037,6 +1106,97 @@
       <div class="stat-label">${c.label}</div>
     </div>`
             ).join('');
+        }
+
+        function renderModelBenchmark(D) {
+            const perModel = {};
+            const bestPerTarget = Array.isArray(D.best_per_target) ? D.best_per_target : [];
+
+            for (const row of bestPerTarget) {
+                const model = (row.model_type || 'xgb').toLowerCase();
+                if (!perModel[model]) {
+                    perModel[model] = { model, runs: 0, mae: [], pred: [] };
+                }
+                perModel[model].runs += 1;
+                if (typeof row.best_mae === 'number') perModel[model].mae.push(row.best_mae);
+                if (typeof row.predicted_return === 'number') perModel[model].pred.push(row.predicted_return / 100);
+            }
+
+            const fallbackModels = ['xgb', 'lstm'];
+            for (const m of fallbackModels) {
+                if (!perModel[m]) {
+                    perModel[m] = { model: m, runs: 0, mae: [], pred: [] };
+                }
+            }
+
+            const modelRows = Object.values(perModel).map(m => {
+                const avgMae = m.mae.length ? m.mae.reduce((a, b) => a + b, 0) / m.mae.length : null;
+                const minMae = m.mae.length ? Math.min(...m.mae) : null;
+                const avgPred = m.pred.length ? m.pred.reduce((a, b) => a + b, 0) / m.pred.length : null;
+                return {
+                    model: m.model,
+                    runs: m.runs,
+                    avg_mae: avgMae,
+                    min_mae: minMae,
+                    avg_predicted_return: avgPred,
+                };
+            });
+
+            const labels = modelRows.map(r => fmtModel(r.model));
+            const maeData = modelRows.map(r => r.avg_mae != null ? r.avg_mae * 100 : null);
+            const colors = modelRows.map(r => r.model === 'lstm' ? 'rgba(201,125,255,0.82)' : 'rgba(245,197,24,0.82)');
+
+            new Chart($('chart-model-benchmark'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{ data: maeData, backgroundColor: colors, borderRadius: 6, borderSkipped: false }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    if (ctx.parsed.y == null) return ' No runs';
+                                    return ` Avg MAE: ${ctx.parsed.y.toFixed(4)}%`;
+                                }
+                            },
+                            backgroundColor: '#1e1e1e', titleColor: '#f0ece3',
+                            bodyColor: '#9e9080', borderColor: '#333', borderWidth: 1,
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#f0ece3' } },
+                        y: {
+                            grid: { color: '#1a1a1a' },
+                            ticks: { color: '#6e6458', callback: v => `${v.toFixed(3)}%` },
+                            title: { display: true, text: 'Average MAE (%)', color: '#6e6458', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+
+            const tbody = $('benchmark-table-body');
+            tbody.innerHTML = modelRows.map(r => {
+                const cls = r.model === 'lstm' ? 'lstm' : 'xgb';
+                return `<tr>
+                    <td><span class="model-badge ${cls}">${fmtModel(r.model)}</span></td>
+                    <td>${r.runs}</td>
+                    <td>${r.avg_mae != null ? fmtMAE(r.avg_mae) : '—'}</td>
+                    <td>${r.min_mae != null ? fmtMAE(r.min_mae) : '—'}</td>
+                    <td>${r.avg_predicted_return != null ? fmtPct(r.avg_predicted_return) : '—'}</td>
+                </tr>`;
+            }).join('');
+
+            const valid = modelRows.filter(r => r.avg_mae != null);
+            const best = valid.length ? [...valid].sort((a, b) => a.avg_mae - b.avg_mae)[0] : null;
+            $('benchmark-summary').innerHTML = best
+                ? `Current benchmark leader: <span class="model-badge ${best.model === 'lstm' ? 'lstm' : 'xgb'}">${fmtModel(best.model)}</span>
+                   with average MAE <b style="color:var(--gold)">${fmtMAE(best.avg_mae)}</b> across ${best.runs} target-level runs.`
+                : 'No benchmark rows available yet. Run model comparisons to populate this section.';
         }
 
         // ── Top Predictors Bar Chart ───────────────────────────────────────────────
@@ -1808,6 +1968,7 @@
                 return `<tr>
       <td class="rank-num">${i + 1}</td>
       <td><b>${d.target}</b></td>
+      <td><span class="model-badge ${(d.model_type || 'xgb').toLowerCase() === 'lstm' ? 'lstm' : 'xgb'}">${fmtModel(d.model_type || 'xgb')}</span></td>
       <td><span class="pill" style="background:${sc}22;color:${sc};font-size:10px">${d.sector}</span></td>
       <td>
         <div class="mae-bar-wrap">
