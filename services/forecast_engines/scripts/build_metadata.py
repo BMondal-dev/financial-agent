@@ -70,9 +70,9 @@ def build_metadata():
             continue
 
         symbol = file.replace(".csv", "")
-        df = pd.read_csv(f"{RAW_DIR}/{file}")
+        df = pd.read_csv(f"{RAW_DIR}/{file}", header=[0, 1], index_col=0, parse_dates=True)
 
-        price_df[symbol] = pd.to_numeric(df["Close"], errors="coerce")
+        price_df[symbol] = pd.to_numeric(df.iloc[:, 0], errors="coerce")
 
         ticker = yf.Ticker(symbol + ".NS")
         info = ticker.info
@@ -146,7 +146,7 @@ def build_metadata():
 
         # Relative Strength
         stock_returns = close.pct_change()
-        aligned = pd.concat([stock_returns, nifty_returns], axis=1).dropna()
+        aligned = pd.concat([stock_returns, nifty_returns], axis=1, sort=False).dropna()
 
         if not aligned.empty:
             rs = (

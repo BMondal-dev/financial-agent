@@ -9,7 +9,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.06466763005780352,
     "momentum_60d": -0.16676092532388087,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.1042150402332578,
     "max_drawdown_1y": -0.4656718581636346,
     "current_drawdown": -0.16676092532388082,
     "trend_regime": "Sideways",
@@ -88,17 +88,17 @@
       "APOLLOHOSP"
     ],
     "same_volatility_bucket": [
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -139,7 +139,7 @@
     "volatility_bucket": "High",
     "momentum_20d": -0.08910508506639048,
     "momentum_60d": -0.29016226717342997,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.984923282388417,
     "max_drawdown_1y": -0.3303608774862816,
     "current_drawdown": -0.2934455185989904,
     "trend_regime": "Bearish",
@@ -226,12 +226,12 @@
     "same_volatility_bucket": [
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -261,14 +261,22 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.1380743608722883,
     "momentum_60d": 0.05067283431454994,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.8023814478691305,
     "max_drawdown_1y": -0.42313525480802144,
     "current_drawdown": -0.011473788328387734,
     "trend_regime": "Bullish",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.557106122533169
+      },
+      {
         "symbol": "HEROMOTOCO",
         "corr": 0.5276182067184891
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.4736906315589862
       },
       {
         "symbol": "MARUTI",
@@ -277,14 +285,6 @@
       {
         "symbol": "EICHERMOT",
         "corr": 0.4274082955759664
-      },
-      {
-        "symbol": "M&M",
-        "corr": 0.400024495043196
-      },
-      {
-        "symbol": "SHRIRAMFIN",
-        "corr": 0.31610017558594194
       }
     ],
     "rolling_corr_60d": [
@@ -349,12 +349,13 @@
     "same_volatility_bucket": [
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -390,7 +391,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.09258320105907236,
     "momentum_60d": -0.013136967833219826,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.2274723656601454,
     "max_drawdown_1y": -0.3302495787007562,
     "current_drawdown": -0.055497331220368956,
     "trend_regime": "Sideways",
@@ -400,20 +401,20 @@
         "corr": 0.6350008527784521
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.5588076693241678
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5510235776254518
+      },
+      {
         "symbol": "JSWSTEEL",
         "corr": 0.5129957152939071
       },
       {
         "symbol": "TATASTEEL",
         "corr": 0.4605206626613312
-      },
-      {
-        "symbol": "SBIN",
-        "corr": 0.4427162007781091
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.43802697522126244
       }
     ],
     "rolling_corr_60d": [
@@ -473,12 +474,13 @@
     "same_volatility_bucket": [
       "BAJAJ-AUTO",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -521,7 +523,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.05587313295224039,
     "momentum_60d": 0.0005242005940939709,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.0730107074687019,
     "max_drawdown_1y": -0.2902319760455698,
     "current_drawdown": -0.09118323942544243,
     "trend_regime": "Bearish",
@@ -539,12 +541,12 @@
         "corr": 0.41359365364852796
       },
       {
-        "symbol": "ASIANPAINT",
-        "corr": 0.3436573857278349
+        "symbol": "TMPV",
+        "corr": 0.3571030907273982
       },
       {
-        "symbol": "ITC",
-        "corr": 0.3222180627289249
+        "symbol": "ASIANPAINT",
+        "corr": 0.3436573857278349
       }
     ],
     "rolling_corr_60d": [
@@ -602,10 +604,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -638,7 +639,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.023462527444012782,
     "momentum_60d": -0.08754767317200896,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.1283765639578693,
     "max_drawdown_1y": -0.2808441364637498,
     "current_drawdown": -0.13655266755646445,
     "trend_regime": "Sideways",
@@ -648,20 +649,20 @@
         "corr": 0.5900703596772966
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.4913090522661682
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.4211625171679065
+      },
+      {
         "symbol": "BAJAJFINSV",
         "corr": 0.4004852083345854
       },
       {
         "symbol": "LT",
         "corr": 0.357432808823296
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.3426956964503624
-      },
-      {
-        "symbol": "ULTRACEMCO",
-        "corr": 0.3341259579904092
       }
     ],
     "rolling_corr_60d": [
@@ -670,12 +671,12 @@
         "corr": 0.6877413123940732
       },
       {
-        "symbol": "HDFCLIFE",
-        "corr": 0.6626601528824035
+        "symbol": "TMPV",
+        "corr": 0.6783911336053775
       },
       {
-        "symbol": "TITAN",
-        "corr": 0.6563486527995712
+        "symbol": "HDFCLIFE",
+        "corr": 0.6626601528824035
       }
     ],
     "rolling_corr_120d": [
@@ -727,12 +728,13 @@
     "same_volatility_bucket": [
       "BAJAJ-AUTO",
       "GRASIM",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -775,7 +777,7 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.16898510918824505,
     "momentum_60d": 0.0019782660938245655,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.0289529266294881,
     "max_drawdown_1y": -0.33362340150327596,
     "current_drawdown": -0.14362749248963297,
     "trend_regime": "Sideways",
@@ -785,20 +787,20 @@
         "corr": 0.7826986012777637
       },
       {
+        "symbol": "TMCV",
+        "corr": 0.6067786337891592
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.4870626573646087
+      },
+      {
         "symbol": "SHRIRAMFIN",
         "corr": 0.42612371755927314
       },
       {
         "symbol": "HDFCBANK",
         "corr": 0.4258102822971586
-      },
-      {
-        "symbol": "SBIN",
-        "corr": 0.4216719234872709
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.41294691705531095
       }
     ],
     "rolling_corr_60d": [
@@ -860,12 +862,12 @@
     "same_volatility_bucket": [
       "HCLTECH",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -900,10 +902,10 @@
     "market_cap_bucket": "UltraMega",
     "beta": 0.111,
     "volatility_30d": 0.02028228988480126,
-    "volatility_bucket": "Medium",
+    "volatility_bucket": "Low",
     "momentum_20d": 0.02908041149339402,
     "momentum_60d": 0.14518736007520383,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.7789347914790483,
     "max_drawdown_1y": -0.19128605173775518,
     "current_drawdown": -0.009639068596642026,
     "trend_regime": "Bullish",
@@ -982,21 +984,21 @@
       "BHARTIARTL"
     ],
     "same_volatility_bucket": [
-      "TECHM",
-      "MARUTI",
-      "BAJAJFINSV",
-      "HEROMOTOCO",
-      "INFY",
-      "HDFCBANK",
-      "HDFCLIFE",
-      "ADANIPORTS",
-      "ASIANPAINT",
+      "BAJAJ-AUTO",
+      "GRASIM",
+      "SBILIFE",
+      "TCS",
+      "BEL",
+      "WIPRO",
+      "HINDALCO",
       "JSWSTEEL",
-      "DRREDDY",
-      "ULTRACEMCO",
-      "AXISBANK",
-      "TITAN",
-      "LT"
+      "TATASTEEL",
+      "COALINDIA",
+      "ICICIBANK",
+      "NESTLEIND",
+      "HINDUNILVR",
+      "RELIANCE",
+      "SBIN"
     ],
     "same_trend_regime": [
       "BAJAJ-AUTO",
@@ -1026,11 +1028,15 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.08191126279863492,
     "momentum_60d": -0.0819197352089367,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.2893675212411355,
     "max_drawdown_1y": -0.2883414295628036,
     "current_drawdown": -0.23004857737682166,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.5971252347588535
+      },
       {
         "symbol": "EICHERMOT",
         "corr": 0.4996833296729091
@@ -1040,16 +1046,12 @@
         "corr": 0.46325952039574564
       },
       {
+        "symbol": "TMCV",
+        "corr": 0.4605269664615851
+      },
+      {
         "symbol": "HEROMOTOCO",
         "corr": 0.44544842207970403
-      },
-      {
-        "symbol": "BAJAJ-AUTO",
-        "corr": 0.43134501357361954
-      },
-      {
-        "symbol": "TITAN",
-        "corr": 0.3569618537555432
       }
     ],
     "rolling_corr_60d": [
@@ -1062,8 +1064,8 @@
         "corr": 0.8258622760777232
       },
       {
-        "symbol": "INDIGO",
-        "corr": 0.7687694576447007
+        "symbol": "TMPV",
+        "corr": 0.7732990040893242
       }
     ],
     "rolling_corr_120d": [
@@ -1115,16 +1117,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -1157,7 +1159,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.07071938895125318,
     "momentum_60d": -0.10312613671361337,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.962847346177759,
     "max_drawdown_1y": -0.42674714860249396,
     "current_drawdown": -0.19728022016848687,
     "trend_regime": "Bearish",
@@ -1167,20 +1169,20 @@
         "corr": 0.7826986012777637
       },
       {
+        "symbol": "TMCV",
+        "corr": 0.6238948297501323
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.5912154637971527
+      },
+      {
         "symbol": "GRASIM",
         "corr": 0.43802697522126244
       },
       {
         "symbol": "SBIN",
         "corr": 0.4366974929657853
-      },
-      {
-        "symbol": "SHRIRAMFIN",
-        "corr": 0.42218528628489127
-      },
-      {
-        "symbol": "AXISBANK",
-        "corr": 0.4179188529090597
       }
     ],
     "rolling_corr_60d": [
@@ -1243,16 +1245,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -1285,7 +1287,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.048751538751491186,
     "momentum_60d": -0.2132362361098623,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.5574259284405854,
     "max_drawdown_1y": -0.33441402272535187,
     "current_drawdown": -0.29306267412521764,
     "trend_regime": "Bearish",
@@ -1367,11 +1369,12 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -1406,7 +1409,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.1279069662537773,
     "momentum_60d": 0.033778925274046356,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.1138515385470724,
     "max_drawdown_1y": -0.2900937787246113,
     "current_drawdown": -0.05607785037859817,
     "trend_regime": "Sideways",
@@ -1487,10 +1490,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -1531,11 +1533,19 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.21742304861698125,
     "momentum_60d": 0.019645996103370145,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.6295908167377654,
     "max_drawdown_1y": -0.5892993261746771,
     "current_drawdown": -0.05033173234684939,
     "trend_regime": "Bullish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.6070758039870339
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5564380013480628
+      },
       {
         "symbol": "SBIN",
         "corr": 0.4419413221034089
@@ -1547,17 +1557,13 @@
       {
         "symbol": "BAJAJFINSV",
         "corr": 0.38580263246196905
-      },
-      {
-        "symbol": "BAJFINANCE",
-        "corr": 0.36358087326175964
-      },
-      {
-        "symbol": "HDFCBANK",
-        "corr": 0.3590076521522332
       }
     ],
     "rolling_corr_60d": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.7875125074445894
+      },
       {
         "symbol": "M&M",
         "corr": 0.7675751649036476
@@ -1565,10 +1571,6 @@
       {
         "symbol": "INDIGO",
         "corr": 0.7647803675696915
-      },
-      {
-        "symbol": "ULTRACEMCO",
-        "corr": 0.7392560753237635
       }
     ],
     "rolling_corr_120d": [
@@ -1620,12 +1622,12 @@
     "same_volatility_bucket": [
       "HCLTECH",
       "BAJFINANCE",
-      "M&M",
       "BPCL",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -1656,7 +1658,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.0765006723160051,
     "momentum_60d": -0.025565529073374615,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 6.286820320528828,
     "max_drawdown_1y": -0.26896408632575486,
     "current_drawdown": -0.07930413799977458,
     "trend_regime": "Sideways",
@@ -1738,11 +1740,12 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -1782,14 +1785,22 @@
     "market_cap_bucket": "Mega",
     "beta": 0.402,
     "volatility_30d": 0.026437559038296407,
-    "volatility_bucket": "High",
+    "volatility_bucket": "Medium",
     "momentum_20d": 0.048329796997318875,
     "momentum_60d": -0.08477127721965338,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.6463942834809124,
     "max_drawdown_1y": -0.22914470520326968,
     "current_drawdown": -0.18538289513137712,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.6486287559834187
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.6038253201768549
+      },
       {
         "symbol": "MARUTI",
         "corr": 0.46325952039574564
@@ -1801,14 +1812,6 @@
       {
         "symbol": "HEROMOTOCO",
         "corr": 0.4296154158271614
-      },
-      {
-        "symbol": "BAJAJ-AUTO",
-        "corr": 0.400024495043196
-      },
-      {
-        "symbol": "ULTRACEMCO",
-        "corr": 0.39981061371404963
       }
     ],
     "rolling_corr_60d": [
@@ -1821,8 +1824,8 @@
         "corr": 0.8248557845234397
       },
       {
-        "symbol": "HEROMOTOCO",
-        "corr": 0.8062889648875083
+        "symbol": "TMPV",
+        "corr": 0.8127420296820408
       }
     ],
     "rolling_corr_120d": [
@@ -1873,15 +1876,21 @@
       "NTPC"
     ],
     "same_volatility_bucket": [
-      "HCLTECH",
-      "BAJFINANCE",
-      "INDUSINDBK",
-      "BPCL",
-      "ADANIENT",
-      "TRENT",
+      "TECHM",
+      "MARUTI",
+      "BAJAJFINSV",
+      "HEROMOTOCO",
+      "INFY",
+      "HDFCBANK",
+      "HDFCLIFE",
+      "ADANIPORTS",
+      "ASIANPAINT",
+      "DRREDDY",
       "EICHERMOT",
-      "INDIGO",
-      "SHRIRAMFIN"
+      "ULTRACEMCO",
+      "AXISBANK",
+      "TITAN",
+      "LT"
     ],
     "same_trend_regime": [
       "HCLTECH",
@@ -1910,14 +1919,22 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.007110408848508776,
     "momentum_60d": -0.06838948970654335,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.3173083743564398,
     "max_drawdown_1y": -0.42157896890415597,
     "current_drawdown": -0.1814208294505489,
     "trend_regime": "Sideways",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.5400905060911829
+      },
+      {
         "symbol": "BAJAJ-AUTO",
         "corr": 0.5276182067184891
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5226321173193964
       },
       {
         "symbol": "MARUTI",
@@ -1926,14 +1943,6 @@
       {
         "symbol": "M&M",
         "corr": 0.4296154158271614
-      },
-      {
-        "symbol": "EICHERMOT",
-        "corr": 0.415061639580377
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.34847159538105205
       }
     ],
     "rolling_corr_60d": [
@@ -1993,16 +2002,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -2043,7 +2052,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": -0.05501353598346104,
     "momentum_60d": -0.28785775906711364,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.6100196662808964,
     "max_drawdown_1y": -0.31820337182205793,
     "current_drawdown": -0.3006272844839232,
     "trend_regime": "Bearish",
@@ -2123,16 +2132,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -2165,11 +2174,19 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.054883500900864135,
     "momentum_60d": -0.17509351982145238,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.7089984430777014,
     "max_drawdown_1y": -0.27776683763419563,
     "current_drawdown": -0.23812815321685807,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMCV",
+        "corr": 0.6124857658791161
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.5724360478304826
+      },
       {
         "symbol": "ICICIBANK",
         "corr": 0.5054133256324942
@@ -2181,14 +2198,6 @@
       {
         "symbol": "AXISBANK",
         "corr": 0.4534545364954981
-      },
-      {
-        "symbol": "BAJFINANCE",
-        "corr": 0.4258102822971586
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.40926218697259686
       }
     ],
     "rolling_corr_60d": [
@@ -2253,16 +2262,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -2295,7 +2304,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.06975986588817662,
     "momentum_60d": -0.008554810068337804,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.9349783662484766,
     "max_drawdown_1y": -0.28324113854709176,
     "current_drawdown": -0.21279153954983526,
     "trend_regime": "Sideways",
@@ -2313,12 +2322,12 @@
         "corr": 0.3187245857284087
       },
       {
-        "symbol": "APOLLOHOSP",
-        "corr": 0.23228550837506182
+        "symbol": "JIOFIN",
+        "corr": 0.25575446338576335
       },
       {
-        "symbol": "LT",
-        "corr": 0.1819819289994979
+        "symbol": "TMPV",
+        "corr": 0.2457502647426609
       }
     ],
     "rolling_corr_60d": [
@@ -2378,10 +2387,9 @@
       "TATACONSUM",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -2422,11 +2430,19 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.06921712529192625,
     "momentum_60d": -0.1581269770254592,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.2103215017212068,
     "max_drawdown_1y": -0.3458877962326887,
     "current_drawdown": -0.22624254016916637,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.5784307216776532
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.4907330132604927
+      },
       {
         "symbol": "SBIN",
         "corr": 0.4428029492123143
@@ -2438,17 +2454,13 @@
       {
         "symbol": "LT",
         "corr": 0.41185890896329086
-      },
-      {
-        "symbol": "ADANIPORTS",
-        "corr": 0.41118070765282033
-      },
-      {
-        "symbol": "COALINDIA",
-        "corr": 0.39852979166155394
       }
     ],
     "rolling_corr_60d": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.7137514272987852
+      },
       {
         "symbol": "INDIGO",
         "corr": 0.7094410044801821
@@ -2456,10 +2468,6 @@
       {
         "symbol": "TITAN",
         "corr": 0.6716254405112089
-      },
-      {
-        "symbol": "KOTAKBANK",
-        "corr": 0.6461815700644792
       }
     ],
     "rolling_corr_120d": [
@@ -2501,11 +2509,11 @@
       "HCLTECH",
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -2535,7 +2543,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.06933486756104568,
     "momentum_60d": -0.16326108697681452,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.5444259740644246,
     "max_drawdown_1y": -0.4749292768808284,
     "current_drawdown": -0.2451305002846733,
     "trend_regime": "Sideways",
@@ -2621,11 +2629,12 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -2668,7 +2677,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": -0.0062647330254361755,
     "momentum_60d": -0.1928207342585786,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.5389869794110085,
     "max_drawdown_1y": -0.31131832867054476,
     "current_drawdown": -0.2792582178408695,
     "trend_regime": "Bearish",
@@ -2678,20 +2687,20 @@
         "corr": 0.5900703596772966
       },
       {
+        "symbol": "TMCV",
+        "corr": 0.4286858450427672
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.41136115444812754
+      },
+      {
         "symbol": "BAJAJFINSV",
         "corr": 0.34056765784757215
       },
       {
         "symbol": "GRASIM",
         "corr": 0.34020029287628384
-      },
-      {
-        "symbol": "HDFCBANK",
-        "corr": 0.33751910834659515
-      },
-      {
-        "symbol": "ADANIPORTS",
-        "corr": 0.3300261349737726
       }
     ],
     "rolling_corr_60d": [
@@ -2752,16 +2761,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -2794,7 +2803,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.0523449647495966,
     "momentum_60d": 0.11332609615615596,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.254734891784074,
     "max_drawdown_1y": -0.3530354519106717,
     "current_drawdown": -0.006138042936228487,
     "trend_regime": "Bullish",
@@ -2878,10 +2887,9 @@
       "TATACONSUM",
       "CIPLA",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -2915,7 +2923,7 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.36934264014175366,
     "momentum_60d": 0.1927495842826248,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.155173146363761,
     "max_drawdown_1y": -0.713466010897248,
     "current_drawdown": -0.10013451269569609,
     "trend_regime": "Sideways",
@@ -2925,20 +2933,20 @@
         "corr": 0.7652357229173324
       },
       {
+        "symbol": "JIOFIN",
+        "corr": 0.46226630993029116
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.45029414900755577
+      },
+      {
         "symbol": "SBIN",
         "corr": 0.42479943066934006
       },
       {
-        "symbol": "GRASIM",
-        "corr": 0.3591675891416252
-      },
-      {
-        "symbol": "BEL",
-        "corr": 0.3535443535544813
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.3428390875886313
+        "symbol": "TMCV",
+        "corr": 0.3852696604919234
       }
     ],
     "rolling_corr_60d": [
@@ -2947,12 +2955,12 @@
         "corr": 0.8157882981422395
       },
       {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.7285323324593479
+        "symbol": "JIOFIN",
+        "corr": 0.7471560705169336
       },
       {
-        "symbol": "TITAN",
-        "corr": 0.7201650425022168
+        "symbol": "BAJAJFINSV",
+        "corr": 0.7285323324593479
       }
     ],
     "rolling_corr_120d": [
@@ -3000,11 +3008,11 @@
       "HCLTECH",
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -3042,11 +3050,19 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.2575399102654694,
     "momentum_60d": 0.08389561293259562,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 3.2402415609888906,
     "max_drawdown_1y": -0.47034149476446363,
     "current_drawdown": -0.3339332908547609,
     "trend_regime": "Sideways",
     "top_correlated": [
+      {
+        "symbol": "TMCV",
+        "corr": 0.4001541237721639
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.3968717421911471
+      },
       {
         "symbol": "TITAN",
         "corr": 0.36149095616895055
@@ -3058,14 +3074,6 @@
       {
         "symbol": "EICHERMOT",
         "corr": 0.3320514039160211
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.32886082197745703
-      },
-      {
-        "symbol": "BAJFINANCE",
-        "corr": 0.32680692131409744
       }
     ],
     "rolling_corr_60d": [
@@ -3126,11 +3134,11 @@
       "HCLTECH",
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "ADANIENT",
-      "EICHERMOT",
+      "ETERNAL",
       "INDIGO",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -3168,7 +3176,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.17361070232765852,
     "momentum_60d": 0.013622333388723318,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.7921212377771776,
     "max_drawdown_1y": -0.4987327596310567,
     "current_drawdown": -0.03378948820464269,
     "trend_regime": "Bullish",
@@ -3250,11 +3258,12 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -3290,7 +3299,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.2626086238408738,
     "momentum_60d": 0.16892367876412284,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.3415889384531121,
     "max_drawdown_1y": -0.5233702185304289,
     "current_drawdown": -0.0022875966610451074,
     "trend_regime": "Bullish",
@@ -3300,20 +3309,20 @@
         "corr": 0.7652357229173324
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.5645564230414059
+      },
+      {
         "symbol": "SBIN",
         "corr": 0.49559399496606454
       },
       {
-        "symbol": "BEL",
-        "corr": 0.4338226596263837
+        "symbol": "JIOFIN",
+        "corr": 0.4841845261097624
       },
       {
-        "symbol": "NTPC",
-        "corr": 0.4272177886602887
-      },
-      {
-        "symbol": "LT",
-        "corr": 0.42306354112283134
+        "symbol": "TMCV",
+        "corr": 0.46932548096118876
       }
     ],
     "rolling_corr_60d": [
@@ -3326,8 +3335,8 @@
         "corr": 0.7907534253911112
       },
       {
-        "symbol": "TITAN",
-        "corr": 0.736851595109611
+        "symbol": "JIOFIN",
+        "corr": 0.7830309182787057
       }
     ],
     "rolling_corr_120d": [
@@ -3370,16 +3379,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -3413,14 +3422,22 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.12899503746846053,
     "momentum_60d": 0.011796357615894149,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.5963140047567134,
     "max_drawdown_1y": -0.3687269339665723,
     "current_drawdown": -0.17652012801077985,
     "trend_regime": "Sideways",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.4585391671931805
+      },
+      {
         "symbol": "HINDUNILVR",
         "corr": 0.39017156370807293
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.36744994168154843
       },
       {
         "symbol": "ULTRACEMCO",
@@ -3429,14 +3446,6 @@
       {
         "symbol": "NESTLEIND",
         "corr": 0.34623368799333976
-      },
-      {
-        "symbol": "BRITANNIA",
-        "corr": 0.3436573857278349
-      },
-      {
-        "symbol": "TITAN",
-        "corr": 0.33270375769783345
       }
     ],
     "rolling_corr_60d": [
@@ -3493,16 +3502,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -3540,10 +3549,10 @@
     "market_cap_bucket": "Mega",
     "beta": 0.648,
     "volatility_30d": 0.020151327114028453,
-    "volatility_bucket": "Medium",
+    "volatility_bucket": "Low",
     "momentum_20d": 0.12650334075723824,
     "momentum_60d": 0.021818181818181737,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.1279509393140958,
     "max_drawdown_1y": -0.31177956908548643,
     "current_drawdown": -0.014188782930292871,
     "trend_regime": "Bullish",
@@ -3557,16 +3566,16 @@
         "corr": 0.6292219423606705
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.5558581586456791
+      },
+      {
         "symbol": "GRASIM",
         "corr": 0.5129957152939071
       },
       {
-        "symbol": "LT",
-        "corr": 0.42122729905832706
-      },
-      {
-        "symbol": "ULTRACEMCO",
-        "corr": 0.41981468301509783
+        "symbol": "TMCV",
+        "corr": 0.4781184851539315
       }
     ],
     "rolling_corr_60d": [
@@ -3626,21 +3635,21 @@
       "NTPC"
     ],
     "same_volatility_bucket": [
-      "TECHM",
+      "BAJAJ-AUTO",
+      "GRASIM",
+      "SBILIFE",
       "SUNPHARMA",
-      "MARUTI",
-      "BAJAJFINSV",
-      "HEROMOTOCO",
-      "INFY",
-      "HDFCBANK",
-      "HDFCLIFE",
-      "ADANIPORTS",
-      "ASIANPAINT",
-      "DRREDDY",
-      "ULTRACEMCO",
-      "AXISBANK",
-      "TITAN",
-      "LT"
+      "TCS",
+      "BEL",
+      "WIPRO",
+      "HINDALCO",
+      "TATASTEEL",
+      "COALINDIA",
+      "ICICIBANK",
+      "NESTLEIND",
+      "HINDUNILVR",
+      "RELIANCE",
+      "SBIN"
     ],
     "same_trend_regime": [
       "BAJAJ-AUTO",
@@ -3670,7 +3679,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.10163660970481558,
     "momentum_60d": 0.044681657566600474,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.394110715497021,
     "max_drawdown_1y": -0.4186365122807322,
     "current_drawdown": -0.02093757721987514,
     "trend_regime": "Bullish",
@@ -3684,16 +3693,16 @@
         "corr": 0.7136278472184489
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.5959476914722036
+      },
+      {
         "symbol": "COALINDIA",
         "corr": 0.5008567386658075
       },
       {
-        "symbol": "GRASIM",
-        "corr": 0.4605206626613312
-      },
-      {
-        "symbol": "NTPC",
-        "corr": 0.43965470434712023
+        "symbol": "TMCV",
+        "corr": 0.47021420258093266
       }
     ],
     "rolling_corr_60d": [
@@ -3754,11 +3763,12 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
-      "KOTAKBANK",
+      "JSWSTEEL",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -3794,7 +3804,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.09340844123087266,
     "momentum_60d": 0.07639463664956136,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.0160655936325338,
     "max_drawdown_1y": -0.39273781375849487,
     "current_drawdown": -0.06463689246195578,
     "trend_regime": "Sideways",
@@ -3812,12 +3822,12 @@
         "corr": 0.3187245857284087
       },
       {
-        "symbol": "WIPRO",
-        "corr": 0.27246282815842104
+        "symbol": "TMCV",
+        "corr": 0.30508170775662274
       },
       {
-        "symbol": "APOLLOHOSP",
-        "corr": 0.26961688812386303
+        "symbol": "TMPV",
+        "corr": 0.29747190759062486
       }
     ],
     "rolling_corr_60d": [
@@ -3881,10 +3891,9 @@
       "TATACONSUM",
       "CIPLA",
       "ONGC",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -3925,7 +3934,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.05418758361388232,
     "momentum_60d": 0.09430060195031786,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.813713571331768,
     "max_drawdown_1y": -0.3009262747475108,
     "current_drawdown": -0.02340170658733628,
     "trend_regime": "Bullish",
@@ -3961,8 +3970,8 @@
         "corr": 0.49768175155663513
       },
       {
-        "symbol": "DIVISLAB",
-        "corr": 0.4466082353234163
+        "symbol": "JIOFIN",
+        "corr": 0.4928908899362468
       }
     ],
     "rolling_corr_120d": [
@@ -4005,16 +4014,16 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN",
@@ -4045,14 +4054,22 @@
     "market_cap_bucket": "Large",
     "beta": 0.269,
     "volatility_30d": 0.025973993368895144,
-    "volatility_bucket": "High",
+    "volatility_bucket": "Medium",
     "momentum_20d": 0.07941087154570292,
     "momentum_60d": 0.007439948983206879,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.902161587828979,
     "max_drawdown_1y": -0.2592035365111422,
     "current_drawdown": -0.131990231990232,
     "trend_regime": "Sideways",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.6029053744233879
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5472482012075369
+      },
       {
         "symbol": "MARUTI",
         "corr": 0.4996833296729091
@@ -4064,14 +4081,6 @@
       {
         "symbol": "BAJAJ-AUTO",
         "corr": 0.4274082955759664
-      },
-      {
-        "symbol": "HEROMOTOCO",
-        "corr": 0.415061639580377
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.3993934225030129
       }
     ],
     "rolling_corr_60d": [
@@ -4080,12 +4089,12 @@
         "corr": 0.8622126214120508
       },
       {
-        "symbol": "M&M",
-        "corr": 0.7749062723862455
+        "symbol": "TMCV",
+        "corr": 0.7869646380600231
       },
       {
-        "symbol": "HEROMOTOCO",
-        "corr": 0.7555413944550572
+        "symbol": "M&M",
+        "corr": 0.7749062723862455
       }
     ],
     "rolling_corr_120d": [
@@ -4134,15 +4143,21 @@
       "SHRIRAMFIN"
     ],
     "same_volatility_bucket": [
-      "HCLTECH",
-      "BAJFINANCE",
-      "INDUSINDBK",
+      "TECHM",
+      "MARUTI",
+      "BAJAJFINSV",
       "M&M",
-      "BPCL",
-      "ADANIENT",
-      "TRENT",
-      "INDIGO",
-      "SHRIRAMFIN"
+      "HEROMOTOCO",
+      "INFY",
+      "HDFCBANK",
+      "HDFCLIFE",
+      "ADANIPORTS",
+      "ASIANPAINT",
+      "DRREDDY",
+      "ULTRACEMCO",
+      "AXISBANK",
+      "TITAN",
+      "LT"
     ],
     "same_trend_regime": [
       "TECHM",
@@ -4176,14 +4191,22 @@
     "market_cap_bucket": "Mega",
     "beta": 0.27,
     "volatility_30d": 0.017356283328033142,
-    "volatility_bucket": "Low",
+    "volatility_bucket": "VeryLow",
     "momentum_20d": 0.08460666217567203,
     "momentum_60d": -0.07056257646507114,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.6709726636843303,
     "max_drawdown_1y": -0.2571293280035333,
     "current_drawdown": -0.1393219336652934,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.576698687452975
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5711094045035535
+      },
       {
         "symbol": "HDFCBANK",
         "corr": 0.49394878691450966
@@ -4195,14 +4218,6 @@
       {
         "symbol": "AXISBANK",
         "corr": 0.4169955042933769
-      },
-      {
-        "symbol": "BAJFINANCE",
-        "corr": 0.3953444444824786
-      },
-      {
-        "symbol": "SBIN",
-        "corr": 0.38362740968523157
       }
     ],
     "rolling_corr_60d": [
@@ -4272,20 +4287,17 @@
       "NTPC"
     ],
     "same_volatility_bucket": [
-      "BAJAJ-AUTO",
-      "GRASIM",
-      "SBILIFE",
-      "TCS",
-      "BEL",
-      "WIPRO",
-      "HINDALCO",
-      "TATASTEEL",
-      "COALINDIA",
-      "ICICIBANK",
-      "NESTLEIND",
-      "HINDUNILVR",
-      "RELIANCE",
-      "SBIN"
+      "BRITANNIA",
+      "TATACONSUM",
+      "CIPLA",
+      "ONGC",
+      "DIVISLAB",
+      "MAXHEALTH",
+      "ITC",
+      "POWERGRID",
+      "BHARTIARTL",
+      "APOLLOHOSP",
+      "NTPC"
     ],
     "same_trend_regime": [
       "HCLTECH",
@@ -4314,7 +4326,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.06882006695507004,
     "momentum_60d": 0.07035565774734964,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 3.3192252875151773,
     "max_drawdown_1y": -0.3084013641105156,
     "current_drawdown": 0.0,
     "trend_regime": "Bullish",
@@ -4399,12 +4411,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "ICICIBANK",
       "NESTLEIND",
       "HINDUNILVR",
@@ -4439,7 +4452,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.04768222807519962,
     "momentum_60d": -0.08687478555423633,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.3339358290359682,
     "max_drawdown_1y": -0.19525968885330536,
     "current_drawdown": -0.14473429451881656,
     "trend_regime": "Bearish",
@@ -4447,6 +4460,10 @@
       {
         "symbol": "AXISBANK",
         "corr": 0.5873325489385579
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5324390963089687
       },
       {
         "symbol": "SBIN",
@@ -4457,12 +4474,8 @@
         "corr": 0.5054133256324942
       },
       {
-        "symbol": "KOTAKBANK",
-        "corr": 0.4591032905490418
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.41230012928278537
+        "symbol": "TMPV",
+        "corr": 0.4985844336856316
       }
     ],
     "rolling_corr_60d": [
@@ -4529,12 +4542,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "NESTLEIND",
       "HINDUNILVR",
@@ -4568,7 +4582,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.24157296132299777,
     "momentum_60d": 0.13865609841374238,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.120355782219393,
     "max_drawdown_1y": -0.2197786903111089,
     "current_drawdown": -0.00477620095292472,
     "trend_regime": "Bullish",
@@ -4590,8 +4604,8 @@
         "corr": 0.34623368799333976
       },
       {
-        "symbol": "TITAN",
-        "corr": 0.29689526585529247
+        "symbol": "TMPV",
+        "corr": 0.30657717037717397
       }
     ],
     "rolling_corr_60d": [
@@ -4654,12 +4668,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "HINDUNILVR",
@@ -4690,48 +4705,48 @@
     "market_cap": 2267213725696,
     "market_cap_bucket": "Large",
     "beta": 0.253,
-    "volatility_30d": null,
-    "volatility_bucket": "VeryLow",
+    "volatility_30d": 0.027628709620740786,
+    "volatility_bucket": "High",
     "momentum_20d": 0.07882786002509734,
     "momentum_60d": -0.10285094133454298,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.2667968883437921,
     "max_drawdown_1y": -0.7149095452719125,
     "current_drawdown": -0.3028644150576579,
     "trend_regime": "Sideways",
     "top_correlated": [
       {
-        "symbol": "NESTLEIND",
-        "corr": 0.01470581172539095
+        "symbol": "TMCV",
+        "corr": 0.4298547890137694
       },
       {
-        "symbol": "BHARTIARTL",
-        "corr": 0.0071670938481029536
+        "symbol": "TMPV",
+        "corr": 0.42474919562073576
       },
       {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.0057623058224364155
+        "symbol": "JIOFIN",
+        "corr": 0.30873069095608174
       },
       {
-        "symbol": "CIPLA",
-        "corr": 0.00202541554300976
+        "symbol": "ADANIPORTS",
+        "corr": 0.2925855410164323
       },
       {
-        "symbol": "BRITANNIA",
-        "corr": -0.0006953289062245709
+        "symbol": "TITAN",
+        "corr": 0.28193944078867655
       }
     ],
     "rolling_corr_60d": [
       {
-        "symbol": "TECHM",
-        "corr": null
+        "symbol": "LT",
+        "corr": 0.6700168963654729
       },
       {
-        "symbol": "HCLTECH",
-        "corr": null
+        "symbol": "ASIANPAINT",
+        "corr": 0.66167852697399
       },
       {
-        "symbol": "BAJAJ-AUTO",
-        "corr": null
+        "symbol": "M&M",
+        "corr": 0.6423572575208356
       }
     ],
     "rolling_corr_120d": [
@@ -4775,18 +4790,15 @@
       "SHRIRAMFIN"
     ],
     "same_volatility_bucket": [
-      "BRITANNIA",
-      "TATACONSUM",
-      "CIPLA",
-      "ONGC",
-      "DIVISLAB",
-      "MAXHEALTH",
-      "ITC",
+      "HCLTECH",
+      "BAJFINANCE",
+      "INDUSINDBK",
+      "BPCL",
+      "ADANIENT",
+      "TRENT",
+      "INDIGO",
       "JIOFIN",
-      "POWERGRID",
-      "BHARTIARTL",
-      "APOLLOHOSP",
-      "NTPC"
+      "SHRIRAMFIN"
     ],
     "same_trend_regime": [
       "TECHM",
@@ -4823,14 +4835,22 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.031954692289381637,
     "momentum_60d": 0.04246274747398626,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.643628114250223,
     "max_drawdown_1y": -0.2833295191252406,
     "current_drawdown": -0.23605664347872304,
     "trend_regime": "Bearish",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.30934579418957575
+      },
+      {
         "symbol": "APOLLOHOSP",
         "corr": 0.2987832436239349
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.2583593379756095
       },
       {
         "symbol": "M&M",
@@ -4839,14 +4859,6 @@
       {
         "symbol": "SUNPHARMA",
         "corr": 0.21502109673995382
-      },
-      {
-        "symbol": "DIVISLAB",
-        "corr": 0.19782736029925113
-      },
-      {
-        "symbol": "EICHERMOT",
-        "corr": 0.19582040474436288
       }
     ],
     "rolling_corr_60d": [
@@ -4905,9 +4917,8 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -4940,7 +4951,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.09522185472040667,
     "momentum_60d": -0.04322884939680893,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.6141261157462573,
     "max_drawdown_1y": -0.27937388730320295,
     "current_drawdown": -0.1574707837104496,
     "trend_regime": "Sideways",
@@ -4962,8 +4973,8 @@
         "corr": 0.39017156370807293
       },
       {
-        "symbol": "ITC",
-        "corr": 0.3232051159653036
+        "symbol": "TMPV",
+        "corr": 0.3817187532875673
       }
     ],
     "rolling_corr_60d": [
@@ -5017,12 +5028,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -5064,11 +5076,23 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.08921004302966917,
     "momentum_60d": -0.07048262179452502,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.6024540080702887,
     "max_drawdown_1y": -0.3593534237673625,
     "current_drawdown": -0.3022013151348388,
     "trend_regime": "Bearish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.6217230734441442
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5353583561180411
+      },
+      {
+        "symbol": "JIOFIN",
+        "corr": 0.3987230464106244
+      },
       {
         "symbol": "ULTRACEMCO",
         "corr": 0.38203107193769786
@@ -5076,18 +5100,6 @@
       {
         "symbol": "SHRIRAMFIN",
         "corr": 0.36810972309407797
-      },
-      {
-        "symbol": "LT",
-        "corr": 0.3663851184936796
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.361528034768019
-      },
-      {
-        "symbol": "SBIN",
-        "corr": 0.36042684567125577
       }
     ],
     "rolling_corr_60d": [
@@ -5096,12 +5108,12 @@
         "corr": 0.8269842703787572
       },
       {
-        "symbol": "HDFCBANK",
-        "corr": 0.8191258372473151
+        "symbol": "TMPV",
+        "corr": 0.8246730118991672
       },
       {
-        "symbol": "LT",
-        "corr": 0.8184486643000488
+        "symbol": "HDFCBANK",
+        "corr": 0.8191258372473151
       }
     ],
     "rolling_corr_120d": [
@@ -5144,11 +5156,11 @@
       "HCLTECH",
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
+      "ETERNAL",
+      "JIOFIN",
       "SHRIRAMFIN"
     ],
     "same_trend_regime": [
@@ -5178,7 +5190,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.0945428590037034,
     "momentum_60d": 0.009100900965920644,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.2123384443367449,
     "max_drawdown_1y": -0.3245845225976276,
     "current_drawdown": -0.260728812348656,
     "trend_regime": "Sideways",
@@ -5263,9 +5275,8 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP",
@@ -5302,48 +5313,48 @@
     "market_cap": 1632164511744,
     "market_cap_bucket": "Large",
     "beta": 0.623,
-    "volatility_30d": null,
-    "volatility_bucket": "VeryLow",
+    "volatility_30d": 0.0267509898220692,
+    "volatility_bucket": "High",
     "momentum_20d": 0.09937522716257763,
     "momentum_60d": -0.031945009362721044,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.800434393418747,
     "max_drawdown_1y": -0.48209824437225174,
     "current_drawdown": -0.26099375697991617,
     "trend_regime": "Sideways",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.5171879540296268
+      },
+      {
+        "symbol": "ADANIPORTS",
+        "corr": 0.4841845261097624
+      },
+      {
         "symbol": "TMCV",
-        "corr": 0.1000525880510983
+        "corr": 0.4657528291039601
       },
       {
-        "symbol": "INDIGO",
-        "corr": 0.04705577838013314
+        "symbol": "ADANIENT",
+        "corr": 0.46226630993029116
       },
       {
-        "symbol": "NESTLEIND",
-        "corr": 0.04622720159515447
-      },
-      {
-        "symbol": "MARUTI",
-        "corr": 0.04173161071747283
-      },
-      {
-        "symbol": "SBILIFE",
-        "corr": 0.03856172717870728
+        "symbol": "RELIANCE",
+        "corr": 0.44799487567021995
       }
     ],
     "rolling_corr_60d": [
       {
-        "symbol": "TECHM",
-        "corr": null
+        "symbol": "ADANIPORTS",
+        "corr": 0.7830309182787057
       },
       {
-        "symbol": "HCLTECH",
-        "corr": null
+        "symbol": "ADANIENT",
+        "corr": 0.7471560705169336
       },
       {
-        "symbol": "BAJAJ-AUTO",
-        "corr": null
+        "symbol": "TITAN",
+        "corr": 0.7312968844618939
       }
     ],
     "rolling_corr_120d": [
@@ -5391,18 +5402,15 @@
       "SHRIRAMFIN"
     ],
     "same_volatility_bucket": [
-      "BRITANNIA",
-      "TATACONSUM",
-      "CIPLA",
-      "ONGC",
-      "DIVISLAB",
+      "HCLTECH",
+      "BAJFINANCE",
+      "INDUSINDBK",
+      "BPCL",
+      "ADANIENT",
+      "TRENT",
       "ETERNAL",
-      "MAXHEALTH",
-      "ITC",
-      "POWERGRID",
-      "BHARTIARTL",
-      "APOLLOHOSP",
-      "NTPC"
+      "INDIGO",
+      "SHRIRAMFIN"
     ],
     "same_trend_regime": [
       "TECHM",
@@ -5439,11 +5447,19 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.06466256628870193,
     "momentum_60d": 0.028612544089234415,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 0.9945629797214869,
     "max_drawdown_1y": -0.2717575060184879,
     "current_drawdown": -0.10142560764151086,
     "trend_regime": "Sideways",
     "top_correlated": [
+      {
+        "symbol": "JIOFIN",
+        "corr": 0.44799487567021995
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.42251058288473353
+      },
       {
         "symbol": "SBIN",
         "corr": 0.41799375611815826
@@ -5455,14 +5471,6 @@
       {
         "symbol": "LT",
         "corr": 0.40876682995146996
-      },
-      {
-        "symbol": "TATASTEEL",
-        "corr": 0.39124124624565265
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.38036979179331865
       }
     ],
     "rolling_corr_60d": [
@@ -5518,12 +5526,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -5565,14 +5574,22 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.07826896230805036,
     "momentum_60d": -0.08893606982778957,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.1424218462928601,
     "max_drawdown_1y": -0.3697019341503888,
     "current_drawdown": -0.11231995096536929,
     "trend_regime": "Bearish",
     "top_correlated": [
       {
+        "symbol": "TMPV",
+        "corr": 0.6729192270392349
+      },
+      {
         "symbol": "GRASIM",
         "corr": 0.6350008527784521
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.6129033848979032
       },
       {
         "symbol": "LT",
@@ -5581,14 +5598,6 @@
       {
         "symbol": "JSWSTEEL",
         "corr": 0.41981468301509783
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.40348462812101427
-      },
-      {
-        "symbol": "ICICIBANK",
-        "corr": 0.40035531755756604
       }
     ],
     "rolling_corr_60d": [
@@ -5597,12 +5606,12 @@
         "corr": 0.8611936227101459
       },
       {
-        "symbol": "LT",
-        "corr": 0.7975310426635278
+        "symbol": "TMCV",
+        "corr": 0.7978022772552962
       },
       {
-        "symbol": "M&M",
-        "corr": 0.7925659186688226
+        "symbol": "LT",
+        "corr": 0.7975310426635278
       }
     ],
     "rolling_corr_120d": [
@@ -5649,17 +5658,17 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "AXISBANK",
       "TITAN",
       "LT"
@@ -5691,7 +5700,7 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.09213811719716558,
     "momentum_60d": -0.06995666624595065,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.0985320363781628,
     "max_drawdown_1y": -0.28027026628468804,
     "current_drawdown": -0.0960085182978439,
     "trend_regime": "Sideways",
@@ -5705,16 +5714,16 @@
         "corr": 0.5435294951834867
       },
       {
+        "symbol": "TMPV",
+        "corr": 0.5151292839851707
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.497581267659681
+      },
+      {
         "symbol": "HDFCBANK",
         "corr": 0.4534545364954981
-      },
-      {
-        "symbol": "SHRIRAMFIN",
-        "corr": 0.4267278645288366
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.4179188529090597
       }
     ],
     "rolling_corr_60d": [
@@ -5785,17 +5794,17 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "TITAN",
       "LT"
@@ -5835,7 +5844,7 @@
     "volatility_bucket": "Low",
     "momentum_20d": 0.09092293704106025,
     "momentum_60d": 0.002110298352130835,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.9900169782404922,
     "max_drawdown_1y": -0.23944130419643325,
     "current_drawdown": -0.12978505564349982,
     "trend_regime": "Sideways",
@@ -5853,12 +5862,12 @@
         "corr": 0.49559399496606454
       },
       {
-        "symbol": "NTPC",
-        "corr": 0.4573224447305799
+        "symbol": "TMCV",
+        "corr": 0.4690946482966683
       },
       {
-        "symbol": "LT",
-        "corr": 0.45077840268967817
+        "symbol": "TMPV",
+        "corr": 0.46849553924459814
       }
     ],
     "rolling_corr_60d": [
@@ -5925,12 +5934,13 @@
       "BAJAJ-AUTO",
       "GRASIM",
       "SBILIFE",
+      "SUNPHARMA",
       "TCS",
       "BEL",
       "WIPRO",
       "HINDALCO",
+      "JSWSTEEL",
       "TATASTEEL",
-      "KOTAKBANK",
       "COALINDIA",
       "ICICIBANK",
       "NESTLEIND",
@@ -5972,11 +5982,19 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.10978395092621329,
     "momentum_60d": 0.11307973948831052,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.9176168225935144,
     "max_drawdown_1y": -0.2862777689891812,
     "current_drawdown": -0.031087675394320644,
     "trend_regime": "Bullish",
     "top_correlated": [
+      {
+        "symbol": "TMCV",
+        "corr": 0.5557299724297936
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.5307902376411768
+      },
       {
         "symbol": "BAJAJFINSV",
         "corr": 0.39066215442965374
@@ -5988,14 +6006,6 @@
       {
         "symbol": "BAJFINANCE",
         "corr": 0.37844348358929475
-      },
-      {
-        "symbol": "ULTRACEMCO",
-        "corr": 0.364934469335598
-      },
-      {
-        "symbol": "TATACONSUM",
-        "corr": 0.3632625623098719
       }
     ],
     "rolling_corr_60d": [
@@ -6056,17 +6066,17 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "LT"
@@ -6099,11 +6109,19 @@
     "volatility_bucket": "Medium",
     "momentum_20d": 0.14551522163559238,
     "momentum_60d": 0.02062094120623814,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.9103259454802932,
     "max_drawdown_1y": -0.2887792451646091,
     "current_drawdown": -0.09146467683487305,
     "trend_regime": "Bullish",
     "top_correlated": [
+      {
+        "symbol": "TMPV",
+        "corr": 0.6767416239606551
+      },
+      {
+        "symbol": "TMCV",
+        "corr": 0.5737393588527523
+      },
       {
         "symbol": "SBIN",
         "corr": 0.45077840268967817
@@ -6115,14 +6133,6 @@
       {
         "symbol": "TATASTEEL",
         "corr": 0.43236141426186964
-      },
-      {
-        "symbol": "GRASIM",
-        "corr": 0.4299568765946673
-      },
-      {
-        "symbol": "SHRIRAMFIN",
-        "corr": 0.42670023321452155
       }
     ],
     "rolling_corr_60d": [
@@ -6135,8 +6145,8 @@
         "corr": 0.7975310426635278
       },
       {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.7716531886936615
+        "symbol": "TMPV",
+        "corr": 0.7758326348400439
       }
     ],
     "rolling_corr_120d": [
@@ -6173,17 +6183,17 @@
     ],
     "same_volatility_bucket": [
       "TECHM",
-      "SUNPHARMA",
       "MARUTI",
       "BAJAJFINSV",
+      "M&M",
       "HEROMOTOCO",
       "INFY",
       "HDFCBANK",
       "HDFCLIFE",
       "ADANIPORTS",
       "ASIANPAINT",
-      "JSWSTEEL",
       "DRREDDY",
+      "EICHERMOT",
       "ULTRACEMCO",
       "AXISBANK",
       "TITAN"
@@ -6216,7 +6226,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.07514353104140592,
     "momentum_60d": 0.23579223579306507,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.028531924896125,
     "max_drawdown_1y": -0.295590488843012,
     "current_drawdown": -0.007946362859051107,
     "trend_regime": "Bullish",
@@ -6300,10 +6310,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "BHARTIARTL",
       "APOLLOHOSP",
       "NTPC"
@@ -6336,7 +6345,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.058572723846535224,
     "momentum_60d": -0.041211430753493095,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.1505663771653607,
     "max_drawdown_1y": -0.1760761711542432,
     "current_drawdown": -0.1275719741863644,
     "trend_regime": "Sideways",
@@ -6410,10 +6419,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "APOLLOHOSP",
       "NTPC"
@@ -6453,11 +6461,19 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.029316619490497464,
     "momentum_60d": 0.12434028486451565,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 1.4690426625772446,
     "max_drawdown_1y": -0.3853626041188791,
     "current_drawdown": -0.045601828444943655,
     "trend_regime": "Bullish",
     "top_correlated": [
+      {
+        "symbol": "TMCV",
+        "corr": 0.3643643527829323
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.31535140503606707
+      },
       {
         "symbol": "MAXHEALTH",
         "corr": 0.2987832436239349
@@ -6469,14 +6485,6 @@
       {
         "symbol": "BAJAJFINSV",
         "corr": 0.27378027744982764
-      },
-      {
-        "symbol": "TITAN",
-        "corr": 0.2697533774687453
-      },
-      {
-        "symbol": "DIVISLAB",
-        "corr": 0.26961688812386303
       }
     ],
     "rolling_corr_60d": [
@@ -6535,10 +6543,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "NTPC"
@@ -6571,7 +6578,7 @@
     "volatility_bucket": "VeryLow",
     "momentum_20d": 0.0768919478465162,
     "momentum_60d": 0.12289121147810089,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.788377781771107,
     "max_drawdown_1y": -0.3230230181880048,
     "current_drawdown": -0.0269381228223121,
     "trend_regime": "Bullish",
@@ -6655,10 +6662,9 @@
       "CIPLA",
       "ONGC",
       "DIVISLAB",
-      "ETERNAL",
+      "KOTAKBANK",
       "MAXHEALTH",
       "ITC",
-      "JIOFIN",
       "POWERGRID",
       "BHARTIARTL",
       "APOLLOHOSP"
@@ -6691,11 +6697,19 @@
     "volatility_bucket": "High",
     "momentum_20d": 0.07481940353932548,
     "momentum_60d": -0.08354518305325553,
-    "relative_strength_vs_nifty": null,
+    "relative_strength_vs_nifty": 2.391872845377824,
     "max_drawdown_1y": -0.35200477598600305,
     "current_drawdown": -0.15141227928353135,
     "trend_regime": "Sideways",
     "top_correlated": [
+      {
+        "symbol": "TMCV",
+        "corr": 0.6653805970165044
+      },
+      {
+        "symbol": "TMPV",
+        "corr": 0.6258442384384957
+      },
       {
         "symbol": "SBIN",
         "corr": 0.4507605148431352
@@ -6707,14 +6721,6 @@
       {
         "symbol": "LT",
         "corr": 0.42670023321452155
-      },
-      {
-        "symbol": "BAJFINANCE",
-        "corr": 0.42612371755927314
-      },
-      {
-        "symbol": "BAJAJFINSV",
-        "corr": 0.42218528628489127
       }
     ],
     "rolling_corr_60d": [
@@ -6781,12 +6787,12 @@
       "HCLTECH",
       "BAJFINANCE",
       "INDUSINDBK",
-      "M&M",
       "BPCL",
       "ADANIENT",
       "TRENT",
-      "EICHERMOT",
-      "INDIGO"
+      "ETERNAL",
+      "INDIGO",
+      "JIOFIN"
     ],
     "same_trend_regime": [
       "TECHM",
