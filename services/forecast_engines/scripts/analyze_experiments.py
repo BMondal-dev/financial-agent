@@ -44,58 +44,58 @@ def load_returns_with_date(symbol: str) -> pd.DataFrame:
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
     df = df.dropna(subset=["Date", "Close"])
+    df.set_index("Date", inplace=True)
     df["return"] = df["Close"].pct_change()
     df = df.dropna(subset=["return"])
-    return df[["Date", "return"]].reset_index(drop=True)
+    return df[["return"]].reset_index()
 
 
 def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> dict:
     """Recreate 80/20 test predictions (predicted vs actual) for one target."""
-    target_df = load_returns_with_date(target).rename(columns={"return": "target_return"})
+    target_df = load_returns_with_date(target)
     if target_df.empty:
         return {"rows": [], "mae": None, "count": 0}
 
-    merged = target_df
+    target_df.set_index("Date", inplace=True)
+
+    for lag in range(1, 6):
+        target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
+
+    target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
+    target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+
     valid_neighbors: list[str] = []
     for neighbor in neighbors:
         if neighbor == target:
             continue
-        ndf = load_returns_with_date(neighbor).rename(
-            columns={"return": f"{neighbor}_return"}
-        )
+        ndf = load_returns_with_date(neighbor)
         if ndf.empty:
             continue
-        merged = merged.merge(ndf, on="Date", how="inner")
+        ndf.set_index("Date", inplace=True)
+        neighbor_ret = ndf["return"].reindex(target_df.index)
+        target_df[f"{neighbor}_lag_1"] = neighbor_ret.shift(1)
+        target_df[f"{neighbor}_rolling_mean_5"] = (
+            neighbor_ret.shift(1).rolling(5).mean()
+        )
         valid_neighbors.append(neighbor)
 
-    merged = merged.sort_values("Date").reset_index(drop=True)
-    tr = merged["target_return"]
+    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df = target_df.dropna()
 
-    for lag in range(1, 6):
-        merged[f"target_lag_{lag}"] = tr.shift(lag)
-
-    merged["rolling_mean_10"] = tr.rolling(10).mean()
-    merged["rolling_std_10"] = tr.rolling(10).std()
-
-    for n in valid_neighbors:
-        merged[f"{n}_lag_1"] = merged[f"{n}_return"].shift(1)
-
-    merged["future_return"] = tr.shift(-horizon)
-    merged = merged.dropna().reset_index(drop=True)
-
-    if len(merged) < 20:
+    if len(target_df) < 20:
         return {"rows": [], "mae": None, "count": 0}
 
-    drop_cols = ["Date", "target_return", "future_return"] + [
-        f"{n}_return" for n in valid_neighbors
-    ]
-    X = merged.drop(columns=drop_cols)
-    y = merged["future_return"]
-    dates = merged["Date"]
+    dates = target_df.index.to_series()
+    X = target_df.drop(columns=["return", "future_return"])
+    y = target_df["future_return"]
 
     split = int(len(X) * 0.8)
-    X_train, X_test = X.iloc[:split], X.iloc[split:]
-    y_train, y_test = y.iloc[:split], y.iloc[split:]
+    train_end = split - horizon
+    if split >= len(X) or train_end < 1:
+        return {"rows": [], "mae": None, "count": 0}
+
+    X_train, X_test = X.iloc[:train_end], X.iloc[split:]
+    y_train, y_test = y.iloc[:train_end], y.iloc[split:]
     d_test = dates.iloc[split:]
 
     model = XGBRegressor(
@@ -174,6 +174,7 @@ def is_calibrated_experiment(e: dict) -> bool:
 
 
 def analyze(experiments, metadata):
+    experiments = [e for e in experiments if is_calibrated_experiment(e)]
     total = len(experiments)
     targets = set(e["target"] for e in experiments)
 
@@ -196,7 +197,11 @@ def analyze(experiments, metadata):
     best_per_target = {}
     worst_per_target = {}
 
-    for e in experiments:
+    calibrated_h = [
+        e for e in experiments if e.get("horizon", HORIZON_DAYS) == HORIZON_DAYS
+    ]
+
+    for e in calibrated_h:
         t = e["target"]
         if t not in best_per_target or e["mae"] < best_per_target[t]["mae"]:
             best_per_target[t] = e
@@ -208,38 +213,8 @@ def analyze(experiments, metadata):
             {
                 "target": t,
                 "sector": get_sector(t, metadata),
-                "model_type": v.get("model_type", "xgb"),
                 "best_mae": round(v["mae"], 6),
                 "worst_mae": round(worst_per_target[t]["mae"], 6),
-                "best_neighbors": v["neighbors"],
-                "predicted_return": round(v["predicted_return"] * 100, 4),
-            }
-            for t, v in best_per_target.items()
-        ],
-        key=lambda x: x["best_mae"],
-    )
-
-    # ── 2b. Calibrated-only leaderboard (date-aligned pipeline + baselines) ──
-    calibrated = [e for e in experiments if is_calibrated_experiment(e)]
-    calibrated_h = [
-        e for e in calibrated if e.get("horizon", HORIZON_DAYS) == HORIZON_DAYS
-    ]
-    best_per_target_cal: dict = {}
-    worst_per_target_cal: dict = {}
-    for e in calibrated_h:
-        t = e["target"]
-        if t not in best_per_target_cal or e["mae"] < best_per_target_cal[t]["mae"]:
-            best_per_target_cal[t] = e
-        if t not in worst_per_target_cal or e["mae"] > worst_per_target_cal[t]["mae"]:
-            worst_per_target_cal[t] = e
-
-    best_list_calibrated = sorted(
-        [
-            {
-                "target": t,
-                "sector": get_sector(t, metadata),
-                "best_mae": round(v["mae"], 6),
-                "worst_mae": round(worst_per_target_cal[t]["mae"], 6),
                 "best_neighbors": v["neighbors"],
                 "predicted_return": round(v["predicted_return"] * 100, 4),
                 "beats_baseline_zero": v.get("beats_baseline_zero"),
@@ -247,7 +222,7 @@ def analyze(experiments, metadata):
                 if v.get("mae_baseline_zero") is not None
                 else None,
             }
-            for t, v in best_per_target_cal.items()
+            for t, v in best_per_target.items()
         ],
         key=lambda x: x["best_mae"],
     )
@@ -370,8 +345,7 @@ def analyze(experiments, metadata):
     ][:30]
 
     # ── 7. Summary Stats ─────────────────────────────────────────────────────
-    all_maes = [e["mae"] for e in experiments]
-    legacy_count = sum(1 for e in experiments if not is_calibrated_experiment(e))
+    all_maes = [e["mae"] for e in calibrated_h]
     beats_n = sum(1 for e in calibrated_h if e.get("beats_baseline_zero"))
     summary = {
         "total_experiments": total,
@@ -382,23 +356,15 @@ def analyze(experiments, metadata):
         "global_max_mae": round(max(all_maes), 6),
         "sectors_covered": len(all_sectors_union),
         "horizon_days": HORIZON_DAYS,
-        "legacy_experiment_count": legacy_count,
-        "calibrated_experiment_count": len(calibrated),
+        "calibrated_experiment_count": len(experiments),
         "calibrated_horizon_matched_count": len(calibrated_h),
         "calibrated_beats_baseline_count": beats_n,
         "calibrated_beats_baseline_pct": round(100.0 * beats_n / len(calibrated_h), 2)
         if calibrated_h
         else None,
-        "global_avg_mae_calibrated": round(
-            statistics.mean(e["mae"] for e in calibrated_h), 6
-        )
-        if calibrated_h
+        "global_avg_mae_calibrated": round(statistics.mean(all_maes), 6)
+        if all_maes
         else None,
-        "methodology_note": (
-            "Mixed pool: legacy experiments used row-aligned CSV joins; "
-            "calibrated rows use calendar-aligned features and log MAE vs a zero-return "
-            "baseline on the same holdout. Prefer the Calibrated leaderboard for apples-to-apples MAE."
-        ),
     }
 
     # ── 8. Price History per Target ───────────────────────────────────────────
@@ -430,21 +396,10 @@ def analyze(experiments, metadata):
             horizon=HORIZON_DAYS,
         )
 
-    print("  Building calibrated backtests (best config per target, calibrated pool only)…")
-    backtest_calibrated: dict = {}
-    for item in best_list_calibrated:
-        tgt = item["target"]
-        backtest_calibrated[tgt] = build_backtest_series(
-            target=tgt,
-            neighbors=item["best_neighbors"],
-            horizon=HORIZON_DAYS,
-        )
-
     return {
         "summary": summary,
         "predictor_frequency": predictor_frequency,
         "best_per_target": best_list,
-        "best_per_target_calibrated": best_list_calibrated,
         "sector_matrix": {
             "labels": all_sectors_union,
             "data": sector_matrix,
@@ -459,10 +414,6 @@ def analyze(experiments, metadata):
         "backtest": {
             "horizon_days": HORIZON_DAYS,
             "by_target": backtest,
-        },
-        "backtest_calibrated": {
-            "horizon_days": HORIZON_DAYS,
-            "by_target": backtest_calibrated,
         },
     }
 

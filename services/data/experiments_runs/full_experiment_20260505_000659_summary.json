@@ -1,0 +1,16 @@
+{
+  "run_id": "20260505_000659",
+  "endpoint": "http://localhost:3000/api/experiment-multiple",
+  "horizon": 5,
+  "rounds": 2,
+  "stocks_count": 56,
+  "total_requests": 112,
+  "success_count": 111,
+  "failure_count": 1,
+  "rate_limited_count": 0,
+  "success_rate": 0.9911,
+  "raw_dir": "/home/bijitmondal/storage/coding/financial-agent/services/data/raw",
+  "output_jsonl": "../data/experiments_runs/full_experiment_20260504_214133.jsonl",
+  "interrupted": false,
+  "finished_at": "2026-05-04T18:49:34.954511+00:00"
+}

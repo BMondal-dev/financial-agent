@@ -79,6 +79,9 @@
       "id": "TRENT"
     },
     {
+      "id": "TMCV"
+    },
+    {
       "id": "HINDALCO"
     },
     {
@@ -137,6 +140,9 @@
     },
     {
       "id": "ULTRACEMCO"
+    },
+    {
+      "id": "TMPV"
     },
     {
       "id": "AXISBANK"
@@ -273,6 +279,11 @@
       "target": "ULTRACEMCO"
     },
     {
+      "weight": 0.4,
+      "source": "TECHM",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.2,
       "source": "TECHM",
       "target": "AXISBANK"
@@ -291,6 +302,11 @@
       "weight": 0.2,
       "source": "TECHM",
       "target": "APOLLOHOSP"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
+      "target": "BAJAJ-AUTO"
     },
     {
       "weight": 0.2,
@@ -355,6 +371,11 @@
     {
       "weight": 0.2,
       "source": "HCLTECH",
+      "target": "TMCV"
+    },
+    {
+      "weight": 0.2,
+      "source": "HCLTECH",
       "target": "ADANIPORTS"
     },
     {
@@ -371,11 +392,6 @@
       "weight": 0.2,
       "source": "HCLTECH",
       "target": "COALINDIA"
-    },
-    {
-      "weight": 0.2,
-      "source": "HCLTECH",
-      "target": "NESTLEIND"
     },
     {
       "weight": 0.2,
@@ -433,12 +449,12 @@
       "target": "SHRIRAMFIN"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "GRASIM"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "SBILIFE"
     },
@@ -448,14 +464,9 @@
       "target": "SUNPHARMA"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "BAJAJ-AUTO",
       "target": "MARUTI"
-    },
-    {
-      "weight": 0.2,
-      "source": "BAJAJ-AUTO",
-      "target": "BAJAJFINSV"
     },
     {
       "weight": 0.2,
@@ -463,12 +474,12 @@
       "target": "TCS"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "BAJAJ-AUTO",
       "target": "BEL"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "BAJAJ-AUTO",
       "target": "M&M"
     },
@@ -478,47 +489,62 @@
       "target": "HEROMOTOCO"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "WIPRO"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "ONGC"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "ADANIENT"
+    },
+    {
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "TRENT"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "TMCV"
+    },
+    {
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "HINDALCO"
     },
     {
       "weight": 0.2,
       "source": "BAJAJ-AUTO",
-      "target": "ASIANPAINT"
-    },
-    {
-      "weight": 0.2,
-      "source": "BAJAJ-AUTO",
-      "target": "JSWSTEEL"
+      "target": "ADANIPORTS"
     },
     {
       "weight": 0.4,
       "source": "BAJAJ-AUTO",
-      "target": "TATASTEEL"
+      "target": "JSWSTEEL"
     },
     {
       "weight": 0.2,
       "source": "BAJAJ-AUTO",
-      "target": "DIVISLAB"
+      "target": "TATASTEEL"
     },
     {
-      "weight": 0.5709633182303866,
+      "weight": 0.3709633182303866,
       "source": "BAJAJ-AUTO",
       "target": "EICHERMOT"
     },
     {
       "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.4,
       "source": "BAJAJ-AUTO",
       "target": "COALINDIA"
     },
@@ -533,7 +559,7 @@
       "target": "NESTLEIND"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "BAJAJ-AUTO",
       "target": "ETERNAL"
     },
@@ -545,12 +571,7 @@
     {
       "weight": 0.2,
       "source": "BAJAJ-AUTO",
-      "target": "INDIGO"
-    },
-    {
-      "weight": 0.2,
-      "source": "BAJAJ-AUTO",
-      "target": "JIOFIN"
+      "target": "ITC"
     },
     {
       "weight": 0.2,
@@ -560,17 +581,37 @@
     {
       "weight": 0.2,
       "source": "BAJAJ-AUTO",
-      "target": "SBIN"
+      "target": "ULTRACEMCO"
     },
     {
       "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "AXISBANK"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.4,
       "source": "BAJAJ-AUTO",
       "target": "TITAN"
     },
     {
       "weight": 0.2,
       "source": "BAJAJ-AUTO",
-      "target": "SHRIRAMFIN"
+      "target": "POWERGRID"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJ-AUTO",
+      "target": "NTPC"
     },
     {
       "weight": 0.4,
@@ -606,6 +647,11 @@
       "weight": 0.2,
       "source": "GRASIM",
       "target": "TRENT"
+    },
+    {
+      "weight": 0.2,
+      "source": "GRASIM",
+      "target": "TMCV"
     },
     {
       "weight": 0.7668242897672155,
@@ -648,7 +694,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "GRASIM",
       "target": "NESTLEIND"
     },
@@ -681,6 +727,11 @@
       "weight": 0.4540003411113809,
       "source": "GRASIM",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.22352306772966712,
+      "source": "GRASIM",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -795,6 +846,11 @@
     {
       "weight": 0.2,
       "source": "BRITANNIA",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.2,
+      "source": "BRITANNIA",
       "target": "POWERGRID"
     },
     {
@@ -863,6 +919,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.2,
+      "source": "SBILIFE",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.4,
       "source": "SBILIFE",
       "target": "HINDALCO"
@@ -908,7 +969,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "SBILIFE",
       "target": "NESTLEIND"
     },
@@ -936,6 +997,11 @@
       "weight": 0.2,
       "source": "SBILIFE",
       "target": "RELIANCE"
+    },
+    {
+      "weight": 0.1965236209064673,
+      "source": "SBILIFE",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -1008,6 +1074,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.4427114535156637,
+      "source": "BAJFINANCE",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.2,
       "source": "BAJFINANCE",
       "target": "KOTAKBANK"
@@ -1041,6 +1112,11 @@
       "weight": 0.2,
       "source": "BAJFINANCE",
       "target": "RELIANCE"
+    },
+    {
+      "weight": 0.19482506294584348,
+      "source": "BAJFINANCE",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -1233,6 +1309,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.2,
+      "source": "MARUTI",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.4,
       "source": "MARUTI",
       "target": "ADANIPORTS"
@@ -1270,11 +1351,6 @@
     {
       "weight": 0.2,
       "source": "MARUTI",
-      "target": "NESTLEIND"
-    },
-    {
-      "weight": 0.2,
-      "source": "MARUTI",
       "target": "ETERNAL"
     },
     {
@@ -1286,6 +1362,11 @@
       "weight": 0.4,
       "source": "MARUTI",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "MARUTI",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -1353,6 +1434,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.44955793190005294,
+      "source": "BAJAJFINSV",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.2,
       "source": "BAJAJFINSV",
       "target": "HINDALCO"
@@ -1400,6 +1486,11 @@
     {
       "weight": 0.2,
       "source": "BAJAJFINSV",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
       "target": "ETERNAL"
     },
     {
@@ -1416,6 +1507,11 @@
       "weight": 0.2,
       "source": "BAJAJFINSV",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "BAJAJFINSV",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -1588,6 +1684,11 @@
       "target": "ITC"
     },
     {
+      "weight": 0.2,
+      "source": "TATACONSUM",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.14530502492394878,
       "source": "TATACONSUM",
       "target": "TITAN"
@@ -1650,6 +1751,11 @@
     {
       "weight": 0.2,
       "source": "INDUSINDBK",
+      "target": "TMCV"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
       "target": "DRREDDY"
     },
     {
@@ -1681,6 +1787,11 @@
       "weight": 0.4,
       "source": "INDUSINDBK",
       "target": "JIOFIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "INDUSINDBK",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -1758,7 +1869,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "BEL",
       "target": "NESTLEIND"
     },
@@ -1853,6 +1964,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.2,
+      "source": "M&M",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.4,
       "source": "M&M",
       "target": "ADANIPORTS"
@@ -1890,11 +2006,6 @@
     {
       "weight": 0.2,
       "source": "M&M",
-      "target": "NESTLEIND"
-    },
-    {
-      "weight": 0.2,
-      "source": "M&M",
       "target": "ETERNAL"
     },
     {
@@ -1906,6 +2017,11 @@
       "weight": 0.4,
       "source": "M&M",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.6594515023933676,
+      "source": "M&M",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -1970,6 +2086,11 @@
     {
       "weight": 0.2,
       "source": "HEROMOTOCO",
+      "target": "TMCV"
+    },
+    {
+      "weight": 0.2,
+      "source": "HEROMOTOCO",
       "target": "ADANIPORTS"
     },
     {
@@ -2001,6 +2122,11 @@
       "weight": 0.2,
       "source": "HEROMOTOCO",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.6000000000000001,
+      "source": "HEROMOTOCO",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -2080,6 +2206,11 @@
     {
       "weight": 0.2,
       "source": "INFY",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.2,
+      "source": "INFY",
       "target": "AXISBANK"
     },
     {
@@ -2106,6 +2237,11 @@
       "weight": 0.4,
       "source": "HDFCBANK",
       "target": "HDFCLIFE"
+    },
+    {
+      "weight": 0.24499430635164643,
+      "source": "HDFCBANK",
+      "target": "TMCV"
     },
     {
       "weight": 0.2,
@@ -2156,6 +2292,11 @@
       "weight": 0.2,
       "source": "HDFCBANK",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "HDFCBANK",
+      "target": "TMPV"
     },
     {
       "weight": 0.5813818145981993,
@@ -2235,6 +2376,11 @@
     {
       "weight": 0.2,
       "source": "CIPLA",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.2,
+      "source": "CIPLA",
       "target": "POWERGRID"
     },
     {
@@ -2275,6 +2421,11 @@
     {
       "weight": 0.2,
       "source": "BPCL",
+      "target": "TMCV"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
       "target": "DRREDDY"
     },
     {
@@ -2306,6 +2457,11 @@
       "weight": 0.2,
       "source": "BPCL",
       "target": "RELIANCE"
+    },
+    {
+      "weight": 0.2,
+      "source": "BPCL",
+      "target": "TMPV"
     },
     {
       "weight": 0.17712117968492572,
@@ -2341,6 +2497,11 @@
       "weight": 0.2,
       "source": "WIPRO",
       "target": "TRENT"
+    },
+    {
+      "weight": 0.2,
+      "source": "WIPRO",
+      "target": "TMCV"
     },
     {
       "weight": 0.4,
@@ -2383,7 +2544,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "WIPRO",
       "target": "NESTLEIND"
     },
@@ -2426,6 +2587,11 @@
       "weight": 0.2,
       "source": "WIPRO",
       "target": "SHRIRAMFIN"
+    },
+    {
+      "weight": 0.17147433801710688,
+      "source": "HDFCLIFE",
+      "target": "TMCV"
     },
     {
       "weight": 0.2,
@@ -2471,6 +2637,11 @@
       "weight": 0.2,
       "source": "HDFCLIFE",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "HDFCLIFE",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -2545,11 +2716,6 @@
     {
       "weight": 0.2,
       "source": "ONGC",
-      "target": "NESTLEIND"
-    },
-    {
-      "weight": 0.2,
-      "source": "ONGC",
       "target": "MAXHEALTH"
     },
     {
@@ -2603,6 +2769,11 @@
       "target": "TRENT"
     },
     {
+      "weight": 0.2,
+      "source": "ADANIENT",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.506094289166933,
       "source": "ADANIENT",
       "target": "ADANIPORTS"
@@ -2621,11 +2792,6 @@
       "weight": 0.4,
       "source": "ADANIENT",
       "target": "COALINDIA"
-    },
-    {
-      "weight": 0.2,
-      "source": "ADANIENT",
-      "target": "NESTLEIND"
     },
     {
       "weight": 0.2,
@@ -2658,6 +2824,11 @@
       "target": "ULTRACEMCO"
     },
     {
+      "weight": 0.1801176596030223,
+      "source": "ADANIENT",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.2,
       "source": "ADANIENT",
       "target": "AXISBANK"
@@ -2688,6 +2859,11 @@
       "target": "SHRIRAMFIN"
     },
     {
+      "weight": 0.6000000000000001,
+      "source": "TRENT",
+      "target": "TMCV"
+    },
+    {
       "weight": 0.2,
       "source": "TRENT",
       "target": "HINDALCO"
@@ -2713,6 +2889,11 @@
       "target": "EICHERMOT"
     },
     {
+      "weight": 0.2,
+      "source": "TRENT",
+      "target": "NESTLEIND"
+    },
+    {
       "weight": 0.6000000000000001,
       "source": "TRENT",
       "target": "ETERNAL"
@@ -2730,12 +2911,127 @@
     {
       "weight": 0.2,
       "source": "TRENT",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.2,
+      "source": "TRENT",
       "target": "TITAN"
     },
     {
       "weight": 0.4,
       "source": "TRENT",
       "target": "SHRIRAMFIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "TMCV",
+      "target": "HINDALCO"
+    },
+    {
+      "weight": 0.3469799766726194,
+      "source": "TMCV",
+      "target": "ASIANPAINT"
+    },
+    {
+      "weight": 0.38808568103237306,
+      "source": "TMCV",
+      "target": "TATASTEEL"
+    },
+    {
+      "weight": 0.3220326831026491,
+      "source": "TMCV",
+      "target": "DIVISLAB"
+    },
+    {
+      "weight": 0.6188992804830148,
+      "source": "TMCV",
+      "target": "EICHERMOT"
+    },
+    {
+      "weight": 0.2,
+      "source": "TMCV",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.7719419156055078,
+      "source": "TMCV",
+      "target": "ETERNAL"
+    },
+    {
+      "weight": 0.6141433424472165,
+      "source": "TMCV",
+      "target": "INDIGO"
+    },
+    {
+      "weight": 0.586301131641584,
+      "source": "TMCV",
+      "target": "JIOFIN"
+    },
+    {
+      "weight": 0.24516135395916128,
+      "source": "TMCV",
+      "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "TMCV",
+      "target": "TMPV"
+    },
+    {
+      "weight": 0.42229198897191744,
+      "source": "TMCV",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.6661522388066018,
+      "source": "TMCV",
+      "target": "SHRIRAMFIN"
+    },
+    {
+      "weight": 0.18773019238447552,
+      "source": "TMCV",
+      "target": "ADANIPORTS"
+    },
+    {
+      "weight": 0.19124739406157262,
+      "source": "TMCV",
+      "target": "JSWSTEEL"
+    },
+    {
+      "weight": 0.22844376180142142,
+      "source": "TMCV",
+      "target": "KOTAKBANK"
+    },
+    {
+      "weight": 0.21297563852358747,
+      "source": "TMCV",
+      "target": "ICICIBANK"
+    },
+    {
+      "weight": 0.10334373519024381,
+      "source": "TMCV",
+      "target": "MAXHEALTH"
+    },
+    {
+      "weight": 0.19903250706387243,
+      "source": "TMCV",
+      "target": "AXISBANK"
+    },
+    {
+      "weight": 0.18763785931866733,
+      "source": "TMCV",
+      "target": "SBIN"
+    },
+    {
+      "weight": 0.22949574354110092,
+      "source": "TMCV",
+      "target": "LT"
+    },
+    {
+      "weight": 0.14574574111317293,
+      "source": "TMCV",
+      "target": "APOLLOHOSP"
     },
     {
       "weight": 0.4,
@@ -2773,7 +3069,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "HINDALCO",
       "target": "NESTLEIND"
     },
@@ -2850,11 +3146,6 @@
     {
       "weight": 0.2,
       "source": "ADANIPORTS",
-      "target": "NESTLEIND"
-    },
-    {
-      "weight": 0.2,
-      "source": "ADANIPORTS",
       "target": "INDIGO"
     },
     {
@@ -2871,6 +3162,11 @@
       "weight": 0.4,
       "source": "ADANIPORTS",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ADANIPORTS",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -2938,7 +3234,7 @@
       "target": "EICHERMOT"
     },
     {
-      "weight": 0.1384934751973359,
+      "weight": 0.3384934751973359,
       "source": "ASIANPAINT",
       "target": "NESTLEIND"
     },
@@ -2966,6 +3262,11 @@
       "weight": 0.4,
       "source": "ASIANPAINT",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2,
+      "source": "ASIANPAINT",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3008,7 +3309,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "JSWSTEEL",
       "target": "NESTLEIND"
     },
@@ -3031,6 +3332,11 @@
       "weight": 0.5679258732060392,
       "source": "JSWSTEEL",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.22234326345827166,
+      "source": "JSWSTEEL",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3083,7 +3389,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.2,
+      "weight": 0.4,
       "source": "TATASTEEL",
       "target": "NESTLEIND"
     },
@@ -3118,6 +3424,11 @@
       "target": "ULTRACEMCO"
     },
     {
+      "weight": 0.23837907658888147,
+      "source": "TATASTEEL",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.2,
       "source": "TATASTEEL",
       "target": "SBIN"
@@ -3150,6 +3461,11 @@
     {
       "weight": 0.2,
       "source": "DIVISLAB",
+      "target": "NESTLEIND"
+    },
+    {
+      "weight": 0.2,
+      "source": "DIVISLAB",
       "target": "ETERNAL"
     },
     {
@@ -3171,6 +3487,11 @@
       "weight": 0.2,
       "source": "DIVISLAB",
       "target": "JIOFIN"
+    },
+    {
+      "weight": 0.11898876303624994,
+      "source": "DIVISLAB",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3213,6 +3534,11 @@
       "target": "ULTRACEMCO"
     },
     {
+      "weight": 0.4,
+      "source": "DRREDDY",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.2,
       "source": "DRREDDY",
       "target": "AXISBANK"
@@ -3233,6 +3559,11 @@
       "target": "APOLLOHOSP"
     },
     {
+      "weight": 0.2,
+      "source": "EICHERMOT",
+      "target": "NESTLEIND"
+    },
+    {
       "weight": 0.4,
       "source": "EICHERMOT",
       "target": "ETERNAL"
@@ -3251,6 +3582,11 @@
       "weight": 0.2,
       "source": "EICHERMOT",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.4,
+      "source": "EICHERMOT",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3290,11 +3626,6 @@
     {
       "weight": 0.2,
       "source": "KOTAKBANK",
-      "target": "NESTLEIND"
-    },
-    {
-      "weight": 0.2,
-      "source": "KOTAKBANK",
       "target": "MAXHEALTH"
     },
     {
@@ -3311,6 +3642,11 @@
       "weight": 0.2,
       "source": "KOTAKBANK",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.23067947498119,
+      "source": "KOTAKBANK",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -3358,7 +3694,7 @@
       "target": "ICICIBANK"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
       "source": "COALINDIA",
       "target": "NESTLEIND"
     },
@@ -3428,6 +3764,11 @@
       "target": "RELIANCE"
     },
     {
+      "weight": 0.19943377347425265,
+      "source": "ICICIBANK",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.4349330195754232,
       "source": "ICICIBANK",
       "target": "AXISBANK"
@@ -3453,14 +3794,29 @@
       "target": "SHRIRAMFIN"
     },
     {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "ETERNAL"
+    },
+    {
       "weight": 0.6017296155977835,
       "source": "NESTLEIND",
       "target": "HINDUNILVR"
     },
     {
-      "weight": 0.4,
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "INDIGO"
+    },
+    {
+      "weight": 0.2,
       "source": "NESTLEIND",
       "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "NESTLEIND",
+      "target": "JIOFIN"
     },
     {
       "weight": 0.2,
@@ -3468,14 +3824,9 @@
       "target": "RELIANCE"
     },
     {
-      "weight": 0.2,
+      "weight": 0.1226308681508696,
       "source": "NESTLEIND",
-      "target": "ULTRACEMCO"
-    },
-    {
-      "weight": 0.2,
-      "source": "NESTLEIND",
-      "target": "AXISBANK"
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3485,17 +3836,7 @@
     {
       "weight": 0.2,
       "source": "NESTLEIND",
-      "target": "TITAN"
-    },
-    {
-      "weight": 0.2,
-      "source": "NESTLEIND",
-      "target": "POWERGRID"
-    },
-    {
-      "weight": 0.2,
-      "source": "NESTLEIND",
-      "target": "NTPC"
+      "target": "SHRIRAMFIN"
     },
     {
       "weight": 0.4,
@@ -3506,6 +3847,11 @@
       "weight": 0.4,
       "source": "ETERNAL",
       "target": "JIOFIN"
+    },
+    {
+      "weight": 0.2,
+      "source": "ETERNAL",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3521,6 +3867,11 @@
       "weight": 0.2,
       "source": "MAXHEALTH",
       "target": "ITC"
+    },
+    {
+      "weight": 0.2,
+      "source": "MAXHEALTH",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3553,6 +3904,11 @@
       "target": "RELIANCE"
     },
     {
+      "weight": 0.15268750131502695,
+      "source": "HINDUNILVR",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.4,
       "source": "HINDUNILVR",
       "target": "SBIN"
@@ -3576,6 +3932,11 @@
       "weight": 0.15281242877507917,
       "source": "INDIGO",
       "target": "ULTRACEMCO"
+    },
+    {
+      "weight": 0.2486892293776577,
+      "source": "INDIGO",
+      "target": "TMPV"
     },
     {
       "weight": 0.2,
@@ -3633,6 +3994,11 @@
       "target": "RELIANCE"
     },
     {
+      "weight": 0.20687518161185073,
+      "source": "JIOFIN",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.2,
       "source": "JIOFIN",
       "target": "AXISBANK"
@@ -3648,6 +4014,11 @@
       "target": "SHRIRAMFIN"
     },
     {
+      "weight": 0.16900423315389343,
+      "source": "RELIANCE",
+      "target": "TMPV"
+    },
+    {
       "weight": 0.4,
       "source": "RELIANCE",
       "target": "SBIN"
@@ -3661,6 +4032,11 @@
       "weight": 0.3261488655408472,
       "source": "RELIANCE",
       "target": "BHARTIARTL"
+    },
+    {
+      "weight": 0.469167690815694,
+      "source": "ULTRACEMCO",
+      "target": "TMPV"
     },
     {
       "weight": 0.4,
@@ -3686,6 +4062,36 @@
       "weight": 0.2,
       "source": "ULTRACEMCO",
       "target": "NTPC"
+    },
+    {
+      "weight": 0.4060517135940683,
+      "source": "TMPV",
+      "target": "AXISBANK"
+    },
+    {
+      "weight": 0.6123160950564708,
+      "source": "TMPV",
+      "target": "TITAN"
+    },
+    {
+      "weight": 0.47069664958426205,
+      "source": "TMPV",
+      "target": "LT"
+    },
+    {
+      "weight": 0.32614056201442687,
+      "source": "TMPV",
+      "target": "APOLLOHOSP"
+    },
+    {
+      "weight": 0.2503376953753983,
+      "source": "TMPV",
+      "target": "SHRIRAMFIN"
+    },
+    {
+      "weight": 0.18739821569783927,
+      "source": "TMPV",
+      "target": "SBIN"
     },
     {
       "weight": 0.4174117980733947,

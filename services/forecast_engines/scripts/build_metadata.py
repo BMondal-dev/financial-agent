@@ -15,10 +15,12 @@ NIFTY_SYMBOL = "^NSEI"
 # Utility Functions
 # -------------------------------
 
+
 def safe_float(val):
     if pd.isna(val):
         return None
     return float(val)
+
 
 def percentile_bucket(value, all_values, labels):
     percentile = (all_values < value).mean()
@@ -56,8 +58,8 @@ def compute_trend_regime(close):
 # Main Builder
 # -------------------------------
 
-def build_metadata():
 
+def build_metadata():
     os.makedirs(os.path.dirname(METADATA_PATH), exist_ok=True)
 
     price_df = pd.DataFrame()
@@ -70,9 +72,18 @@ def build_metadata():
             continue
 
         symbol = file.replace(".csv", "")
-        df = pd.read_csv(f"{RAW_DIR}/{file}", header=[0, 1], index_col=0, parse_dates=True)
+        df = pd.read_csv(
+            f"{RAW_DIR}/{file}",
+            skiprows=3,
+            header=None,
+            names=["Date", "Close"],
+        )
+        df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+        df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+        df = df.dropna(subset=["Date", "Close"])
+        df.set_index("Date", inplace=True)
 
-        price_df[symbol] = pd.to_numeric(df.iloc[:, 0], errors="coerce")
+        price_df[symbol] = df["Close"]
 
         ticker = yf.Ticker(symbol + ".NS")
         info = ticker.info
@@ -81,7 +92,7 @@ def build_metadata():
             "sector": info.get("sector"),
             "industry": info.get("industry"),
             "market_cap": info.get("marketCap"),
-            "beta": info.get("beta")
+            "beta": info.get("beta"),
         }
 
     returns = price_df.pct_change()
@@ -95,7 +106,11 @@ def build_metadata():
 
     all_vols = volatility.dropna()
     all_mcaps = pd.Series(
-        [fundamentals[s]["market_cap"] for s in fundamentals if fundamentals[s]["market_cap"]]
+        [
+            fundamentals[s]["market_cap"]
+            for s in fundamentals
+            if fundamentals[s]["market_cap"]
+        ]
     )
 
     metadata = {}
@@ -103,21 +118,15 @@ def build_metadata():
     print("Computing metadata...")
 
     for stock in price_df.columns:
-
         close = price_df[stock].dropna()
-        if len(close) < 250:
+        if len(close) < 100:
             continue
 
         vol = safe_float(volatility.get(stock, 0))
         mcap = fundamentals[stock]["market_cap"]
 
         # Static Correlation
-        top_corr = (
-            correlation[stock]
-            .drop(stock)
-            .sort_values(ascending=False)
-            .head(5)
-        )
+        top_corr = correlation[stock].drop(stock).sort_values(ascending=False).head(5)
 
         # Rolling Correlation
         rolling_corr_60 = (
@@ -149,10 +158,7 @@ def build_metadata():
         aligned = pd.concat([stock_returns, nifty_returns], axis=1, sort=False).dropna()
 
         if not aligned.empty:
-            rs = (
-                (1 + aligned.iloc[:, 0]).cumprod()
-                / (1 + aligned.iloc[:, 1]).cumprod()
-            )
+            rs = (1 + aligned.iloc[:, 0]).cumprod() / (1 + aligned.iloc[:, 1]).cumprod()
             relative_strength = safe_float(rs.iloc[-1])
         else:
             relative_strength = None
@@ -167,71 +173,64 @@ def build_metadata():
             "industry": fundamentals[stock]["industry"],
             "market_cap": mcap,
             "market_cap_bucket": percentile_bucket(
-                mcap, all_mcaps,
-                ["UltraMega", "Mega", "Large", "Mid"]
-            ) if mcap else "Unknown",
+                mcap, all_mcaps, ["UltraMega", "Mega", "Large", "Mid"]
+            )
+            if mcap
+            else "Unknown",
             "beta": fundamentals[stock]["beta"],
-
             "volatility_30d": vol,
             "volatility_bucket": percentile_bucket(
-                vol, all_vols,
-                ["High", "Medium", "Low", "VeryLow"]
+                vol, all_vols, ["High", "Medium", "Low", "VeryLow"]
             ),
-
             "momentum_20d": momentum_20d,
             "momentum_60d": momentum_60d,
             "relative_strength_vs_nifty": relative_strength,
-
             "max_drawdown_1y": safe_float(max_dd),
             "current_drawdown": safe_float(current_dd),
-
             "trend_regime": regime,
-
             "top_correlated": [
-                {"symbol": s, "corr": safe_float(c)}
-                for s, c in top_corr.items()
+                {"symbol": s, "corr": safe_float(c)} for s, c in top_corr.items()
             ],
-
             "rolling_corr_60d": [
-                {"symbol": s, "corr": safe_float(c)}
-                for s, c in rolling_corr_60.items()
+                {"symbol": s, "corr": safe_float(c)} for s, c in rolling_corr_60.items()
             ],
-
             "rolling_corr_120d": [
                 {"symbol": s, "corr": safe_float(c)}
                 for s, c in rolling_corr_120.items()
-            ]
+            ],
         }
 
     # Build Similarity Sets
     for stock in metadata:
-
         metadata[stock]["same_sector"] = [
-            s for s in metadata
-            if metadata[s]["sector"] == metadata[stock]["sector"]
-            and s != stock
+            s
+            for s in metadata
+            if metadata[s]["sector"] == metadata[stock]["sector"] and s != stock
         ]
 
         metadata[stock]["same_industry"] = [
-            s for s in metadata
-            if metadata[s]["industry"] == metadata[stock]["industry"]
-            and s != stock
+            s
+            for s in metadata
+            if metadata[s]["industry"] == metadata[stock]["industry"] and s != stock
         ]
 
         metadata[stock]["same_market_cap_bucket"] = [
-            s for s in metadata
+            s
+            for s in metadata
             if metadata[s]["market_cap_bucket"] == metadata[stock]["market_cap_bucket"]
             and s != stock
         ]
 
         metadata[stock]["same_volatility_bucket"] = [
-            s for s in metadata
+            s
+            for s in metadata
             if metadata[s]["volatility_bucket"] == metadata[stock]["volatility_bucket"]
             and s != stock
         ]
 
         metadata[stock]["same_trend_regime"] = [
-            s for s in metadata
+            s
+            for s in metadata
             if metadata[s]["trend_regime"] == metadata[stock]["trend_regime"]
             and s != stock
         ]

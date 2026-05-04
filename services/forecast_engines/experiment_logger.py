@@ -19,6 +19,9 @@ def log_experiment(
     mae_for_ranking: float | None = None,
     cv_mae_mean: float | None = None,
     cv_mae_std: float | None = None,
+    cv_worst_split_mae: float | None = None,
+    cv_worst_split_test_date_start: str | None = None,
+    cv_worst_split_test_date_end: str | None = None,
     train_rows: int | None = None,
     test_rows: int | None = None,
     train_date_start: str | None = None,
@@ -39,27 +42,25 @@ def log_experiment(
         "predicted_return": predicted_return,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
-    optional = {
-        "mae_baseline_zero": mae_baseline_zero,
-        "mae_baseline_mean": mae_baseline_mean,
-        "beats_baseline_zero": beats_baseline_zero,
-        "mae_for_ranking": mae_for_ranking,
-        "cv_mae_mean": cv_mae_mean,
-        "cv_mae_std": cv_mae_std,
-        "train_rows": train_rows,
-        "test_rows": test_rows,
-        "train_date_start": train_date_start,
-        "train_date_end": train_date_end,
-        "test_date_start": test_date_start,
-        "test_date_end": test_date_end,
-        "experiment_id": experiment_id,
-        "rationale": rationale,
-        "source": source,
-        "orchestrator_round": orchestrator_round,
-    }
-    for k, v in optional.items():
-        if v is not None:
-            entry[k] = v
+    entry["mae_baseline_zero"] = mae_baseline_zero
+    entry["mae_baseline_mean"] = mae_baseline_mean
+    entry["beats_baseline_zero"] = beats_baseline_zero
+    entry["mae_for_ranking"] = mae_for_ranking
+    entry["cv_mae_mean"] = cv_mae_mean
+    entry["cv_mae_std"] = cv_mae_std
+    entry["cv_worst_split_mae"] = cv_worst_split_mae
+    entry["cv_worst_split_test_date_start"] = cv_worst_split_test_date_start
+    entry["cv_worst_split_test_date_end"] = cv_worst_split_test_date_end
+    entry["train_rows"] = train_rows
+    entry["test_rows"] = test_rows
+    entry["train_date_start"] = train_date_start
+    entry["train_date_end"] = train_date_end
+    entry["test_date_start"] = test_date_start
+    entry["test_date_end"] = test_date_end
+    entry["experiment_id"] = experiment_id
+    entry["rationale"] = rationale
+    entry["source"] = source
+    entry["orchestrator_round"] = orchestrator_round
 
     abs_path = os.path.abspath(EXPERIMENT_PATH)
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)

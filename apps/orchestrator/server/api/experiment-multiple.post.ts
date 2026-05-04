@@ -149,6 +149,10 @@ export default defineEventHandler(async (event) => {
       - neighbors: array of up to 3 ticker strings
       
       Do NOT replicate failed patterns from Round 1. Consider market mood alignment.
+      
+      Regime Risk Check: Pay attention to 'cv_worst_split_mae' and its date range. 
+      If a neighbor set has a low average MAE but a high worst-split MAE during a specific period, 
+      it may be fragile. Prefer sets with consistent performance across time.
     `
   })
 
@@ -172,7 +176,7 @@ export default defineEventHandler(async (event) => {
   // ROUND 3 — Mutation Search
   // -----------------------------------
   const { output: round3 } = await generateText({
-    model: google("gemini-flash-latest"),
+    model: google("gemini-3.1-pro-preview"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
@@ -188,6 +192,9 @@ export default defineEventHandler(async (event) => {
       - neighbors: array of up to 3 ticker strings
       
       Be creative — try unconventional cross-sector pairings that could surface hidden correlations. Use sentiment or market mood context to find counter-intuitive matches.
+      
+      Regime Risk Check: Avoid neighbor sets that historically failed during specific market regimes 
+      (check 'cv_worst_split_test_date_start/ end'). Prioritize cross-sector pairs that show stable CV metrics.
     `
   })
 

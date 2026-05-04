@@ -47,16 +47,22 @@ def load_returns(symbol: str) -> pd.DataFrame:
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
     df = df.dropna(subset=["Date", "Close"])
+    df.set_index("Date", inplace=True)
     df["return"] = df["Close"].pct_change()
-    df = df.dropna(subset=["return"])
-    return df[["Date", "return"]].reset_index(drop=True)
+    return df[["return"]].dropna()
 
 
 def build_dataset(
     target: str, neighbors: list[str], horizon: int
 ) -> tuple[pd.DataFrame, pd.Series, list[str], pd.Series]:
-    target_df = load_returns(target).rename(columns={"return": "target_return"})
-    merged = target_df
+    target_df = load_returns(target)
+
+    for lag in range(1, 6):
+        target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
+
+    target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
+    target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+
     valid_neighbors: list[str] = []
 
     for neighbor in neighbors:
@@ -64,41 +70,30 @@ def build_dataset(
             continue
         if not symbol_exists(neighbor):
             continue
-        ndf = load_returns(neighbor).rename(columns={"return": f"{neighbor}_return"})
-        merged = merged.merge(ndf, on="Date", how="inner")
+        neighbor_df = load_returns(neighbor)
+        neighbor_ret = neighbor_df["return"].reindex(target_df.index)
+        target_df[f"{neighbor}_lag_1"] = neighbor_ret.shift(1)
+        target_df[f"{neighbor}_rolling_mean_5"] = (
+            neighbor_ret.shift(1).rolling(5).mean()
+        )
         valid_neighbors.append(neighbor)
 
-    merged = merged.sort_values("Date").reset_index(drop=True)
-    tr = merged["target_return"]
+    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df = target_df.dropna()
+    dates = target_df.index.to_series()
 
-    for lag in range(1, 6):
-        merged[f"target_lag_{lag}"] = tr.shift(lag)
-
-    merged["rolling_mean_10"] = tr.rolling(10).mean()
-    merged["rolling_std_10"] = tr.rolling(10).std()
-
-    for n in valid_neighbors:
-        merged[f"{n}_lag_1"] = merged[f"{n}_return"].shift(1)
-
-    merged["future_return"] = tr.shift(-horizon)
-    merged = merged.dropna().reset_index(drop=True)
-
-    drop_cols = ["Date", "target_return", "future_return"] + [
-        f"{n}_return" for n in valid_neighbors
-    ]
-    dates = merged["Date"]
-    y = merged["future_return"]
-    X = merged.drop(columns=drop_cols)
+    X = target_df.drop(columns=["return", "future_return"])
+    y = target_df["future_return"]
 
     return X, y, valid_neighbors, dates
 
 
 def time_series_cv_mae(
-    X: pd.DataFrame, y: pd.Series, n_splits: int = 2
+    X: pd.DataFrame, y: pd.Series, horizon: int, n_splits: int = 2
 ) -> tuple[float | None, float | None]:
     if len(X) < 60:
         return None, None
-    tscv = TimeSeriesSplit(n_splits=n_splits)
+    tscv = TimeSeriesSplit(n_splits=n_splits, gap=horizon)
     maes: list[float] = []
     for train_idx, test_idx in tscv.split(X):
         if len(test_idx) < 5:
@@ -138,9 +133,17 @@ def evaluate_forecast(
         }
 
     split = int(len(X) * 0.8)
-    X_train, X_test = X.iloc[:split], X.iloc[split:]
-    y_train, y_test = y.iloc[:split], y.iloc[split:]
-    dates_train, dates_test = dates.iloc[:split], dates.iloc[split:]
+    train_end = split - horizon
+    if split >= len(X) or train_end < 1:
+        return {
+            "error": "Not enough data to train model",
+            "target": target,
+            "neighbors": valid_neighbors,
+            "horizon": horizon,
+        }
+    X_train, X_test = X.iloc[:train_end], X.iloc[split:]
+    y_train, y_test = y.iloc[:train_end], y.iloc[split:]
+    dates_train, dates_test = dates.iloc[:train_end], dates.iloc[split:]
 
     mae_baseline_zero = float(mean_absolute_error(y_test, np.zeros(len(y_test))))
     train_mean = float(y_train.mean())
@@ -161,7 +164,7 @@ def evaluate_forecast(
     mae_for_ranking = mae if beats_baseline_zero else mae + BASELINE_RANKING_PENALTY
 
     if include_cv and not _skip_time_series_cv():
-        cv_mean, cv_std = time_series_cv_mae(X, y, n_splits=2)
+        cv_mean, cv_std = time_series_cv_mae(X, y, horizon=horizon, n_splits=2)
     else:
         cv_mean, cv_std = None, None
 

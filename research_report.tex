@@ -58,7 +58,7 @@
 
 \author{
     Bijit Mondal\\
-    \texttt{hello@bijit.xyz}
+    % \texttt{hello@bijit.xyz}
 }
 \date{} % Explicitly leaving this empty removes the date from the title page
 
@@ -70,7 +70,7 @@
 Cross-stock return forecasting is central to quantitative research in equity markets, yet practitioners and researchers face a persistent bottleneck: manually discovering which other stocks carry predictive signal for a target ticker is labor-intensive, error-prone, and rarely reproducible. Many existing approaches fix a handful of neighbors or ignore calendar alignment entirely, leading to invalid comparisons and fragile conclusions. In this paper, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first LLM-driven agentic experimentation platform for systematic cross-stock neighbor discovery and daily return forecasting on the Indian NIFTY equity universe. The framework comprises an Orchestrator that proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; a Forecast Service that trains a fixed XGBoost regressor on calendar-aligned daily returns with explicit chronological splits and naive baselines (zero-return and train-mean); an Experiment Logger that records every proposal with full traceability; and an Analyzer that aggregates results into a calibrated dashboard for honest evaluation. Rather than claiming a superior model, ECHO treats the forecaster as a rigorous measuring instrument and focuses on automating the full research loop: propose $\rightarrow$ measure $\rightarrow$ remember $\rightarrow$ refine. Across thousands of logged experiments on NIFTY constituents, the platform demonstrates clear process-level superiority over manual and fixed-neighbor baselines while transparently reporting when even the best configurations fail to beat the zero-return baseline—a common and scientifically valid outcome in noisy return data. By turning forecasting into a repeatable, auditable experimentation pipeline, ECHO bridges the gap between manual workflows and production-grade quantitative research.
 
 \vspace{0.5em}
-\textbf{GitHub:} \url{https://github.com/BMondal-dev/financial-agent} \quad
+% \textbf{GitHub:} \url{https://github.com/BMondal-dev/financial-agent} \quad
 
 % \textbf{Corresponding Author:} hello@bijit.xyz
 \end{abstract}
@@ -85,21 +85,32 @@ Return forecasting in equity markets guides investment decisions, risk managemen
 
 Most advances in return forecasting arrive either as expert models tuned to a fixed feature set or as universal deep-learning forecasters that still leave the broader pipeline of feature (neighbor) discovery and evaluation untouched. AutoML-style approaches focus narrowly on hyperparameter search while ignoring the richer hypothesis space of cross-stock predictors. Meanwhile, naive LLM-based forecasters treat time series as language but lack grounding in market calendars and explicit baselines, making their outputs difficult to trust or reproduce. These limitations motivate an agentic approach—one that treats cross-stock return forecasting as a sequential decision process over neighbor proposal, rigorous scoring, logging, and refinement, with explicit planning, tool use, and transparent rationales.
 
-To this end, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first end-to-end, agentic experimentation platform that automates the entire workflow a human quantitative researcher would follow for discovering predictive cross-stock neighbors on the NIFTY universe. Rather than committing to a single universal model, ECHO orchestrates four specialized components that work in concert. First, the Orchestrator (powered by a structured-output LLM) proposes candidate neighbor sets by reasoning over a rich, multi-dimensional context. It leverages a pre-constructed stock similarity graph—built from cross-asset volatility, market capitalization, and rolling correlations—to surface non-obvious mathematical relationships. Furthermore, by integrating qualitative market news sentiment and broader sector narratives, the Orchestrator evaluates the macroeconomic mood alongside statistical linkages. This combined quantitative-qualitative reasoning, augmented by memory of past experiment outcomes, enables the system to generate highly contextualized neighbor hypotheses. Next, the Forecast Service builds a properly calendar-aligned dataset (inner join on trading \texttt{Date}), trains the \emph{same} XGBoost regressor on lagged features and neighbor returns, evaluates on a strict chronological holdout, and computes honest metrics against zero-return and train-mean baselines. The Experiment Logger records every run with full provenance (rationale, neighbor list, horizon, source, and \texttt{mae\_for\_ranking} penalty when the model fails to beat zero). Finally, the Analyzer aggregates the append-only log into a calibrated dashboard that surfaces baseline comparisons (A = target-only features, B = fixed correlation neighbors, Ours = best agent-proposed set), sector influence matrices, predictor frequency, and backtest overlays—turning raw experiment history into actionable intelligence.
+To this end, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first end-to-end, agentic experimentation platform that automates the entire workflow a human quantitative researcher would follow for discovering predictive cross-stock neighbors on the NIFTY universe. Rather than committing to a single universal model, ECHO orchestrates four specialized components that work in concert. First, a metadata engine builds a transparent feature layer per stock by combining Yahoo Finance fundamentals (via \texttt{ticker.info}) with computed market signals (volatility, momentum, drawdown, trend regime, static and rolling correlations), then compiles similarity sets and a weighted stock graph. The Orchestrator (powered by a structured-output LLM) reasons over this structured context, graph neighborhoods, and memory of past outcomes to propose candidate neighbor sets. Furthermore, by integrating qualitative market news sentiment and broader sector narratives, the Orchestrator evaluates the macroeconomic mood alongside statistical linkages. This combined quantitative-qualitative reasoning, augmented by memory of past experiment outcomes, enables the system to generate highly contextualized neighbor hypotheses. Next, the Forecast Service builds a properly calendar-aligned dataset (inner join on trading \texttt{Date}), trains the \emph{same} XGBoost regressor on lagged features and neighbor returns, evaluates on a strict chronological holdout, and computes honest metrics against zero-return and train-mean baselines. The Experiment Logger records every run with full provenance (rationale, neighbor list, horizon, source, and \texttt{mae\_for\_ranking} penalty when the model fails to beat zero). Finally, the Analyzer aggregates the append-only log into a calibrated dashboard that surfaces baseline comparisons (A = target-only features, B = fixed correlation neighbors, Ours = best agent-proposed set), sector influence matrices, predictor frequency, and backtest overlays—turning raw experiment history into actionable intelligence.
 
 Across extensive experiments on NIFTY 50 constituents, ECHO consistently outperforms unstructured manual workflows and fixed-neighbor baselines in terms of hypothesis coverage, evaluation hygiene, and reproducibility. While many configurations do not beat the zero-return baseline (a scientifically honest outcome in noisy daily return data), the platform’s A/B/Ours comparisons and calibrated leaderboards reveal where agent-chosen neighbors provide measurable lift over naive alternatives. Ablations confirm that calendar alignment, explicit baselines, and multi-round memory each contribute materially to the quality of discovered configurations. The generated dashboard further provides transparent, visual reports that make the entire experimentation process interpretable and extensible.
+
+From a research methodology perspective, the central challenge is combinatorial. For a universe of \(N\) stocks and neighbor set size \(k\), the number of possible cross-stock hypotheses for a single target is \(\binom{N-1}{k}\), which quickly becomes intractable even for moderate \(N\). Human researchers therefore rely on coarse shortcuts (same sector, top historical correlation, or discretionary intuition), but such shortcuts frequently miss transient cross-sector lead-lag effects and regime-dependent dependencies. ECHO is designed to address this search problem directly: rather than collapsing the hypothesis space to one static rule, it performs structured proposal generation guided by metadata, graph priors, and memory, then validates each proposal under identical forecasting conditions.
+
+A second challenge is data integrity under financial market frictions. Indian equities exhibit non-uniform trading calendars across symbols due to listing dates, corporate events, and occasional missing observations; benchmark indices follow their own data availability patterns. Naively joining time series by row order or filling missing points without discipline can induce silent leakage and spurious correlation. Consequently, our framework treats calendar alignment as a first-class constraint and keeps evaluation chronologically strict by construction. This design choice is not merely an implementation detail: it is a scientific guardrail that ensures measured gains are attributable to improved neighbor hypotheses rather than artifacts of misaligned data.
+
+The NIFTY universe offers a particularly suitable testbed for this thesis. It is sector-diverse (financials, energy, information technology, consumer, industrial, healthcare), sufficiently liquid for stable daily observations, and has experienced materially different macro regimes within the study window, including pandemic shock, recovery, inflationary pressure, and policy-rate transitions. These shifts create a realistic environment in which cross-stock relationships evolve over time. Static all-period associations can therefore be informative yet incomplete, motivating the joint use of long-horizon correlation structure and rolling, short-horizon co-movement signals.
+
+Our design also emphasizes semantic clarity between \emph{descriptors} and \emph{derived signals}. Certain fields, such as \texttt{market\_cap} and \texttt{beta}, are externally sourced descriptors from Yahoo Finance and should be interpreted as contextual priors, not model outputs. In contrast, momentum, volatility, drawdown, trend regime, and rolling correlations are computed transformations of observed prices. This separation enables more transparent reasoning by the Orchestrator and more interpretable ablations: researchers can explicitly analyze whether improvements stem from stable fundamental context, dynamic return structure, or their interaction in the weighted similarity graph.
+
+Finally, ECHO adopts a process-level view of progress. In noisy return forecasting, single-run wins can be accidental; what matters is whether the research loop itself is rigorous, repeatable, and cumulative. By fixing the forecaster, enforcing leakage-safe evaluation, and logging every proposal with rationale and outcomes, ECHO turns neighbor discovery into an auditable experimental science workflow. This perspective aligns with practical quantitative research, where trustworthy iteration and institutional memory are often more valuable than isolated point improvements on one backtest.
+
+In the same spirit, we intentionally use a fixed \texttt{XGBRegressor} and a stateless, request-scoped training policy instead of persisting a single global model file. In ECHO, the neighbor set is part of the hypothesis itself, so changing neighbors changes feature identity. For example, a model trained with neighbors \(\{A,B,C\}\) expects features such as \texttt{A\_lag\_1}, \texttt{B\_lag\_1}, and \texttt{C\_lag\_1}; if a later request uses \(\{A,D,E\}\), the resulting columns become \texttt{A\_lag\_1}, \texttt{D\_lag\_1}, and \texttt{E\_lag\_1}, and the saved model is semantically mismatched. Moreover, forecasting always depends on the latest bars, which requires fresh lag and rolling-feature construction even when a model checkpoint exists. We therefore prioritize proposal-specific retraining and methodological consistency, and avoid sequence-heavy alternatives (e.g., LSTM) whose added training complexity can confound whether gains come from better neighbors or from model-class tuning.
+
 
 \textbf{Our main contributions are as follows:}
 \begin{enumerate}
     \item We introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first end-to-end agentic experimentation platform for cross-stock neighbor discovery and return forecasting on the NIFTY universe.
-    \item We detail the construction of a mathematical stock similarity graph and the integration of market news sentiment, bridging quantitative correlation metrics with qualitative macroeconomic context to guide neighbor selection.
+    \item We formalize a transparent metadata thesis by separating direct Yahoo Finance attributes (e.g., \texttt{market\_cap}, \texttt{beta}) from computed signals (volatility, momentum, relative strength, drawdowns, trend regime, static/rolling correlations, and similarity sets).
+    \item We define an explicit weighted stock-similarity graph that combines correlation strength with sector, volatility-bucket, and market-cap-bucket agreement, and use it as a structural prior for neighbor proposal.
     \item We formalize a leakage-safe, calendar-aligned evaluation protocol with explicit naive baselines and a ranking penalty that prevents celebration of trivial performance.
+    \item We justify a fixed-model experimentation strategy (\texttt{XGBRegressor} with stateless retraining) that avoids schema mismatch under changing neighbor sets and keeps predictions tied to current market data.
     \item We demonstrate that LLM-guided neighbor proposals, when rigorously scored by a fixed XGBoost yardstick, outperform both target-only and fixed-correlation baselines while maintaining full traceability.
 \end{enumerate}
-
-The remainder of the paper is organized as follows. Section~2 reviews related work in return forecasting and agentic systems. Section~3 details the ECHO framework. Section~4 presents experimental results, baseline comparisons, and ablation studies. Section~5 concludes with limitations and future directions.
-
-
 
 
 \section{Related Work}
@@ -142,6 +153,65 @@ Let \( r_t^{(i)} = \frac{P_t^{(i)} - P_{t-1}^{(i)}}{P_{t-1}^{(i)}} \) denote the
 \text{MAE} = \frac{1}{|\mathcal{T}_{\text{test}}|} \sum_{t \in \mathcal{T}_{\text{test}}} \left| r_{t+H}^{(i)} - \hat{r}_{t+H}^{(i)} \right|
 \]
 
+\subsection{Metadata Construction and Similarity Graph Logic}
+
+Before orchestration begins, ECHO creates a metadata object for each stock. For each symbol \(s\), close prices are read from local historical CSV files, while selected fundamentals are fetched directly from Yahoo Finance's \texttt{ticker.info}: \texttt{sector}, \texttt{industry}, \texttt{market\_cap}, and \texttt{beta}. These fields are not predicted by the model; they are external descriptors used for hypothesis generation.
+
+\paragraph{Return-loading protocol.}
+For each stock, the service ingests raw CSV records after discarding the three non-data header rows, retaining the pair \((\text{Date},\text{Close})\) as the observed market series. Dates are parsed as calendar timestamps and closes are coerced to real-valued prices; malformed entries are mapped to missing values and excluded. The cleaned table is then indexed by \(\text{Date}\), which enforces a time-ordered, calendar-consistent representation for all downstream joins and lag operations. Daily arithmetic returns are computed as
+\[
+r_t^{(s)} = \frac{P_t^{(s)}}{P_{t-1}^{(s)}} - 1.
+\]
+Because the first timestamp has no predecessor \(P_{t-1}^{(s)}\), it is removed by construction, and the function outputs a date-indexed univariate return series \(\{r_t^{(s)}\}\).
+
+\paragraph{Forecast-service endpoint roles.}
+The orchestrator-facing endpoints expose complementary views of the search space.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{FastAPI endpoints used by the forecasting workflow.}
+\label{tab:forecast-endpoints}
+\begin{tabular}{p{0.25\linewidth} p{0.20\linewidth} p{0.48\linewidth}}
+\toprule
+Endpoint & Source & Returned object \\
+\midrule
+\texttt{/metadata/\{symbol\}} & \texttt{metadata.json} & Raw structured descriptor set (e.g., \texttt{same\_sector}, \texttt{same\_market\_cap\_bucket}, \texttt{top\_correlated} with correlation values). \\
+\texttt{/candidate-neighbors/\{symbol\}} & \texttt{metadata.json} & Flat de-duplicated candidate list formed by the union of sector peers, market-cap-bucket peers, and top-correlated symbols. \\
+\texttt{/graph-neighbors/\{symbol\}} & \texttt{stock\_graph.json} & Top-5 graph neighbors sorted by learned edge weight (structural similarity prior). \\
+\texttt{/best-neighbors/\{symbol\}} & \texttt{experiments.json} & Top-5 historically best neighbor configurations for that target (lowest MAE among unique sets, optionally horizon-filtered). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Metadata and candidate endpoints define the raw pool; graph neighbors inject structural priors; best-neighbor history provides empirical evidence from prior runs. News sentiment (queried separately from Google News in the orchestration layer) contributes a contemporaneous qualitative context signal.
+
+Let \(P_t^{(s)}\) be close price and \(r_t^{(s)} = \frac{P_t^{(s)} - P_{t-1}^{(s)}}{P_{t-1}^{(s)}}\). The metadata pipeline computes:
+\begin{itemize}
+    \item \textbf{Volatility (30-day)}: \(\sigma_{30}^{(s)} = \operatorname{std}(r_{t-29:t}^{(s)})\), using the latest rolling window.
+    \item \textbf{Momentum}: \(m_k^{(s)} = \frac{P_t^{(s)}}{P_{t-k}^{(s)}} - 1\), for \(k \in \{20, 60\}\).
+    \item \textbf{Relative Strength vs NIFTY}: \(RS_t^{(s)} = \frac{\prod_{u \le t}(1 + r_u^{(s)})}{\prod_{u \le t}(1 + r_u^{(\text{NIFTY})})}\), computed on date-aligned returns.
+    \item \textbf{Drawdown metrics}: with rolling 252-trading-day high \(M_t^{(s)} = \max_{u \in [t-251, t]} P_u^{(s)}\), drawdown is \(DD_t^{(s)} = \frac{P_t^{(s)} - M_t^{(s)}}{M_t^{(s)}}\). Then \texttt{max\_drawdown\_1y} is \(\min_t DD_t^{(s)}\), and \texttt{current\_drawdown} is the latest \(DD_t^{(s)}\).
+    \item \textbf{Trend regime}: using \(MA_{50}\) and \(MA_{200}\), we assign \texttt{Bullish} if \(P_t > MA_{50} > MA_{200}\), \texttt{Bearish} if \(P_t < MA_{50} < MA_{200}\), and \texttt{Sideways} otherwise.
+\end{itemize}
+
+Cross-sectional buckets are assigned using \texttt{percentile\_bucket()} over all stocks in the current universe:
+\[
+\pi_s(x) = \frac{1}{|\mathcal{S}|}\sum_{j \in \mathcal{S}} \mathbb{1}[x_j < x_s],
+\]
+then mapped by thresholds \([0.8, 0.5, 0.2, 0)\) to ordered labels. This yields \texttt{market\_cap\_bucket} (\texttt{UltraMega}/\texttt{Mega}/\texttt{Large}/\texttt{Mid}) and \texttt{volatility\_bucket} (\texttt{High}/\texttt{Medium}/\texttt{Low}/\texttt{VeryLow}).
+
+Correlation features are computed at two temporal scales. First, static all-period correlation from \texttt{returns.corr()} provides \texttt{top\_correlated} (top-5 peers). Second, rolling 60-day and 120-day correlations provide \texttt{rolling\_corr\_60d} and \texttt{rolling\_corr\_120d} (top-3 peers each), capturing short-term relationship shifts. After all per-stock attributes are calculated, ECHO constructs similarity sets by exact label matching: \texttt{same\_market\_cap\_bucket}, \texttt{same\_volatility\_bucket}, and \texttt{same\_trend\_regime}.
+
+The graph builder then constructs an undirected weighted graph \(G=(V,E)\), with one node per stock. For pair \((i,j)\), the edge weight is:
+\[
+w_{ij} = 0.4\,I^{\mathrm{corr}}_{ij}\,\rho_{ij}
+      + 0.2\,I^{\mathrm{sec}}_{ij}
+      + 0.2\,I^{\mathrm{vol}}_{ij}
+      + 0.2\,I^{\mathrm{cap}}_{ij}
+\]
+where \(I^{\mathrm{corr}}_{ij} = \mathbb{1}[j \in \mathcal{C}_i]\), \(I^{\mathrm{sec}}_{ij} = \mathbb{1}[\mathrm{sector}_i = \mathrm{sector}_j]\), \(I^{\mathrm{vol}}_{ij} = \mathbb{1}[\mathrm{volBucket}_i = \mathrm{volBucket}_j]\), and \(I^{\mathrm{cap}}_{ij} = \mathbb{1}[\mathrm{capBucket}_i = \mathrm{capBucket}_j]\). Here \(\mathcal{C}_i\) is \(i\)'s \texttt{top\_correlated} list and \(\rho_{ij}\) is return correlation. The maximum theoretical weight is 1.0, and an edge is added only when \(w_{ij} > 0\). This graph becomes a structural prior that helps the Orchestrator discover non-obvious but quantitatively grounded neighbors.
+
 \subsection{Orchestrator}
 
 The Orchestrator serves as the hypothesis generator. For a given target stock \( i \), it reasons over three key sources of information:
@@ -175,89 +245,101 @@ The Orchestrator then runs a three-round loop (Exploration → Refinement → Mu
 
 \subsection{Forecast Service}
 
-The Forecast Service is the rigorous measuring instrument of the system. For a given target \( i \), neighbor set \( \mathcal{N} \), and horizon \( H \), it performs the following coordinated steps:
+The Forecast Service is the measuring instrument of ECHO. Given target stock \(i\), neighbor set \(\mathcal{N}_i\), and horizon \(H\), it builds a leakage-aware supervised-learning dataset and evaluates a fixed \texttt{XGBRegressor}.
 
-\begin{lstlisting}[language=Python]
-def build_dataset(target: str, neighbors: list[str]):
-    target_df = load_returns(target).rename(columns={"return": "target_return"})
-    merged = target_df
-    for neighbor in neighbors:
-        if neighbor == target: continue
-        ndf = load_returns(neighbor).rename(columns={"return": f"{neighbor}_return"})
-        merged = merged.merge(ndf, on="Date", how="inner")   # calendar alignment
-    return merged
-\end{lstlisting}
+\paragraph{Dataset construction.}
+Let \(r_t^{(i)}\) denote target daily return and \(r_t^{(j)}\) denote neighbor \(j\) daily return. Feature engineering is:
+\begin{align*}
+x_{t,\ell}^{\text{target-lag}} &= r_{t-\ell}^{(i)}, \quad \ell \in \{1,2,3,4,5\}, \\
+x_t^{\text{target-mean10}} &= \frac{1}{10}\sum_{u=0}^{9} r_{t-u}^{(i)}, \\
+x_t^{\text{target-std10}} &= \sqrt{\frac{1}{9}\sum_{u=0}^{9}\left(r_{t-u}^{(i)}-x_t^{\text{target-mean10}}\right)^2}.
+\end{align*}
 
-The Forecast Service evaluates predictions using tabular features explicitly engineered to capture autoregressive properties and cross-asset correlations. Assuming a 3-stock neighbor proposal, the feature space is strictly 10-dimensional:
-\begin{itemize}
-    \item \textbf{Target Lags (5 features)}: The autoregressive component. These are calculated by shifting the target's daily return series backward by $1$ to $5$ trading days (\texttt{target\_lag\_1} to \texttt{target\_lag\_5}). This captures the target's immediate short-term memory and mean-reverting behavior.
-    \item \textbf{Rolling Statistics (2 features)}: Computed using a 10-day backward-looking window over the target returns to derive the rolling mean (\texttt{rolling\_mean\_10}) and rolling standard deviation (\texttt{rolling\_std\_10}). These metrics capture the target's current local momentum and volatility regime.
-    \item \textbf{Neighbor Lags (3 features)}: The cross-asset component. For exactly three selected neighbor stocks, we extract their 1-period lagged daily returns (\texttt{\{neighbor\}\_lag\_1}). These features allow the model to learn lead-lag relationships and information diffusion across the market—for instance, if a bellwether stock moves significantly today, it provides a predictive signal for how a correlated target stock might react tomorrow before the market fully incorporates the new information.
-\end{itemize}
+For each valid neighbor \(j \in \mathcal{N}_i\), two cross-stock features are added after calendar reindexing to the target date index:
+\begin{align*}
+x_t^{j,\text{lag1}} &= r_{t-1}^{(j)}, \\
+x_t^{j,\text{roll5}} &= \frac{1}{5}\sum_{u=1}^{5} r_{t-u}^{(j)}.
+\end{align*}
 
-It then trains an \texttt{XGBRegressor} and applies the ranking logic:
+The supervised target is the forward return:
+\[
+y_t = r_{t+H}^{(i)}.
+\]
+Rows with undefined lag/rolling/future terms are dropped, producing \((X, y)\).
 
-\begin{lstlisting}[language=Python]
-mae = mean_absolute_error(y_test, preds)
-beats_baseline_zero = mae < mae_baseline_zero
-mae_for_ranking = mae if beats_baseline_zero else mae + BASELINE_RANKING_PENALTY
-\end{lstlisting}
+This design encodes two complementary effects: (i) target autoregressive structure (lags + local regime statistics), and (ii) neighbor spillover signals. Financially, if a related stock receives new information at \(t-1\), part of the adjustment may transmit to the target around \(t\), which motivates explicit lag-1 cross-stock terms and short rolling summaries rather than many raw higher-order neighbor lags.
+
+\paragraph{Leakage-safe chronological split and baselines.}
+For \(n=|X|\), define split index \(s=\lfloor0.8n\rfloor\). To prevent horizon-overlap leakage, training ends at \(s-H\):
+\[
+\mathcal{T}_{\text{train}} = \{1,\dots,s-H\},
+\qquad
+\mathcal{T}_{\text{test}} = \{s,\dots,n\}.
+\]
+The holdout error is MAE. Two naive baselines are reported:
+\begin{align*}
+\text{MAE}_{0} &= \frac{1}{|\mathcal{T}_{\text{test}}|}\sum_{t\in\mathcal{T}_{\text{test}}} |y_t - 0|, \\
+\text{MAE}_{\mu} &= \frac{1}{|\mathcal{T}_{\text{test}}|}\sum_{t\in\mathcal{T}_{\text{test}}} |y_t - \bar{y}_{\text{train}}|.
+\end{align*}
+
+The ranking score used by the experimentation loop is
+\[
+\text{MAE}_{\text{rank}}=
+\begin{cases}
+\text{MAE}, & \text{if } \text{MAE}<\text{MAE}_0,\\
+\text{MAE}+\lambda, & \text{otherwise},
+\end{cases}
+\qquad \lambda=1.0.
+\]
+This penalty prevents weak models (worse than zero-return guessing) from dominating neighbor selection.
+
+\paragraph{Time-series cross-validation.}
+Beyond a single holdout, ECHO runs \texttt{TimeSeriesSplit} with \(n_{\text{splits}}=2\) and purge gap \(g=H\). For each fold \(k\):
+\[
+\max(\mathcal{T}^{(k)}_{\text{train}}) + H < \min(\mathcal{T}^{(k)}_{\text{test}}),
+\]
+which explicitly blocks look-ahead overlap between train labels and test period. Fold MAEs \(\{m_k\}\) yield:
+\[
+\mu_{\text{cv}}=\frac{1}{K}\sum_{k=1}^{K}m_k,
+\qquad
+\sigma_{\text{cv}}=\sqrt{\frac{1}{K}\sum_{k=1}^{K}(m_k-\mu_{\text{cv}})^2}.
+\]
+In addition, the service logs the worst fold
+\[
+m_{\max}=\max_k m_k
+\]
+and its test-date interval. This directly exposes regime fragility (e.g., stress periods) instead of reporting only average performance.
+
+\paragraph{Operational interpretation of \(\sigma_{\text{cv}}\).}
+Because equity returns are non-stationary, fold-wise dispersion is a deployment risk signal: low \(\sigma_{\text{cv}}\) indicates stability across regimes; high \(\sigma_{\text{cv}}\) indicates time-dependent behavior. In this context, optimizing only a ``best split'' is statistically unsafe, since it encourages neighbor choices that were merely lucky in one window.
+
+\paragraph{End-to-end forecast routine.}
+The endpoint executes: (1) dataset construction, (2) minimum-sample validation, (3) leakage-safe 80/20 evaluation, (4) baseline scoring, (5) MAE and ranking penalty computation, (6) time-series CV diagnostics (optional), (7) retraining on all available data for latest-point forecast, and (8) structured logging. The final prediction uses the full-fit model (for maximal data usage), while MAE metrics remain tied to strict out-of-sample evaluation.
 
 \subsection{Experiment Logger}
 
-Every forecast run is atomically appended to an append-only \texttt{experiments.json} file using file locking for concurrency safety. Each entry records the target, neighbor set, horizon, LLM rationale, source (orchestrator round), MAE, \texttt{beats\_baseline\_zero} flag, \texttt{mae\_for\_ranking}, and timestamps. This creates a complete, reproducible lab notebook of the entire experimentation process.
+Every forecast run is atomically appended to \texttt{experiments.json} with file-level locking for concurrency safety. The logger writes a stable schema for each trial: target, sorted neighbor set, horizon, MAE, final prediction, baseline MAEs, beat-zero flag, ranking MAE, CV diagnostics (mean, standard deviation, worst split, worst-split date range), train/test sample counts, train/test date ranges, experiment metadata, and timestamp. This append-only design forms an auditable laboratory notebook for the full hypothesis lifecycle.
 
 \subsection{Analyzer}
 
-The Analyzer is a batch script (\texttt{analyze\_experiments.py}) that processes the raw experiment log and produces \texttt{analysis.json}. It computes calibrated leaderboards (filtering only properly date-aligned runs), Baseline A/B/Ours comparisons, predictor frequency rankings, cross-sector predictive pairs, sector influence matrices, and backtest overlays for the stock explorer dashboard. The resulting static dashboard turns thousands of logged experiments into actionable, transparent insights. 
+The Analyzer is a batch post-processing stage that converts \texttt{experiments.json} into \texttt{analysis.json}. It operates on calibrated records and computes: (i) best-per-target leaderboard at a fixed horizon, (ii) predictor frequency, (iii) sector influence matrix, (iv) target--predictor network statistics, (v) per-target MAE distribution, and (vi) backtest overlays.
 
-The core analysis routine is implemented as follows:
+For sector influence, if \(\mathcal{M}_{a\rightarrow b}\) is the multiset of MAEs from experiments where a neighbor from sector \(a\) predicts a target in sector \(b\), then:
+\[
+\overline{m}_{a\rightarrow b} = \frac{1}{|\mathcal{M}_{a\rightarrow b}|}\sum_{m\in\mathcal{M}_{a\rightarrow b}} m,
+\qquad
+\text{score}_{a\rightarrow b}=100\cdot\frac{\overline{m}_{\text{global}}-\overline{m}_{a\rightarrow b}}{\overline{m}_{\text{global}}}.
+\]
+Higher score implies better-than-global-average predictive utility for that sector pairing.
 
-\begin{lstlisting}[language=Python]
-def analyze(experiments, metadata):
-    # Filter calibrated experiments (calendar-aligned + baselines)
-    calibrated = [e for e in experiments if is_calibrated_experiment(e)]
-    calibrated_h = [e for e in calibrated if e.get("horizon") == HORIZON_DAYS]
-    # Calibrated leaderboard per target
-    best_per_target_cal = {}
-    for e in calibrated_h:
-        t = e["target"]
-        if t not in best_per_target_cal or e["mae"] < best_per_target_cal[t]["mae"]:
-            best_per_target_cal[t] = e
-    # Sector influence matrix
-    sector_mae = defaultdict(list)
-    for e in experiments:
-        t_sector = get_sector(e["target"], metadata)
-        for n in e["neighbors"]:
-            n_sector = get_sector(n, metadata)
-            sector_mae[(n_sector, t_sector)].append(e["mae"])
-    # Network graph (top 150 edges)
-    edge_data = defaultdict(lambda: {"count": 0, "mae_sum": 0.0})
-    for e in experiments:
-        for n in e["neighbors"]:
-            key = (n, e["target"])
-            edge_data[key]["count"] += 1
-            edge_data[key]["mae_sum"] += e["mae"]
-    # Summary statistics and backtest series
-    summary = {
-        "total_experiments": len(experiments),
-        "total_targets": len(set(e["target"] for e in experiments)),
-        "calibrated_experiment_count": len(calibrated),
-        "calibrated_beats_baseline_pct": round(100 * sum(1 for e in calibrated_h
-            if e.get("beats_baseline_zero")) / len(calibrated_h), 2) if calibrated_h else None,
-        "methodology_note": "Mixed pool: legacy experiments used row-aligned joins; calibrated rows use calendar-aligned features and log MAE vs zero-return baseline."
-    }
-    return {
-        "summary": summary,
-        "predictor_frequency": predictor_frequency,
-        "best_per_target_calibrated": best_list_calibrated,
-        "sector_matrix": {"labels": all_sectors_union, "data": sector_matrix},
-        "network": {"nodes": nodes, "edges": edges_sorted},
-        "mae_distribution": mae_distribution,
-        "stocks_history": stocks_history,
-        "backtest": backtest
-    }
-\end{lstlisting}
+For the network view, each directed edge \((u,v)\) (predictor \(u\) to target \(v\)) stores count and average MAE:
+\[
+c_{uv}=\#\{\text{experiments with }u\in\mathcal{N}_v\},
+\qquad
+\overline{m}_{uv}=\frac{1}{c_{uv}}\sum m_{uv}.
+\]
+
+Backtest series are regenerated with the same leakage-safe feature and split logic used by the forecast service, ensuring visualization consistency with logged evaluation methodology.
 
 
 \section{Experiment}
@@ -266,7 +348,7 @@ In this section, we present a comprehensive experimental evaluation of ECHO. We 
 
 \subsection{Experimental Setup}
 
-We evaluate ECHO on the NIFTY 50 universe using daily adjusted close prices from 2019 to 2024. For each experiment, we use a target stock \( i \), a prediction horizon \( H \) (typically 5 trading days), and neighbor sets proposed by the Orchestrator. The Forecast Service performs an 80/20 chronological split after calendar-aligned merging on trading dates. We train the same \texttt{XGBRegressor} with default hyperparameters across all runs to isolate the effect of neighbor selection. Every run is logged with full provenance in \texttt{experiments.json}. The Analyzer then produces \texttt{analysis.json}, which powers the interactive dashboard.
+We evaluate ECHO on the NIFTY 50 universe using daily adjusted close prices from 2019 to 2024. For each experiment, we use a target stock \( i \), a prediction horizon \( H \) (typically 5 trading days), and neighbor sets proposed by the Orchestrator. The Forecast Service performs a purged 80/20 chronological split with horizon-aware train/test separation to prevent overlap leakage. We train the same \texttt{XGBRegressor} with default hyperparameters across all runs to isolate the effect of neighbor selection. Every run is logged with full provenance in \texttt{experiments.json}. The Analyzer then produces \texttt{analysis.json}, which powers the interactive dashboard.
 
 We compare three variants on the same data and split:
 - \textbf{Baseline A}: Target-only features (lags + rolling statistics).
@@ -364,10 +446,6 @@ This level of transparency and interactivity makes ECHO not only a forecasting t
 Overall, the experiments demonstrate that ECHO delivers measurable improvements in hypothesis quality and evaluation rigor while maintaining complete transparency — a significant step toward reproducible quantitative research.
 
 
-
-\bibliographystyle{plainnat}
-\bibliography{references}
-
 \section{Conclusions and Future Work}
 
 In this work, we presented ECHO (Equity Cross-stock Heuristic Orchestrator), an LLM-driven agentic experimentation platform designed to automate the discovery and rigorous evaluation of cross-stock neighbor relationships for daily return forecasting in the Indian NIFTY equity universe. ECHO integrates four core components—an Orchestrator for intelligent neighbor proposal, a Forecast Service for calendar-aligned evaluation using a fixed XGBoost regressor, an Experiment Logger for complete provenance tracking, and an Analyzer that produces an interactive calibrated dashboard—thereby closing the loop of propose–measure–remember–refine.
@@ -379,4 +457,10 @@ Beyond predictive performance, ECHO’s primary contribution lies in its emphasi
 While ECHO advances the automation of cross-stock signal discovery, several limitations remain. The current implementation focuses on a fixed XGBoost regressor and a relatively simple feature set. Future work will explore richer feature engineering (including fundamental ratios and alternative data), full walk-forward validation schemes, incorporation of transaction costs and turnover constraints, and extension to multi-horizon and portfolio-level evaluation. Additionally, we plan to investigate more sophisticated agentic behaviors such as automated regime detection and adaptive proposal strategies.
 
 We believe ECHO provides a practical and extensible foundation for reproducible quantitative research in equity markets. By open-sourcing the complete codebase and dashboard, we hope this work encourages further development of agentic systems that prioritize methodological rigor and transparency over overstated predictive claims. Ultimately, we view ECHO as a step toward making high-quality, systematic experimentation in financial forecasting more accessible to researchers and practitioners alike.
+
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
 \end{document}
