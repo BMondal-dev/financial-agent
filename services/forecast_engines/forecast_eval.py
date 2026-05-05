@@ -9,9 +9,9 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import TimeSeriesSplit
-from xgboost import XGBRegressor
+from models import get_model, ModelType
 
-DATA_DIR = "../data/raw"
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/raw")
 BASELINE_RANKING_PENALTY = 1.0
 LEGACY_EXPERIMENT_HORIZON = 5
 
@@ -63,6 +63,12 @@ def build_dataset(
     target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
     target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
+    # Compute future return on target-only data to fix the date range.
+    # This ensures the test split (and mae_baseline_zero) is identical
+    # regardless of which neighbor set is used.
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+    target_valid = target_df.dropna()
+
     valid_neighbors: list[str] = []
 
     for neighbor in neighbors:
@@ -71,15 +77,16 @@ def build_dataset(
         if not symbol_exists(neighbor):
             continue
         neighbor_df = load_returns(neighbor)
-        neighbor_ret = neighbor_df["return"].reindex(target_df.index)
+        # Reindex to target's valid date index
+        neighbor_ret = neighbor_df["return"].reindex(target_valid.index)
         target_df[f"{neighbor}_lag_1"] = neighbor_ret.shift(1)
         target_df[f"{neighbor}_rolling_mean_5"] = (
             neighbor_ret.shift(1).rolling(5).mean()
         )
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
-    target_df = target_df.dropna()
+    # Only drop rows where neighbor features are NaN — date range already fixed
+    target_df = target_df.loc[target_valid.index].dropna()
     dates = target_df.index.to_series()
 
     X = target_df.drop(columns=["Close", "return", "future_return"])
@@ -89,7 +96,7 @@ def build_dataset(
 
 
 def time_series_cv_mae(
-    X: pd.DataFrame, y: pd.Series, horizon: int, n_splits: int = 2
+    X: pd.DataFrame, y: pd.Series, horizon: int, n_splits: int = 2, model_type: ModelType = "xgb"
 ) -> tuple[float | None, float | None]:
     if len(X) < 60:
         return None, None
@@ -100,12 +107,7 @@ def time_series_cv_mae(
             continue
         X_tr, X_te = X.iloc[train_idx], X.iloc[test_idx]
         y_tr, y_te = y.iloc[train_idx], y.iloc[test_idx]
-        model = XGBRegressor(
-            n_estimators=120,
-            max_depth=4,
-            learning_rate=0.05,
-            random_state=42,
-        )
+        model = get_model(model_type)
         model.fit(X_tr, y_tr)
         pred = model.predict(X_te)
         maes.append(mean_absolute_error(y_te, pred))
@@ -120,8 +122,9 @@ def evaluate_forecast(
     horizon: int,
     *,
     include_cv: bool = True,
+    model_type: ModelType = "xgb",
 ) -> dict[str, Any]:
-    """Train XGB on 80/20 chronological split; return metrics without logging."""
+    """Train model on 80/20 chronological split; return metrics without logging."""
     X, y, valid_neighbors, dates = build_dataset(target, neighbors, horizon)
 
     if len(X) < 20:
@@ -130,6 +133,7 @@ def evaluate_forecast(
             "target": target,
             "neighbors": valid_neighbors,
             "horizon": horizon,
+            "model_type": model_type,
         }
 
     split = int(len(X) * 0.8)
@@ -140,6 +144,7 @@ def evaluate_forecast(
             "target": target,
             "neighbors": valid_neighbors,
             "horizon": horizon,
+            "model_type": model_type,
         }
     X_train, X_test = X.iloc[:train_end], X.iloc[split:]
     y_train, y_test = y.iloc[:train_end], y.iloc[split:]
@@ -151,12 +156,7 @@ def evaluate_forecast(
         mean_absolute_error(y_test, np.full(len(y_test), train_mean))
     )
 
-    model = XGBRegressor(
-        n_estimators=120,
-        max_depth=4,
-        learning_rate=0.05,
-        random_state=42,
-    )
+    model = get_model(model_type)
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     mae = float(mean_absolute_error(y_test, preds))
@@ -164,18 +164,20 @@ def evaluate_forecast(
     mae_for_ranking = mae if beats_baseline_zero else mae + BASELINE_RANKING_PENALTY
 
     if include_cv and not _skip_time_series_cv():
-        cv_mean, cv_std = time_series_cv_mae(X, y, horizon=horizon, n_splits=2)
+        cv_mean, cv_std = time_series_cv_mae(X, y, horizon=horizon, n_splits=2, model_type=model_type)
     else:
         cv_mean, cv_std = None, None
 
-    model.fit(X, y)
+    model_final = get_model(model_type)
+    model_final.fit(X, y)
     latest = X.iloc[-1:]
-    prediction = float(model.predict(latest)[0])
+    prediction = float(model_final.predict(latest)[0])
 
     return {
         "target": target,
         "neighbors": valid_neighbors,
         "horizon": horizon,
+        "model_type": model_type,
         "mae": mae,
         "mae_baseline_zero": mae_baseline_zero,
         "mae_baseline_mean": mae_baseline_mean,

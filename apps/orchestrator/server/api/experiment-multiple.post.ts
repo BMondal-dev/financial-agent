@@ -14,6 +14,7 @@ async function runForecast(
   target: string,
   neighbors: string[],
   horizon: number,
+  model_type: string,
   meta: { experiment_id: string; rationale: string; orchestrator_round: number }
 ) {
   return await $fetch(`${FASTAPI}/run-forecast`, {
@@ -22,6 +23,7 @@ async function runForecast(
       target,
       neighbors,
       horizon,
+      model_type,
       source: "experiment-multiple",
       experiment_id: meta.experiment_id,
       rationale: meta.rationale,
@@ -70,6 +72,9 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const target = body.target
   const horizon = body.horizon || 5
+  const model_type = body.model_type || "xgb"
+
+  console.log(`\n[experiment-multiple] 🚀 Starting multi-round for target: ${target}, horizon: ${horizon}, model: ${model_type}`)
 
   // --- Data Loading ---
   const [metadata, candidates] = await Promise.all([
@@ -88,6 +93,8 @@ export default defineEventHandler(async (event) => {
   try {
     pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`)
   } catch { pastExperiments = [] }
+
+  console.log(`[experiment-multiple] 📊 Fetched all background data (sentiment: ${sentimentData?.sentiment || 'None'}).`)
 
   // -----------------------------------
   // ROUND 1 — Exploration
@@ -113,10 +120,12 @@ export default defineEventHandler(async (event) => {
     `
   })
 
+  console.log(`[experiment-multiple] 🧠 Round 1 (Exploration) AI generated:`, JSON.stringify(round1, null, 2))
+
   const round1Results: any[] = []
   for (const exp of round1) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon, {
+      const result: any = await runForecast(target, exp.neighbors, horizon, model_type, {
         experiment_id: exp.experiment_id,
         rationale: exp.rationale,
         orchestrator_round: 1
@@ -128,6 +137,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const bestRound1 = [...round1Results].sort((a, b) => rankingMae(a) - rankingMae(b))[0]
+
+  console.log(`[experiment-multiple] ✅ Round 1 completed. Best MAE: ${bestRound1?.mae}`)
 
   // -----------------------------------
   // ROUND 2 — Refinement
@@ -157,10 +168,12 @@ export default defineEventHandler(async (event) => {
     `
   })
 
+  console.log(`[experiment-multiple] 🧠 Round 2 (Refinement) AI generated:`, JSON.stringify(round2, null, 2))
+
   const round2Results: any[] = []
   for (const exp of round2) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon, {
+      const result: any = await runForecast(target, exp.neighbors, horizon, model_type, {
         experiment_id: exp.experiment_id,
         rationale: exp.rationale,
         orchestrator_round: 2
@@ -173,11 +186,13 @@ export default defineEventHandler(async (event) => {
 
   const bestRound2 = [...round2Results].sort((a, b) => rankingMae(a) - rankingMae(b))[0]
 
+  console.log(`[experiment-multiple] ✅ Round 2 completed. Best MAE: ${bestRound2?.mae}`)
+
   // -----------------------------------
   // ROUND 3 — Mutation Search
   // -----------------------------------
   const { output: round3 } = await generateText({
-    model: chutes("zai-org/GLM-5-Turbo"),
+    model: chutes("moonshotai/Kimi-K2.6-TEE"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `
@@ -199,10 +214,12 @@ export default defineEventHandler(async (event) => {
     `
   })
 
+  console.log(`[experiment-multiple] 🧠 Round 3 (Mutation Search) AI generated:`, JSON.stringify(round3, null, 2))
+
   const round3Results: any[] = []
   for (const exp of round3) {
     try {
-      const result: any = await runForecast(target, exp.neighbors, horizon, {
+      const result: any = await runForecast(target, exp.neighbors, horizon, model_type, {
         experiment_id: exp.experiment_id,
         rationale: exp.rationale,
         orchestrator_round: 3
@@ -220,9 +237,12 @@ export default defineEventHandler(async (event) => {
 
   const best = finalResults[0] ?? null
 
+  console.log(`[experiment-multiple] 🎉 Finished 3 rounds. Overall best MAE: ${best?.mae}`)
+
   return {
     target,
     horizon,
+    model_type,
     round1: round1Results,
     round2: round2Results,
     round3: round3Results,

@@ -17,12 +17,15 @@ def parse_args() -> argparse.Namespace:
             "Run experiment-agent for all discovered stocks over multiple rounds "
             "with retry/backoff and pacing to reduce API/model rate limits.\n\n"
             "Why this is slow: each stock triggers 1 LLM call plus 3 POST /run-forecast "
-            "calls (each trains XGB several times). Defaults add ~1.5s between stocks and "
+            "calls (each trains the model several times). Defaults add ~1.5s between stocks and "
             "12s between rounds.\n\n"
             "Speed tips: use --rounds 1 for a single pass; lower --inter-request-delay and "
             "--inter-round-delay when your LLM quota allows; start the forecast API with "
             "FORECAST_ENGINES_SKIP_CV=1 to skip time-series CV inside /run-forecast "
-            "(faster, slightly less info in logs)."
+            "(faster, slightly less info in logs).\n\n"
+            "Model selection: use --model-type to choose between 'xgb' (XGBoost, default) "
+            "or 'lstm' (LSTM neural network). Run separately for each model type to build "
+            "comparison data."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -36,6 +39,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=5,
         help="Forecast horizon to pass to the API (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--model-type",
+        choices=["xgb", "lstm"],
+        default="xgb",
+        help="Model type to use: 'xgb' for XGBoost or 'lstm' for LSTM (default: %(default)s)",
     )
     parser.add_argument(
         "--rounds",
@@ -259,12 +268,14 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_jsonl = args.resume_file if args.resume_file else args.output_dir / f"full_experiment_{run_id}.jsonl"
-    summary_json = args.output_dir / f"full_experiment_{run_id}_summary.json"
+    model_suffix = f"_{args.model_type}" if args.model_type != "xgb" else ""
+    output_jsonl = args.resume_file if args.resume_file else args.output_dir / f"full_experiment_{run_id}{model_suffix}.jsonl"
+    summary_json = args.output_dir / f"full_experiment_{run_id}{model_suffix}_summary.json"
 
     total_requests = len(stocks) * args.rounds
     print(f"Discovered {len(stocks)} stocks.")
     print(f"Running {args.rounds} rounds => {total_requests} total requests")
+    print(f"Model type: {args.model_type.upper()}")
     print(f"Endpoint: {args.endpoint}")
     print(f"Saving per-request logs to: {output_jsonl}")
 
@@ -300,9 +311,13 @@ def main() -> None:
                     continue
 
                 completed += 1
-                payload = {"target": stock, "horizon": args.horizon}
+                payload = {
+                    "target": stock,
+                    "horizon": args.horizon,
+                    "model_type": args.model_type,
+                }
 
-                print(f"[{completed}/{total_requests}] Running experiments for {stock} ...")
+                print(f"[{completed}/{total_requests}] Running experiments for {stock} ({args.model_type.upper()}) ...")
 
                 try:
                     result = run_with_retries(
@@ -323,6 +338,7 @@ def main() -> None:
                     "round": round_number,
                     "target": stock,
                     "horizon": args.horizon,
+                    "model_type": args.model_type,
                     "attempts": result["attempt"] + 1,
                     "status_code": result.get("status_code"),
                     "duration_sec": result.get("duration_sec"),
@@ -363,6 +379,7 @@ def main() -> None:
         "run_id": run_id,
         "endpoint": args.endpoint,
         "horizon": args.horizon,
+        "model_type": args.model_type,
         "rounds": args.rounds,
         "stocks_count": len(stocks),
         "total_requests": total_requests,

@@ -1,0 +1,19 @@
+{
+  "horizon": 10,
+  "run_id": "h10",
+  "timestamp": "2026-05-05T16:41:26.351233+00:00",
+  "per_target": [],
+  "aggregate": {
+    "xgb_wins": 0,
+    "lstm_wins": 0,
+    "ties": 0,
+    "total_targets": 0,
+    "xgb_avg_mae": null,
+    "lstm_avg_mae": null,
+    "xgb_min_mae": null,
+    "lstm_min_mae": null,
+    "xgb_max_mae": null,
+    "lstm_max_mae": null
+  },
+  "fairness_note": "Same data split, features, and test window for both models"
+}

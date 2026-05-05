@@ -53,6 +53,12 @@ def build_features(target: str, neighbors: list[str], horizon: int):
     target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
     target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
+    # Compute future return on target-only data to fix the date range.
+    # This ensures the test split (and mae_baseline_zero) is identical
+    # regardless of which neighbor set is used.
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+    target_valid = target_df.dropna()
+
     for neighbor in neighbors:
         if neighbor == target:
             continue
@@ -60,12 +66,13 @@ def build_features(target: str, neighbors: list[str], horizon: int):
         if not npath.exists():
             continue
         ndf = load_returns(neighbor)
-        nr = ndf["return"].reindex(target_df.index)
+        # Reindex to target's valid date index
+        nr = ndf["return"].reindex(target_valid.index)
         target_df[f"{neighbor}_lag_1"] = nr.shift(1)
         target_df[f"{neighbor}_rolling_mean_5"] = nr.shift(1).rolling(5).mean()
 
-    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
-    target_df = target_df.dropna()
+    # Only drop rows where neighbor features are NaN — date range already fixed
+    target_df = target_df.loc[target_valid.index].dropna()
     dates = target_df.index.to_series()
 
     X = target_df.drop(columns=["Close", "return", "future_return"])

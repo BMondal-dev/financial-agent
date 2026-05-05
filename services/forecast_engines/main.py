@@ -4,18 +4,19 @@ import os
 import pandas as pd
 import json
 import numpy as np
-from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import TimeSeriesSplit
 from experiment_logger import log_experiment, _experiment_path
+from models import get_model, ModelType
 from typing import Literal
 
 
 app = FastAPI()
 
-DATA_DIR = "../data/raw"
-METADATA_PATH = "../data/metadata/metadata.json"
-GRAPH_PATH = "../data/stock_graph.json"
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(_BASE_DIR, "../data/raw")
+METADATA_PATH = os.path.join(_BASE_DIR, "../data/metadata/metadata.json")
+GRAPH_PATH = os.path.join(_BASE_DIR, "../data/stock_graph.json")
 
 BASELINE_RANKING_PENALTY = 1.0
 
@@ -33,6 +34,7 @@ class ForecastRequest(BaseModel):
     target: str
     neighbors: list[str]
     horizon: int
+    model_type: ModelType = "xgb"
     experiment_id: str | None = None
     rationale: str | None = None
     source: str | None = None
@@ -129,6 +131,14 @@ def build_dataset(
     target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
     target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
+    # Compute future return on target-only data to fix the date range.
+    # This ensures the test split (and mae_baseline_zero) is identical
+    # regardless of which neighbor set is used.
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+
+    # Determine valid date range from target-only features before adding neighbors
+    target_valid = target_df.dropna()
+
     valid_neighbors = []
 
     for neighbor in neighbors:
@@ -141,19 +151,22 @@ def build_dataset(
 
         neighbor_df = load_returns(neighbor)
 
+        # Reindex neighbor to target's date index, then only keep rows valid for target
+        nr = neighbor_df["return"].reindex(target_valid.index)
+
         # Immediate 1-day lagged spillover effect
-        target_df[f"{neighbor}_lag_1"] = neighbor_df["return"].shift(1)
+        target_df[f"{neighbor}_lag_1"] = nr.shift(1)
 
         # 5-day rolling momentum (lagged to prevent look-ahead bias)
         target_df[f"{neighbor}_rolling_mean_5"] = (
-            neighbor_df["return"].shift(1).rolling(5).mean()
+            nr.shift(1).rolling(5).mean()
         )
 
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
-
-    target_df = target_df.dropna()
+    # Only drop rows where neighbor features are NaN — date range is already fixed
+    # by target_valid
+    target_df = target_df.loc[target_valid.index].dropna()
     dates = target_df.index.to_series()
 
     X = target_df.drop(columns=["Close", "return", "future_return"])
@@ -168,6 +181,7 @@ def time_series_cv_mae(
     dates: pd.Series,
     horizon: int,
     n_splits: int = 2,
+    model_type: ModelType = "xgb",
 ) -> dict:
     """Run time-series cross-validation and return MAE statistics plus worst-split details.
 
@@ -204,12 +218,7 @@ def time_series_cv_mae(
             continue
         X_tr, X_te = X.iloc[train_idx], X.iloc[test_idx]
         y_tr, y_te = y.iloc[train_idx], y.iloc[test_idx]
-        model = XGBRegressor(
-            n_estimators=120,
-            max_depth=4,
-            learning_rate=0.05,
-            random_state=42,
-        )
+        model = get_model(model_type)
         model.fit(X_tr, y_tr)
         pred = model.predict(X_te)
         split_mae = float(mean_absolute_error(y_te, pred))
@@ -316,12 +325,7 @@ def run_forecast(req: ForecastRequest):
         mean_absolute_error(y_test, np.full(len(y_test), train_mean))
     )
 
-    model = XGBRegressor(
-        n_estimators=120,
-        max_depth=4,
-        learning_rate=0.05,
-        random_state=42,
-    )
+    model = get_model(req.model_type)
 
     model.fit(X_train, y_train)
 
@@ -340,13 +344,14 @@ def run_forecast(req: ForecastRequest):
             "cv_worst_split_test_date_end": None,
         }
     else:
-        cv_results = time_series_cv_mae(X, y, dates, horizon=req.horizon, n_splits=2)
+        cv_results = time_series_cv_mae(X, y, dates, horizon=req.horizon, n_splits=2, model_type=req.model_type)
 
-    model.fit(X, y)
+    model_final = get_model(req.model_type)
+    model_final.fit(X, y)
 
     latest = X.iloc[-1:]
 
-    prediction = float(model.predict(latest)[0])
+    prediction = float(model_final.predict(latest)[0])
 
     log_experiment(
         req.target,
@@ -355,6 +360,7 @@ def run_forecast(req: ForecastRequest):
         mae,
         prediction,
         run_id=f"h{req.horizon}",
+        model_type=req.model_type,
         mae_baseline_zero=mae_baseline_zero,
         mae_baseline_mean=mae_baseline_mean,
         beats_baseline_zero=beats_baseline_zero,
@@ -380,6 +386,7 @@ def run_forecast(req: ForecastRequest):
         "target": req.target,
         "neighbors": valid_neighbors,
         "horizon": req.horizon,
+        "model_type": req.model_type,
         "mae": mae,
         "mae_baseline_zero": mae_baseline_zero,
         "mae_baseline_mean": mae_baseline_mean,

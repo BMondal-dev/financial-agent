@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime, timezone
 
-EXPERIMENTS_DIR = "../data"
+_EXPERIMENTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data")
 
 
 def _experiment_path(run_id: str | None = None) -> str:
@@ -13,8 +13,8 @@ def _experiment_path(run_id: str | None = None) -> str:
     run_id="h5"  → "experiments_h5.json"
     """
     if run_id:
-        return os.path.join(EXPERIMENTS_DIR, f"experiments_{run_id}.json")
-    return os.path.join(EXPERIMENTS_DIR, "experiments.json")
+        return os.path.join(_EXPERIMENTS_DIR, f"experiments_{run_id}.json")
+    return os.path.join(_EXPERIMENTS_DIR, "experiments.json")
 
 
 def log_experiment(
@@ -25,6 +25,7 @@ def log_experiment(
     predicted_return: float,
     *,
     run_id: str | None = None,
+    model_type: str = "xgb",
     mae_baseline_zero: float | None = None,
     mae_baseline_mean: float | None = None,
     beats_baseline_zero: bool | None = None,
@@ -50,6 +51,7 @@ def log_experiment(
         "target": target,
         "neighbors": canonical_neighbors,
         "horizon": horizon,
+        "model_type": model_type,
         "mae": mae,
         "predicted_return": predicted_return,
         "timestamp": datetime.now(timezone.utc).isoformat(),

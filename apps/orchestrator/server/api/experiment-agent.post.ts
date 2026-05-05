@@ -2,6 +2,7 @@ import { defineEventHandler, readBody } from "h3"
 import { generateText, Output } from "ai"
 import { google } from "@ai-sdk/google"
 import { z } from "zod"
+import { openai } from "@ai-sdk/openai"
 
 const FASTAPI = "http://localhost:8000"
 
@@ -24,7 +25,8 @@ async function fetchRealSentiment(target: string) {
     if (titles.length === 0) return null;
 
     const { output } = await generateText({
-      model: google("gemini-flash-latest"),
+      // model: google("gemini-flash-latest"),
+      model: openai("gpt-5.4-mini"),
       output: Output.object({
         schema: SentimentSchema
       }),
@@ -44,6 +46,9 @@ export default defineEventHandler(async (event) => {
 
   const target = body.target
   const horizon = body.horizon || 5
+  const model_type = body.model_type || "xgb"
+
+  console.log(`\n[experiment-agent] 🚀 Starting prediction for target: ${target}, horizon: ${horizon}, model: ${model_type}`)
 
   // 1️⃣ Fetch Metadata
   // Using native fetch or $fetch (Nuxt/Nitro)
@@ -65,10 +70,12 @@ export default defineEventHandler(async (event) => {
     pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`)
   } catch { pastExperiments = [] }
 
+  console.log(`[experiment-agent] 📊 Fetched metadata, candidates, sentiment (${sentimentData?.sentiment || 'None'}), graph neighbors.`)
+
   // 2️⃣ Ask LLM for experiments
   // We use generateObject here because you want a typed JSON response
   const { output } = await generateText({
-    model: google("gemini-flash-lite-latest"),
+    model: openai("gpt-5.4-mini"),
     output: Output.object({
       schema: z.object({ // Property is 'schema', not 'output'
         experiments: z.array(
@@ -98,16 +105,19 @@ export default defineEventHandler(async (event) => {
   const proposals = output.experiments
   const results: any[] = []
 
-  console.log(proposals);
+  console.log(`[experiment-agent] 🧠 AI generated ${proposals.length} proposals:`, JSON.stringify(proposals, null, 2));
 
   // 3️⃣ Run experiments
+  console.log(`[experiment-agent] 🏃 Running experiments...`)
   for (const exp of proposals) {
+    console.log(`[experiment-agent]    Testing neighbors: [${exp.neighbors.join(', ')}] ...`)
     const forecast: any = await $fetch(`${FASTAPI}/run-forecast`, {
       method: "POST",
       body: {
         target,
         neighbors: exp.neighbors,
         horizon,
+        model_type,
         source: "experiment-agent",
         rationale: exp.explanation
       }
@@ -126,9 +136,12 @@ export default defineEventHandler(async (event) => {
 
   const best = results[0]
 
+  console.log(`[experiment-agent] ✅ Finished ${results.length} experiments. Best MAE: ${best?.mae}`)
+
   return {
     target,
     horizon,
+    model_type,
     experiments: results,
     best
   }

@@ -10,6 +10,7 @@ Usage:
 import argparse
 import csv
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 import statistics
@@ -17,9 +18,15 @@ import pandas as pd
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error
 
+_FORECAST_ENGINES = Path(__file__).resolve().parent.parent
+if str(_FORECAST_ENGINES) not in sys.path:
+    sys.path.insert(0, str(_FORECAST_ENGINES))
+from models import get_model  # noqa: E402
+
 BASE = Path(__file__).parent.parent.parent / "data"
 METADATA_FILE = BASE / "metadata" / "metadata.json"
 RAW_DIR = BASE / "raw"
+BENCHMARK_DIR = BASE
 
 
 def _paths(run_id: str | None = None):
@@ -72,6 +79,11 @@ def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> di
     target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
     target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
+    # Compute future return on target-only data to fix the date range.
+    # This ensures the test split is identical regardless of neighbor set.
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+    target_valid = target_df.dropna()
+
     valid_neighbors: list[str] = []
     for neighbor in neighbors:
         if neighbor == target:
@@ -80,15 +92,16 @@ def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> di
         if ndf.empty:
             continue
         ndf.set_index("Date", inplace=True)
-        neighbor_ret = ndf["return"].reindex(target_df.index)
+        # Reindex to target's valid date index
+        neighbor_ret = ndf["return"].reindex(target_valid.index)
         target_df[f"{neighbor}_lag_1"] = neighbor_ret.shift(1)
         target_df[f"{neighbor}_rolling_mean_5"] = (
             neighbor_ret.shift(1).rolling(5).mean()
         )
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
-    target_df = target_df.dropna()
+    # Only drop rows where neighbor features are NaN — date range already fixed
+    target_df = target_df.loc[target_valid.index].dropna()
 
     if len(target_df) < 20:
         return {"rows": [], "mae": None, "count": 0}
@@ -178,11 +191,16 @@ def get_sector(symbol, metadata):
 
 
 def build_baseline_comparison(experiments: list, metadata: dict, horizon: int) -> dict:
-    """Compare A (target-only), B (fixed correlation neighbors), Ours (best agent) on each target."""
+    """Compare A (target-only), B (fixed correlation), Ours (best agent neighbors) per target.
+
+    Computes the same 80/20 split and feature plumbing for **XGBoost** and **LSTM** (if PyTorch
+    is installed). ``Ours`` uses the best logged experiment *for that model type* per target so
+    LSTM arms align with LSTM-logged neighbor sets.
+
+    Returned JSON includes ``by_model: { "xgb": {...}, "lstm": {...} }``. Top-level
+    ``per_target`` / ``win_counts`` / ``total_targets`` mirror **xgb** for backward compatibility.
+    """
     import numpy as np
-    from sklearn.metrics import mean_absolute_error
-    from xgboost import XGBRegressor
-    from collections import Counter
 
     def _load_returns(sym):
         path = RAW_DIR / f"{sym}.csv"
@@ -204,17 +222,21 @@ def build_baseline_comparison(experiments: list, metadata: dict, horizon: int) -
             target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
         target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
         target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+        # Compute future return on target-only data to fix the date range.
+        # This ensures the test split (and mae_baseline_zero) is identical
+        # regardless of which neighbor set is used.
+        target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+        target_valid = target_df.dropna()
         for n in neighbors:
             if n == target:
                 continue
             ndf = _load_returns(n)
             if ndf is None:
                 continue
-            nr = ndf["return"].reindex(target_df.index)
+            nr = ndf["return"].reindex(target_valid.index)
             target_df[f"{n}_lag_1"] = nr.shift(1)
             target_df[f"{n}_rolling_mean_5"] = nr.shift(1).rolling(5).mean()
-        target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
-        target_df = target_df.dropna()
+        target_df = target_df.loc[target_valid.index].dropna()
         if len(target_df) < 30:
             return None, None, None
         X = target_df.drop(columns=["Close", "return", "future_return"])
@@ -222,7 +244,7 @@ def build_baseline_comparison(experiments: list, metadata: dict, horizon: int) -
         dates = target_df.index.to_series()
         return X, y, dates
 
-    def _eval(X, y):
+    def _eval_arm(X, y, model_type: str):
         n = len(X)
         split = int(n * 0.8)
         train_end = split - horizon
@@ -231,79 +253,244 @@ def build_baseline_comparison(experiments: list, metadata: dict, horizon: int) -
         X_train, X_test = X.iloc[:train_end], X.iloc[split:]
         y_train, y_test = y.iloc[:train_end], y.iloc[split:]
         mae_zero = float(mean_absolute_error(y_test, np.zeros(len(y_test))))
-        model = XGBRegressor(n_estimators=120, max_depth=4, learning_rate=0.05, random_state=42)
-        model.fit(X_train, y_train)
-        mae = float(mean_absolute_error(y_test, model.predict(X_test)))
+        try:
+            model = get_model(model_type)  # type: ignore[arg-type]
+            model.fit(X_train, y_train)
+            pred = model.predict(X_test)
+            pred = np.asarray(pred, dtype=float).reshape(-1)
+            if pred.shape[0] != len(y_test):
+                return None
+            mae = float(mean_absolute_error(y_test, pred))
+        except Exception:
+            return None
         return {"mae": round(mae, 6), "beats_0": mae < mae_zero}
 
-    # Best agent neighbors per target
-    agent_best = {}
-    for e in experiments:
-        if e.get("target") == e.get("target") and e.get("horizon", horizon) == horizon:
+    def _agent_best_for_model(model_type: str) -> dict:
+        """Pick best logged neighbor set per target, scoped to experiments for that model."""
+        agent_best = {}
+        for e in experiments:
+            if e.get("horizon", horizon) != horizon:
+                continue
+            exp_mt = e.get("model_type", "xgb")
+            if model_type == "xgb":
+                if exp_mt == "lstm":
+                    continue
+            elif model_type == "lstm":
+                if exp_mt != "lstm":
+                    continue
+            else:
+                continue
             t = e["target"]
             key = e.get("mae_for_ranking", float("inf"))
             if t not in agent_best or key < agent_best[t]["score"]:
                 agent_best[t] = {"score": key, "neighbors": e["neighbors"]}
+        return agent_best
 
-    per_target = []
-    win_counts = Counter()
-    total = 0
+    def _run_model(model_type: str) -> dict | None:
+        agent_best = _agent_best_for_model(model_type)
+        per_target = []
+        win_counts = Counter()
+        total = 0
 
-    for sym in sorted(metadata.keys()):
-        meta = metadata[sym]
-        corr_nb = [c["symbol"] for c in meta.get("top_correlated", [])[:3]]
-        agent_nb = agent_best.get(sym, {}).get("neighbors", [])
+        for sym in sorted(metadata.keys()):
+            meta = metadata[sym]
+            corr_nb = [c["symbol"] for c in meta.get("top_correlated", [])[:3]]
+            agent_nb = agent_best.get(sym, {}).get("neighbors", [])
 
-        arms = {}
-        X, y, d = _build(sym, [])
-        if X is not None:
-            r = _eval(X, y)
-            if r:
-                arms["A"] = r
-
-        if corr_nb:
-            X, y, d = _build(sym, corr_nb)
+            arms = {}
+            X, y, _dates = _build(sym, [])
             if X is not None:
-                r = _eval(X, y)
+                r = _eval_arm(X, y, model_type)
                 if r:
-                    arms["B"] = r
+                    arms["A"] = r
 
-        if agent_nb:
-            X, y, d = _build(sym, agent_nb)
-            if X is not None:
-                r = _eval(X, y)
-                if r:
-                    arms["Ours"] = r
+            if corr_nb:
+                X, y, _dates = _build(sym, corr_nb)
+                if X is not None:
+                    r = _eval_arm(X, y, model_type)
+                    if r:
+                        arms["B"] = r
 
-        if len(arms) < 2:
-            continue
+            if agent_nb:
+                X, y, _dates = _build(sym, agent_nb)
+                if X is not None:
+                    r = _eval_arm(X, y, model_type)
+                    if r:
+                        arms["Ours"] = r
 
-        total += 1
-        winner = min(arms, key=lambda k: arms[k]["mae"])
-        win_counts[winner] += 1
+            if len(arms) < 2:
+                continue
 
-        per_target.append({
-            "target": sym,
-            "sector": meta.get("sector", "Unknown"),
-            "A_mae": arms.get("A", {}).get("mae"),
-            "B_mae": arms.get("B", {}).get("mae"),
-            "Ours_mae": arms.get("Ours", {}).get("mae"),
-            "A_beats_0": arms.get("A", {}).get("beats_0"),
-            "B_beats_0": arms.get("B", {}).get("beats_0"),
-            "Ours_beats_0": arms.get("Ours", {}).get("beats_0"),
-            "winner": winner,
-        })
+            total += 1
+            winner = min(arms, key=lambda k: arms[k]["mae"])
+            win_counts[winner] += 1
 
-    return {
+            per_target.append({
+                "target": sym,
+                "sector": meta.get("sector", "Unknown"),
+                "A_mae": arms.get("A", {}).get("mae"),
+                "B_mae": arms.get("B", {}).get("mae"),
+                "Ours_mae": arms.get("Ours", {}).get("mae"),
+                "A_beats_0": arms.get("A", {}).get("beats_0"),
+                "B_beats_0": arms.get("B", {}).get("beats_0"),
+                "Ours_beats_0": arms.get("Ours", {}).get("beats_0"),
+                "winner": winner,
+            })
+
+        if not per_target:
+            return None
+        return {
+            "model_type": model_type,
+            "total_targets": total,
+            "win_counts": dict(win_counts),
+            "per_target": per_target,
+        }
+
+    by_model: dict[str, dict] = {}
+    xgb_res = _run_model("xgb")
+    if xgb_res:
+        by_model["xgb"] = xgb_res
+
+    lstm_res = None
+    try:
+        get_model("lstm")
+        lstm_res = _run_model("lstm")
+    except Exception:
+        lstm_res = None
+    if lstm_res:
+        by_model["lstm"] = lstm_res
+
+    out: dict = {
         "horizon": horizon,
-        "total_targets": total,
-        "win_counts": dict(win_counts),
-        "per_target": per_target,
+        "by_model": by_model,
     }
+    primary = xgb_res or lstm_res
+    if primary:
+        out["total_targets"] = primary["total_targets"]
+        out["win_counts"] = primary["win_counts"]
+        out["per_target"] = primary["per_target"]
+    else:
+        out["total_targets"] = 0
+        out["win_counts"] = {}
+        out["per_target"] = []
+    return out
 
 
 def is_calibrated_experiment(e: dict) -> bool:
     return "mae_baseline_zero" in e
+
+
+def load_benchmark_results(horizon: int) -> dict | None:
+    """Load benchmark results for XGB vs LSTM comparison if available."""
+    benchmark_file = BENCHMARK_DIR / f"benchmark_results_h{horizon}.json"
+    if not benchmark_file.exists():
+        return None
+    with open(benchmark_file) as f:
+        return json.load(f)
+
+
+def build_model_benchmark(experiments: list, metadata: dict, horizon: int) -> dict:
+    """Build model benchmark statistics from experiment data.
+
+    Groups experiments by model_type and computes per-model aggregates.
+    Also checks for benchmark_results file for direct XGB vs LSTM comparison.
+    """
+    # Group experiments by model_type
+    by_model = defaultdict(list)
+    for e in experiments:
+        if e.get("horizon", horizon) != horizon:
+            continue
+        model = e.get("model_type", "xgb")
+        by_model[model].append(e)
+
+    # Compute per-model stats
+    model_stats = {}
+    for model, exps in by_model.items():
+        maes = [e["mae"] for e in exps]
+        beats_zero = sum(1 for e in exps if e.get("beats_baseline_zero"))
+        
+        # Find best per target for this model
+        best_per_target = {}
+        for e in exps:
+            t = e["target"]
+            key = e.get("mae_for_ranking", e.get("mae", float("inf")))
+            if t not in best_per_target or key < best_per_target[t]["score"]:
+                best_per_target[t] = {"score": key, "exp": e}
+
+        targets_list = [
+            {
+                "target": t,
+                "sector": get_sector(t, metadata),
+                "mae": round(v["exp"]["mae"], 6),
+                "beats_zero": v["exp"].get("beats_baseline_zero", False),
+            }
+            for t, v in sorted(best_per_target.items(), key=lambda x: x[1]["score"])
+        ]
+
+        model_stats[model] = {
+            "experiment_count": len(exps),
+            "target_count": len(best_per_target),
+            "avg_mae": round(statistics.mean(maes), 6) if maes else None,
+            "min_mae": round(min(maes), 6) if maes else None,
+            "max_mae": round(max(maes), 6) if maes else None,
+            "beats_zero_count": beats_zero,
+            "beats_zero_pct": round(100 * beats_zero / len(exps), 2) if exps else None,
+            "targets": targets_list,
+        }
+
+    # Load benchmark results if available (from benchmark_models.py)
+    benchmark_data = load_benchmark_results(horizon)
+
+    # Build per-target comparison if we have both models
+    per_target_comparison = []
+    if "xgb" in model_stats and "lstm" in model_stats:
+        xgb_targets = {t["target"]: t["mae"] for t in model_stats["xgb"]["targets"]}
+        lstm_targets = {t["target"]: t["mae"] for t in model_stats["lstm"]["targets"]}
+        
+        common_targets = set(xgb_targets.keys()) & set(lstm_targets.keys())
+        xgb_wins = 0
+        lstm_wins = 0
+        
+        for t in sorted(common_targets):
+            xgb_mae = xgb_targets[t]
+            lstm_mae = lstm_targets[t]
+            if xgb_mae < lstm_mae:
+                winner = "xgb"
+                xgb_wins += 1
+            elif lstm_mae < xgb_mae:
+                winner = "lstm"
+                lstm_wins += 1
+            else:
+                winner = "tie"
+            
+            per_target_comparison.append({
+                "target": t,
+                "sector": get_sector(t, metadata),
+                "xgb_mae": xgb_mae,
+                "lstm_mae": lstm_mae,
+                "winner": winner,
+                "mae_gap": round(abs(xgb_mae - lstm_mae), 6),
+            })
+    elif benchmark_data:
+        per_target_comparison = benchmark_data.get("per_target", [])
+        xgb_wins = benchmark_data.get("aggregate", {}).get("xgb_wins", 0)
+        lstm_wins = benchmark_data.get("aggregate", {}).get("lstm_wins", 0)
+    else:
+        xgb_wins = 0
+        lstm_wins = 0
+
+    return {
+        "horizon": horizon,
+        "by_model": model_stats,
+        "per_target": per_target_comparison,
+        "aggregate": {
+            "xgb_wins": xgb_wins,
+            "lstm_wins": lstm_wins,
+            "total_compared": len(per_target_comparison),
+        },
+        "benchmark_file_loaded": benchmark_data is not None,
+        "fairness_note": "Same data split, features, and test window for both models",
+    }
 
 
 def analyze(experiments, metadata, horizon_days: int):
@@ -346,6 +533,7 @@ def analyze(experiments, metadata, horizon_days: int):
             {
                 "target": t,
                 "sector": get_sector(t, metadata),
+                "model_type": v.get("model_type", "xgb"),
                 "best_mae": round(v["mae"], 6),
                 "worst_mae": round(worst_per_target[t]["mae"], 6),
                 "best_neighbors": v["neighbors"],
@@ -479,7 +667,12 @@ def analyze(experiments, metadata, horizon_days: int):
 
     # ── 7. Summary Stats ─────────────────────────────────────────────────────
     all_maes = [e["mae"] for e in calibrated_h]
-    beats_n = sum(1 for e in calibrated_h if e.get("beats_baseline_zero"))
+    beats_all = sum(1 for e in calibrated_h if e.get("beats_baseline_zero"))
+
+    # Per-target beats baseline: does the BEST experiment for each target beat zero?
+    best_beats_n = sum(1 for b in best_list if b.get("beats_baseline_zero"))
+    best_beats_pct = round(100.0 * best_beats_n / len(best_list), 2) if best_list else None
+
     summary = {
         "total_experiments": total,
         "total_targets": len(targets),
@@ -491,10 +684,12 @@ def analyze(experiments, metadata, horizon_days: int):
         "horizon_days": horizon_days,
         "calibrated_experiment_count": len(experiments),
         "calibrated_horizon_matched_count": len(calibrated_h),
-        "calibrated_beats_baseline_count": beats_n,
-        "calibrated_beats_baseline_pct": round(100.0 * beats_n / len(calibrated_h), 2)
+        "calibrated_beats_baseline_all_count": beats_all,
+        "calibrated_beats_baseline_all_pct": round(100.0 * beats_all / len(calibrated_h), 2)
         if calibrated_h
         else None,
+        "calibrated_beats_baseline_best_per_target_count": best_beats_n,
+        "calibrated_beats_baseline_best_per_target_pct": best_beats_pct,
         "global_avg_mae_calibrated": round(statistics.mean(all_maes), 6)
         if all_maes
         else None,
@@ -529,6 +724,10 @@ def analyze(experiments, metadata, horizon_days: int):
             horizon=horizon_days,
         )
 
+    # ── 10. Model Benchmark (XGB vs LSTM) ───────────────────────────────────
+    print("  Building model benchmark comparison…")
+    model_benchmark = build_model_benchmark(experiments, metadata, horizon_days)
+
     return {
         "summary": summary,
         "predictor_frequency": predictor_frequency,
@@ -549,6 +748,7 @@ def analyze(experiments, metadata, horizon_days: int):
             "by_target": backtest,
         },
         "baseline_comparison": build_baseline_comparison(experiments, metadata, horizon_days),
+        "model_benchmark": model_benchmark,
     }
 
 
