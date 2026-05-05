@@ -3,6 +3,6 @@
   "private": true,
   "scripts": {
     "serve": "python3 serve.py",
-    "sync": "cp ../../services/data/analysis.json ./analysis.json && echo 'Copied analysis.json'"
+    "sync": "cp ../../services/data/analysis*.json ./ && echo 'Copied analysis files'"
   }
 }

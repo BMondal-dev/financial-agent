@@ -2,6 +2,7 @@ import { defineEventHandler, readBody } from "h3"
 import { generateText, Output } from "ai"
 import { z } from "zod"
 import { google } from "@ai-sdk/google"
+import { chutes } from "../lib/openai"
 
 const FASTAPI = "http://localhost:8000"
 
@@ -176,7 +177,7 @@ export default defineEventHandler(async (event) => {
   // ROUND 3 — Mutation Search
   // -----------------------------------
   const { output: round3 } = await generateText({
-    model: google("gemini-3.1-pro-preview"),
+    model: chutes("zai-org/GLM-5-Turbo"),
     output: Output.array({ element: ExperimentSchema }),
     system: "You are a quant researcher. Return ONLY a JSON array of objects.",
     prompt: `

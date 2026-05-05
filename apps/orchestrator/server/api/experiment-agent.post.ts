@@ -9,6 +9,36 @@ function rankingMae(r: { mae_for_ranking?: number; mae?: number }) {
   return r.mae_for_ranking ?? r.mae ?? Number.POSITIVE_INFINITY
 }
 
+const SentimentSchema = z.object({
+  sentiment: z.enum(["Bullish", "Bearish", "Neutral"]),
+  semantic_sentiment: z.string(),
+  market_mood_index: z.number().describe("Float between 0.00 and 1.00. 1.00 is extremely Bullish (optimistic), 0.00 is extremely Bearish (pessimistic), and 0.50 is Neutral.")
+})
+
+async function fetchRealSentiment(target: string) {
+  try {
+    const rssResponse = await $fetch<string>(`https://news.google.com/rss/search?q=${target}+stock&hl=en-US&gl=US&ceid=US:en`);
+    // Simple regex to grab the first 10 <title> contents, skipping the main feed title
+    const titles = [...rssResponse.matchAll(/<title>(.*?)<\/title>/g)].map(m => m[1]).filter(t => !t.includes('Google News')).slice(0, 10);
+
+    if (titles.length === 0) return null;
+
+    const { output } = await generateText({
+      model: google("gemini-flash-latest"),
+      output: Output.object({
+        schema: SentimentSchema
+      }),
+      system: "You are a quant researcher analyzing the sentiment and market mood for a given stock based on recent news headlines. Provide a sentiment label, a concise semantic description of the news, and a market mood index (0.00 to 1.00).",
+      prompt: `Analyze the following news headlines for ${target}:\n${titles.join("\n")}`
+    });
+
+    return output;
+  } catch (e) {
+    console.error("Failed to fetch or generate sentiment:", e);
+    return null;
+  }
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
@@ -17,38 +47,51 @@ export default defineEventHandler(async (event) => {
 
   // 1️⃣ Fetch Metadata
   // Using native fetch or $fetch (Nuxt/Nitro)
-  const metadata = await $fetch(`${FASTAPI}/metadata/${target}`)
-  const candidates = await $fetch(`${FASTAPI}/candidate-neighbors/${target}`)
-  
+  const [metadata, candidates] = await Promise.all([
+    $fetch(`${FASTAPI}/metadata/${target}`),
+    $fetch(`${FASTAPI}/candidate-neighbors/${target}`)
+  ])
+
+  const sentimentData = await fetchRealSentiment(target)
+
+  let graphNeighbors: any[] = []
+  try {
+    graphNeighbors = await $fetch(`${FASTAPI}/graph-neighbors/${target}`)
+  } catch { graphNeighbors = [] }
+
   // Fetch past experiments for memory
-  const pastExperiments = await $fetch(
-    `${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`
-  )
+  let pastExperiments: any[] = []
+  try {
+    pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`)
+  } catch { pastExperiments = [] }
 
   // 2️⃣ Ask LLM for experiments
   // We use generateObject here because you want a typed JSON response
-  const { output  } = await generateText({
-    model: google("gemini-flash-lite-latest"), 
+  const { output } = await generateText({
+    model: google("gemini-flash-lite-latest"),
     output: Output.object({
-        schema: z.object({ // Property is 'schema', not 'output'
-            experiments: z.array(
-                z.object({
-                explanation: z.string(),
-                neighbors: z.array(z.string()).length(3)
-                })
-            )
-        })
+      schema: z.object({ // Property is 'schema', not 'output'
+        experiments: z.array(
+          z.object({
+            explanation: z.string(),
+            neighbors: z.array(z.string()).length(3)
+          })
+        )
+      })
     }),
     prompt: `
       You are a quantitative finance researcher.
       Target stock: ${target}
+      News Sentiment & Market Mood: ${JSON.stringify(sentimentData)}
       Metadata: ${JSON.stringify(metadata, null, 2)}
       Candidate neighbors: ${JSON.stringify(candidates)}
+      Graph Neighbors: ${JSON.stringify(graphNeighbors)}
+      Past Successful Tickers: ${JSON.stringify(pastExperiments)}
 
       Propose 3 different neighbor sets (3 stocks each) to forecast the target.
       Strategies can include: sector similarity, correlation similarity, 
       volatility regime similarity, consumption proxies, and cross-sector signals.
-      Return diverse hypotheses.
+      Return diverse hypotheses. Incorporate sentiment/mood analysis and graph neighbors into your rationale.
     `,
   })
 

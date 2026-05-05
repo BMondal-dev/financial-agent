@@ -3,7 +3,18 @@ import json
 import os
 from datetime import datetime, timezone
 
-EXPERIMENT_PATH = "../data/experiments.json"
+EXPERIMENTS_DIR = "../data"
+
+
+def _experiment_path(run_id: str | None = None) -> str:
+    """Return the experiments filename for a given run_id.
+
+    run_id=None  → "experiments.json"  (backward compat)
+    run_id="h5"  → "experiments_h5.json"
+    """
+    if run_id:
+        return os.path.join(EXPERIMENTS_DIR, f"experiments_{run_id}.json")
+    return os.path.join(EXPERIMENTS_DIR, "experiments.json")
 
 
 def log_experiment(
@@ -13,6 +24,7 @@ def log_experiment(
     mae: float,
     predicted_return: float,
     *,
+    run_id: str | None = None,
     mae_baseline_zero: float | None = None,
     mae_baseline_mean: float | None = None,
     beats_baseline_zero: bool | None = None,
@@ -42,6 +54,8 @@ def log_experiment(
         "predicted_return": predicted_return,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
+    if run_id:
+        entry["run_id"] = run_id
     entry["mae_baseline_zero"] = mae_baseline_zero
     entry["mae_baseline_mean"] = mae_baseline_mean
     entry["beats_baseline_zero"] = beats_baseline_zero
@@ -62,7 +76,7 @@ def log_experiment(
     entry["source"] = source
     entry["orchestrator_round"] = orchestrator_round
 
-    abs_path = os.path.abspath(EXPERIMENT_PATH)
+    abs_path = os.path.abspath(_experiment_path(run_id))
     os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     lock_path = abs_path + ".lock"
 

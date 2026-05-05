@@ -6,11 +6,13 @@ From repo root:
     python3 apps/dashboard/serve.py
 
 Behavior:
-1. If services/data/experiments.json is newer than services/data/analysis.json,
+1. Discovers all experiment files (experiments.json, experiments_h5.json, etc.)
+2. For each, if the experiments file is newer than the analysis file,
    runs analyze_experiments.py to refresh aggregates.
-2. Always copies services/data/analysis.json → apps/dashboard/analysis.json
-   so the static UI loads the canonical dataset.
+3. Copies all analysis_*.json → apps/dashboard/
+4. Writes a runs.json manifest for the dashboard dropdown.
 """
+import json
 import os
 import shutil
 import subprocess
@@ -20,54 +22,119 @@ from pathlib import Path
 
 DASHBOARD_DIR = Path(__file__).parent.resolve()
 REPO_ROOT = Path(__file__).parent.parent.parent.resolve()
-ANALYSIS_SRC = REPO_ROOT / "services" / "data" / "analysis.json"
-ANALYSIS_DST = DASHBOARD_DIR / "analysis.json"
-EXPERIMENTS_JSON = REPO_ROOT / "services" / "data" / "experiments.json"
+DATA_DIR = REPO_ROOT / "services" / "data"
 ANALYZE_SCRIPT = (
     REPO_ROOT / "services" / "forecast_engines" / "scripts" / "analyze_experiments.py"
 )
 
 
+def discover_experiment_files() -> list[tuple[str, Path, Path]]:
+    """Return list of (run_id_or_None, experiments_path, analysis_path)."""
+    results = []
+    # Default file
+    default_exp = DATA_DIR / "experiments.json"
+    default_analysis = DATA_DIR / "analysis.json"
+    if default_exp.exists():
+        results.append((None, default_exp, default_analysis))
+
+    # Named files: experiments_{run_id}.json
+    for exp in sorted(DATA_DIR.glob("experiments_*.json")):
+        # Skip lock files
+        if exp.name.endswith(".lock"):
+            continue
+        run_id = exp.name.replace("experiments_", "").replace(".json", "")
+        analysis = DATA_DIR / f"analysis_{run_id}.json"
+        results.append((run_id, exp, analysis))
+
+    return results
+
+
 def maybe_regenerate_analysis() -> None:
-    if not EXPERIMENTS_JSON.exists():
-        return
-    if not ANALYSIS_SRC.exists():
-        needs = True
-    else:
-        needs = EXPERIMENTS_JSON.stat().st_mtime > ANALYSIS_SRC.stat().st_mtime
-    if not needs:
-        return
-    print("Regenerating analysis.json from experiments.json …")
-    rc = subprocess.run(
-        [sys.executable, str(ANALYZE_SCRIPT)],
-        cwd=str(REPO_ROOT),
-    ).returncode
-    if rc != 0:
-        print(
-            "Warning: analyze_experiments.py exited with non-zero status; "
-            "using existing analysis if any."
-        )
+    """For each experiment file, regenerate analysis if needed."""
+    files = discover_experiment_files()
+    for run_id, exp_path, analysis_path in files:
+        label = f"analysis_{run_id}.json" if run_id else "analysis.json"
+        exp_label = exp_path.name
+
+        needs = False
+        if not analysis_path.exists():
+            needs = True
+        elif exp_path.stat().st_mtime > analysis_path.stat().st_mtime:
+            needs = True
+
+        if not needs:
+            continue
+
+        print(f"Regenerating {label} from {exp_label} …")
+        cmd = [sys.executable, str(ANALYZE_SCRIPT)]
+        if run_id:
+            cmd.extend(["--run-id", run_id])
+        rc = subprocess.run(cmd, cwd=str(REPO_ROOT)).returncode
+        if rc != 0:
+            print(
+                f"Warning: analyze_experiments.py exited with non-zero status for "
+                f"{label}; using existing if any."
+            )
 
 
-def sync_analysis_into_dashboard() -> bool:
-    if not ANALYSIS_SRC.exists():
-        if ANALYSIS_DST.exists():
-            print(f"Using bundled {ANALYSIS_DST} (no {ANALYSIS_SRC}).")
-            return True
-        print("ERROR: analysis.json not found.")
-        print(
-            "Generate it:  cd services/forecast_engines && "
-            "uv run python scripts/analyze_experiments.py"
-        )
-        return False
-    shutil.copy(ANALYSIS_SRC, ANALYSIS_DST)
-    print(f"Synced {ANALYSIS_SRC.name} → {ANALYSIS_DST.relative_to(REPO_ROOT)}")
-    return True
+def sync_analysis_into_dashboard() -> tuple[bool, list[dict]]:
+    """Copy all analysis files to dashboard, return (success, runs_manifest)."""
+    runs = []
+    any_file = False
+
+    # Copy default analysis.json
+    default_analysis = DATA_DIR / "analysis.json"
+    if default_analysis.exists():
+        dst = DASHBOARD_DIR / "analysis.json"
+        shutil.copy(default_analysis, dst)
+        print(f"Synced analysis.json → apps/dashboard/analysis.json")
+        runs.append({"id": "default", "label": "All horizons", "file": "analysis.json"})
+        any_file = True
+
+    # Copy named analysis files
+    for analysis in sorted(DATA_DIR.glob("analysis_*.json")):
+        if analysis.name.endswith(".lock"):
+            continue
+        run_id = analysis.name.replace("analysis_", "").replace(".json", "")
+        dst = DASHBOARD_DIR / analysis.name
+        shutil.copy(analysis, dst)
+        print(f"Synced {analysis.name} → apps/dashboard/{analysis.name}")
+        # Extract horizon label
+        if run_id.startswith("h"):
+            try:
+                days = run_id[1:]
+                label = f"{days}-day horizon"
+            except ValueError:
+                label = run_id
+        else:
+            label = run_id
+        runs.append({"id": run_id, "label": label, "file": analysis.name})
+        any_file = True
+
+    # Write runs manifest
+    runs_manifest = DASHBOARD_DIR / "runs.json"
+    json.dump(runs, indent=2, fp=runs_manifest.open("w"))
+    print(f"Wrote runs.json with {len(runs)} run(s)")
+
+    if not any_file:
+        if (DASHBOARD_DIR / "analysis.json").exists():
+            print(f"Using bundled analysis.json (no {DATA_DIR}/).")
+            runs.append({"id": "default", "label": "All horizons", "file": "analysis.json"})
+        else:
+            print("ERROR: analysis.json not found.")
+            print(
+                "Generate it:  cd services/forecast_engines && "
+                "uv run python scripts/analyze_experiments.py"
+            )
+            return False, []
+
+    return True, runs
 
 
 def main() -> None:
     maybe_regenerate_analysis()
-    if not sync_analysis_into_dashboard():
+    ok, runs = sync_analysis_into_dashboard()
+    if not ok:
         sys.exit(1)
 
     port = 8080

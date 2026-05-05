@@ -18,12 +18,10 @@ from pathlib import Path
 
 SERVICES = Path(__file__).resolve().parent.parent.parent
 BASE = SERVICES / "data"
-EXPERIMENTS = BASE / "experiments.json"
-LOCK = BASE / "experiments.json.lock"
 RUNS_DIR = BASE / "experiments_runs"
 REPO_ROOT = SERVICES.parent
 ANALYZE = SERVICES / "forecast_engines" / "scripts" / "analyze_experiments.py"
-DASHBOARD_ANALYSIS = REPO_ROOT / "apps" / "dashboard" / "analysis.json"
+DASHBOARD_DIR = REPO_ROOT / "apps" / "dashboard"
 
 
 def main() -> None:
@@ -35,12 +33,41 @@ def main() -> None:
     )
     args = p.parse_args()
 
-    EXPERIMENTS.write_text("[]\n", encoding="utf-8")
-    print(f"Wrote empty {EXPERIMENTS}")
+    # Reset default experiments.json
+    experiments_file = BASE / "experiments.json"
+    experiments_file.write_text("[]\n", encoding="utf-8")
+    print(f"Wrote empty {experiments_file}")
 
-    if LOCK.exists():
-        LOCK.unlink()
-        print(f"Removed {LOCK}")
+    lock = BASE / "experiments.json.lock"
+    if lock.exists():
+        lock.unlink()
+        print(f"Removed {lock}")
+
+    # Reset all run-specific experiment files
+    for exp in BASE.glob("experiments_*.json"):
+        if exp.name.endswith(".lock"):
+            continue
+        exp.write_text("[]\n", encoding="utf-8")
+        print(f"Wrote empty {exp}")
+        run_id = exp.name.replace("experiments_", "").replace(".json", "")
+        run_lock = BASE / f"experiments_{run_id}.json.lock"
+        if run_lock.exists():
+            run_lock.unlink()
+            print(f"Removed {run_lock}")
+
+    # Reset all analysis files
+    for analysis in BASE.glob("analysis*.json"):
+        analysis.unlink()
+        print(f"Removed {analysis}")
+
+    # Reset dashboard analysis files
+    for analysis in DASHBOARD_DIR.glob("analysis*.json"):
+        analysis.unlink()
+        print(f"Removed {analysis}")
+    runs_manifest = DASHBOARD_DIR / "runs.json"
+    if runs_manifest.exists():
+        runs_manifest.unlink()
+        print(f"Removed {runs_manifest}")
 
     if RUNS_DIR.exists():
         for f in RUNS_DIR.iterdir():
@@ -61,9 +88,9 @@ def main() -> None:
             print("analyze_experiments.py failed; run it manually.", file=sys.stderr)
             sys.exit(rc)
         src = BASE / "analysis.json"
-        if src.exists() and DASHBOARD_ANALYSIS.parent.is_dir():
-            shutil.copy(src, DASHBOARD_ANALYSIS)
-            print(f"Copied analysis.json → {DASHBOARD_ANALYSIS.relative_to(REPO_ROOT)}")
+        if src.exists() and DASHBOARD_DIR.is_dir():
+            shutil.copy(src, DASHBOARD_DIR / "analysis.json")
+            print(f"Copied analysis.json → apps/dashboard/analysis.json")
 
 
 if __name__ == "__main__":

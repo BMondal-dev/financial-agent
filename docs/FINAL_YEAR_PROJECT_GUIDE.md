@@ -195,8 +195,8 @@ If you need a numeric A/B for the thesis, the repo implements it explicitly:
 | **Baseline B** | Same model, **fixed** neighbors (top-3 **correlation** from `metadata.json`). |
 | **Ours** | Same model, **best logged agent** neighbor set for that target/horizon (by **`mae_for_ranking`** in `experiments.json`). |
 
-- **API:** `POST /compare-baselines` with body `{ "target": "ITC", "horizon": 5 }` (optional `ours_neighbors` to override the log). Same 80/20 chronological split for all three arms.
-- **Dashboard:** after `analyze_experiments.py`, `analysis.json` includes **`baseline_comparison`** (per-target table + win counts). The UI section **“Baseline A vs B vs Ours”** renders it.
+- **Script:** `compare_baselines.py` builds the same 80/20 chronological split for all three arms and writes `baseline_comparison.json`.
+- **Dashboard:** `analyze_experiments.py` computes **`baseline_comparison`** (per-target table + win counts) which is rendered in the **”Baseline A vs B vs Ours”** section. The UI shows win counts, per-target MAE, and beats-zero status.
 
 Then report **holdout MAE** (and **whether each beats zero**) on the **same** date range. “Our approach is better” must match these numbers, not hand-waving.
 

@@ -121,6 +121,26 @@
         .header-meta {
             color: var(--muted);
             font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .run-selector {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border2);
+            border-radius: var(--radius-sm);
+            padding: 3px 8px;
+            font-size: 12px;
+            font-family: var(--font-ui);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .run-selector:hover,
+        .run-selector:focus {
+            border-color: var(--coral);
         }
 
         /* ── Layout ─────────────────────────────────────────────────────────────── */
@@ -674,6 +694,9 @@
             Financial Agent — Experiment Dashboard
         </div>
         <div class="header-meta" id="header-meta">NIFTY 50 · XGBoost · Agentic Discovery</div>
+        <select id="run-selector" class="run-selector" style="display:none">
+            <option>Loading…</option>
+        </select>
     </header>
 
     <main id="app" style="display:none">
@@ -762,6 +785,39 @@
                             <tbody id="cross-sector-body"></tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baseline A vs B vs Ours -->
+        <div class="section" id="section-baseline-comparison">
+            <div class="section-header">
+                <div class="section-icon" style="background:rgba(230,57,80,0.12)">⚔️</div>
+                <div>
+                    <div class="section-title">Baseline A vs B vs Ours</div>
+                    <div class="section-sub">Same model, same split — target-only (A), fixed correlation neighbors (B), agent-proposed neighbors (Ours)</div>
+                </div>
+            </div>
+            <div class="section-body" id="baseline-comparison-summary"></div>
+            <div class="section-body">
+                <div class="chart-wrap" style="height:420px; overflow-y:auto">
+                    <table id="baseline-comparison-table" style="margin-top:4px">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Target</th>
+                                <th>Sector</th>
+                                <th>A MAE</th>
+                                <th>B MAE</th>
+                                <th>Ours MAE</th>
+                                <th>Winner</th>
+                                <th>A Beats 0</th>
+                                <th>B Beats 0</th>
+                                <th>Ours Beats 0</th>
+                            </tr>
+                        </thead>
+                        <tbody id="baseline-comparison-body"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -1023,13 +1079,44 @@
         function fmtModel(name) { return String(name || '').toUpperCase(); }
 
         // ── Main render ────────────────────────────────────────────────────────────
-        async function init() {
-            const resp = await fetch('./analysis.json');
+        let currentRuns = [];
+
+        async function loadRuns() {
+            try {
+                const resp = await fetch('./runs.json');
+                if (resp.ok) {
+                    currentRuns = await resp.json();
+                }
+            } catch { /* runs.json missing, use default */ }
+            if (!currentRuns.length) {
+                currentRuns = [{ id: "default", label: "All horizons", file: "analysis.json" }];
+            }
+        }
+
+        function renderRunSelector() {
+            const sel = $('run-selector');
+            if (!sel) return;
+            if (currentRuns.length <= 1) return; // only one run, hide dropdown
+
+            sel.innerHTML = '';
+            currentRuns.forEach(run => {
+                const opt = document.createElement('option');
+                opt.value = run.file;
+                opt.textContent = run.label;
+                sel.appendChild(opt);
+            });
+            sel.style.display = '';
+            sel.addEventListener('change', () => renderData(sel.value));
+        }
+
+        async function renderData(file) {
+            const resp = await fetch('.' + (file.startsWith('/') ? '' : '/') + file);
             const D = await resp.json();
+            _renderAll(D);
+        }
 
-            $('loading').remove();
-            $('app').style.display = '';
-
+        function _renderAll(D) {
+            destroyCharts();
             const s = D.summary;
             horizonDays = Number(s?.horizon_days || 5);
             backtestByTarget = D.backtest?.by_target || {};
@@ -1057,6 +1144,7 @@
             renderModelBenchmark(D);
             renderPredictorChart(D.predictor_frequency);
             renderCrossSector(D.cross_sector_pairs);
+            renderBaselineComparison(D.baseline_comparison);
             renderMAEChart(D.mae_distribution);
             renderHeatmap(D.sector_matrix);
             renderNetwork(D.network);
@@ -1067,6 +1155,20 @@
                 renderCalibratedTable(cal);
             }
             renderBestTable(D.best_per_target);
+        }
+
+        async function init() {
+            await loadRuns();
+            renderRunSelector();
+
+            // Load the first run
+            const first = currentRuns[0].file;
+            const resp = await fetch('./' + first);
+            const D = await resp.json();
+
+            $('loading').remove();
+            $('app').style.display = '';
+            _renderAll(D);
         }
 
         // ── Stats Cards ────────────────────────────────────────────────────────────
@@ -1146,7 +1248,7 @@
             const maeData = modelRows.map(r => r.avg_mae != null ? r.avg_mae * 100 : null);
             const colors = modelRows.map(r => r.model === 'lstm' ? 'rgba(201,125,255,0.82)' : 'rgba(245,197,24,0.82)');
 
-            new Chart($('chart-model-benchmark'), {
+            benchmarkChart = new Chart($('chart-model-benchmark'), {
                 type: 'bar',
                 data: {
                     labels,
@@ -1205,7 +1307,7 @@
             const counts = data.map(d => d.count);
             const colors = data.map(d => secColor(d.sector));
 
-            new Chart($('chart-predictors'), {
+            predictorChart = new Chart($('chart-predictors'), {
                 type: 'bar',
                 data: {
                     labels,
@@ -1264,6 +1366,47 @@
             }).join('');
         }
 
+        // ── Baseline A vs B vs Ours ───────────────────────────────────────────────
+        function renderBaselineComparison(bc) {
+            if (!bc || !bc.per_target || !bc.per_target.length) {
+                $('section-baseline-comparison').style.display = 'none';
+                return;
+            }
+            $('section-baseline-comparison').style.display = '';
+            const wc = bc.win_counts || {};
+            const total = bc.total_targets || 0;
+            $('baseline-comparison-summary').innerHTML =
+                `<span class="chart-badge" style="background:rgba(255,107,43,0.12);color:var(--coral)">A: ${wc.A || 0} wins</span> ` +
+                `<span class="chart-badge" style="background:rgba(245,197,24,0.12);color:var(--gold)">B: ${wc.B || 0} wins</span> ` +
+                `<span class="chart-badge" style="background:rgba(201,125,255,0.12);color:var(--violet)">Ours: ${wc.Ours || 0} wins</span> ` +
+                `<span style="color:var(--muted);font-size:12px;margin-left:8px">${total} targets · horizon ${bc.horizon}d</span>`;
+
+            const tbody = $('baseline-comparison-body');
+            tbody.innerHTML = bc.per_target.map((d, i) => {
+                const wCls = d.winner === 'Ours' ? 'color:var(--violet);font-weight:700' :
+                              d.winner === 'B' ? 'color:var(--gold);font-weight:700' :
+                              d.winner === 'A' ? 'color:var(--coral);font-weight:700' : '';
+                const y = v => v != null ? fmtMAE(v) : '—';
+                const b = v => {
+                    if (v === true) return '<span style="color:#4ade80">✓</span>';
+                    if (v === false) return '<span style="color:var(--muted)">✗</span>';
+                    return '—';
+                };
+                return `<tr>
+      <td class="rank-num">${i + 1}</td>
+      <td><b>${d.target}</b></td>
+      <td><span class="pill" style="background:${secColor(d.sector)}22;color:${secColor(d.sector)}">${d.sector}</span></td>
+      <td style="font-variant-numeric:tabular-nums">${y(d.A_mae)}</td>
+      <td style="font-variant-numeric:tabular-nums">${y(d.B_mae)}</td>
+      <td style="font-variant-numeric:tabular-nums">${y(d.Ours_mae)}</td>
+      <td style="${wCls}">${d.winner || '—'}</td>
+      <td>${b(d.A_beats_0)}</td>
+      <td>${b(d.B_beats_0)}</td>
+      <td>${b(d.Ours_beats_0)}</td>
+    </tr>`;
+            }).join('');
+        }
+
         // ── MAE Distribution Chart ─────────────────────────────────────────────────
         function renderMAEChart(data) {
             const labels = data.map(d => d.target);
@@ -1271,7 +1414,7 @@
             const meanMAEs = data.map(d => d.mean_mae * 100);
             const maxMAEs = data.map(d => d.max_mae * 100);
 
-            new Chart($('chart-mae'), {
+            maeChart = new Chart($('chart-mae'), {
                 type: 'bar',
                 data: {
                     labels,
@@ -1498,7 +1641,23 @@
 
         // ── Stock Price Explorer ────────────────────────────────────────────────────
         let stockChart = null;
+        let predictorChart = null;
+        let maeChart = null;
+        let benchmarkChart = null;
         let currentMode = 'price';
+
+        function destroyCharts() {
+            if (stockChart) { stockChart.destroy(); stockChart = null; }
+            if (predictorChart) { predictorChart.destroy(); predictorChart = null; }
+            if (maeChart) { maeChart.destroy(); maeChart = null; }
+            if (benchmarkChart) { benchmarkChart.destroy(); benchmarkChart = null; }
+            // Clear d3 network SVG
+            const networkSvg = $('network-container');
+            if (networkSvg) networkSvg.innerHTML = '';
+            // Clear heatmap
+            const heatmapContainer = $('heatmap-container');
+            if (heatmapContainer) heatmapContainer.innerHTML = '';
+        }
         let stocksData = {};
         let horizonDays = 5;
         let zoomPrediction = false;

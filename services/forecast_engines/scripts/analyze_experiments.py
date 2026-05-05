@@ -1,11 +1,15 @@
 """
 Experiment Analysis Script
 Analyzes experiments.json and generates a rich analysis JSON for the dashboard.
+
+Usage:
+    python scripts/analyze_experiments.py              # reads experiments.json → analysis.json
+    python scripts/analyze_experiments.py --run-id h5   # reads experiments_h5.json → analysis_h5.json
 """
 
+import argparse
 import csv
 import json
-import os
 from collections import Counter, defaultdict
 from pathlib import Path
 import statistics
@@ -14,15 +18,19 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error
 
 BASE = Path(__file__).parent.parent.parent / "data"
-EXPERIMENTS_FILE = BASE / "experiments.json"
 METADATA_FILE = BASE / "metadata" / "metadata.json"
 RAW_DIR = BASE / "raw"
-OUTPUT_FILE = BASE / "analysis.json"
-HORIZON_DAYS = int(os.getenv("FORECAST_HORIZON_DAYS", "5"))
 
 
-def load_data():
-    with open(EXPERIMENTS_FILE) as f:
+def _paths(run_id: str | None = None):
+    """Return (experiments_file, output_file) for a given run_id."""
+    if run_id:
+        return BASE / f"experiments_{run_id}.json", BASE / f"analysis_{run_id}.json"
+    return BASE / "experiments.json", BASE / "analysis.json"
+
+
+def load_data(experiments_file: Path):
+    with open(experiments_file) as f:
         experiments = json.load(f)
     with open(METADATA_FILE) as f:
         metadata = json.load(f)
@@ -30,10 +38,10 @@ def load_data():
 
 
 def load_returns_with_date(symbol: str) -> pd.DataFrame:
-    """Load date + return series aligned with services/forecast_engines/main.py."""
+    """Load date + Close + return series aligned with services/forecast_engines/main.py."""
     path = RAW_DIR / f"{symbol}.csv"
     if not path.exists():
-        return pd.DataFrame(columns=["Date", "return"])
+        return pd.DataFrame(columns=["Date", "Close", "return"])
 
     df = pd.read_csv(
         path,
@@ -47,7 +55,7 @@ def load_returns_with_date(symbol: str) -> pd.DataFrame:
     df.set_index("Date", inplace=True)
     df["return"] = df["Close"].pct_change()
     df = df.dropna(subset=["return"])
-    return df[["return"]].reset_index()
+    return df[["Close", "return"]].reset_index()
 
 
 def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> dict:
@@ -79,14 +87,14 @@ def build_backtest_series(target: str, neighbors: list[str], horizon: int) -> di
         )
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
     target_df = target_df.dropna()
 
     if len(target_df) < 20:
         return {"rows": [], "mae": None, "count": 0}
 
     dates = target_df.index.to_series()
-    X = target_df.drop(columns=["return", "future_return"])
+    X = target_df.drop(columns=["Close", "return", "future_return"])
     y = target_df["future_return"]
 
     split = int(len(X) * 0.8)
@@ -169,11 +177,136 @@ def get_sector(symbol, metadata):
     return metadata.get(symbol, {}).get("sector", "Unknown")
 
 
+def build_baseline_comparison(experiments: list, metadata: dict, horizon: int) -> dict:
+    """Compare A (target-only), B (fixed correlation neighbors), Ours (best agent) on each target."""
+    import numpy as np
+    from sklearn.metrics import mean_absolute_error
+    from xgboost import XGBRegressor
+    from collections import Counter
+
+    def _load_returns(sym):
+        path = RAW_DIR / f"{sym}.csv"
+        if not path.exists():
+            return None
+        df = pd.read_csv(path, skiprows=3, header=None, names=["Date", "Close"])
+        df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+        df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+        df = df.dropna(subset=["Date", "Close"])
+        df.set_index("Date", inplace=True)
+        df["return"] = df["Close"].pct_change()
+        return df[["Close", "return"]].dropna()
+
+    def _build(target, neighbors):
+        target_df = _load_returns(target)
+        if target_df is None:
+            return None, None, None
+        for lag in range(1, 6):
+            target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
+        target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
+        target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+        for n in neighbors:
+            if n == target:
+                continue
+            ndf = _load_returns(n)
+            if ndf is None:
+                continue
+            nr = ndf["return"].reindex(target_df.index)
+            target_df[f"{n}_lag_1"] = nr.shift(1)
+            target_df[f"{n}_rolling_mean_5"] = nr.shift(1).rolling(5).mean()
+        target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+        target_df = target_df.dropna()
+        if len(target_df) < 30:
+            return None, None, None
+        X = target_df.drop(columns=["Close", "return", "future_return"])
+        y = target_df["future_return"]
+        dates = target_df.index.to_series()
+        return X, y, dates
+
+    def _eval(X, y):
+        n = len(X)
+        split = int(n * 0.8)
+        train_end = split - horizon
+        if train_end < 1 or split >= n:
+            return None
+        X_train, X_test = X.iloc[:train_end], X.iloc[split:]
+        y_train, y_test = y.iloc[:train_end], y.iloc[split:]
+        mae_zero = float(mean_absolute_error(y_test, np.zeros(len(y_test))))
+        model = XGBRegressor(n_estimators=120, max_depth=4, learning_rate=0.05, random_state=42)
+        model.fit(X_train, y_train)
+        mae = float(mean_absolute_error(y_test, model.predict(X_test)))
+        return {"mae": round(mae, 6), "beats_0": mae < mae_zero}
+
+    # Best agent neighbors per target
+    agent_best = {}
+    for e in experiments:
+        if e.get("target") == e.get("target") and e.get("horizon", horizon) == horizon:
+            t = e["target"]
+            key = e.get("mae_for_ranking", float("inf"))
+            if t not in agent_best or key < agent_best[t]["score"]:
+                agent_best[t] = {"score": key, "neighbors": e["neighbors"]}
+
+    per_target = []
+    win_counts = Counter()
+    total = 0
+
+    for sym in sorted(metadata.keys()):
+        meta = metadata[sym]
+        corr_nb = [c["symbol"] for c in meta.get("top_correlated", [])[:3]]
+        agent_nb = agent_best.get(sym, {}).get("neighbors", [])
+
+        arms = {}
+        X, y, d = _build(sym, [])
+        if X is not None:
+            r = _eval(X, y)
+            if r:
+                arms["A"] = r
+
+        if corr_nb:
+            X, y, d = _build(sym, corr_nb)
+            if X is not None:
+                r = _eval(X, y)
+                if r:
+                    arms["B"] = r
+
+        if agent_nb:
+            X, y, d = _build(sym, agent_nb)
+            if X is not None:
+                r = _eval(X, y)
+                if r:
+                    arms["Ours"] = r
+
+        if len(arms) < 2:
+            continue
+
+        total += 1
+        winner = min(arms, key=lambda k: arms[k]["mae"])
+        win_counts[winner] += 1
+
+        per_target.append({
+            "target": sym,
+            "sector": meta.get("sector", "Unknown"),
+            "A_mae": arms.get("A", {}).get("mae"),
+            "B_mae": arms.get("B", {}).get("mae"),
+            "Ours_mae": arms.get("Ours", {}).get("mae"),
+            "A_beats_0": arms.get("A", {}).get("beats_0"),
+            "B_beats_0": arms.get("B", {}).get("beats_0"),
+            "Ours_beats_0": arms.get("Ours", {}).get("beats_0"),
+            "winner": winner,
+        })
+
+    return {
+        "horizon": horizon,
+        "total_targets": total,
+        "win_counts": dict(win_counts),
+        "per_target": per_target,
+    }
+
+
 def is_calibrated_experiment(e: dict) -> bool:
     return "mae_baseline_zero" in e
 
 
-def analyze(experiments, metadata):
+def analyze(experiments, metadata, horizon_days: int):
     experiments = [e for e in experiments if is_calibrated_experiment(e)]
     total = len(experiments)
     targets = set(e["target"] for e in experiments)
@@ -198,7 +331,7 @@ def analyze(experiments, metadata):
     worst_per_target = {}
 
     calibrated_h = [
-        e for e in experiments if e.get("horizon", HORIZON_DAYS) == HORIZON_DAYS
+        e for e in experiments if e.get("horizon", horizon_days) == horizon_days
     ]
 
     for e in calibrated_h:
@@ -355,7 +488,7 @@ def analyze(experiments, metadata):
         "global_min_mae": round(min(all_maes), 6),
         "global_max_mae": round(max(all_maes), 6),
         "sectors_covered": len(all_sectors_union),
-        "horizon_days": HORIZON_DAYS,
+        "horizon_days": horizon_days,
         "calibrated_experiment_count": len(experiments),
         "calibrated_horizon_matched_count": len(calibrated_h),
         "calibrated_beats_baseline_count": beats_n,
@@ -393,7 +526,7 @@ def analyze(experiments, metadata):
         backtest[target] = build_backtest_series(
             target=target,
             neighbors=item["best_neighbors"],
-            horizon=HORIZON_DAYS,
+            horizon=horizon_days,
         )
 
     return {
@@ -412,19 +545,44 @@ def analyze(experiments, metadata):
         "cross_sector_pairs": cross_sector,
         "stocks_history": stocks_history,
         "backtest": {
-            "horizon_days": HORIZON_DAYS,
+            "horizon_days": horizon_days,
             "by_target": backtest,
         },
+        "baseline_comparison": build_baseline_comparison(experiments, metadata, horizon_days),
     }
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Analyze experiment results")
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="Run ID (e.g. h5, h10). Reads experiments_{id}.json, writes analysis_{id}.json. Omit for default experiments.json.",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    print("Loading data...")
-    experiments, metadata = load_data()
+    args = parse_args()
+    exp_file, out_file = _paths(args.run_id)
+    run_label = f" [run={args.run_id}]" if args.run_id else ""
+
+    print(f"Loading data{run_label}...")
+    experiments, metadata = load_data(exp_file)
     print(f"  {len(experiments)} experiments, {len(metadata)} stocks in metadata")
 
+    # Derive horizon from the data (most common horizon)
+    horizons = [e.get("horizon", 5) for e in experiments]
+    if horizons:
+        from collections import Counter as _Counter
+        horizon_days = _Counter(horizons).most_common(1)[0][0]
+    else:
+        horizon_days = 5
+
+    print(f"  Detected horizon: {horizon_days} days")
+
     print("Analyzing…")
-    result = analyze(experiments, metadata)
+    result = analyze(experiments, metadata, horizon_days)
 
     s = result["summary"]
     print(f"\n── Summary ──────────────────────────────")
@@ -444,7 +602,7 @@ if __name__ == "__main__":
             f"  {b['target']:15s} MAE={b['best_mae']:.6f}  neighbors={b['best_neighbors']}"
         )
 
-    print(f"\nWriting to {OUTPUT_FILE}...")
-    with open(OUTPUT_FILE, "w") as f:
+    print(f"\nWriting to {out_file}...")
+    with open(out_file, "w") as f:
         json.dump(result, f, indent=2)
     print("Done ✓")

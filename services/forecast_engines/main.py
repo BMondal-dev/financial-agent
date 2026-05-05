@@ -7,7 +7,7 @@ import numpy as np
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import TimeSeriesSplit
-from experiment_logger import log_experiment
+from experiment_logger import log_experiment, _experiment_path
 from typing import Literal
 
 
@@ -15,11 +15,9 @@ app = FastAPI()
 
 DATA_DIR = "../data/raw"
 METADATA_PATH = "../data/metadata/metadata.json"
-EXPERIMENT_PATH = "../data/experiments.json"
 GRAPH_PATH = "../data/stock_graph.json"
 
 BASELINE_RANKING_PENALTY = 1.0
-LEGACY_EXPERIMENT_HORIZON = 5
 
 
 def _skip_time_series_cv() -> bool:
@@ -89,7 +87,7 @@ def load_returns(symbol: str):
         symbol: The stock ticker (e.g. "BEL").
 
     Returns:
-        A DataFrame indexed by date with a single "return" column.
+        A DataFrame indexed by date with "return" and "Close" columns.
         The first row is dropped since there is no prior close to compute a return.
     """
     path = f"{DATA_DIR}/{symbol}.csv"
@@ -110,7 +108,7 @@ def load_returns(symbol: str):
     # Compute daily percentage change: Close(t) / Close(t-1) - 1
     df["return"] = df["Close"].pct_change()
 
-    return df[["return"]].dropna()
+    return df[["Close", "return"]].dropna()
 
 
 # -----------------------------
@@ -153,12 +151,12 @@ def build_dataset(
 
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
 
     target_df = target_df.dropna()
     dates = target_df.index.to_series()
 
-    X = target_df.drop(columns=["return", "future_return"])
+    X = target_df.drop(columns=["Close", "return", "future_return"])
     y = target_df["future_return"]
 
     return X, y, valid_neighbors, dates
@@ -174,9 +172,10 @@ def time_series_cv_mae(
     """Run time-series cross-validation and return MAE statistics plus worst-split details.
 
     A purge gap equal to ``horizon`` is inserted between train and test folds to
-    prevent look-ahead leakage: because ``y[t] = return[t + horizon]``, the last
-    ``horizon`` rows of any training fold would otherwise leak labels that fall
-    inside the immediately-following test fold.
+    prevent look-ahead leakage: because ``y[t] = cumulative_return(t, t+horizon)``,
+    the training labels depend on prices up to ``t+horizon``. The last ``horizon``
+    rows of any training fold would otherwise leak labels that fall inside the
+    immediately-following test fold.
 
     Returns a dict with:
       - cv_mae_mean: mean MAE across splits
@@ -355,6 +354,7 @@ def run_forecast(req: ForecastRequest):
         req.horizon,
         mae,
         prediction,
+        run_id=f"h{req.horizon}",
         mae_baseline_zero=mae_baseline_zero,
         mae_baseline_mean=mae_baseline_mean,
         beats_baseline_zero=beats_baseline_zero,
@@ -409,19 +409,17 @@ def run_forecast(req: ForecastRequest):
 
 @app.get("/best-neighbors/{symbol}")
 def best_neighbors(symbol: str, horizon: int | None = Query(default=None)):
-    if not os.path.exists(EXPERIMENT_PATH):
+    """Return past experiment results for a target, scoped to the horizon if provided."""
+    # Use horizon-specific file when available, fall back to default
+    run_id = f"h{horizon}" if horizon else None
+    path = os.path.abspath(_experiment_path(run_id))
+    if not os.path.exists(path):
         return []
 
-    with open(EXPERIMENT_PATH) as f:
+    with open(path) as f:
         data = json.load(f)
 
     filtered = [x for x in data if x["target"] == symbol]
-    if horizon is not None:
-        filtered = [
-            x
-            for x in filtered
-            if x.get("horizon", LEGACY_EXPERIMENT_HORIZON) == horizon
-        ]
 
     if not filtered:
         return []

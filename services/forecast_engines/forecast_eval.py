@@ -49,7 +49,7 @@ def load_returns(symbol: str) -> pd.DataFrame:
     df = df.dropna(subset=["Date", "Close"])
     df.set_index("Date", inplace=True)
     df["return"] = df["Close"].pct_change()
-    return df[["return"]].dropna()
+    return df[["Close", "return"]].dropna()
 
 
 def build_dataset(
@@ -78,11 +78,11 @@ def build_dataset(
         )
         valid_neighbors.append(neighbor)
 
-    target_df["future_return"] = target_df["return"].shift(-horizon)
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
     target_df = target_df.dropna()
     dates = target_df.index.to_series()
 
-    X = target_df.drop(columns=["return", "future_return"])
+    X = target_df.drop(columns=["Close", "return", "future_return"])
     y = target_df["future_return"]
 
     return X, y, valid_neighbors, dates
