@@ -12,9 +12,10 @@
     "nitropack": "^2.12.4"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.75",
     "@ai-sdk/google": "^3.0.34",
     "@ai-sdk/openai": "^3.0.60",
-    "@ai-sdk/openai-compatible": "^2.0.35",
+    "@ai-sdk/openai-compatible": "^2.0.46",
     "@openrouter/ai-sdk-provider": "^2.2.5",
     "add": "^2.0.6",
     "ai": "^6.0.105",

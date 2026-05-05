@@ -3,6 +3,8 @@ import { generateText, Output } from "ai"
 import { google } from "@ai-sdk/google"
 import { z } from "zod"
 import { openai } from "@ai-sdk/openai"
+import { chutes } from "../lib/openai"
+import { anthropic } from "@ai-sdk/anthropic"
 
 const FASTAPI = "http://localhost:8000"
 
@@ -27,6 +29,7 @@ async function fetchRealSentiment(target: string) {
     const { output } = await generateText({
       // model: google("gemini-flash-latest"),
       model: openai("gpt-5.4-mini"),
+      // model: chutes("moonshotai/Kimi-K2.6-TEE"),
       output: Output.object({
         schema: SentimentSchema
       }),
@@ -75,7 +78,10 @@ export default defineEventHandler(async (event) => {
   // 2️⃣ Ask LLM for experiments
   // We use generateObject here because you want a typed JSON response
   const { output } = await generateText({
-    model: openai("gpt-5.4-mini"),
+    model: openai("gpt-5.4"),
+    // model: anthropic("claude-sonnet-4.6"),
+    // model: google("gemini-3.1-pro-preview"),
+    // model: chutes("moonshotai/Kimi-K2.6-TEE"),
     output: Output.object({
       schema: z.object({ // Property is 'schema', not 'output'
         experiments: z.array(
