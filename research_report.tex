@@ -67,7 +67,7 @@
 \maketitle
 
 \begin{abstract}
-Cross-stock return forecasting is central to quantitative research in equity markets, yet practitioners and researchers face a persistent bottleneck: manually discovering which other stocks carry predictive signal for a target ticker is labor-intensive, error-prone, and rarely reproducible. Many existing approaches fix a handful of neighbors or ignore calendar alignment entirely, leading to invalid comparisons and fragile conclusions. In this paper, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first LLM-driven agentic experimentation platform for systematic cross-stock neighbor discovery and multi-horizon cumulative return forecasting on the Indian NIFTY equity universe. The framework comprises an Orchestrator that proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; a Forecast Service that trains a fixed XGBoost regressor on calendar-aligned daily returns with explicit chronological splits and naive baselines (zero-return and train-mean); an Experiment Logger that records every proposal with full traceability; and an Analyzer that aggregates results into a calibrated dashboard for honest evaluation. Rather than claiming a superior model, ECHO treats the forecaster as a rigorous measuring instrument and focuses on automating the full research loop: propose $\rightarrow$ measure $\rightarrow$ remember $\rightarrow$ refine. Across thousands of logged experiments on NIFTY constituents, the platform demonstrates clear process-level superiority over manual and fixed-neighbor baselines while transparently reporting when even the best configurations fail to beat the zero-return baseline—a common and scientifically valid outcome in noisy return data. By turning forecasting into a repeatable, auditable experimentation pipeline, ECHO bridges the gap between manual workflows and production-grade quantitative research.
+Cross-stock return forecasting is central to quantitative research in equity markets, yet practitioners and researchers face a persistent bottleneck: manually discovering which other stocks carry predictive signal for a target ticker is labor-intensive, error-prone, and rarely reproducible. Many existing approaches fix a handful of neighbors or ignore calendar alignment entirely, leading to invalid comparisons and fragile conclusions. In this paper, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an LLM-driven agentic experimentation platform for systematic cross-stock neighbor discovery and multi-horizon cumulative return forecasting on the Indian NIFTY equity universe. The framework comprises an Orchestrator that proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; a Forecast Service that trains a configurable supervised regressor on calendar-aligned daily returns with explicit chronological splits and naive baselines (zero-return and train-mean); an Experiment Logger that records every proposal with full traceability; and an Analyzer that aggregates results into a calibrated dashboard for honest evaluation. The same calendar-aligned feature pipeline is consumed by two complementary backbones, gradient-boosted trees (XGBoost) and a recurrent network (a stateless LSTM operating on sliding sub-sequences of the engineered tabular features), enabling like-for-like model comparison under identical splits. Rather than claiming a single superior model, ECHO treats each forecaster as a rigorous measuring instrument and automates the full research loop: propose $\rightarrow$ measure $\rightarrow$ remember $\rightarrow$ refine. Across $1{,}175$ calibrated experiments at horizon $H=10$ on $56$ NIFTY constituents, the platform shows that (i) agent-proposed neighbors clearly dominate fixed-correlation peers under the boosted-tree backbone (Ours wins on $42$ targets, target-only on $12$, fixed-correlation on $2$); (ii) under the LSTM backbone, agent-proposed neighbors and target-only features are nearly tied (Ours $25$, target-only $24$, fixed-correlation $7$), revealing that the value of cross-stock features is materially backbone-dependent; and (iii) head-to-head, the LSTM achieves the lower MAE on $35$ of $56$ targets versus $21$ for the boosted trees, while the boosted trees retain a small edge in average MAE. By turning forecasting into a repeatable, auditable, and multi-model experimentation pipeline, ECHO bridges the gap between manual workflows and production-grade quantitative research.
 
 \vspace{0.5em}
 % \textbf{GitHub:} \url{https://github.com/BMondal-dev/financial-agent} \quad
@@ -85,9 +85,9 @@ Return forecasting in equity markets guides investment decisions, risk managemen
 
 Most advances in return forecasting arrive either as expert models tuned to a fixed feature set or as universal deep-learning forecasters that still leave the broader pipeline of feature (neighbor) discovery and evaluation untouched. AutoML-style approaches focus narrowly on hyperparameter search while ignoring the richer hypothesis space of cross-stock predictors. Meanwhile, naive LLM-based forecasters treat time series as language but lack grounding in market calendars and explicit baselines, making their outputs difficult to trust or reproduce. These limitations motivate an agentic approach—one that treats cross-stock return forecasting as a sequential decision process over neighbor proposal, rigorous scoring, logging, and refinement, with explicit planning, tool use, and transparent rationales.
 
-To this end, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first end-to-end, agentic experimentation platform that automates the entire workflow a human quantitative researcher would follow for discovering predictive cross-stock neighbors on the NIFTY universe. Rather than committing to a single universal model, ECHO orchestrates four specialized components that work in concert. First, a metadata engine builds a transparent feature layer per stock by combining Yahoo Finance fundamentals (via \texttt{ticker.info}) with computed market signals (volatility, momentum, drawdown, trend regime, static and rolling correlations), then compiles similarity sets and a weighted stock graph. The Orchestrator (powered by a structured-output LLM) reasons over this structured context, graph neighborhoods, and memory of past outcomes to propose candidate neighbor sets. Furthermore, by integrating qualitative market news sentiment and broader sector narratives, the Orchestrator evaluates the macroeconomic mood alongside statistical linkages. This combined quantitative-qualitative reasoning, augmented by memory of past experiment outcomes, enables the system to generate highly contextualized neighbor hypotheses. Next, the Forecast Service builds a properly calendar-aligned dataset (inner join on trading \texttt{Date}), trains the \emph{same} XGBoost regressor on lagged features and neighbor returns, evaluates on a strict chronological holdout, and computes honest metrics against zero-return and train-mean baselines. The Experiment Logger records every run with full provenance (rationale, neighbor list, horizon, source, and \texttt{mae\_for\_ranking} penalty when the model fails to beat zero). Finally, the Analyzer aggregates the append-only log into a calibrated dashboard that surfaces baseline comparisons (A = target-only features, B = fixed correlation neighbors, Ours = best agent-proposed set), sector influence matrices, predictor frequency, and backtest overlays—turning raw experiment history into actionable intelligence.
+To this end, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an end-to-end agentic experimentation platform that automates the entire workflow a human quantitative researcher would follow for discovering predictive cross-stock neighbors on the NIFTY universe. Rather than committing to a single universal model, ECHO orchestrates four specialized components that work in concert. First, a metadata engine builds a transparent feature layer per stock by combining external fundamentals (sector, industry, market capitalization, beta) with computed market signals (volatility, momentum, drawdown, trend regime, static and rolling correlations), then compiles similarity sets and a weighted stock graph. The Orchestrator (powered by a structured-output LLM) reasons over this structured context, graph neighborhoods, and memory of past outcomes to propose candidate neighbor sets. Furthermore, by integrating qualitative market news sentiment and broader sector narratives, the Orchestrator evaluates the macroeconomic mood alongside statistical linkages. This combined quantitative-qualitative reasoning, augmented by memory of past experiment outcomes, enables the system to generate highly contextualized neighbor hypotheses. Next, the Forecast Service builds a properly calendar-aligned supervised dataset (inner join on trading date), trains either a gradient-boosted tree regressor or an LSTM regressor on the same lagged target features and neighbor returns, evaluates on a strict chronological holdout, and computes honest metrics against zero-return and train-mean baselines. The Experiment Logger records every run with full provenance (rationale, neighbor list, horizon, model backbone, and a ranking penalty applied whenever a configuration fails to beat the zero-return baseline). Finally, the Analyzer aggregates the append-only log into a calibrated dashboard that surfaces, per backbone, baseline comparisons (A = target-only features, B = fixed correlation neighbors, Proposed = best agent-proposed set), a head-to-head per-target XGBoost-vs-LSTM benchmark, sector influence matrices, predictor frequency, and backtest overlays—turning raw experiment history into actionable intelligence.
 
-Across extensive experiments on NIFTY 50 constituents, ECHO consistently outperforms unstructured manual workflows and fixed-neighbor baselines in terms of hypothesis coverage, evaluation hygiene, and reproducibility. While many configurations do not beat the zero-return baseline (a scientifically honest outcome in noisy daily return data), the platform’s Baseline A/B/Ours comparisons and calibrated leaderboards reveal where agent-chosen neighbors provide measurable lift over naive alternatives. The Baseline A vs B vs Ours comparison (target-only vs fixed correlation vs agent-proposed) shows that target-only features capture much of the autoregressive structure, but the agent-proposed neighbors consistently outperform static correlation neighbors, demonstrating that smart neighbor selection avoids poor choices and adds interpretable cross-stock signal. Ablations confirm that calendar alignment, explicit baselines, and multi-round memory each contribute materially to the quality of discovered configurations. The generated dashboard further provides transparent, visual reports that make the entire experimentation process interpretable and extensible.
+Across extensive experiments on NIFTY 50 constituents, ECHO consistently outperforms unstructured manual workflows and fixed-neighbor baselines in terms of hypothesis coverage, evaluation hygiene, and reproducibility. While many configurations do not beat the zero-return baseline (a scientifically honest outcome in noisy daily return data), the platform's Baseline A/B/Proposed comparisons and calibrated leaderboards reveal where agent-chosen neighbors provide measurable lift over naive alternatives. With the boosted-tree backbone, the agent-proposed neighbors consistently outperform static correlation neighbors and improve on the target-only floor on $42$ of $56$ targets at $H=10$. With the LSTM backbone, the same agent-chosen neighbors and the target-only configuration are essentially tied ($25$ versus $24$ wins), while the fixed-correlation arm remains the weakest ($7$ wins). This dichotomy is a substantive empirical finding: the value of cross-stock enrichment is not a property of the data alone but of the interaction between data, neighbor design, and the inductive bias of the model class. Ablations confirm that calendar alignment, explicit baselines, and multi-round memory each contribute materially to the quality of discovered configurations. The dashboard further provides transparent, visual reports that make the entire experimentation process interpretable and extensible.
 
 From a research methodology perspective, the central challenge is combinatorial. For a universe of \(N\) stocks and neighbor set size \(k\), the number of possible cross-stock hypotheses for a single target is \(\binom{N-1}{k}\), which quickly becomes intractable even for moderate \(N\). Human researchers therefore rely on coarse shortcuts (same sector, top historical correlation, or discretionary intuition), but such shortcuts frequently miss transient cross-sector lead-lag effects and regime-dependent dependencies. ECHO is designed to address this search problem directly: rather than collapsing the hypothesis space to one static rule, it performs structured proposal generation guided by metadata, graph priors, and memory, then validates each proposal under identical forecasting conditions.
 
@@ -95,21 +95,24 @@ A second challenge is data integrity under financial market frictions. Indian eq
 
 The NIFTY universe offers a particularly suitable testbed for this thesis. It is sector-diverse (financials, energy, information technology, consumer, industrial, healthcare), sufficiently liquid for stable daily observations, and has experienced materially different macro regimes within the study window, including pandemic shock, recovery, inflationary pressure, and policy-rate transitions. These shifts create a realistic environment in which cross-stock relationships evolve over time. Static all-period associations can therefore be informative yet incomplete, motivating the joint use of long-horizon correlation structure and rolling, short-horizon co-movement signals.
 
-Our design also emphasizes semantic clarity between \emph{descriptors} and \emph{derived signals}. Certain fields, such as \texttt{market\_cap} and \texttt{beta}, are externally sourced descriptors from Yahoo Finance and should be interpreted as contextual priors, not model outputs. In contrast, momentum, volatility, drawdown, trend regime, and rolling correlations are computed transformations of observed prices. This separation enables more transparent reasoning by the Orchestrator and more interpretable ablations: researchers can explicitly analyze whether improvements stem from stable fundamental context, dynamic return structure, or their interaction in the weighted similarity graph.
+Our design also emphasises semantic clarity between \emph{descriptors} and \emph{derived signals}. Certain fields, such as market capitalisation and beta, are externally observable descriptors and should be interpreted as contextual priors, not model outputs. In contrast, momentum, volatility, drawdown, trend regime, and rolling correlations are computed transformations of observed prices. This separation enables more transparent reasoning by the Orchestrator and more interpretable ablations: researchers can explicitly analyse whether improvements stem from stable fundamental context, dynamic return structure, or their interaction in the weighted similarity graph.
 
-Finally, ECHO adopts a process-level view of progress. In noisy return forecasting, single-run wins can be accidental; what matters is whether the research loop itself is rigorous, repeatable, and cumulative. By fixing the forecaster, enforcing leakage-safe evaluation, and logging every proposal with rationale and outcomes, ECHO turns neighbor discovery into an auditable experimental science workflow. This perspective aligns with practical quantitative research, where trustworthy iteration and institutional memory are often more valuable than isolated point improvements on one backtest.
+Finally, ECHO adopts a process-level view of progress. In noisy return forecasting, single-run wins can be accidental; what matters is whether the research loop itself is rigorous, repeatable, and cumulative. By enforcing a shared, leakage-safe evaluation protocol across backbones and logging every proposal with rationale, neighbor list, and outcomes, ECHO turns neighbor discovery into an auditable experimental-science workflow. This perspective aligns with practical quantitative research, where trustworthy iteration and institutional memory are often more valuable than isolated point improvements on one backtest.
 
-In the same spirit, we intentionally use a fixed \texttt{XGBRegressor} and a stateless, request-scoped training policy instead of persisting a single global model file. In ECHO, the neighbor set is part of the hypothesis itself, so changing neighbors changes feature identity. For example, a model trained with neighbors \(\{A,B,C\}\) expects features such as \texttt{A\_lag\_1}, \texttt{B\_lag\_1}, and \texttt{C\_lag\_1}; if a later request uses \(\{A,D,E\}\), the resulting columns become \texttt{A\_lag\_1}, \texttt{D\_lag\_1}, and \texttt{E\_lag\_1}, and the saved model is semantically mismatched. Moreover, forecasting always depends on the latest bars, which requires fresh lag and rolling-feature construction even when a model checkpoint exists. We therefore prioritize proposal-specific retraining and methodological consistency, and avoid sequence-heavy alternatives (e.g., LSTM) whose added training complexity can confound whether gains come from better neighbors or from model-class tuning.
+In the same spirit, we adopt a stateless, request-scoped training policy: each forecast request retrains the model on data up to the request time, rather than persisting a single global checkpoint across heterogeneous neighbor sets. In ECHO, the neighbor set is part of the hypothesis itself, so changing neighbors changes feature identity. A model trained with neighbors \(\{A,B,C\}\) expects features that include lag and rolling summaries derived from \(A,B,C\); if a later request uses \(\{A,D,E\}\), those columns are renamed and re-derived, and a previously saved model would be semantically mismatched. Moreover, forecasting always depends on the latest bars, which requires fresh lag and rolling-feature construction even when a model checkpoint exists. We therefore prioritise proposal-specific retraining and methodological consistency.
+
+To strengthen the methodological claims rather than weaken them, ECHO is intentionally backbone-agnostic. The same calendar-aligned, leakage-safe dataset is consumed by two complementary regressors selected per request: a gradient-boosted tree regressor that handles the engineered tabular features directly, and a stateless LSTM regressor that consumes sliding sub-sequences of the same tabular features (so cross-experiment comparisons remain meaningful even when the neighbor set, and therefore the input width, changes). All baselines, splits, ranking penalties, and dashboard aggregations are model-agnostic, which lets us cleanly separate the question ``did the agent propose better neighbors?'' from the question ``does this model class extract more signal from a fixed feature pool?''.
 
 
 \textbf{Our main contributions are as follows:}
 \begin{enumerate}
-    \item We introduce ECHO (Equity Cross-stock Heuristic Orchestrator), the first end-to-end agentic experimentation platform for cross-stock neighbor discovery and return forecasting on the NIFTY universe.
-    \item We formalize a transparent metadata thesis by separating direct Yahoo Finance attributes (e.g., \texttt{market\_cap}, \texttt{beta}) from computed signals (volatility, momentum, relative strength, drawdowns, trend regime, static/rolling correlations, and similarity sets).
+    \item We introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an end-to-end agentic experimentation platform for cross-stock neighbor discovery and return forecasting on the NIFTY universe.
+    \item We formalise a transparent metadata thesis by separating directly observable attributes (e.g., market capitalisation, beta) from computed signals (volatility, momentum, relative strength, drawdowns, trend regime, static and rolling correlations, and similarity sets).
     \item We define an explicit weighted stock-similarity graph that combines correlation strength with sector, volatility-bucket, and market-cap-bucket agreement, and use it as a structural prior for neighbor proposal.
-    \item We formalize a leakage-safe, calendar-aligned evaluation protocol with explicit naive baselines, cumulative returns over the prediction horizon, and a ranking penalty that prevents celebration of trivial performance.
-    \item We justify a fixed-model experimentation strategy (\texttt{XGBRegressor} with stateless retraining) that avoids schema mismatch under changing neighbor sets and keeps predictions tied to current market data.
-    \item We demonstrate that LLM-guided neighbor proposals, when rigorously scored by a fixed XGBoost yardstick, consistently outperform fixed-correlation baselines and approach target-only performance on many targets while maintaining full traceability.
+    \item We formalise a leakage-safe, calendar-aligned evaluation protocol with explicit naive baselines, cumulative returns over the prediction horizon, and a ranking penalty that prevents celebration of trivial performance.
+    \item We adopt a stateless, request-scoped training policy that avoids schema mismatch under changing neighbor sets and keeps every prediction tied to the most recent market data.
+    \item We extend the framework to a dual-backbone evaluation, fitting both a gradient-boosted tree regressor and a stateless LSTM regressor on the same calendar-aligned features under identical splits, and we expose the resulting per-target comparison directly in the analyzer dashboard.
+    \item We empirically show that the value of LLM-proposed neighbors is backbone-dependent: under boosted trees, agent-proposed neighbors clearly dominate fixed-correlation peers and improve on the target-only floor on most targets; under the LSTM, agent-proposed neighbors are competitive with target-only features, while fixed-correlation neighbors remain consistently inferior.
 \end{enumerate}
 
 
@@ -131,17 +134,17 @@ Most relevant to our work is TimeSeriesScientist \citep{zhao2025timeseriesscient
 
 Recent agentic systems for financial time series emphasize planning and data-centric refinement but stop short of a closed-loop experimentation platform that systematically proposes, scores, logs, and refines cross-stock hypotheses under rigorous evaluation protocols.
 
-ECHO advances this line of research by introducing a full agentic experimentation loop specifically designed for cross-stock return forecasting. Unlike prior work that centers on model improvement, ECHO keeps the underlying forecaster fixed (XGBoost) and automates the harder problem of hypothesis generation and honest evaluation, providing the first end-to-end, reproducible pipeline for neighbor-enriched equity forecasting.
+ECHO advances this line of research by introducing a full agentic experimentation loop specifically designed for cross-stock return forecasting. Unlike prior work that centres on model improvement, ECHO automates the harder problem of hypothesis generation and honest evaluation, providing a reproducible pipeline for neighbor-enriched equity forecasting. The framework is deliberately backbone-agnostic: identical calendar-aligned features, splits, and baselines are consumed by either a gradient-boosted tree regressor or a stateless LSTM regressor, which lets us disentangle the contribution of the agent's neighbor proposals from the contribution of the model class.
 
 
 \section{ECHO Framework}
 
-ECHO acts as a human quantitative researcher, systematically performing hypothesis generation, rigorous evaluation, logging, and refinement by leveraging LLM reasoning abilities. ECHO integrates four specialized components that work in concert: (1) Orchestrator proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; (2) Forecast Service builds calendar-aligned datasets and evaluates a fixed XGBoost regressor with explicit baselines; (3) Experiment Logger records every run with full provenance; and (4) Analyzer aggregates the append-only log into a calibrated dashboard for transparent insights. This design transforms cross-stock return forecasting into an adaptive, reproducible, and interpretable experimentation pipeline.
+ECHO acts as a human quantitative researcher, systematically performing hypothesis generation, rigorous evaluation, logging, and refinement by leveraging LLM reasoning abilities. ECHO integrates four specialized components that work in concert: (1) the Orchestrator proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; (2) the Forecast Service builds calendar-aligned datasets and evaluates a configurable supervised regressor (gradient-boosted trees or a stateless LSTM) under identical splits and explicit baselines; (3) the Experiment Logger records every run with full provenance, including the model backbone used; and (4) the Analyzer aggregates the append-only log into a calibrated dashboard that exposes per-backbone leaderboards and head-to-head comparisons. This design transforms cross-stock return forecasting into an adaptive, reproducible, and interpretable experimentation pipeline.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{ECHO_Framework.png}
-    \caption{Overview of the ECHO framework. The agentic experimentation loop consists of four components: the Orchestrator proposes neighbor sets using metadata, sector graph, and memory; the Forecast Service performs calendar-aligned evaluation with a fixed XGBoost regressor and explicit baselines; the Experiment Logger records full provenance; and the Analyzer produces a calibrated dashboard. Best configurations are fed back as memory for iterative refinement.}
+    \caption{Overview of the ECHO framework. The agentic experimentation loop consists of four components: the Orchestrator proposes neighbor sets using metadata, sector graph, and memory; the Forecast Service performs calendar-aligned evaluation with a configurable supervised regressor (gradient-boosted trees or a stateless LSTM) under explicit baselines; the Experiment Logger records full provenance, including the model backbone; and the Analyzer produces a calibrated dashboard with per-backbone leaderboards and head-to-head comparisons. Best configurations are fed back as memory for iterative refinement.}
     \label{fig:echo-overview}
 \end{figure}
 
@@ -159,37 +162,36 @@ The objective is to minimize the mean absolute error (MAE) on a strict chronolog
 
 \subsection{Metadata Construction and Similarity Graph Logic}
 
-Before orchestration begins, ECHO creates a metadata object for each stock. For each symbol \(s\), close prices are read from local historical CSV files, while selected fundamentals are fetched directly from Yahoo Finance's \texttt{ticker.info}: \texttt{sector}, \texttt{industry}, \texttt{market\_cap}, and \texttt{beta}. These fields are not predicted by the model; they are external descriptors used for hypothesis generation.
+Before orchestration begins, ECHO creates a metadata object for each stock. For each symbol \(s\), close prices are read from a locally cached historical price tape, while selected fundamentals (sector, industry, market capitalisation, beta) are fetched from a public market-data provider. These fundamentals are not predicted by the model; they are external descriptors used for hypothesis generation.
 
 \paragraph{Return-loading protocol.}
-For each stock, the service ingests raw CSV records after discarding the three non-data header rows, retaining the pair \((\text{Date},\text{Close})\) as the observed market series. Dates are parsed as calendar timestamps and closes are coerced to real-valued prices; malformed entries are mapped to missing values and excluded. The cleaned table is then indexed by \(\text{Date}\), which enforces a time-ordered, calendar-consistent representation for all downstream joins and lag operations. Daily arithmetic returns are computed as
+For each stock, the service ingests the raw price records, retaining the pair \((\text{Date},\text{Close})\) as the observed market series. Dates are parsed as calendar timestamps and closes are coerced to real-valued prices; malformed entries are mapped to missing values and excluded. The cleaned table is then indexed by \(\text{Date}\), which enforces a time-ordered, calendar-consistent representation for all downstream joins and lag operations. Daily arithmetic returns are computed as
 \[
 r_t^{(s)} = \frac{P_t^{(s)}}{P_{t-1}^{(s)}} - 1.
 \]
 Because the first timestamp has no predecessor \(P_{t-1}^{(s)}\), it is removed by construction, and the function outputs a date-indexed univariate return series \(\{r_t^{(s)}\}\).
 
-\paragraph{Forecast-service endpoint roles.}
-The orchestrator-facing endpoints expose complementary views of the search space.
+\paragraph{Forecast-service views of the search space.}
+The orchestrator-facing services expose four complementary views of the candidate space, summarised in Table~\ref{tab:forecast-endpoints}.
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{FastAPI endpoints used by the forecasting workflow.}
+\caption{Information views consumed by the Orchestrator.}
 \label{tab:forecast-endpoints}
-\begin{tabular}{p{0.25\linewidth} p{0.20\linewidth} p{0.48\linewidth}}
+\begin{tabular}{p{0.30\linewidth} p{0.62\linewidth}}
 \toprule
-Endpoint & Source & Returned object \\
+View & Returned object \\
 \midrule
-\texttt{/metadata/\{symbol\}} & \texttt{metadata.json} & Raw structured descriptor set (e.g., \texttt{same\_sector}, \texttt{same\_market\_cap\_bucket}, \texttt{top\_correlated} with correlation values). \\
-\texttt{/candidate-neighbors/\{symbol\}} & \texttt{metadata.json} & Flat de-duplicated candidate list formed by the union of sector peers, market-cap-bucket peers, and top-correlated symbols. \\
-\texttt{/graph-neighbors/\{symbol\}} & \texttt{stock\_graph.json} & Top-5 graph neighbors sorted by learned edge weight (structural similarity prior). \\
-\texttt{/best-neighbors/\{symbol\}} & \texttt{experiments.json} & Top-5 historically best neighbor configurations for that target (lowest MAE among unique sets, optionally horizon-filtered). \\
+Metadata view & Structured descriptor set per symbol, including sector and market-cap buckets and the top-correlated peer list with raw correlation values. \\
+Candidate-neighbor view & Flat, de-duplicated candidate pool formed by the union of sector peers, market-cap-bucket peers, and top-correlated symbols. \\
+Graph-neighbor view & Top-5 graph neighbors sorted by learned edge weight (a structural similarity prior). \\
+Best-neighbor history & Top-5 historically best neighbor configurations for that target (lowest MAE among unique sets, optionally horizon-filtered and backbone-filtered). \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-
-Metadata and candidate endpoints define the raw pool; graph neighbors inject structural priors; best-neighbor history provides empirical evidence from prior runs. News sentiment (queried separately from Google News in the orchestration layer) contributes a contemporaneous qualitative context signal.
+The metadata and candidate views define the raw pool; the graph view injects structural priors; the best-neighbor history provides empirical evidence from prior runs. A separate qualitative-context channel (market news sentiment) contributes a contemporaneous signal that is not present in the price tape.
 
 Let \(P_t^{(s)}\) be close price and \(r_t^{(s)} = \frac{P_t^{(s)} - P_{t-1}^{(s)}}{P_{t-1}^{(s)}}\). The metadata pipeline computes:
 \begin{itemize}
@@ -227,30 +229,11 @@ The Orchestrator serves as the hypothesis generator. For a given target stock \(
     \item \textbf{Memory of Previous Experiments}: Best-performing neighbor sets from earlier runs along with their MAE scores.
 \end{itemize}
 
-These inputs are fetched and passed to the LLM for proposal generation. The actual data loading logic is implemented as follows:
-
-\begin{lstlisting}[language=TypeScript]
-const [metadata, candidates] = await Promise.all([
-  $fetch(`${FASTAPI}/metadata/${target}`),
-  $fetch(`${FASTAPI}/candidate-neighbors/${target}`)
-]);
-
-let graphNeighbors = [];
-try {
-  graphNeighbors = await $fetch(`${FASTAPI}/graph-neighbors/${target}`);
-} catch { graphNeighbors = []; }
-
-let pastExperiments = [];
-try {
-  pastExperiments = await $fetch(`${FASTAPI}/best-neighbors/${target}?horizon=${horizon}`);
-} catch { pastExperiments = []; }
-\end{lstlisting}
-
-The Orchestrator then runs a three-round loop (Exploration → Refinement → Mutation), feeding the best configurations and past successful neighbor sets back as memory for subsequent rounds.
+For each target, the Orchestrator concurrently retrieves the metadata, candidate-neighbor, graph-neighbor, and best-neighbor views described above, optionally filtered by the requested horizon and model backbone. The structured payload is then passed to the language model with a prompt that asks it to propose a small neighbor set together with a free-text rationale. The Orchestrator runs a three-round loop (exploration $\rightarrow$ refinement $\rightarrow$ mutation), feeding the best-scoring configurations and past successful neighbor sets back as memory for subsequent rounds.
 
 \subsection{Forecast Service}
 
-The Forecast Service is the measuring instrument of ECHO. Given target stock \(i\), neighbor set \(\mathcal{N}_i\), and horizon \(H\), it builds a leakage-aware supervised-learning dataset and evaluates a fixed \texttt{XGBRegressor}.
+The Forecast Service is the measuring instrument of ECHO. Given a target stock \(i\), a neighbor set \(\mathcal{N}_i\), a horizon \(H\), and a model backbone \(\mathcal{F}\in\{\text{XGB},\text{LSTM}\}\), it builds a leakage-aware supervised-learning dataset and evaluates the chosen backbone under a strict chronological holdout. The dataset construction below is shared by both backbones; the only difference is whether the engineered feature matrix is consumed as a tabular block (XGB) or as a sliding sequence tensor (LSTM, described in Section~\ref{sec:data-eng}).
 
 \paragraph{Dataset construction.}
 Let \(r_t^{(i)}\) denote target daily return and \(r_t^{(j)}\) denote neighbor \(j\) daily return. Feature engineering is:
@@ -300,7 +283,7 @@ The ranking score used by the experimentation loop is
 This penalty prevents weak models (worse than zero-return guessing) from dominating neighbor selection. The zero-return baseline for cumulative returns is \(R_{t:t+H}^{(i)} = 0\) (no price change over the horizon), and its MAE equals the mean absolute \(H\)-day cumulative return of the test period. As \(H\) increases, \(\text{MAE}_0\) grows (roughly proportional to \(\sqrt{H}\) under random walk), making the zero-return bar easier for the model to beat at longer horizons.
 
 \paragraph{Time-series cross-validation.}
-Beyond a single holdout, ECHO runs \texttt{TimeSeriesSplit} with \(n_{\text{splits}}=2\) and purge gap \(g=H\). For each fold \(k\), since \(y_t\) depends on prices up to \(t+H\), the training labels must not span beyond the test period start:
+Beyond a single holdout, ECHO runs an expanding-window time-series cross-validation with \(n_{\text{splits}}=2\) and a purge gap \(g=H\). For each fold \(k\), since \(y_t\) depends on prices up to \(t+H\), the training labels must not span beyond the test-period start:
 \[
 \max(\mathcal{T}^{(k)}_{\text{train}}) + H < \min(\mathcal{T}^{(k)}_{\text{test}}),
 \]
@@ -324,11 +307,11 @@ The endpoint executes: (1) dataset construction, (2) minimum-sample validation, 
 
 \subsection{Experiment Logger}
 
-Every forecast run is atomically appended to \texttt{experiments.json} with file-level locking for concurrency safety. The logger writes a stable schema for each trial: target, sorted neighbor set, horizon, MAE, final prediction, baseline MAEs, beat-zero flag, ranking MAE, CV diagnostics (mean, standard deviation, worst split, worst-split date range), train/test sample counts, train/test date ranges, experiment metadata, and timestamp. This append-only design forms an auditable laboratory notebook for the full hypothesis lifecycle.
+Every forecast run is atomically appended to a single experiment log with file-level locking for concurrency safety. The logger writes a stable schema for each trial: target, sorted neighbor set, horizon, model backbone, MAE, final prediction, baseline MAEs, beat-zero flag, ranking MAE, cross-validation diagnostics (mean, standard deviation, worst split, worst-split date range), train and test sample counts, train and test date ranges, experiment metadata, and timestamp. This append-only design forms an auditable laboratory notebook for the full hypothesis lifecycle.
 
 \subsection{Analyzer}
 
-The Analyzer is a batch post-processing stage that converts \texttt{experiments.json} into \texttt{analysis.json}. It operates on calibrated records and computes: (i) best-per-target leaderboard at a fixed horizon, (ii) predictor frequency, (iii) sector influence matrix, (iv) target--predictor network statistics, (v) per-target MAE distribution, and (vi) backtest overlays.
+The Analyzer is a batch post-processing stage that converts the append-only experiment log into a calibrated analysis snapshot consumed by the dashboard. It operates on calibrated records and computes: (i) the best-per-target leaderboard at a fixed horizon, (ii) predictor frequency, (iii) the sector influence matrix, (iv) target--predictor network statistics, (v) per-target MAE distribution, (vi) backtest overlays, and (vii) per-backbone aggregates and head-to-head comparisons that drive the XGBoost-vs-LSTM section of the dashboard.
 
 For sector influence, if \(\mathcal{M}_{a\rightarrow b}\) is the multiset of MAEs from experiments where a neighbor from sector \(a\) predicts a target in sector \(b\), then:
 \[
@@ -350,11 +333,11 @@ Backtest series are regenerated with the same leakage-safe feature and split log
 
 \section{Experiment}
 
-In this section, we present a comprehensive experimental evaluation of ECHO. We describe the data collection process, exploratory data analysis, feature engineering pipeline, quantitative results including model architecture comparison (XGBoost vs LSTM), and detailed error analysis. All experiments use real daily return data from NIFTY 50 constituents with properly calendar-aligned chronological holdouts and explicit naive baselines.
+In this section, we present a comprehensive experimental evaluation of ECHO. We describe the data collection process, exploratory data analysis, feature engineering pipeline, the experimental scope at \(H=10\), the per-backbone Baseline A/B/Proposed comparison, the head-to-head XGBoost-vs-LSTM benchmark, the sector-level structure of cross-stock predictability, ablations, and a detailed error analysis. All experiments use real daily return data from NIFTY 50 constituents with properly calendar-aligned chronological holdouts and explicit naive baselines.
 
 \subsection{Data Collection}
 
-We collect daily adjusted close prices for NIFTY 50 constituents from 2019 to 2024 using Yahoo Finance via the \texttt{yfinance} Python package. Raw CSV files are stored per symbol in \texttt{services/data/raw/\{SYMBOL\}.csv}. The data includes trading date and adjusted close price, with non-trading days naturally excluded. We also fetch fundamental attributes (sector, industry, market capitalization, beta) from Yahoo Finance's \texttt{ticker.info} endpoint to enrich the metadata.
+We collect daily adjusted close prices for NIFTY 50 constituents over 2019--2024 from a public market-data provider, retaining only the trading date and adjusted close per symbol; non-trading days are naturally excluded. Each symbol is also annotated with externally observable descriptors (sector, industry, market capitalisation, beta), which are stored alongside the price tape and used downstream as metadata priors rather than as model inputs.
 
 \subsection{Exploratory Data Analysis}
 
@@ -371,110 +354,230 @@ The metadata pipeline computes several derived signals for each stock:
 Correlation analysis reveals structured patterns: Financial Services stocks exhibit high within-sector correlation (avg $\rho=0.72$), while Consumer Cyclical stocks show weaker intra-sector relationships (avg $\rho=0.45$). The weighted similarity graph, combining correlation strength with sector, volatility-bucket, and market-cap-bucket agreement, identifies economically meaningful neighbor candidates.
 
 \subsection{Data Processing and Featurization}
+\label{sec:data-eng}
 
-For each target stock \(i\), neighbor set \(\mathcal{N}_i\), and horizon \(H\), the Forecast Service constructs a supervised learning dataset:
-\begin{itemize}
-    \item \textbf{Target features}: 5 lagged daily returns (\texttt{target\_lag\_1} through \texttt{target\_lag\_5}), 10-day rolling mean, and 10-day rolling standard deviation.
-    \item \textbf{Neighbor features}: For each valid neighbor \(j\), lagged daily return (\texttt{\{j\}\_lag\_1}) and 5-day rolling momentum (\texttt{\{j\}\_rolling\_mean\_5}).
-    \item \textbf{Target variable}: \(H\)-day cumulative forward return: \(y_t = P_{t+H}/P_t - 1\).
-\end{itemize}
+This subsection describes how the daily price tape is transformed into a leakage-safe, calendar-aligned supervised-learning problem that is shared by both backbones (boosted trees and the stateless LSTM). We first state the pipeline as a sequence of explicit operations, then walk through a small worked example, and finally describe the model-specific reshape applied at the end.
 
-Calendar alignment is enforced via inner join on trading \texttt{Date}, ensuring all features and the target are computed on the same market days. The 80/20 chronological split uses \texttt{train\_end = split - horizon} to prevent label leakage.
+\paragraph{Step 1: ingestion and cleaning.}
+For each symbol \(s\), the raw daily history is read from disk and trimmed to the pair \((\text{Date}_t^{(s)}, P_t^{(s)})\), where \(P_t^{(s)}\) is the adjusted close. Dates are parsed as calendar timestamps and prices are coerced to real values; rows with missing or malformed entries are discarded. The cleaned table is indexed by \(\text{Date}\), enforcing a time-ordered representation for all subsequent operations.
 
-\subsection{Experimentation and Results}
+\paragraph{Step 2: simple daily returns.}
+Daily arithmetic returns are computed with one explicit shift,
+\begin{equation}
+r_t^{(s)} \;=\; \frac{P_t^{(s)}}{P_{t-1}^{(s)}}-1,
+\label{eq:daily-return}
+\end{equation}
+and the first row, which has no \(P_{t-1}^{(s)}\), is dropped. This produces a date-indexed univariate return series per symbol.
 
-We evaluate ECHO on the NIFTY 50 universe across multiple horizons (\(H \in \{5, 10, 20\}\) trading days). Each horizon is tracked in separate experiment files, analyzed independently, and compared via the dashboard. We use MAE as the sole evaluation metric throughout.
+\paragraph{Step 3: target-side feature block.}
+For target \(i\) we compute five autoregressive lags and two short-window summaries of the target's own return path:
+\begin{align}
+x_{t,\ell}^{\text{tgt-lag}} &= r_{t-\ell}^{(i)}, \qquad \ell\in\{1,\dots,5\}, \label{eq:tgt-lags}\\[2pt]
+x_t^{\text{tgt-mean10}} &= \frac{1}{10}\sum_{u=0}^{9} r_{t-u}^{(i)}, \label{eq:tgt-mean}\\[2pt]
+x_t^{\text{tgt-std10}}  &= \sqrt{\frac{1}{9}\sum_{u=0}^{9}\left(r_{t-u}^{(i)}-x_t^{\text{tgt-mean10}}\right)^{2}}. \label{eq:tgt-std}
+\end{align}
 
-\subsubsection{Baseline A/B/Ours Comparison}
+\paragraph{Step 4: neighbor-side feature block.}
+For each neighbor \(j\in\mathcal{N}_i\), the neighbor's return series \(\{r_t^{(j)}\}\) is reindexed onto the target's date index (so misaligned trading days do not silently shift values across symbols), and two cross-stock features are appended,
+\begin{equation}
+x_t^{j,\text{lag1}} = r_{t-1}^{(j)},\qquad
+x_t^{j,\text{roll5}} = \frac{1}{5}\sum_{u=1}^{5} r_{t-u}^{(j)}.
+\label{eq:nbr-features}
+\end{equation}
+Neighbors with insufficient history or no overlap are dropped from \(\mathcal{N}_i\) before features are written.
 
-We compare three variants on identical data and splits:
-\begin{itemize}
-    \item \textbf{Baseline A}: Target-only features (lags + rolling statistics).
-    \item \textbf{Baseline B}: Target features + fixed top-3 correlation neighbors from metadata.
-    \item \textbf{ECHO (Ours)}: Target features + best agent-proposed neighbor set (selected by \texttt{mae\_for\_ranking}).
-\end{itemize}
+\paragraph{Step 5: cumulative forward return as the supervised target.}
+The supervised target is the \(H\)-day cumulative forward return,
+\begin{equation}
+y_t \;=\; \frac{P_{t+H}^{(i)}}{P_t^{(i)}}-1,
+\label{eq:cumulative-target}
+\end{equation}
+which is computed once on the target series so that every arm in the Baseline A/B/Proposed comparison sees an identical date range. Rows in which any lag, rolling, or future term is undefined are then dropped, yielding the final design pair \((X, y)\) with rows ordered by trading date.
 
-\subsection{Performance Analysis}
+\paragraph{Step 6: chronological 80/20 split with horizon purge.}
+For \(n=|X|\), the split index is \(s=\lfloor 0.8\,n\rfloor\). To prevent the test labels from peeking at train labels through the cumulative-return horizon, training ends \(H\) rows earlier:
+\begin{equation}
+\mathcal{T}_{\text{train}}=\{1,\dots,s-H\},\qquad
+\mathcal{T}_{\text{test}}=\{s,\dots,n\}.
+\label{eq:purged-split}
+\end{equation}
 
-Table~\ref{tab:baseline-abc} presents a representative subset of the Baseline A vs B vs Ours comparison at horizon $H=10$ — highlighting both ECHO wins and target-only wins. The complete results for all 56 NIFTY constituents are provided in Appendix~\ref{tab:full-baseline-abc}. Across all targets, ECHO wins on 40 (71.4\%), target-only features win on 13 (23.2\%), and fixed correlation wins on only 3 (5.4\%). This reveals a clear hierarchy: the agent-proposed neighbors consistently match or improve on the autoregressive floor, while naive correlation-based neighbors regularly degrade performance.
+\paragraph{Worked example (target = ICICIBANK, neighbors = \{HDFCBANK, KOTAKBANK\}, \(H=10\)).}
+Suppose the cleaned tape for ICICIBANK starts as in Table~\ref{tab:worked-example-tape}.
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{Representative Baseline A vs B vs Ours comparison at horizon $H=10$ (same XGBoost regressor and 80/20 chronological split). Lower MAE is better. ``Beats 0'' indicates whether the configuration outperforms the zero-return baseline. Full results for all 56 targets appear in Appendix~\ref{tab:full-baseline-abc}.}
+\caption{First few rows of the cleaned price tape and computed daily return for ICICIBANK. The first row is dropped because it has no predecessor close.}
+\label{tab:worked-example-tape}
+\begin{tabular}{lrr}
+\toprule
+Date & Close \(P_t^{(\text{ICI})}\) & Daily return \(r_t^{(\text{ICI})}\) \\
+\midrule
+2020-01-02 & 547.20 & --- \\
+2020-01-03 & 542.85 & $-0.0079$ \\
+2020-01-06 & 537.45 & $-0.0099$ \\
+2020-01-07 & 540.10 & $+0.0049$ \\
+2020-01-08 & 535.20 & $-0.0091$ \\
+2020-01-09 & 542.00 & $+0.0127$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+After applying Eq.~(\ref{eq:daily-return}) we obtain three date-aligned return series, one per symbol. Calendar alignment is enforced by an inner join on the trading date, so a row is kept only when all three symbols traded that day. For an arbitrary kept row \(t\), the design vector materialises as
+\[
+\mathbf{x}_t \;=\;
+\big[\,
+\underbrace{r_{t-1}^{(\text{ICI})},\ldots,r_{t-5}^{(\text{ICI})}}_{\text{Eq.~(\ref{eq:tgt-lags})}},\
+\underbrace{x_t^{\text{tgt-mean10}},\,x_t^{\text{tgt-std10}}}_{\text{Eqs.~(\ref{eq:tgt-mean})--(\ref{eq:tgt-std})}},\
+\underbrace{r_{t-1}^{(\text{HDFC})},\,x_t^{\text{HDFC,roll5}}}_{\text{Eq.~(\ref{eq:nbr-features})}},\
+\underbrace{r_{t-1}^{(\text{KOTAK})},\,x_t^{\text{KOTAK,roll5}}}_{\text{Eq.~(\ref{eq:nbr-features})}}
+\,\big],
+\]
+and the supervised label is
+\(
+y_t = P_{t+10}^{(\text{ICI})}/P_t^{(\text{ICI})}-1.
+\)
+The number of features is therefore \(p = 5 + 2 + 2|\mathcal{N}_i|\); for two neighbors this gives a row of \(11\) numbers. The per-row dimensionality scales linearly with \(|\mathcal{N}_i|\), which is the precise mechanism by which the agent's neighbor proposals enter the model.
+
+\paragraph{Backbone-specific representation.}
+Both backbones consume the same \((X,y)\) produced above; they only differ in how each row is presented to the optimiser.
+
+\emph{Boosted trees.} XGBoost is fit directly on the tabular block \(X\in\mathbb{R}^{n\times p}\); each row is treated as an independent observation and tree splits are evaluated coordinate-wise on the engineered features. No additional reshape is required.
+
+\emph{Stateless LSTM.} The LSTM operates on sliding sub-sequences of the same engineered features. With sequence length \(L=5\) (chosen to match the target lag depth, so the temporal context is consistent across backbones), the input at position \(t\) is the tensor
+\begin{equation}
+\mathbf{X}_t^{\text{seq}} \;=\;
+\big[\mathbf{x}_{t-L+1},\,\mathbf{x}_{t-L+2},\,\ldots,\mathbf{x}_t\big]
+\;\in\;\mathbb{R}^{L\times p}.
+\label{eq:lstm-window}
+\end{equation}
+Features are standardised using statistics estimated only on the training partition,
+\(
+\tilde{x}_{t,\ell,k}=(x_{t,\ell,k}-\mu_k^{\text{train}})/\sigma_k^{\text{train}},
+\)
+to prevent test-side leakage of scale information. The network reads \(\mathbf{X}_t^{\text{seq}}\), takes the last hidden state \(\mathbf{h}_t\in\mathbb{R}^{d}\), and produces the prediction \(\hat{y}_t = \mathbf{w}^\top\mathbf{h}_t + b\). Crucially, the LSTM is \emph{stateless} across requests: hidden state is not carried across forecast calls or across heterogeneous neighbor sets, because changing \(\mathcal{N}_i\) changes the per-row feature identity (Eq.~\ref{eq:nbr-features}). The first \(L-1\) rows of any partition lack a full window and are handled by holding the first valid prediction constant rather than discarding the row, so the train/test split sizes remain identical across backbones.
+
+\paragraph{Why this design supports apples-to-apples comparison.}
+Because both backbones see (i) the same calendar-aligned date index, (ii) the same engineered feature columns produced by Eqs.~(\ref{eq:tgt-lags})--(\ref{eq:nbr-features}), (iii) the same cumulative-return label from Eq.~(\ref{eq:cumulative-target}), and (iv) the same horizon-purged 80/20 split from Eq.~(\ref{eq:purged-split}), any difference in MAE between the two arms is attributable to the model class and not to data, leakage, or pre-processing. This is the property we exploit in Section~\ref{sec:xgb-vs-lstm-h10} when we report a head-to-head per-target comparison and in Section~\ref{sec:baseline-abc} when we run Baseline A/B/Proposed under each backbone.
+
+\subsection{Experimentation and Results}
+
+We evaluate ECHO on the NIFTY 50 universe and report results at horizon \(H=10\) trading days, where the experiment log is largest and most settled. Each horizon is tracked in its own experiment file, analysed independently, and visualised in the dashboard. MAE on the chronological holdout (Eq.~\ref{eq:purged-split}) is the sole evaluation metric throughout.
+
+\subsubsection{Experimental scope at \(H=10\)}
+\label{sec:scope-h10}
+
+After all calibrated runs were aggregated, the analyser reported the headline statistics summarised in Figure~\ref{fig:h10-stats}: \(1{,}175\) calibrated experiments cover \(56\) unique target tickers across \(10\) sectors, with \(56\) distinct symbols having appeared as predictors at least once. The global average MAE across every logged experiment is \(4.39\%\) (cumulative \(10\)-day return error), the best single-experiment MAE is \(2.43\%\) (achieved on a Healthcare target), and the worst is \(16.09\%\) (a high-volatility consumer cyclical target). Of the calibrated runs, \(15.15\%\) of individual experiments beat the zero-return baseline, and \(48.21\%\) of the per-target best configurations beat zero. This gap between per-experiment and per-target beat rates is the empirical signature of the agent's memory and refinement loop: most individual proposals are noisy, but the best neighbor set for each target consistently edges closer to beating zero than a uniformly random proposal would.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.98\textwidth]{h-10-stats.png}
+    \caption{Top-level experimentation statistics at \(H=10\), as displayed by the analyser dashboard. Across \(1{,}175\) calibrated experiments on \(56\) targets, the global average MAE is \(4.39\%\); the per-target best configuration beats the zero-return baseline on \(48.21\%\) of tickers, while only \(15.15\%\) of individual runs do so.}
+    \label{fig:h10-stats}
+\end{figure}
+
+\subsubsection{Baseline A/B/Proposed under both backbones}
+\label{sec:baseline-abc}
+
+We compare three feature variants on identical data and splits:
+\begin{itemize}
+    \item \textbf{Baseline A}: target-only features (lags and rolling statistics from Eqs.~\ref{eq:tgt-lags}--\ref{eq:tgt-std}).
+    \item \textbf{Baseline B}: target features plus the top-3 fixed correlation neighbors from metadata.
+    \item \textbf{ECHO (Proposed)}: target features plus the best agent-proposed neighbor set selected by the ranking score on logged runs.
+\end{itemize}
+For each target, the comparison is run independently under each backbone (boosted trees and the stateless LSTM), so within a backbone the only thing that changes across A, B, and Proposed is the neighbor design. The aggregated per-backbone win counts at \(H=10\) are reported in Table~\ref{tab:baseline-abc-by-backbone}.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Baseline A/B/Proposed win counts at \(H=10\) under each backbone (lower MAE wins; ties broken by raw MAE). Both backbones use the same calendar-aligned features, the same 80/20 chronological split with horizon purge, and the same neighbor sets per target. The Proposed arm uses the best logged neighbor configuration for that backbone.}
+\label{tab:baseline-abc-by-backbone}
+\begin{tabular}{lcccc}
+\toprule
+Backbone & Targets & A wins & B wins & Proposed wins \\
+\midrule
+Boosted trees (XGB) & 56 & 12 (21.4\%) & 2 (3.6\%) & \textbf{42 (75.0\%)} \\
+Stateless LSTM      & 56 & 24 (42.9\%) & 7 (12.5\%) & \textbf{25 (44.6\%)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two findings stand out. First, the \emph{boosted-tree backbone strongly rewards agent-chosen neighbors}: Proposed wins on \(42/56\) targets, target-only on \(12\), and the fixed-correlation arm on only \(2\). The fixed-correlation arm regularly inflates MAE by a factor of two to three on the same target, confirming that naive correlation-based selection is not just suboptimal but actively harmful. Second, under the LSTM backbone the same agent-chosen neighbors are essentially \emph{tied} with target-only features (\(25\) vs \(24\) wins), while the fixed-correlation arm remains the worst. The takeaway is not that neighbor enrichment ``does not help'': the fixed-correlation arm is dominated under both backbones, which is itself evidence that \emph{which} neighbors are chosen matters. The takeaway is that the marginal value of \emph{adding} cross-stock features on top of a strong autoregressive floor depends on how the model class digests them: tree splits exploit the additional informative coordinates very efficiently, whereas the stateless LSTM, which already pools information through its hidden state, gains comparatively little when the same neighbor signals are appended as extra columns.
+
+A representative slice of the underlying per-target table for the boosted-tree backbone is given in Table~\ref{tab:baseline-abc}, showing both Proposed wins and target-only wins on the same set of tickers. The complete per-target tables for all \(56\) constituents under both backbones appear in Tables~\ref{tab:full-baseline-xgb} and~\ref{tab:full-baseline-lstm}.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Representative Baseline A vs B vs Proposed comparison at \(H=10\) under the boosted-tree backbone. Lower MAE is better. ``Beats 0'' indicates whether each arm outperforms the zero-return baseline on its own (post-feature) test slice; the zero baseline is evaluated on that arm's final test rows after feature construction, which can differ slightly across arms.}
 \label{tab:baseline-abc}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccccc}
 \toprule
-Target & Sector & A MAE & B MAE & ECHO MAE & Winner & A B0 & B B0 & ECHO B0 \\
+Target & Sector & A MAE & B MAE & Prop.\ MAE & Winner & A B0 & B B0 & Prop.\ B0 \\
 \midrule
-ICICIBANK & Financial Services & 0.0273 & 0.0596 & \textbf{0.0267} & ECHO & $\times$ & $\checkmark$ & $\checkmark$ \\
-SBILIFE   & Financial Services & 0.0277 & 0.0529 & \textbf{0.0271} & ECHO & $\times$ & $\checkmark$ & $\times$ \\
-HDFCBANK  & Financial Services & 0.0313 & 0.0823 & \textbf{0.0288} & ECHO & $\times$ & $\times$ & $\times$ \\
-ITC       & Consumer Defensive & 0.0340 & 0.0329 & \textbf{0.0322} & ECHO & $\times$ & $\times$ & $\times$ \\
-CIPLA     & Healthcare         & 0.0312 & 0.0328 & \textbf{0.0302} & ECHO & $\times$ & $\times$ & $\times$ \\
-RELIANCE  & Energy             & \textbf{0.0313} & 0.0626 & 0.0315 & A & $\times$ & $\times$ & $\times$ \\
-TITAN     & Consumer Cyclical  & \textbf{0.0377} & 0.0691 & 0.0380 & A & $\checkmark$ & $\times$ & $\checkmark$ \\
-TMCV      & Consumer Cyclical  & 0.0776 & 0.0806 & \textbf{0.0613} & ECHO & $\times$ & $\times$ & $\checkmark$ \\
+ICICIBANK & Financial Services & 2.7271\% & 5.9573\% & \textbf{2.6739\%} & \textbf{Proposed} & $\times$ & $\checkmark$ & $\checkmark$ \\
+SBILIFE   & Financial Services & 2.7716\% & 5.2894\% & \textbf{2.7079\%} & \textbf{Proposed} & $\times$ & $\checkmark$ & $\times$ \\
+HDFCBANK  & Financial Services & 3.1258\% & 8.2346\% & \textbf{2.8776\%} & \textbf{Proposed} & $\times$ & $\times$ & $\times$ \\
+ITC       & Consumer Defensive & 3.4001\% & 3.2904\% & \textbf{3.2216\%} & \textbf{Proposed} & $\times$ & $\times$ & $\times$ \\
+CIPLA     & Healthcare         & 3.1244\% & 3.2756\% & \textbf{3.0194\%} & \textbf{Proposed} & $\times$ & $\times$ & $\times$ \\
+RELIANCE  & Energy             & \textbf{3.1343\%} & 6.2593\% & 3.1535\% & \textbf{A} & $\times$ & $\times$ & $\times$ \\
+TITAN     & Consumer Cyclical  & 3.7702\% & 6.9067\% & \textbf{3.6640\%} & \textbf{Proposed} & $\checkmark$ & $\times$ & $\checkmark$ \\
+TMCV      & Consumer Cyclical  & 7.7554\% & 8.0580\% & \textbf{4.9744\%} & \textbf{Proposed} & $\times$ & $\times$ & $\checkmark$ \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
 
-The global average MAE at $H=10$ is 0.0440 (4.4\% cumulative 10-day return error). The \emph{best} experiment across all targets achieves MAE=0.0267 (ICICIBANK), while the worst best-per-target is TMPV at MAE=0.0835. The MAE distribution spans from 0.027 (low-volatility large caps) to 0.092 (high-volatility consumer stocks), confirming that stock-specific variance is the dominant difficulty factor.
+\subsubsection{XGBoost vs LSTM head-to-head benchmark}
+\label{sec:xgb-vs-lstm-h10}
 
-Figure~\ref{fig:baseline-abc} (from the dashboard) visualizes win counts and per-target comparisons. The pattern is revealing: ECHO wins are typically \emph{modest} improvements of 1--3\% over target-only features, while B's losses are often \emph{catastrophic} (2--4$\times$ MAE inflation in the worst cases). This means the agent's primary value is \emph{negative}: it learns which neighbors to \emph{avoid}, rather than discovering transformative cross-stock alpha.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{dashboard-baseline-abc.png}
-    \caption{Baseline A vs B vs Ours win counts and per-target comparison from the ECHO dashboard.}
-    \label{fig:baseline-abc}
-\end{figure}
-
-The dashboard also shows that while many configurations do not beat the zero-return baseline (a common outcome in noisy daily return data), ECHO finds configurations that match or approach target-only performance while adding interpretable cross-stock signal. At $H=10$, the Baseline A vs B vs Ours win counts are A: 13, B: 3, Ours: 40 across all 56 targets. ECHO wins on 71.4\% of targets, typically with modest 1--3\% MAE reduction over target-only features. Meanwhile, the best-per-target baseline beat rate is 26.8\% (15/56 targets), compared to 14.6\% across all individual experiments. This gap between per-experiment and per-target beat rates confirms that the agent's memory and refinement loop matters: while most individual proposals are noisy, the best neighbor set for each target often edges closer to beating zero than a random proposal would.
-
-The sector influence matrix reveals structured patterns. Healthcare stocks predict Consumer Defensive targets well (score=32.0), Consumer Defensive stocks predict their own sector well (27.8), and Basic Materials stocks carry cross-sector signal to Defensive (23.7) and Energy (16.3) targets. Conversely, Consumer Cyclical self-prediction is the weakest link (score=-36.0), suggesting this sector's high-beta, sentiment-driven dynamics resist neighbor-based modeling. The agent adapts to this: for cyclical targets, it proposes broader market-cap peers rather than within-sector neighbors.
-
-\subsubsection{XGBoost vs LSTM Benchmark}
-
-To evaluate whether model architecture choice materially affects forecasting performance, we benchmark XGBoost against LSTM under identical conditions. Both models receive the same:
-\begin{itemize}
-    \item Target and neighbor set (best agent-proposed configuration per target)
-    \item Feature matrix (same lagged returns and rolling statistics)
-    \item Train/test split (same 80/20 chronological split with horizon purge)
-    \item Evaluation metric (MAE on the holdout period)
-\end{itemize}
-
-The LSTM implementation uses a 2-layer network with 64 hidden units, dropout of 0.2, and early stopping on validation MAE. Input sequences are constructed using a sliding window of length 5 (matching the lag features), with normalization applied per-feature. Training uses Adam optimizer with learning rate $10^{-3}$ and batch size 32.
+While Section~\ref{sec:baseline-abc} compares neighbor designs \emph{within} a fixed backbone, the head-to-head benchmark fixes the neighbor design (the best logged agent set for that target) and varies the backbone. Both arms see the same calendar-aligned features, the same horizon-purged 80/20 split, and the same test windows; the only thing that changes is whether the design matrix is consumed as a tabular block (XGB) or as the sliding sequence tensor of Eq.~(\ref{eq:lstm-window}) (LSTM). The LSTM is a 2-layer network with 64 hidden units and dropout 0.2, optimised with Adam (learning rate \(10^{-3}\), batch size 32) and early stopping on a chronological validation tail.
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{XGBoost vs LSTM benchmark at horizon $H=10$ (MAE only). Both models trained on identical data splits and evaluated on the same test windows. Lower MAE is better.}
+\caption{Head-to-head XGB vs LSTM benchmark at \(H=10\) under identical splits, features, and test windows. ``Wins'' reports the number of targets on which that backbone achieved the lower MAE.}
 \label{tab:xgb-vs-lstm}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Model & Targets Evaluated & Avg MAE & Wins & Best MAE \\
+Backbone & Logged runs & Targets covered & Avg MAE & Best MAE & Wins \\
 \midrule
-XGBoost & 56 & 0.0440 & \textbf{40} & 0.0267 \\
-LSTM    & 56 & 0.0458 & 16 & 0.0285 \\
+Boosted trees (XGB) & 511 & 56 & 0.0437 & 0.0267 & 21 \\
+Stateless LSTM      & 664 & 56 & 0.0399 & 0.0243 & \textbf{35} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:xgb-vs-lstm} shows that XGBoost outperforms LSTM on 40 of 56 targets (71.4\%) at horizon $H=10$. The average MAE for XGBoost (0.0440) is approximately 4\% lower than LSTM (0.0458). This result aligns with prior literature suggesting that gradient boosting methods often match or exceed recurrent neural networks on tabular financial data with limited sequence length.
+The aggregate picture is more nuanced than a single ``winner''. When MAE is averaged across all logged runs in Table~\ref{tab:xgb-vs-lstm}, the stateless LSTM backbone achieves a lower mean (\(0.0399\) vs \(0.0437\)) and a lower best recorded MAE (\(0.0243\) vs \(0.0267\)), while also winning the per-target head-to-head on \(35/56\) tickers versus \(21\) for boosted trees. That pattern---stronger typical and best-case LSTM performance in this log, with remaining cross-target dispersion---is visible directly in Figure~\ref{fig:xgb-vs-lstm}: gold bars are MAE under the boosted-tree backbone, purple bars are MAE under the LSTM, and shorter bars are better.
 
-\textbf{Fairness note:} Both models are evaluated under identical conditions—same data splits, feature sets, and test windows—ensuring the comparison reflects only model architecture differences, not data or preprocessing variations.
-
-The dashboard provides a per-target comparison view (Figure~\ref{fig:xgb-vs-lstm}) showing XGB MAE alongside LSTM MAE for each stock, with clear visualization of which model wins per target.
+\textbf{Fairness note.} Because both backbones share the calendar-aligned feature pipeline, the cumulative-return label, and the horizon-purged split (Eqs.~\ref{eq:tgt-lags}--\ref{eq:purged-split}), differences in MAE in this table are attributable to model class and not to data, leakage, or preprocessing choices.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{dashboard-model-comparison.png}
-    \caption{XGB vs LSTM per-target MAE comparison from the ECHO dashboard. Gold bars indicate XGBoost, purple bars indicate LSTM. Lower is better.}
+    \includegraphics[width=0.78\textwidth]{lstm_xgb_comparison.png}
+    \caption{Per-target MAE under the boosted-tree backbone (gold) and the stateless LSTM backbone (purple) at \(H=10\). Each pair of bars uses the same target, the same agent-chosen neighbor set, and the same test window. Shorter bars are better. Across the \(56\) targets, the LSTM achieves the lower MAE on \(35\) tickers and the boosted trees on \(21\); averaged over all logged runs, MAE is lower for the LSTM (Table~\ref{tab:xgb-vs-lstm}).}
     \label{fig:xgb-vs-lstm}
 \end{figure}
+
+\subsubsection{Sector-level structure of cross-stock predictability}
+\label{sec:sector-influence}
+
+To probe \emph{which} cross-sector relationships carry signal, the analyser aggregates MAE values across every logged experiment by the (predictor sector, target sector) pair and reports the relative improvement over the global average MAE. The resulting matrix is shown in Figure~\ref{fig:sector-influence}: rows are predictor sectors, columns are target sectors, and each cell stores
+\(
+\text{score}_{a\rightarrow b}=100\cdot(\overline{m}_{\text{global}}-\overline{m}_{a\rightarrow b})/\overline{m}_{\text{global}}.
+\)
+Warmer cells indicate that experiments using a predictor from sector \(a\) to forecast a target in sector \(b\) had MAE materially below the global average; cooler cells indicate the opposite.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.96\textwidth]{predictor_to_target_sector.png}
+    \caption{Sector influence matrix at \(H=10\). Each cell is the percentage improvement of the average MAE for experiments with a (predictor sector, target sector) pair over the global average MAE. Positive values (warm cells) indicate stronger-than-average predictive utility; negative values (cool cells) indicate weaker-than-average performance. Empty cells correspond to (predictor sector, target sector) pairs with too few experiments to summarise.}
+    \label{fig:sector-influence}
+\end{figure}
+
+The matrix exposes structured cross-sector signal that a hand-tuned, within-sector heuristic would miss. Industrials predictors carry the strongest absolute lift onto Communication Services targets (\(+37.6\)) and Consumer Defensive targets (\(+12.7\)). Predictors from Basic Materials are unusually informative for Communication Services (\(+31.4\)) and Energy (\(+20.7\)) targets but are noticeably harmful for Industrials (\(-36.7\)). Consumer-Defensive-as-predictor improves Communication Services (\(+32.1\)) and Utilities (\(+25.2\)). Conversely, Consumer Cyclical self-prediction is the single worst cell in the matrix (\(-49.6\)), and Industrials self-prediction is also strongly negative (\(-30.5\)), which is consistent with these sectors being driven by idiosyncratic, sentiment-heavy news flow that the lagged-return basis cannot capture. The agent's neighbor proposals reflect this regularity: for Consumer Cyclical targets it routinely reaches across sectors rather than within, which directly explains why the boosted-tree Proposed arm in Table~\ref{tab:baseline-abc-by-backbone} dominates fixed-correlation neighbors so decisively.
 
 \subsection{Ablation Studies}
 
@@ -517,7 +620,7 @@ The dashboard’s backtest overlay (Figure~\ref{fig:case-backtest}) visualizes p
     \label{fig:case-backtest}
 \end{figure}
 
-The Sector Influence Matrix further reveals that Healthcare→Consumer Defensive (score=32.0) and Consumer Defensive self-prediction (27.8) carry the strongest cross-stock signal, while Consumer Cyclical self-prediction (score=-36.0) is the weakest — confirming the case study observations quantitatively.
+Figure~\ref{fig:sector-influence} further confirms these observations quantitatively: Industrials\(\rightarrow\)Communication Services (\(+37.6\)) and Basic Materials\(\rightarrow\)Communication Services (\(+31.4\)) are among the strongest cross-sector pairs, while Consumer Cyclical self-prediction (\(-49.6\)) and Industrials self-prediction (\(-30.5\)) are the weakest, in line with the TRENT challenge case above.
 
 \subsubsection{Failure Mode Analysis}
 
@@ -528,9 +631,11 @@ The primary failure modes observed across experiments include:
     
     \item \textbf{Regime shifts}: The CV worst-split analysis reveals that 2020 Q1--Q2 (pandemic shock) and 2022 H2 (rate-hike regime) produce systematically higher MAE across all targets. Neighbor sets that perform well in normal regimes often fail during these periods.
     
-    \item \textbf{Sector isolation}: Consumer Cyclical self-prediction consistently underperforms (sector influence score = -36.0), suggesting this sector's returns are driven by idiosyncratic factors not captured by peer relationships.
-    
-    \item \textbf{Model architecture invariance}: Both XGBoost and LSTM struggle with the same targets, indicating that the feature set (lagged returns + rolling statistics) rather than model architecture is the binding constraint. This motivates future work on alternative data sources.
+    \item \textbf{Sector isolation}: Consumer Cyclical self-prediction is the single worst cell of the sector influence matrix at \(-49.6\), and Industrials self-prediction is also strongly negative (\(-30.5\)), suggesting these sectors' returns are driven by idiosyncratic factors not captured by peer relationships.
+
+    \item \textbf{Backbone-specific neighbor benefit}: A configuration that wins under boosted trees does not automatically win under the LSTM. As reported in Table~\ref{tab:baseline-abc-by-backbone}, agent-chosen neighbors strongly dominate target-only features under boosted trees (\(42\) vs \(12\) wins) but are essentially tied under the stateless LSTM (\(25\) vs \(24\)). The binding constraint differs by backbone: trees benefit from extra informative coordinates, while the LSTM already absorbs much of the signal through its sequence pooling.
+
+    \item \textbf{Shared hard targets}: A subset of high-volatility targets (e.g., TRENT, TMPV) sits at high MAE under \emph{both} backbones, indicating that the lagged-return feature basis itself is the binding constraint for these tickers rather than the model class. This motivates future work on alternative data sources (order-flow proxies, fundamentals, news sentiment).
 \end{enumerate}
 
 \subsection{Dashboard and Interpretability}
@@ -556,92 +661,56 @@ Overall, the experiments demonstrate that ECHO delivers measurable improvements 
 
 \section{Conclusions and Future Work}
 
-In this work, we presented ECHO (Equity Cross-stock Heuristic Orchestrator), an LLM-driven agentic experimentation platform designed to automate the discovery and rigorous evaluation of cross-stock neighbor relationships for daily return forecasting in the Indian NIFTY equity universe. ECHO integrates four core components—an Orchestrator for intelligent neighbor proposal, a Forecast Service for calendar-aligned evaluation using a fixed XGBoost regressor, an Experiment Logger for complete provenance tracking, and an Analyzer that produces an interactive calibrated dashboard—thereby closing the loop of propose–measure–remember–refine.
+In this work, we presented ECHO (Equity Cross-stock Heuristic Orchestrator), an LLM-driven agentic experimentation platform designed to automate the discovery and rigorous evaluation of cross-stock neighbor relationships for daily return forecasting on the Indian NIFTY equity universe. ECHO integrates four components: an Orchestrator for intelligent neighbor proposal, a Forecast Service that fits either a gradient-boosted tree regressor or a stateless LSTM regressor on calendar-aligned features under identical splits, an Experiment Logger for complete provenance tracking, and an Analyzer that produces an interactive calibrated dashboard. Together they close the loop of propose--measure--remember--refine.
 
-Through extensive experimentation on real NIFTY 50 constituents across multiple horizons (\(H \in \{5, 10\}\)), ECHO demonstrated clear advantages over static baseline approaches in terms of hypothesis coverage, evaluation rigor, and reproducibility. At \(H=10\), the agent-proposed neighbors won on 71.4\% of targets versus target-only features (23.2\%) and fixed correlation (5.4\%). However, the \emph{marginal} improvement was modest: ECHO typically reduced MAE by 1--3\% over target-only features, rather than discovering transformative cross-stock alpha. The fixed correlation baseline underperformed dramatically, often inflating MAE by 2--4$\times$ — revealing that naive correlation-based neighbor selection is not just suboptimal but actively harmful. The inclusion of explicit naive baselines and the \texttt{mae\_for\_ranking} mechanism further ensured honest reporting. Only 26.8\% of best-per-target configurations beat the zero-return baseline at \(H=10\) — a scientifically valid outcome that reflects the fundamental difficulty of cumulative return forecasting in non-stationary equity data, not a failure of the platform.
+Across \(1{,}175\) calibrated experiments at \(H=10\) on \(56\) NIFTY constituents, ECHO produced three substantive empirical findings. First, the global average MAE is \(4.39\%\), \(48.21\%\) of per-target best configurations beat the zero-return baseline, and only \(15.15\%\) of individual experiments do so; the platform's value lies in efficiently surfacing those per-target winners from a much noisier raw distribution. Second, under the boosted-tree backbone the agent-proposed neighbors clearly dominate fixed-correlation peers and improve on the target-only floor on \(42/56\) targets (\(75.0\%\)), with the fixed-correlation arm winning only \(2/56\); the cost of choosing badly is therefore far larger than the benefit of choosing the absolute best, which is exactly the regime in which an automated proposal mechanism matters most. Third, the LSTM backbone is competitive with or better than the boosted trees on \(35/56\) targets head-to-head and reaches a lower per-target best MAE (\(2.43\%\) vs \(2.67\%\)), but under the LSTM the same agent-chosen neighbors no longer dominate target-only features (\(25\) vs \(24\) wins). The marginal value of cross-stock features is therefore backbone-dependent: trees consume the additional coordinates very efficiently, whereas the stateless LSTM already pools much of the temporal signal through its hidden state. The fixed-correlation arm remains the worst choice under both backbones, which is itself evidence that \emph{which} neighbors are chosen is consequential.
 
-Beyond predictive performance, ECHO’s primary contribution lies in its emphasis on methodological discipline and transparency. By enforcing calendar alignment, chronological splitting, full experiment logging, and comprehensive visualization, the system addresses several common pitfalls in quantitative research pipelines. The resulting dashboard serves as both an analysis tool and a teaching aid, making the entire experimentation process interpretable and auditable.
+Beyond predictive performance, ECHO's primary contribution lies in methodological discipline and transparency. By enforcing calendar alignment, horizon-purged chronological splitting, full experiment logging with backbone provenance, and side-by-side dashboard reporting, the platform addresses several common pitfalls in quantitative research pipelines. The dual-backbone design adds a second axis of comparison--feature design vs.\ model class--so that observed gains can be attributed cleanly rather than confounded.
 
-While ECHO advances the automation of cross-stock signal discovery, several limitations remain. The current feature set relies on lagged returns and rolling statistics — an autoregressive floor that already captures much of the predictable structure. The modest ECHO-to-A margin (1--3\% MAE reduction) suggests that richer features, not better neighbor sets, are the bottleneck. Future work will explore fundamental ratios, order-flow proxies, and alternative data to widen the gap between neighbor-informed and neighbor-free predictions. The sector influence matrix reveals that Consumer Cyclical self-prediction is the weakest link (score=-36.0); targeted ablation on high-beta stocks with regime-aware features could yield outsized gains. Full walk-forward validation, transaction cost modeling, and portfolio-level evaluation remain on the roadmap. The multi-horizon comparison framework (\(H \in \{5, 10, 20\}\)) further provides a lens for understanding how signal persistence scales with forecast horizon under cumulative returns.
+Several limitations remain. The current feature set relies on lagged returns and rolling statistics, which already captures much of the predictable structure; the LSTM-arm result that adding agent-chosen neighbors barely improves on target-only features is consistent with this observation and suggests that richer features (fundamentals, order-flow proxies, news sentiment) are the binding constraint for sequence models. The sector influence matrix highlights Consumer Cyclical self-prediction (\(-49.6\)) and Industrials self-prediction (\(-30.5\)) as the weakest cells, marking these sectors as natural targets for regime-aware or news-augmented features. Full walk-forward validation, transaction-cost modelling, and portfolio-level evaluation remain on the roadmap, as does a systematic study of how the marginal value of cross-stock features evolves with horizon and with stronger sequence backbones.
 
-We believe ECHO provides a practical and extensible foundation for reproducible quantitative research in equity markets. By open-sourcing the complete codebase and dashboard, we hope this work encourages further development of agentic systems that prioritize methodological rigor and transparency over overstated predictive claims. Ultimately, we view ECHO as a step toward making high-quality, systematic experimentation in financial forecasting more accessible to researchers and practitioners alike.
+Overall, ECHO provides a practical and extensible foundation for reproducible quantitative research in equity markets. By keeping the data pipeline, baselines, and evaluation protocol shared across backbones, and by reporting wins and losses per backbone honestly, we hope this work encourages further development of agentic systems that prioritise methodological rigour and transparency over overstated predictive claims.
 
 \clearpage
 \appendix
 
 \section{Complete Baseline Comparison at Horizon \(H=10\)}
 
-Table~\ref{tab:full-baseline-abc} presents the full Baseline A vs B vs Proposed comparison for all 56 NIFTY constituents at horizon $H=10$. Each row shows the MAE for three approaches under identical data and split conditions. The winner column indicates which approach achieved the lowest MAE: A (target-only features), B (fixed correlation neighbors), or Proposed (best agent-proposed neighbors). The final three columns show whether each configuration beats the zero-return baseline ($\checkmark$ = beats, $\times$ = does not beat).
+Tables~\ref{tab:full-baseline-xgb} and~\ref{tab:full-baseline-lstm} present the full Baseline A vs B vs Proposed comparison for all 56 NIFTY constituents at horizon $H=10$ under the boosted-tree (XGB) and stateless LSTM backbones, respectively. Within each backbone, rows use identical data and split conditions; the only variation across A, B, and Proposed is the neighbor design. The winner column indicates the lowest MAE among A (target-only), B (fixed correlation neighbors), and Proposed (best agent-proposed neighbors). The final three columns state whether each arm beats the zero-return baseline on its own post-feature test slice ($\checkmark$ = beats, $\times$ = does not beat).
 
 \begin{table}[htbp]
 \centering
 \scriptsize
-\caption{Complete Baseline A vs B vs Proposed comparison at horizon $H=10$ for all 56 NIFTY constituents. Lower MAE is better. Winner: A=target-only, B=fixed correlation, Proposed=agent-proposed. $\checkmark$ = beats zero baseline, $\times$ = does not beat.}
-\label{tab:full-baseline-abc}
+\caption{Boosted trees (XGB): complete Baseline A vs B vs Proposed at $H=10$ for all 56 constituents. MAE is reported as a percentage of cumulative $10$-day return error. $\checkmark$ = beats zero baseline on that arm's final test rows.}
+\label{tab:full-baseline-xgb}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lccccccccc}
 \toprule
-\# & Target & Sector & A MAE & B MAE & Proposed MAE & Winner & A B0 & B B0 & Proposed B0 \\
+\# & Target & Sector & A MAE & B MAE & Prop.\ MAE & Winner & A B0 & B B0 & Prop.\ B0 \\
 \midrule
-1 & ADANIENT & Energy & 0.0564 & 0.1139 & 0.1159 & \textbf{A} & $\times$ & $\checkmark$ & $\checkmark$ \\
-2 & ADANIPORTS & Industrials & 0.0458 & 0.0942 & 0.0475 & \textbf{A} & $\times$ & $\times$ & $\times$ \\
-3 & APOLLOHOSP & Healthcare & 0.0346 & 0.0576 & 0.0320 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-4 & ASIANPAINT & Basic Materials & 0.0450 & 0.1122 & 0.0444 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-5 & AXISBANK & Financial Services & 0.0388 & 0.0654 & 0.0604 & \textbf{A} & $\times$ & $\checkmark$ & $\checkmark$ \\
-6 & BAJAJ-AUTO & Consumer Cyclical & 0.0369 & 0.1355 & 0.0361 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-7 & BAJAJFINSV & Financial Services & 0.0344 & 0.0475 & 0.0490 & \textbf{A} & $\times$ & $\checkmark$ & $\checkmark$ \\
-8 & BAJFINANCE & Financial Services & 0.0422 & 0.0499 & 0.0403 & \textbf{Ours} & $\times$ & $\checkmark$ & $\checkmark$ \\
-9 & BEL & Industrials & 0.0483 & 0.0481 & 0.0463 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-10 & BHARTIARTL & Communication Services & 0.0312 & 0.0313 & 0.0310 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-11 & BPCL & Energy & 0.0515 & 0.1013 & 0.0659 & \textbf{A} & $\times$ & $\times$ & $\checkmark$ \\
-12 & BRITANNIA & Consumer Defensive & 0.0300 & 0.0311 & 0.0295 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-13 & CIPLA & Healthcare & 0.0312 & 0.0328 & 0.0302 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-14 & COALINDIA & Energy & 0.0314 & 0.0310 & 0.0304 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-15 & DIVISLAB & Healthcare & 0.0426 & 0.0437 & 0.0325 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-16 & DRREDDY & Healthcare & 0.0323 & 0.0359 & 0.0319 & \textbf{Ours} & $\checkmark$ & $\times$ & $\checkmark$ \\
-17 & EICHERMOT & Consumer Cyclical & 0.0413 & 0.0610 & 0.0395 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-18 & ETERNAL & Consumer Cyclical & 0.0595 & 0.1162 & 0.0663 & \textbf{A} & $\times$ & $\times$ & $\times$ \\
-19 & GRASIM & Basic Materials & 0.0320 & 0.0394 & 0.0305 & \textbf{Ours} & $\times$ & $\checkmark$ & $\times$ \\
-20 & HCLTECH & Technology & 0.0453 & 0.0471 & 0.0443 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-21 & HDFCBANK & Financial Services & 0.0313 & 0.0823 & 0.0288 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-22 & HDFCLIFE & Financial Services & 0.0378 & 0.0468 & 0.0447 & \textbf{A} & $\times$ & $\checkmark$ & $\checkmark$ \\
-23 & HEROMOTOCO & Consumer Cyclical & 0.0465 & 0.0329 & 0.0311 & \textbf{Ours} & $\times$ & $\checkmark$ & $\checkmark$ \\
-24 & HINDALCO & Basic Materials & 0.0465 & 0.0429 & 0.0409 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-25 & HINDUNILVR & Consumer Defensive & 0.0323 & 0.0325 & 0.0318 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-26 & ICICIBANK & Financial Services & 0.0273 & 0.0596 & 0.0267 & \textbf{Ours} & $\times$ & $\checkmark$ & $\checkmark$ \\
-27 & INDIGO & Industrials & 0.0498 & 0.0678 & 0.0499 & \textbf{A} & $\times$ & $\checkmark$ & $\times$ \\
-28 & INDUSINDBK & Financial Services & 0.0418 & 0.0675 & 0.0570 & \textbf{A} & $\times$ & $\times$ & $\checkmark$ \\
-29 & INFY & Technology & 0.0416 & 0.0399 & 0.0395 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-30 & ITC & Consumer Defensive & 0.0340 & 0.0329 & 0.0322 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-31 & JIOFIN & Financial Services & 0.0425 & 0.0729 & 0.0417 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-32 & JSWSTEEL & Basic Materials & 0.0314 & 0.0584 & 0.0313 & \textbf{Ours} & $\checkmark$ & $\times$ & $\checkmark$ \\
-33 & KOTAKBANK & Financial Services & 0.0340 & 0.0447 & 0.0321 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-34 & LT & Industrials & 0.0430 & 0.1766 & 0.0561 & \textbf{A} & $\times$ & $\times$ & $\checkmark$ \\
-35 & M\&M & Consumer Cyclical & 0.0372 & 0.0630 & 0.0428 & \textbf{A} & $\times$ & $\times$ & $\checkmark$ \\
-36 & MARUTI & Consumer Cyclical & 0.0420 & 0.0536 & 0.0389 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-37 & MAXHEALTH & Healthcare & 0.0500 & 0.0716 & 0.0477 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-38 & NESTLEIND & Consumer Defensive & 0.0343 & 0.0343 & 0.0340 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-39 & NTPC & Utilities & 0.0364 & 0.0305 & 0.0305 & \textbf{B} & $\times$ & $\times$ & $\times$ \\
-40 & ONGC & Energy & 0.0335 & 0.0321 & 0.0302 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-41 & POWERGRID & Utilities & 0.0358 & 0.0361 & 0.0350 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-42 & RELIANCE & Energy & 0.0313 & 0.0626 & 0.0315 & \textbf{A} & $\times$ & $\times$ & $\times$ \\
-43 & SBILIFE & Financial Services & 0.0277 & 0.0529 & 0.0271 & \textbf{Ours} & $\times$ & $\checkmark$ & $\times$ \\
-44 & SBIN & Financial Services & 0.0386 & 0.0373 & 0.0469 & \textbf{B} & $\times$ & $\times$ & $\checkmark$ \\
-45 & SHRIRAMFIN & Financial Services & 0.0570 & 0.0744 & 0.0545 & \textbf{Ours} & $\times$ & $\checkmark$ & $\checkmark$ \\
-46 & SUNPHARMA & Healthcare & 0.0301 & 0.0291 & 0.0291 & \textbf{B} & $\times$ & $\times$ & $\times$ \\
-47 & TATACONSUM & Consumer Defensive & 0.0312 & 0.0289 & 0.0284 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-48 & TATASTEEL & Basic Materials & 0.0396 & 0.0465 & 0.0385 & \textbf{Ours} & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
-49 & TCS & Technology & 0.0358 & 0.0365 & 0.0348 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-50 & TECHM & Technology & 0.0435 & 0.0432 & 0.0426 & \textbf{Ours} & $\times$ & $\checkmark$ & $\checkmark$ \\
-51 & TITAN & Consumer Cyclical & 0.0377 & 0.0691 & 0.0380 & \textbf{A} & $\checkmark$ & $\times$ & $\checkmark$ \\
-52 & TMCV & Consumer Cyclical & 0.0776 & 0.0806 & 0.0613 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-53 & TMPV & Consumer Cyclical & 0.0881 & 0.0980 & 0.0835 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-54 & TRENT & Consumer Cyclical & 0.0628 & 0.1283 & 0.0625 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
-55 & ULTRACEMCO & Basic Materials & 0.0326 & 0.1510 & 0.0313 & \textbf{Ours} & $\times$ & $\times$ & $\checkmark$ \\
-56 & WIPRO & Technology & 0.0375 & 0.0383 & 0.0374 & \textbf{Ours} & $\times$ & $\times$ & $\times$ \\
+\input{appendix_baseline_h10_xgb_rows.tex}
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
-\noindent\textit{Note:} ``Beats 0'' is evaluated on the test window that remains after each arm's features are built. Adding neighbors can introduce missing values, so rows are dropped and the test slice can shift. The zero-baseline MAE is therefore computed on that arm's final test slice (its actual \,\(y_{\text{test}}\)), which is why an arm can be the lowest MAE among A/B/Ours yet still fail its own zero-baseline threshold.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Stateless LSTM: complete Baseline A vs B vs Proposed at $H=10$ for all 56 constituents. MAE is reported as a percentage of cumulative $10$-day return error. $\checkmark$ = beats zero baseline on that arm's final test rows.}
+\label{tab:full-baseline-lstm}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccccc}
+\toprule
+\# & Target & Sector & A MAE & B MAE & Prop.\ MAE & Winner & A B0 & B B0 & Prop.\ B0 \\
+\midrule
+\input{appendix_baseline_h10_lstm_rows.tex}
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\noindent\textit{Note:} ``Beats 0'' is evaluated on the test window that remains after each arm's features are built. Adding neighbors can introduce missing values, so rows are dropped and the test slice can shift. The zero-baseline MAE is therefore computed on that arm's final test slice (its actual \,\(y_{\text{test}}\)), which is why an arm can be the lowest MAE among A, B, and Proposed yet still fail its own zero-baseline threshold.
 
 \clearpage
 

@@ -11,11 +11,11 @@ lines = []
 lines.append(r"\begin{table}[htbp]")
 lines.append(r"\centering")
 lines.append(r"\scriptsize")
-lines.append(r"\caption{Complete Baseline A vs B vs Ours comparison at horizon $H=10$ for all 56 NIFTY constituents. Lower MAE is better. Winner: A=target-only, B=fixed correlation, Ours=agent-proposed.}")
-lines.append(r"\label{tab:full-baseline-abc}")
+lines.append(r"\caption{Complete Baseline A vs B vs Proposed comparison at horizon $H=10$ for all 56 NIFTY constituents (XGB backbone in \texttt{analysis\_h10.json}). Lower MAE is better. Winner: A=target-only, B=fixed correlation, Proposed=agent-proposed.}")
+lines.append(r"\label{tab:full-baseline-xgb}")
 lines.append(r"\begin{tabular}{lccccccccc}")
 lines.append(r"\toprule")
-lines.append(r"\# & Target & Sector & A MAE & B MAE & Ours MAE & Winner & A B0 & B B0 & Ours B0 \\")
+lines.append(r"\# & Target & Sector & A MAE & B MAE & Prop.\ MAE & Winner & A B0 & B B0 & Prop.\ B0 \\")
 lines.append(r"\midrule")
 
 for i, pt in enumerate(bc["per_target"], 1):
