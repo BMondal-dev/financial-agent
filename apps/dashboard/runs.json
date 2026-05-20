@@ -3,5 +3,10 @@
     "id": "h10",
     "label": "10-day horizon",
     "file": "analysis_h10.json"
+  },
+  {
+    "id": "h20",
+    "label": "20-day horizon",
+    "file": "analysis_h20.json"
   }
 ]

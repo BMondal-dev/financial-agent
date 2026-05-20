@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
   // We use generateObject here because you want a typed JSON response
   const { output } = await generateText({
     model: openai("gpt-5.4"),
-    // model: anthropic("claude-sonnet-4.6"),
+    // model: anthropic("claude-haiku-4-5"),
     // model: google("gemini-3.1-pro-preview"),
     // model: chutes("moonshotai/Kimi-K2.6-TEE"),
     output: Output.object({

@@ -1,35 +1,35 @@
 {
   "horizon": 10,
-  "run_id": "h10",
-  "timestamp": "2026-05-05T20:59:08.049931+00:00",
+  "run_id": "h20",
+  "timestamp": "2026-05-13T08:40:36.295076+00:00",
   "per_target": [
     {
       "target": "ADANIENT",
       "neighbors": [
-        "ADANIPORTS",
-        "NTPC",
-        "POWERGRID"
+        "BAJFINANCE",
+        "JIOFIN",
+        "TRENT"
       ],
-      "xgb_mae": 0.054802,
-      "lstm_mae": 0.050785,
-      "winner": "lstm",
-      "mae_gap": 0.004017,
-      "xgb_beats_zero": false,
+      "xgb_mae": 0.058975,
+      "lstm_mae": 0.060963,
+      "winner": "xgb",
+      "mae_gap": 0.001988,
+      "xgb_beats_zero": true,
       "lstm_beats_zero": true,
-      "test_date_start": "2025-04-25T00:00:00",
+      "test_date_start": "2025-10-06T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "ADANIPORTS",
       "neighbors": [
-        "JSWSTEEL",
-        "MARUTI",
-        "SBIN"
+        "BEL",
+        "LT",
+        "NTPC"
       ],
-      "xgb_mae": 0.046227,
-      "lstm_mae": 0.043935,
+      "xgb_mae": 0.046891,
+      "lstm_mae": 0.044376,
       "winner": "lstm",
-      "mae_gap": 0.002292,
+      "mae_gap": 0.002515,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -38,30 +38,30 @@
     {
       "target": "APOLLOHOSP",
       "neighbors": [
-        "BAJFINANCE",
-        "TMCV",
-        "TMPV"
+        "BRITANNIA",
+        "DIVISLAB",
+        "MAXHEALTH"
       ],
-      "xgb_mae": 0.056562,
-      "lstm_mae": 0.036351,
-      "winner": "lstm",
-      "mae_gap": 0.020212,
-      "xgb_beats_zero": false,
-      "lstm_beats_zero": false,
-      "test_date_start": "2026-03-17T00:00:00",
+      "xgb_mae": 0.032204,
+      "lstm_mae": 0.032248,
+      "winner": "xgb",
+      "mae_gap": 4.4e-05,
+      "xgb_beats_zero": true,
+      "lstm_beats_zero": true,
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "ASIANPAINT",
       "neighbors": [
-        "HINDUNILVR",
-        "INDIGO",
-        "TRENT"
+        "GRASIM",
+        "HINDALCO",
+        "ULTRACEMCO"
       ],
-      "xgb_mae": 0.044351,
-      "lstm_mae": 0.043702,
-      "winner": "lstm",
-      "mae_gap": 0.00065,
+      "xgb_mae": 0.045204,
+      "lstm_mae": 0.048759,
+      "winner": "xgb",
+      "mae_gap": 0.003554,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -71,77 +71,77 @@
       "target": "AXISBANK",
       "neighbors": [
         "BAJAJFINSV",
-        "SHRIRAMFIN",
-        "TMPV"
+        "HDFCBANK",
+        "SHRIRAMFIN"
       ],
-      "xgb_mae": 0.060383,
-      "lstm_mae": 0.073463,
+      "xgb_mae": 0.04004,
+      "lstm_mae": 0.040821,
       "winner": "xgb",
-      "mae_gap": 0.01308,
-      "xgb_beats_zero": true,
+      "mae_gap": 0.000781,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2026-03-11T00:00:00",
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BAJAJ-AUTO",
       "neighbors": [
-        "ETERNAL",
-        "ITC",
-        "TITAN"
+        "EICHERMOT",
+        "HEROMOTOCO",
+        "TMCV"
       ],
-      "xgb_mae": 0.034895,
-      "lstm_mae": 0.033625,
+      "xgb_mae": 0.102369,
+      "lstm_mae": 0.060525,
       "winner": "lstm",
-      "mae_gap": 0.001269,
+      "mae_gap": 0.041843,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-05-22T00:00:00",
+      "test_date_start": "2026-03-16T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BAJAJFINSV",
       "neighbors": [
-        "SBILIFE",
-        "SBIN",
-        "TMCV"
+        "AXISBANK",
+        "HDFCBANK",
+        "INDUSINDBK"
       ],
-      "xgb_mae": 0.049015,
-      "lstm_mae": 0.035779,
+      "xgb_mae": 0.033839,
+      "lstm_mae": 0.032656,
       "winner": "lstm",
-      "mae_gap": 0.013236,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
-      "test_date_start": "2026-03-16T00:00:00",
+      "mae_gap": 0.001183,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": false,
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BAJFINANCE",
       "neighbors": [
-        "BAJAJFINSV",
-        "HDFCBANK",
+        "ICICIBANK",
+        "JIOFIN",
         "SHRIRAMFIN"
       ],
-      "xgb_mae": 0.040746,
-      "lstm_mae": 0.038393,
-      "winner": "lstm",
-      "mae_gap": 0.002353,
+      "xgb_mae": 0.045952,
+      "lstm_mae": 0.050211,
+      "winner": "xgb",
+      "mae_gap": 0.004259,
       "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
-      "test_date_start": "2025-04-25T00:00:00",
+      "lstm_beats_zero": false,
+      "test_date_start": "2025-10-06T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BEL",
       "neighbors": [
         "ADANIPORTS",
-        "COALINDIA",
-        "LT"
+        "LT",
+        "ONGC"
       ],
-      "xgb_mae": 0.047654,
-      "lstm_mae": 0.045771,
+      "xgb_mae": 0.049714,
+      "lstm_mae": 0.047466,
       "winner": "lstm",
-      "mae_gap": 0.001883,
+      "mae_gap": 0.002248,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -150,78 +150,78 @@
     {
       "target": "BHARTIARTL",
       "neighbors": [
-        "LT",
-        "RELIANCE",
-        "SBIN"
+        "BAJFINANCE",
+        "ICICIBANK",
+        "RELIANCE"
       ],
-      "xgb_mae": 0.031049,
-      "lstm_mae": 0.026737,
+      "xgb_mae": 0.031532,
+      "lstm_mae": 0.027665,
       "winner": "lstm",
-      "mae_gap": 0.004311,
+      "mae_gap": 0.003867,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BPCL",
       "neighbors": [
-        "ADANIENT",
-        "INDUSINDBK",
-        "TECHM"
+        "COALINDIA",
+        "ONGC",
+        "RELIANCE"
       ],
-      "xgb_mae": 0.051847,
-      "lstm_mae": 0.045261,
+      "xgb_mae": 0.04838,
+      "lstm_mae": 0.047822,
       "winner": "lstm",
-      "mae_gap": 0.006585,
+      "mae_gap": 0.000558,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "BRITANNIA",
       "neighbors": [
-        "APOLLOHOSP",
+        "CIPLA",
         "HDFCLIFE",
-        "TMPV"
+        "MAXHEALTH"
       ],
-      "xgb_mae": 0.032492,
-      "lstm_mae": 0.045184,
-      "winner": "xgb",
-      "mae_gap": 0.012692,
-      "xgb_beats_zero": true,
+      "xgb_mae": 0.02872,
+      "lstm_mae": 0.027992,
+      "winner": "lstm",
+      "mae_gap": 0.000728,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2026-03-11T00:00:00",
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "CIPLA",
       "neighbors": [
-        "APOLLOHOSP",
-        "DRREDDY",
-        "MAXHEALTH"
+        "INDUSINDBK",
+        "TATACONSUM",
+        "TMPV"
       ],
-      "xgb_mae": 0.032076,
-      "lstm_mae": 0.027903,
-      "winner": "lstm",
-      "mae_gap": 0.004173,
+      "xgb_mae": 0.060494,
+      "lstm_mae": 0.073708,
+      "winner": "xgb",
+      "mae_gap": 0.013214,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
-      "test_date_start": "2025-04-25T00:00:00",
+      "lstm_beats_zero": false,
+      "test_date_start": "2026-03-11T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "COALINDIA",
       "neighbors": [
-        "BAJAJ-AUTO",
         "BEL",
-        "ITC"
+        "BPCL",
+        "ONGC"
       ],
-      "xgb_mae": 0.03197,
-      "lstm_mae": 0.028782,
-      "winner": "lstm",
-      "mae_gap": 0.003188,
+      "xgb_mae": 0.030471,
+      "lstm_mae": 0.031047,
+      "winner": "xgb",
+      "mae_gap": 0.000576,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -230,30 +230,30 @@
     {
       "target": "DIVISLAB",
       "neighbors": [
-        "EICHERMOT",
-        "JIOFIN",
-        "TRENT"
+        "CIPLA",
+        "GRASIM",
+        "TMCV"
       ],
-      "xgb_mae": 0.032386,
-      "lstm_mae": 0.029296,
+      "xgb_mae": 0.056698,
+      "lstm_mae": 0.04193,
       "winner": "lstm",
-      "mae_gap": 0.00309,
+      "mae_gap": 0.014768,
       "xgb_beats_zero": false,
       "lstm_beats_zero": true,
-      "test_date_start": "2025-10-06T00:00:00",
+      "test_date_start": "2026-03-16T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "DRREDDY",
       "neighbors": [
         "APOLLOHOSP",
-        "HDFCLIFE",
+        "CIPLA",
         "MAXHEALTH"
       ],
-      "xgb_mae": 0.031714,
-      "lstm_mae": 0.032953,
+      "xgb_mae": 0.031817,
+      "lstm_mae": 0.037344,
       "winner": "xgb",
-      "mae_gap": 0.001238,
+      "mae_gap": 0.005527,
       "xgb_beats_zero": true,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -262,14 +262,14 @@
     {
       "target": "EICHERMOT",
       "neighbors": [
-        "BAJAJFINSV",
+        "ASIANPAINT",
         "HEROMOTOCO",
-        "TITAN"
+        "M&M"
       ],
-      "xgb_mae": 0.039539,
-      "lstm_mae": 0.039753,
+      "xgb_mae": 0.041674,
+      "lstm_mae": 0.042849,
       "winner": "xgb",
-      "mae_gap": 0.000214,
+      "mae_gap": 0.001175,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -278,78 +278,78 @@
     {
       "target": "ETERNAL",
       "neighbors": [
-        "BAJAJ-AUTO",
-        "MARUTI",
-        "NESTLEIND"
+        "EICHERMOT",
+        "TMCV",
+        "TRENT"
       ],
-      "xgb_mae": 0.059072,
-      "lstm_mae": 0.055576,
+      "xgb_mae": 0.103053,
+      "lstm_mae": 0.07761,
       "winner": "lstm",
-      "mae_gap": 0.003496,
+      "mae_gap": 0.025443,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-05-16T00:00:00",
+      "test_date_start": "2026-03-16T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "GRASIM",
       "neighbors": [
-        "JSWSTEEL",
-        "TMCV",
-        "TMPV"
+        "ASIANPAINT",
+        "DIVISLAB",
+        "TATASTEEL"
       ],
-      "xgb_mae": 0.038918,
-      "lstm_mae": 0.035421,
+      "xgb_mae": 0.031214,
+      "lstm_mae": 0.030781,
       "winner": "lstm",
-      "mae_gap": 0.003496,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
-      "test_date_start": "2026-03-17T00:00:00",
+      "mae_gap": 0.000433,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": false,
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "HCLTECH",
       "neighbors": [
-        "ADANIENT",
-        "INFY",
-        "KOTAKBANK"
+        "KOTAKBANK",
+        "ONGC",
+        "ULTRACEMCO"
       ],
-      "xgb_mae": 0.045077,
-      "lstm_mae": 0.04234,
+      "xgb_mae": 0.044374,
+      "lstm_mae": 0.042477,
       "winner": "lstm",
-      "mae_gap": 0.002736,
+      "mae_gap": 0.001897,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "HDFCBANK",
       "neighbors": [
-        "LT",
-        "TMCV",
+        "BAJAJFINSV",
+        "INDIGO",
         "TMPV"
       ],
-      "xgb_mae": 0.082245,
-      "lstm_mae": 0.048768,
+      "xgb_mae": 0.06846,
+      "lstm_mae": 0.058068,
       "winner": "lstm",
-      "mae_gap": 0.033477,
+      "mae_gap": 0.010392,
       "xgb_beats_zero": false,
       "lstm_beats_zero": true,
-      "test_date_start": "2026-03-17T00:00:00",
+      "test_date_start": "2026-03-11T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "HDFCLIFE",
       "neighbors": [
         "BAJAJFINSV",
-        "HDFCBANK",
+        "INDUSINDBK",
         "SBILIFE"
       ],
-      "xgb_mae": 0.035105,
-      "lstm_mae": 0.031661,
+      "xgb_mae": 0.034876,
+      "lstm_mae": 0.031513,
       "winner": "lstm",
-      "mae_gap": 0.003444,
+      "mae_gap": 0.003363,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -358,31 +358,31 @@
     {
       "target": "HEROMOTOCO",
       "neighbors": [
-        "TECHM",
-        "TMCV",
-        "TMPV"
+        "BPCL",
+        "INDUSINDBK",
+        "TITAN"
       ],
-      "xgb_mae": 0.031104,
-      "lstm_mae": 0.042499,
-      "winner": "xgb",
-      "mae_gap": 0.011396,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": false,
-      "test_date_start": "2026-03-17T00:00:00",
+      "xgb_mae": 0.046642,
+      "lstm_mae": 0.041532,
+      "winner": "lstm",
+      "mae_gap": 0.00511,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": true,
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "HINDALCO",
       "neighbors": [
-        "COALINDIA",
+        "JSWSTEEL",
         "NESTLEIND",
-        "ONGC"
+        "TATASTEEL"
       ],
-      "xgb_mae": 0.040486,
-      "lstm_mae": 0.039504,
+      "xgb_mae": 0.044834,
+      "lstm_mae": 0.041639,
       "winner": "lstm",
-      "mae_gap": 0.000982,
-      "xgb_beats_zero": true,
+      "mae_gap": 0.003195,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": true,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
@@ -390,31 +390,31 @@
     {
       "target": "HINDUNILVR",
       "neighbors": [
-        "NESTLEIND",
-        "SUNPHARMA",
-        "TCS"
+        "BRITANNIA",
+        "SBIN",
+        "SUNPHARMA"
       ],
-      "xgb_mae": 0.032479,
-      "lstm_mae": 0.029579,
+      "xgb_mae": 0.033413,
+      "lstm_mae": 0.032596,
       "winner": "lstm",
-      "mae_gap": 0.002899,
+      "mae_gap": 0.000817,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "ICICIBANK",
       "neighbors": [
-        "HINDUNILVR",
-        "INDUSINDBK",
-        "SBILIFE"
+        "AXISBANK",
+        "GRASIM",
+        "INDUSINDBK"
       ],
-      "xgb_mae": 0.026739,
-      "lstm_mae": 0.031348,
+      "xgb_mae": 0.027718,
+      "lstm_mae": 0.030215,
       "winner": "xgb",
-      "mae_gap": 0.004608,
-      "xgb_beats_zero": true,
+      "mae_gap": 0.002497,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
@@ -422,62 +422,62 @@
     {
       "target": "INDIGO",
       "neighbors": [
-        "JIOFIN",
-        "SHRIRAMFIN",
-        "TMCV"
+        "ADANIPORTS",
+        "LT",
+        "TRENT"
       ],
-      "xgb_mae": 0.068399,
-      "lstm_mae": 0.051453,
+      "xgb_mae": 0.04911,
+      "lstm_mae": 0.047992,
       "winner": "lstm",
-      "mae_gap": 0.016946,
+      "mae_gap": 0.001118,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": false,
+      "test_date_start": "2025-04-25T00:00:00",
+      "test_date_end": "2026-04-16T00:00:00"
+    },
+    {
+      "target": "INDUSINDBK",
+      "neighbors": [
+        "SHRIRAMFIN",
+        "TMCV",
+        "TMPV"
+      ],
+      "xgb_mae": 0.070216,
+      "lstm_mae": 0.055417,
+      "winner": "lstm",
+      "mae_gap": 0.014799,
       "xgb_beats_zero": false,
       "lstm_beats_zero": true,
       "test_date_start": "2026-03-17T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
-      "target": "INDUSINDBK",
-      "neighbors": [
-        "APOLLOHOSP",
-        "MAXHEALTH",
-        "TMPV"
-      ],
-      "xgb_mae": 0.057025,
-      "lstm_mae": 0.061409,
-      "winner": "xgb",
-      "mae_gap": 0.004384,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
-      "test_date_start": "2026-03-11T00:00:00",
-      "test_date_end": "2026-04-16T00:00:00"
-    },
-    {
       "target": "INFY",
       "neighbors": [
-        "HDFCBANK",
-        "ICICIBANK",
-        "SBIN"
+        "HCLTECH",
+        "TCS",
+        "TECHM"
       ],
-      "xgb_mae": 0.039564,
-      "lstm_mae": 0.036297,
+      "xgb_mae": 0.039893,
+      "lstm_mae": 0.039071,
       "winner": "lstm",
-      "mae_gap": 0.003267,
+      "mae_gap": 0.000823,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "ITC",
       "neighbors": [
-        "BRITANNIA",
-        "HINDUNILVR",
-        "NESTLEIND"
+        "AXISBANK",
+        "COALINDIA",
+        "RELIANCE"
       ],
-      "xgb_mae": 0.03306,
-      "lstm_mae": 0.031214,
-      "winner": "lstm",
-      "mae_gap": 0.001846,
+      "xgb_mae": 0.03206,
+      "lstm_mae": 0.033119,
+      "winner": "xgb",
+      "mae_gap": 0.00106,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -486,46 +486,46 @@
     {
       "target": "JIOFIN",
       "neighbors": [
-        "BAJFINANCE",
-        "EICHERMOT",
-        "HDFCBANK"
+        "SBILIFE",
+        "SHRIRAMFIN",
+        "TMCV"
       ],
-      "xgb_mae": 0.04426,
-      "lstm_mae": 0.043982,
-      "winner": "lstm",
-      "mae_gap": 0.000278,
+      "xgb_mae": 0.064224,
+      "lstm_mae": 0.078183,
+      "winner": "xgb",
+      "mae_gap": 0.013959,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-10-08T00:00:00",
+      "test_date_start": "2026-03-16T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "JSWSTEEL",
       "neighbors": [
-        "NTPC",
-        "POWERGRID",
-        "ULTRACEMCO"
+        "ADANIPORTS",
+        "COALINDIA",
+        "GRASIM"
       ],
-      "xgb_mae": 0.03134,
-      "lstm_mae": 0.03184,
-      "winner": "xgb",
-      "mae_gap": 0.000501,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
+      "xgb_mae": 0.032712,
+      "lstm_mae": 0.032323,
+      "winner": "lstm",
+      "mae_gap": 0.000389,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "KOTAKBANK",
       "neighbors": [
-        "ITC",
-        "NTPC",
-        "POWERGRID"
+        "BAJAJFINSV",
+        "HDFCBANK",
+        "M&M"
       ],
-      "xgb_mae": 0.033932,
-      "lstm_mae": 0.03535,
+      "xgb_mae": 0.032241,
+      "lstm_mae": 0.035229,
       "winner": "xgb",
-      "mae_gap": 0.001418,
+      "mae_gap": 0.002988,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -534,30 +534,30 @@
     {
       "target": "LT",
       "neighbors": [
+        "HDFCBANK",
         "INFY",
-        "TATASTEEL",
-        "TMPV"
+        "RELIANCE"
       ],
-      "xgb_mae": 0.055053,
-      "lstm_mae": 0.155249,
-      "winner": "xgb",
-      "mae_gap": 0.100196,
-      "xgb_beats_zero": true,
+      "xgb_mae": 0.041851,
+      "lstm_mae": 0.040959,
+      "winner": "lstm",
+      "mae_gap": 0.000892,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2026-03-11T00:00:00",
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "M&M",
       "neighbors": [
         "EICHERMOT",
-        "MARUTI",
+        "TITAN",
         "TMPV"
       ],
-      "xgb_mae": 0.041691,
-      "lstm_mae": 0.057983,
+      "xgb_mae": 0.043712,
+      "lstm_mae": 0.062856,
       "winner": "xgb",
-      "mae_gap": 0.016292,
+      "mae_gap": 0.019144,
       "xgb_beats_zero": true,
       "lstm_beats_zero": false,
       "test_date_start": "2026-03-11T00:00:00",
@@ -566,30 +566,30 @@
     {
       "target": "MARUTI",
       "neighbors": [
-        "AXISBANK",
-        "KOTAKBANK",
-        "ULTRACEMCO"
+        "EICHERMOT",
+        "M&M",
+        "TMPV"
       ],
-      "xgb_mae": 0.038879,
-      "lstm_mae": 0.040434,
+      "xgb_mae": 0.053567,
+      "lstm_mae": 0.055863,
       "winner": "xgb",
-      "mae_gap": 0.001554,
-      "xgb_beats_zero": true,
+      "mae_gap": 0.002296,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-04-25T00:00:00",
+      "test_date_start": "2026-03-11T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "MAXHEALTH",
       "neighbors": [
-        "BPCL",
-        "M&M",
+        "APOLLOHOSP",
+        "DRREDDY",
         "TMPV"
       ],
-      "xgb_mae": 0.056124,
-      "lstm_mae": 0.049444,
+      "xgb_mae": 0.063176,
+      "lstm_mae": 0.039242,
       "winner": "lstm",
-      "mae_gap": 0.006681,
+      "mae_gap": 0.023934,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2026-03-11T00:00:00",
@@ -598,14 +598,14 @@
     {
       "target": "NESTLEIND",
       "neighbors": [
-        "GRASIM",
+        "BRITANNIA",
         "HINDUNILVR",
-        "SBILIFE"
+        "TATACONSUM"
       ],
-      "xgb_mae": 0.033694,
-      "lstm_mae": 0.037723,
+      "xgb_mae": 0.034326,
+      "lstm_mae": 0.037041,
       "winner": "xgb",
-      "mae_gap": 0.004029,
+      "mae_gap": 0.002715,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -614,14 +614,14 @@
     {
       "target": "NTPC",
       "neighbors": [
-        "BEL",
         "COALINDIA",
-        "SBIN"
+        "ONGC",
+        "POWERGRID"
       ],
-      "xgb_mae": 0.031002,
-      "lstm_mae": 0.026613,
+      "xgb_mae": 0.03045,
+      "lstm_mae": 0.028478,
       "winner": "lstm",
-      "mae_gap": 0.004389,
+      "mae_gap": 0.001972,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -630,14 +630,14 @@
     {
       "target": "ONGC",
       "neighbors": [
-        "ADANIENT",
         "COALINDIA",
-        "NTPC"
+        "NTPC",
+        "POWERGRID"
       ],
-      "xgb_mae": 0.030223,
-      "lstm_mae": 0.037132,
+      "xgb_mae": 0.032059,
+      "lstm_mae": 0.038359,
       "winner": "xgb",
-      "mae_gap": 0.006909,
+      "mae_gap": 0.0063,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -647,13 +647,13 @@
       "target": "POWERGRID",
       "neighbors": [
         "ITC",
-        "KOTAKBANK",
-        "NTPC"
+        "NTPC",
+        "TITAN"
       ],
-      "xgb_mae": 0.035815,
-      "lstm_mae": 0.032816,
-      "winner": "lstm",
-      "mae_gap": 0.002999,
+      "xgb_mae": 0.035748,
+      "lstm_mae": 0.037374,
+      "winner": "xgb",
+      "mae_gap": 0.001626,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -662,33 +662,33 @@
     {
       "target": "RELIANCE",
       "neighbors": [
-        "ADANIPORTS",
-        "LT",
-        "TCS"
+        "HINDUNILVR",
+        "ICICIBANK",
+        "JIOFIN"
       ],
-      "xgb_mae": 0.030854,
-      "lstm_mae": 0.029194,
-      "winner": "lstm",
-      "mae_gap": 0.00166,
+      "xgb_mae": 0.035267,
+      "lstm_mae": 0.036583,
+      "winner": "xgb",
+      "mae_gap": 0.001316,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-04-25T00:00:00",
+      "test_date_start": "2025-10-06T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "SBILIFE",
       "neighbors": [
-        "GRASIM",
-        "TMCV",
-        "WIPRO"
+        "HDFCLIFE",
+        "ICICIBANK",
+        "KOTAKBANK"
       ],
-      "xgb_mae": 0.054874,
-      "lstm_mae": 0.056346,
+      "xgb_mae": 0.027093,
+      "lstm_mae": 0.02753,
       "winner": "xgb",
-      "mae_gap": 0.001473,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
-      "test_date_start": "2026-03-16T00:00:00",
+      "mae_gap": 0.000437,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": false,
+      "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
@@ -710,30 +710,30 @@
     {
       "target": "SHRIRAMFIN",
       "neighbors": [
-        "ETERNAL",
-        "HDFCBANK",
-        "ICICIBANK"
+        "JIOFIN",
+        "SBILIFE",
+        "TMCV"
       ],
-      "xgb_mae": 0.057237,
-      "lstm_mae": 0.053469,
-      "winner": "lstm",
-      "mae_gap": 0.003768,
-      "xgb_beats_zero": false,
+      "xgb_mae": 0.07758,
+      "lstm_mae": 0.087784,
+      "winner": "xgb",
+      "mae_gap": 0.010204,
+      "xgb_beats_zero": true,
       "lstm_beats_zero": true,
-      "test_date_start": "2025-05-22T00:00:00",
+      "test_date_start": "2026-03-17T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "SUNPHARMA",
       "neighbors": [
-        "ICICIBANK",
-        "RELIANCE",
-        "TCS"
+        "APOLLOHOSP",
+        "CIPLA",
+        "MAXHEALTH"
       ],
-      "xgb_mae": 0.030106,
-      "lstm_mae": 0.028029,
-      "winner": "lstm",
-      "mae_gap": 0.002078,
+      "xgb_mae": 0.02955,
+      "lstm_mae": 0.030866,
+      "winner": "xgb",
+      "mae_gap": 0.001315,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -742,14 +742,14 @@
     {
       "target": "TATACONSUM",
       "neighbors": [
+        "BRITANNIA",
         "GRASIM",
-        "INDUSINDBK",
-        "TITAN"
+        "ITC"
       ],
-      "xgb_mae": 0.028915,
-      "lstm_mae": 0.026007,
+      "xgb_mae": 0.029282,
+      "lstm_mae": 0.026813,
       "winner": "lstm",
-      "mae_gap": 0.002909,
+      "mae_gap": 0.00247,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -758,126 +758,126 @@
     {
       "target": "TATASTEEL",
       "neighbors": [
-        "GRASIM",
-        "JSWSTEEL",
-        "ULTRACEMCO"
+        "COALINDIA",
+        "HINDALCO",
+        "JSWSTEEL"
       ],
-      "xgb_mae": 0.038521,
-      "lstm_mae": 0.041893,
-      "winner": "xgb",
-      "mae_gap": 0.003372,
+      "xgb_mae": 0.038611,
+      "lstm_mae": 0.038254,
+      "winner": "lstm",
+      "mae_gap": 0.000356,
       "xgb_beats_zero": true,
-      "lstm_beats_zero": false,
+      "lstm_beats_zero": true,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TCS",
       "neighbors": [
-        "HDFCBANK",
-        "ICICIBANK",
+        "INFY",
+        "LT",
         "RELIANCE"
       ],
-      "xgb_mae": 0.034804,
-      "lstm_mae": 0.032696,
-      "winner": "lstm",
-      "mae_gap": 0.002108,
+      "xgb_mae": 0.034836,
+      "lstm_mae": 0.035228,
+      "winner": "xgb",
+      "mae_gap": 0.000393,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TECHM",
       "neighbors": [
-        "BRITANNIA",
-        "HCLTECH",
-        "TATACONSUM"
+        "INFY",
+        "LT",
+        "WIPRO"
       ],
-      "xgb_mae": 0.042164,
-      "lstm_mae": 0.042744,
+      "xgb_mae": 0.041832,
+      "lstm_mae": 0.043463,
       "winner": "xgb",
-      "mae_gap": 0.000579,
+      "mae_gap": 0.001631,
       "xgb_beats_zero": true,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TITAN",
       "neighbors": [
-        "INDIGO",
-        "SHRIRAMFIN",
-        "ULTRACEMCO"
+        "BAJAJFINSV",
+        "KOTAKBANK",
+        "TMCV"
       ],
-      "xgb_mae": 0.040239,
-      "lstm_mae": 0.037217,
-      "winner": "lstm",
-      "mae_gap": 0.003022,
-      "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
-      "test_date_start": "2025-04-25T00:00:00",
+      "xgb_mae": 0.05911,
+      "lstm_mae": 0.082789,
+      "winner": "xgb",
+      "mae_gap": 0.023679,
+      "xgb_beats_zero": true,
+      "lstm_beats_zero": false,
+      "test_date_start": "2026-03-16T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TMCV",
       "neighbors": [
-        "BAJAJFINSV",
-        "ETERNAL",
-        "SHRIRAMFIN"
+        "EICHERMOT",
+        "M&M",
+        "MARUTI"
       ],
-      "xgb_mae": 0.049744,
-      "lstm_mae": 0.069471,
-      "winner": "xgb",
-      "mae_gap": 0.019727,
-      "xgb_beats_zero": true,
+      "xgb_mae": 0.077717,
+      "lstm_mae": 0.069472,
+      "winner": "lstm",
+      "mae_gap": 0.008245,
+      "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2026-03-19T00:00:00",
+      "test_date_start": "2026-03-18T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TMPV",
       "neighbors": [
-        "HEROMOTOCO",
-        "TITAN",
-        "TRENT"
+        "INDIGO",
+        "SHRIRAMFIN",
+        "TITAN"
       ],
-      "xgb_mae": 0.081354,
-      "lstm_mae": 0.087224,
-      "winner": "xgb",
-      "mae_gap": 0.00587,
-      "xgb_beats_zero": true,
-      "lstm_beats_zero": false,
+      "xgb_mae": 0.092096,
+      "lstm_mae": 0.076776,
+      "winner": "lstm",
+      "mae_gap": 0.015319,
+      "xgb_beats_zero": false,
+      "lstm_beats_zero": true,
       "test_date_start": "2026-03-12T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "TRENT",
       "neighbors": [
-        "BAJAJ-AUTO",
-        "M&M",
-        "TITAN"
+        "ETERNAL",
+        "JIOFIN",
+        "TMCV"
       ],
-      "xgb_mae": 0.062549,
-      "lstm_mae": 0.064923,
-      "winner": "xgb",
-      "mae_gap": 0.002375,
+      "xgb_mae": 0.161229,
+      "lstm_mae": 0.147639,
+      "winner": "lstm",
+      "mae_gap": 0.013589,
       "xgb_beats_zero": false,
       "lstm_beats_zero": false,
-      "test_date_start": "2025-04-25T00:00:00",
+      "test_date_start": "2026-03-17T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     },
     {
       "target": "ULTRACEMCO",
       "neighbors": [
+        "ADANIPORTS",
         "LT",
-        "M&M",
-        "MARUTI"
+        "M&M"
       ],
-      "xgb_mae": 0.031321,
-      "lstm_mae": 0.032509,
+      "xgb_mae": 0.030967,
+      "lstm_mae": 0.032196,
       "winner": "xgb",
-      "mae_gap": 0.001188,
+      "mae_gap": 0.001229,
       "xgb_beats_zero": true,
       "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
@@ -886,31 +886,31 @@
     {
       "target": "WIPRO",
       "neighbors": [
-        "GRASIM",
-        "NESTLEIND",
-        "SBILIFE"
+        "HCLTECH",
+        "INFY",
+        "LT"
       ],
-      "xgb_mae": 0.036825,
-      "lstm_mae": 0.035606,
-      "winner": "lstm",
-      "mae_gap": 0.001219,
+      "xgb_mae": 0.037858,
+      "lstm_mae": 0.038602,
+      "winner": "xgb",
+      "mae_gap": 0.000744,
       "xgb_beats_zero": false,
-      "lstm_beats_zero": true,
+      "lstm_beats_zero": false,
       "test_date_start": "2025-04-25T00:00:00",
       "test_date_end": "2026-04-16T00:00:00"
     }
   ],
   "aggregate": {
-    "xgb_wins": 21,
-    "lstm_wins": 35,
+    "xgb_wins": 27,
+    "lstm_wins": 29,
     "ties": 0,
     "total_targets": 56,
-    "xgb_avg_mae": 0.042795,
-    "lstm_avg_mae": 0.043485,
-    "xgb_min_mae": 0.026739,
-    "lstm_min_mae": 0.026007,
-    "xgb_max_mae": 0.082245,
-    "lstm_max_mae": 0.155249
+    "xgb_avg_mae": 0.047964,
+    "lstm_avg_mae": 0.046515,
+    "xgb_min_mae": 0.027093,
+    "lstm_min_mae": 0.026813,
+    "xgb_max_mae": 0.161229,
+    "lstm_max_mae": 0.147639
   },
   "fairness_note": "Same data split, features, and test window for both models"
 }
