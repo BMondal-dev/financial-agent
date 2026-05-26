@@ -55,17 +55,293 @@
 \geometry{margin=1in}
 \onehalfspacing
 
-\title{LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns}
-
-\author{
-    Bijit Mondal\\
-    % \texttt{hello@bijit.xyz}
-}
-\date{} % Explicitly leaving this empty removes the date from the title page
-
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \centering
+
+    {\Huge\bfseries LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns\par}
+
+    \vspace{2.2cm}
+    {\Large\bfseries MASTER OF COMPUTER APPLICATION\par}
+    \vspace{0.3cm}
+    {\large Faculty of Engineering \& Technology\par}
+
+    \vspace{1.8cm}
+    {\large\bfseries By\par}
+    \vspace{0.2cm}
+    {\LARGE\bfseries Bijit Mondal\par}
+
+    \vspace{1.2cm}
+    {\large Exam Roll No. -- MCA\_\_\_\_\_\_\par}
+    \vspace{0.2cm}
+    {\large Registration No. -- 1665860 of 2024-25\par}
+
+    \vfill
+    {\large\bfseries Under the Guidance of\par}
+    \vspace{0.3cm}
+    {\Large Dr.\ Ujjwal Maulik\par}
+
+    \vfill
+    {\large\bfseries Department of Computer Science \& Engineering\par}
+    \vspace{0.25cm}
+    {\large Jadavpur University\par}
+    \vspace{0.25cm}
+    {\large Kolkata -- 700032\par}
+\end{titlepage}
+
+
+\begin{titlepage}
+    \centering
+    
+    {\Large\bfseries DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING\par}
+    \vspace{0.2cm}
+    {\large\bfseries FACULTY OF ENGINEERING \& TECHNOLOGY\par}
+    \vspace{0.2cm}
+    {\large\bfseries JADAVPUR UNIVERSITY\par}
+    
+    \vspace{1.8cm}
+    
+    {\Large\bfseries CERTIFICATE OF RECOMMENDATION\par}
+    
+    \vspace{0.8cm}
+    
+    \begin{minipage}{0.9\textwidth}
+        \setlength{\parindent}{1em}
+        \setlength{\parskip}{0.6em}
+        \normalsize
+        
+        This is to certify that the thesis titled \textbf{``LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns''} submitted by \textbf{Bijit Mondal} (Exam Roll No. -- MCA\_\_\_\_\_\_, Registration No. -- 1665860 of 2024-25) to the Department of Computer Science \& Engineering, Jadavpur University, represents original research work carried out by him under my supervision. The thesis fulfills all requirements and is hereby recommended for acceptance in partial fulfillment of the degree of \textbf{Master of Computer Application}.
+        
+        \vspace{0.3cm}
+        
+        It is further certified that the work presented has not been submitted for any other degree or diploma at this or any other university.
+    \end{minipage}
+    
+    \vspace{1.2cm}
+    
+    \begin{tabular}{p{0.9\textwidth}}
+        \hline \\[-0.6em]
+        \textbf{Project Supervisor} \\
+        Dr.\ Ujjwal Maulik \\
+        Department of Computer Science \& Engineering \\
+        Jadavpur University \\[1.0cm]
+        \hline \\[-0.6em]
+        \textbf{Head of Department} \\
+        Department of Computer Science \& Engineering \\
+        Jadavpur University \\[1.0cm]
+        \hline \\[-0.6em]
+        \textbf{Dean} \\
+        Faculty of Engineering \& Technology \\
+        Jadavpur University \\
+    \end{tabular}
+    
+    
+    \vspace{1.2cm}
+    
+\end{titlepage}
+
+\begin{titlepage}
+    \centering
+    
+    {\Large\bfseries JADAVPUR UNIVERSITY\par}
+    \vspace{0.2cm}
+    {\large\bfseries FACULTY OF ENGINEERING \& TECHNOLOGY\par}
+    
+    \vspace{2cm}
+    
+    {\Large\bfseries CERTIFICATE OF APPROVAL\par}
+    
+    \vspace{1cm}
+    
+    \begin{minipage}{0.9\textwidth}
+        \setlength{\parindent}{1em}
+        \setlength{\parskip}{0.5em}
+        \normalsize
+        
+        This is to certify that the thesis titled \textbf{``LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns''} submitted by \textbf{Bijit Mondal} (Exam Roll No. -- MCA\_\_\_\_\_\_, Registration No. -- 1665860 of 2024-25) has been examined and is found to be satisfactory in scope and quality. The work presented fulfills all the requirements for the degree of \textbf{Master of Computer Application}.
+        
+        \vspace{0.2cm}
+        
+        The thesis embodies original research work carried out by the candidate under supervision and demonstrates adequate knowledge in the relevant field. The candidate has successfully defended the work in the viva voce examination before the Board of Examiners.
+        
+        \vspace{0.2cm}
+        
+        Based on the evaluation of the thesis and the performance in the oral examination, the Board of Examiners hereby recommends the thesis for acceptance and the award of the degree.
+    \end{minipage}
+    
+    \vspace{1.5cm}
+    
+    \begin{tabular}{p{0.9\textwidth}}
+        \hline \\[-0.6em]
+        \textbf{Chairperson, Board of Examiners} \\
+        (External Examiner) \\[1cm]
+        \hline \\[-0.6em]
+        \textbf{Internal Examiner} \\[1cm]
+        \hline \\[-0.6em]
+        \textbf{Supervisor} \\
+        Dr.\ Ujjwal Maulik \\
+        Department of Computer Science \& Engineering \\
+        Jadavpur University \\
+    \end{tabular}
+    
+    \vfill
+    
+    {\small Kolkata, \today}
+    
+\end{titlepage}
+
+\begin{titlepage}
+    \centering
+    
+    {\Large\bfseries JADAVPUR UNIVERSITY\par}
+    \vspace{0.2cm}
+    {\large\bfseries FACULTY OF ENGINEERING \& TECHNOLOGY\par}
+    
+    \vspace{2cm}
+    
+    {\Large\bfseries DECLARATION OF ORIGINALITY\par}
+    {\large\bfseries AND COMPLIANCE WITH ACADEMIC ETHICS\par}
+    
+    \vspace{1.2cm}
+    
+    \begin{minipage}{0.9\textwidth}
+        \setlength{\parindent}{1em}
+        \setlength{\parskip}{0.5em}
+        \normalsize
+        
+        I, \textbf{Bijit Mondal}, hereby declare and affirm that the research work presented in this thesis titled \textbf{``LLM-Orchestrated Neighbor-Enriched Forecasting for NIFTY Equity Returns''} is my own original work. This thesis has not been submitted, in whole or in part, for any other degree, diploma, or similar qualification at this or any other institution.
+        
+        \vspace{0.2cm}
+        
+        I further declare that all sources of information, data, code, and concepts borrowed from other works have been explicitly acknowledged and properly cited. No part of this work has been plagiarized, fabricated, or misrepresented. Any assistance received during the course of this research, including but not limited to technical, statistical, or editorial help, has been duly credited.
+        
+        \vspace{0.2cm}
+        
+        I confirm that the experimental methodology, results, and conclusions reported herein are truthful and have been conducted with the highest standards of academic integrity. I take full responsibility for the originality and ethical compliance of this thesis.
+        
+        \vspace{0.5cm}
+        
+        \begin{tabular}{ll}
+            \textbf{Name:} & Bijit Mondal \\
+            \textbf{Registration No.:} & 1665860 of 2024-25 \\
+            \textbf{Examination Roll No.:} & MCA\_\_\_\_\_\_ \\
+            \textbf{Thesis Title:} & LLM-Orchestrated Neighbor-Enriched Forecasting \\
+            & for NIFTY Equity Returns \\
+        \end{tabular}
+        
+    \end{minipage}
+    
+    \vspace{1.2cm}
+    
+    \begin{tabular}{p{0.6\textwidth}}
+        \hline \\[-0.6em]
+        \textbf{Bijit Mondal} \\
+        (Candidate) \\[0.8cm]
+        \hline \\[-0.6em]
+        \textbf{Date:} \hfill  \\
+    \end{tabular}
+    
+    \vfill
+    
+\end{titlepage}
+
+\begin{titlepage}
+    \centering
+    
+    {\Large\bfseries ACKNOWLEDGEMENTS\par}
+    
+    \vspace{1.5cm}
+    
+    \begin{minipage}{0.9\textwidth}
+        \setlength{\parindent}{1em}
+        \setlength{\parskip}{0.6em}
+        \normalsize
+        
+        This thesis would not have been possible without the unwavering support and guidance of many individuals.
+        
+        First and foremost, I express my deepest gratitude to my supervisor, \textbf{Dr.\ Ujjwal Maulik}, whose intellectual rigour, patient mentoring, and insightful feedback shaped every stage of this research. His encouragement to think critically and his belief in the practical value of this work have been a constant source of motivation.
+        
+        I am sincerely thankful to the \textbf{Department of Computer Science \& Engineering}, Jadavpur University, for providing the computational facilities and academic environment that made this experimentation possible. I also acknowledge the faculty and staff of the department for their timely administrative and technical assistance.
+        
+        I extend my appreciation to my peers and lab colleagues for the stimulating discussions, late‐night debugging sessions, and the collaborative spirit that made the research journey enjoyable.
+        
+        I am especially thankful to \textbf{Ms.\ Srinka Basu} for her invaluable help with constant iteration and refinement of this project throughout its development.
+        
+        Finally, I owe my deepest gratitude to my family — my parents, whose sacrifices and encouragement have been the bedrock of my education; and my friends, who stood by me through every challenge. This work is dedicated to them.
+        
+        \vspace{0.5cm}
+        \begin{flushright}
+            \emph{Bijit Mondal}
+        \end{flushright}
+    \end{minipage}
+    
+    \vfill
+    
+    {\small Kolkata, \today}
+    
+\end{titlepage}
+\clearpage
+
+\begin{titlepage}
+    \centering
+    
+    {\Large\bfseries NOMENCLATURE\par}
+    
+    \vspace{1.2cm}
+    
+    \begin{minipage}{0.9\textwidth}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{0.4em}
+        \normalsize
+        
+        \textbf{Abbreviations}
+        
+        \begin{tabular}{p{0.3\textwidth} p{0.65\textwidth}}
+            \toprule
+            \textbf{Symbol / Abbr.} & \textbf{Description} \\
+            \midrule
+            ECHO   & Equity Cross-stock Heuristic Orchestrator \\
+            LLM    & Large Language Model \\
+            MAE    & Mean Absolute Error \\
+            LSTM   & Long Short-Term Memory \\
+            XGB    & XGBoost (Gradient Boosted Trees) \\
+            NIFTY  & National Stock Exchange Fifty index \\
+            CV     & Cross-Validation \\
+            GNN    & Graph Neural Network \\
+            OHLCV  & Open-High-Low-Close-Volume \\
+            \bottomrule
+        \end{tabular}
+        
+        \vspace{0.8cm}
+        
+        \textbf{Mathematical Symbols}
+        
+        \begin{tabular}{p{0.3\textwidth} p{0.65\textwidth}}
+            \toprule
+            \textbf{Symbol} & \textbf{Description} \\
+            \midrule
+            $P_t^{(i)}$  & Adjusted close price of stock $i$ at time $t$ \\
+            $r_t^{(i)}$  & Daily return of stock $i$ at time $t$ \\
+            $H$          & Forecast horizon (trading days) \\
+            $R_{t:t+H}^{(i)}$ & Cumulative $H$-day forward return of stock $i$ from $t$ \\
+            $\mathcal{N}_i$ & Set of neighbor stocks used to predict target $i$ \\
+            $\sigma_{\text{cv}}$ & Standard deviation of cross-validation fold MAEs \\
+            $\lambda$     & Ranking penalty for models that fail to beat zero baseline \\
+            $\mathbb{1}[\cdot]$ & Indicator function \\
+            \bottomrule
+        \end{tabular}
+        
+        \vspace{0.5cm}
+        \small \textit{All returns are expressed as decimals unless stated otherwise.}
+        
+    \end{minipage}
+    
+    \vfill
+    
+\end{titlepage}
+\clearpage
+
 
 \begin{abstract}
 Cross-stock return forecasting is central to quantitative research in equity markets, yet practitioners and researchers face a persistent bottleneck: manually discovering which other stocks carry predictive signal for a target ticker is labor-intensive, error-prone, and rarely reproducible. Many existing approaches fix a handful of neighbors or ignore calendar alignment entirely, leading to invalid comparisons and fragile conclusions. In this paper, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an LLM-driven agentic experimentation platform for systematic cross-stock neighbor discovery and multi-horizon cumulative return forecasting on the Indian NIFTY equity universe. The framework comprises an Orchestrator that proposes diverse neighbor sets using metadata, sector graphs, and memory of past experiments; a Forecast Service that trains a configurable supervised regressor on calendar-aligned daily returns with explicit chronological splits and naive baselines (zero-return and train-mean); an Experiment Logger that records every proposal with full traceability; and an Analyzer that aggregates results into a calibrated dashboard for honest evaluation. The same calendar-aligned feature pipeline is consumed by two complementary backbones, gradient-boosted trees (XGBoost) and a recurrent network (a stateless LSTM operating on sliding sub-sequences of the engineered tabular features), enabling like-for-like model comparison under identical splits. Rather than claiming a single superior model, ECHO treats each forecaster as a rigorous measuring instrument and automates the full research loop: propose $\rightarrow$ measure $\rightarrow$ remember $\rightarrow$ refine. Across $1{,}175$ calibrated experiments at horizon $H=10$ on $56$ NIFTY constituents, the platform shows that (i) agent-proposed neighbors clearly dominate fixed-correlation peers under the boosted-tree backbone (Ours wins on $42$ targets, target-only on $12$, fixed-correlation on $2$); (ii) under the LSTM backbone, agent-proposed neighbors and target-only features are nearly tied (Ours $25$, target-only $24$, fixed-correlation $7$), revealing that the value of cross-stock features is materially backbone-dependent; and (iii) head-to-head, the LSTM achieves the lower MAE on $35$ of $56$ targets versus $21$ for the boosted trees, while the boosted trees retain a small edge in average MAE. By turning forecasting into a repeatable, auditable, and multi-model experimentation pipeline, ECHO bridges the gap between manual workflows and production-grade quantitative research.
@@ -80,42 +356,68 @@ Cross-stock return forecasting is central to quantitative research in equity mar
 \tableofcontents
 \clearpage
 
+\listoffigures
+\addcontentsline{toc}{section}{\listfigurename}
+\clearpage
+
+\listoftables
+\addcontentsline{toc}{section}{\listtablename}
+\clearpage
+
 \section{Introduction}
 
-Return forecasting in equity markets guides investment decisions, risk management, and portfolio construction across hedge funds, asset managers, and academic research. In practice, researchers routinely analyze thousands of short-to-medium daily return series that exhibit non-stationarity, regime shifts, and cross-sectional dependencies. The dominant cost lies not in fitting a single model, but in the labor-intensive process of hypothesis generation (which stocks might help predict a target?), rigorous evaluation (proper calendar alignment, chronological splits, and strong baselines), and institutional memory (what worked before and why?). Many existing approaches and baseline pipelines shortcut this workflow—often aligning series by row index instead of trading date, omitting naive baselines, and reporting a single MAE number without traceability—leading to invalid comparisons and fragile conclusions.
+Forecasting equity returns is central to quantitative research and portfolio construction, but the main bottleneck is rarely model fitting alone. In practice, the expensive part is running a disciplined research loop: proposing cross-stock hypotheses, evaluating them under leakage-safe temporal constraints, and preserving institutional memory of what worked, what failed, and under which market regime. Ad-hoc pipelines often shortcut this loop by using static neighbor rules, weak date alignment, or incomplete baseline reporting, which makes results hard to trust and harder to reproduce.
 
-Most advances in return forecasting arrive either as expert models tuned to a fixed feature set or as universal deep-learning forecasters that still leave the broader pipeline of feature (neighbor) discovery and evaluation untouched. AutoML-style approaches focus narrowly on hyperparameter search while ignoring the richer hypothesis space of cross-stock predictors. Meanwhile, naive LLM-based forecasters treat time series as language but lack grounding in market calendars and explicit baselines, making their outputs difficult to trust or reproduce. These limitations motivate an agentic approach—one that treats cross-stock return forecasting as a sequential decision process over neighbor proposal, rigorous scoring, logging, and refinement, with explicit planning, tool use, and transparent rationales.
+\subsection{Problem Statement}
 
-To this end, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an end-to-end agentic experimentation platform that automates the entire workflow a human quantitative researcher would follow for discovering predictive cross-stock neighbors on the NIFTY universe. Rather than committing to a single universal model, ECHO orchestrates four specialized components that work in concert. First, a metadata engine builds a transparent feature layer per stock by combining external fundamentals (sector, industry, market capitalization, beta) with computed market signals (volatility, momentum, drawdown, trend regime, static and rolling correlations), then compiles similarity sets and a weighted stock graph. The Orchestrator (powered by a structured-output LLM) reasons over this structured context, graph neighborhoods, and memory of past outcomes to propose candidate neighbor sets. Furthermore, by integrating qualitative market news sentiment and broader sector narratives, the Orchestrator evaluates the macroeconomic mood alongside statistical linkages. This combined quantitative-qualitative reasoning, augmented by memory of past experiment outcomes, enables the system to generate highly contextualized neighbor hypotheses. Next, the Forecast Service builds a properly calendar-aligned supervised dataset (inner join on trading date), trains either a gradient-boosted tree regressor or an LSTM regressor on the same lagged target features and neighbor returns, evaluates on a strict chronological holdout, and computes honest metrics against zero-return and train-mean baselines. The Experiment Logger records every run with full provenance (rationale, neighbor list, horizon, model backbone, and a ranking penalty applied whenever a configuration fails to beat the zero-return baseline). Finally, the Analyzer aggregates the append-only log into a calibrated dashboard that surfaces, per backbone, baseline comparisons (A = target-only features, B = fixed correlation neighbors, Proposed = best agent-proposed set), a head-to-head per-target XGBoost-vs-LSTM benchmark, sector influence matrices, predictor frequency, and backtest overlays—turning raw experiment history into actionable intelligence.
+Let \(i\) be a target stock, \(H\) a prediction horizon in trading days, and \(\mathcal{S}\) the available stock universe. The task is to select a small neighbor set \(\mathcal{N}_i \subset \mathcal{S}\setminus\{i\}\) such that features derived from \(\mathcal{N}_i\), together with target-history features, improve prediction of the target's cumulative forward return
+\[
+R_{t:t+H}^{(i)} = \frac{P_{t+H}^{(i)}}{P_t^{(i)}} - 1
+\]
+relative to target-only and fixed-correlation baselines. Evaluation must remain leakage-safe: date-consistent alignment, chronological splitting, horizon-aware purging between train and test, and explicit comparison to naive zero-return and train-mean predictors.
 
-Across extensive experiments on NIFTY 50 constituents, ECHO consistently outperforms unstructured manual workflows and fixed-neighbor baselines in terms of hypothesis coverage, evaluation hygiene, and reproducibility. While many configurations do not beat the zero-return baseline (a scientifically honest outcome in noisy daily return data), the platform's Baseline A/B/Proposed comparisons and calibrated leaderboards reveal where agent-chosen neighbors provide measurable lift over naive alternatives. With the boosted-tree backbone, the agent-proposed neighbors consistently outperform static correlation neighbors and improve on the target-only floor on $42$ of $56$ targets at $H=10$. With the LSTM backbone, the same agent-chosen neighbors and the target-only configuration are essentially tied ($25$ versus $24$ wins), while the fixed-correlation arm remains the weakest ($7$ wins). This dichotomy is a substantive empirical finding: the value of cross-stock enrichment is not a property of the data alone but of the interaction between data, neighbor design, and the inductive bias of the model class. The dashboard further provides transparent, visual reports that make the entire experimentation process interpretable and extensible.
+\subsection{Research Gaps and Motivation}
 
-From a research methodology perspective, the central challenge is combinatorial. For a universe of \(N\) stocks and neighbor set size \(k\), the number of possible cross-stock hypotheses for a single target is \(\binom{N-1}{k}\), which quickly becomes intractable even for moderate \(N\). Human researchers therefore rely on coarse shortcuts (same sector, top historical correlation, or discretionary intuition), but such shortcuts frequently miss transient cross-sector lead-lag effects and regime-dependent dependencies. ECHO is designed to address this search problem directly: rather than collapsing the hypothesis space to one static rule, it performs structured proposal generation guided by metadata, graph priors, and memory, then validates each proposal under identical forecasting conditions.
+Prior work has advanced model architectures, but the end-to-end neighbor-discovery workflow remains under-specified in many practical settings. The core gaps that motivate this thesis are:
 
-A second challenge is data integrity under financial market frictions. Indian equities exhibit non-uniform trading calendars across symbols due to listing dates, corporate events, and occasional missing observations; benchmark indices follow their own data availability patterns. Naively joining time series by row order or filling missing points without discipline can induce silent leakage and spurious correlation. Consequently, our framework treats calendar alignment as a first-class constraint and keeps evaluation chronologically strict by construction. This design choice is not merely an implementation detail: it is a scientific guardrail that ensures measured gains are attributable to improved neighbor hypotheses rather than artifacts of misaligned data.
+\begin{itemize}
+    \item \textbf{No systematic neighbor search loop for daily-price settings:} Many relational methods assume fixed graphs or rely on expensive auxiliary streams (news corpora, transcripts, knowledge graphs), while practical desks often start from daily OHLCV plus lightweight metadata.
+    \item \textbf{Inconsistent temporal hygiene in evaluation pipelines:} Forecasting \(H\)-day forward returns requires careful date alignment and purge gaps; otherwise, row-order joins or overlapping labels can leak future information.
+    \item \textbf{Limited controlled comparison across model classes:} It is often unclear whether a neighbor set is genuinely informative or merely favorable to one architecture.
+    \item \textbf{Weak experiment provenance:} Reporting only best-case MAE obscures failed hypotheses, baseline-relative calibration, and robustness diagnostics.
+\end{itemize}
 
-The NIFTY universe offers a particularly suitable testbed for this thesis. It is sector-diverse (financials, energy, information technology, consumer, industrial, healthcare), sufficiently liquid for stable daily observations, and has experienced materially different macro regimes within the study window, including pandemic shock, recovery, inflationary pressure, and policy-rate transitions. These shifts create a realistic environment in which cross-stock relationships evolve over time. Static all-period associations can therefore be informative yet incomplete, motivating the joint use of long-horizon correlation structure and rolling, short-horizon co-movement signals.
+These gaps motivate an agentic formulation: treat neighbor discovery as an iterative, evidence-driven process of proposal, measurement, logging, and refinement.
 
-Our design also emphasises semantic clarity between \emph{descriptors} and \emph{derived signals}. Certain fields, such as market capitalisation and beta, are externally observable descriptors and should be interpreted as contextual priors, not model outputs. In contrast, momentum, volatility, drawdown, trend regime, and rolling correlations are computed transformations of observed prices. This separation enables more transparent reasoning by the Orchestrator and clearer component-level interpretation: researchers can explicitly analyse whether improvements stem from stable fundamental context, dynamic return structure, or their interaction in the weighted similarity graph.
+\subsection{The ECHO Framework Overview}
 
-Finally, ECHO adopts a process-level view of progress. In noisy return forecasting, single-run wins can be accidental; what matters is whether the research loop itself is rigorous, repeatable, and cumulative. By enforcing a shared, leakage-safe evaluation protocol across backbones and logging every proposal with rationale, neighbor list, and outcomes, ECHO turns neighbor discovery into an auditable experimental-science workflow. This perspective aligns with practical quantitative research, where trustworthy iteration and institutional memory are often more valuable than isolated point improvements on one backtest.
+To address these gaps, we introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an agentic experimentation system for cross-stock return forecasting on a NIFTY-derived universe. ECHO combines four components: (1) an Orchestrator that proposes neighbor sets, (2) a Forecast Service that evaluates each proposal under a fixed leakage-safe protocol, (3) an Experiment Logger that stores full run provenance, and (4) an Analyzer that aggregates logs into comparable diagnostics and leaderboards.
 
-In the same spirit, we adopt a stateless, request-scoped training policy: each forecast request retrains the model on data up to the request time, rather than persisting a single global checkpoint across heterogeneous neighbor sets. In ECHO, the neighbor set is part of the hypothesis itself, so changing neighbors changes feature identity. A model trained with neighbors \(\{A,B,C\}\) expects features that include lag and rolling summaries derived from \(A,B,C\); if a later request uses \(\{A,D,E\}\), those columns are renamed and re-derived, and a previously saved model would be semantically mismatched. Moreover, forecasting always depends on the latest bars, which requires fresh lag and rolling-feature construction even when a model checkpoint exists. We therefore prioritise proposal-specific retraining and methodological consistency.
+The proposal stage is grounded in structured context rather than free-form prompting. A metadata layer separates externally observed descriptors (e.g., sector, industry, market capitalization, beta) from derived market signals (e.g., momentum, volatility, drawdown, trend regime, and correlation statistics), and a weighted similarity graph provides a structural prior for candidate selection. The Orchestrator also consults top historical configurations and, when available, summarizes recent headline sentiment as additional context.
 
-To strengthen the methodological claims rather than weaken them, ECHO is intentionally backbone-agnostic. The same calendar-aligned, leakage-safe dataset is consumed by two complementary regressors selected per request: a gradient-boosted tree regressor that handles the engineered tabular features directly, and a stateless LSTM regressor that consumes sliding sub-sequences of the same tabular features (so cross-experiment comparisons remain meaningful even when the neighbor set, and therefore the input width, changes). All baselines, splits, ranking penalties, and dashboard aggregations are model-agnostic, which lets us cleanly separate the question ``did the agent propose better neighbors?'' from the question ``does this model class extract more signal from a fixed feature pool?''.
+The evaluation stage is deliberately strict and model-agnostic. For each proposal, the Forecast Service constructs the supervised table on target-indexed trading dates, reindexes neighbor returns to the same date axis, and drops invalid rows after lag/rolling transformations. It then applies a chronological 80/20 split with a horizon purge (train end at \(\text{split}-H\)) so that training labels cannot overlap the test window. Each run reports MAE against two explicit naive baselines (zero-return and train-mean), and configurations that fail to beat zero receive a ranking penalty in the calibrated leaderboard.
 
+This thesis evaluates ECHO with two backbones under the same data pipeline: a gradient-boosted tree regressor (XGBoost) and a stateless LSTM trained on sliding windows of the engineered tabular features. On the \(H=10\) benchmark, the calibrated log contains \(1{,}175\) experiments over \(56\) unique symbols in our NIFTY universe (the count exceeds 50 because of constituent turnover in the study window). Under boosted trees, Proposed neighbors win on \(42/56\) targets (A: \(12\), B: \(2\)); under the stateless LSTM, Proposed and target-only are nearly tied (\(25\) vs \(24\), with B at \(7\)). The key empirical result is therefore methodological: neighbor value is real but backbone-dependent.
 
-\textbf{Our main contributions are as follows:}
+From a search perspective, the hypothesis space is combinatorial. For universe size \(N\) and neighbor count \(k\), each target has \(\binom{N-1}{k}\) candidate sets; with \(N=56\) and \(k=3\), this is \(26{,}235\) combinations per target. ECHO addresses this by replacing one-shot heuristics with a measured propose-measure-remember loop under identical scoring conditions.
+
+Finally, ECHO adopts request-scoped retraining. Because the neighbor set changes feature identity, reusing a checkpoint trained on a different neighbor schema is not semantically valid. Retraining per proposal keeps comparisons fair across hypotheses and preserves traceability across both backbones.
+
+\subsection{Novel Contributions}
+
+The novelty of this thesis is \emph{process-centric}, not architecture-centric. We do not claim a new universal forecasting model; instead, we contribute a rigorous way to discover and validate cross-stock predictors under realistic data and evaluation constraints. The core novelty is concentrated in the following points:
 \begin{enumerate}
-    \item We introduce ECHO (Equity Cross-stock Heuristic Orchestrator), an end-to-end agentic experimentation platform for cross-stock neighbor discovery and return forecasting on the NIFTY universe.
-    \item We formalise a transparent metadata thesis by separating directly observable attributes (e.g., market capitalisation, beta) from computed signals (volatility, momentum, relative strength, drawdowns, trend regime, static and rolling correlations, and similarity sets).
-    \item We define an explicit weighted stock-similarity graph that combines correlation strength with sector, volatility-bucket, and market-cap-bucket agreement, and use it as a structural prior for neighbor proposal.
-    \item We formalise a leakage-safe, calendar-aligned evaluation protocol with explicit naive baselines, cumulative returns over the prediction horizon, and a ranking penalty that prevents celebration of trivial performance.
-    \item We adopt a stateless, request-scoped training policy that avoids schema mismatch under changing neighbor sets and keeps every prediction tied to the most recent market data.
-    \item We extend the framework to a dual-backbone evaluation, fitting both a gradient-boosted tree regressor and a stateless LSTM regressor on the same calendar-aligned features under identical splits, and we expose the resulting per-target comparison directly in the analyzer dashboard.
-    \item We empirically show that the value of LLM-proposed neighbors is backbone-dependent: under boosted trees, agent-proposed neighbors clearly dominate fixed-correlation peers and improve on the target-only floor on most targets; under the LSTM, agent-proposed neighbors are competitive with target-only features, while fixed-correlation neighbors remain consistently inferior.
+    \item \textbf{Closed-loop agentic neighbor discovery.} We formalise neighbor selection as an iterative propose-measure-remember-refine loop, where each proposal is generated from structured evidence (metadata, similarity graph, and experiment memory) and then executed under the same forecast protocol.
+    \item \textbf{Leakage-safe, baseline-calibrated measurement for neighbor search.} We enforce date-aligned feature construction, chronological splitting with horizon purge, and mandatory zero-return/train-mean baselines, together with a baseline-aware ranking rule. This turns neighbor comparison into a calibrated scientific test rather than an isolated MAE report.
+    \item \textbf{Backbone-controlled attribution of relational value.} We evaluate the same neighbor hypotheses on the same engineered dataset under two model classes (XGBoost and stateless LSTM). This isolates whether gains come from better neighbors or from architecture-specific inductive bias.
+    \item \textbf{Auditable experimentation as a first-class output.} We treat full experiment provenance (rationale, neighbors, horizon, backbone, holdout metrics, and stability diagnostics) as a research artifact, enabling reproducible analysis and cumulative institutional memory across runs.
 \end{enumerate}
 
+Supporting modules such as metadata enrichment, graph construction, and dashboard visualization are important enablers, but the principal novelty claim of this thesis is the \emph{methodological framework} for reliable cross-stock neighbor discovery.
+
+\subsection{Thesis Organization}
+
+The remainder of this thesis is structured as follows. \textbf{Section 2} reviews related work in classical equity forecasting, relational financial time‑series models, and agentic LLM‑based forecasting systems, highlighting the specific gaps that ECHO addresses. \textbf{Section 3} presents the ECHO framework in detail: metadata construction, similarity graph logic, the Orchestrator’s multi‑stage search, the Forecast Service with leakage‑safe evaluation, the Experiment Logger, and the Analyzer dashboard. \textbf{Section 4} describes the experimental setup, data collection, feature engineering, and reports results at horizons \(H=10\) and \(H=20\), including Baseline A/B/Proposed comparisons, head‑to‑head XGBoost vs. LSTM benchmarks, sector influence analysis, and error analysis. \textbf{Section 5} concludes the thesis, summarizes key findings, discusses limitations, and outlines directions for future work.
 
 \section{Related Work}
 
@@ -184,11 +486,13 @@ Let \( r_t^{(i)} = \frac{P_t^{(i)} - P_{t-1}^{(i)}}{P_{t-1}^{(i)}} \) denote the
 \[
 R_{t:t+H}^{(i)} = \frac{P_{t+H}^{(i)}}{P_t^{(i)}} - 1.
 \]
-The objective is to minimize the mean absolute error (MAE) on a strict chronological holdout set:
-
+Each hypothesis is scored on a strict chronological holdout set using mean absolute error (MAE). MAE is the average absolute difference between predicted and realized cumulative returns across all test days:
 \[
-\text{MAE} = \frac{1}{|\mathcal{T}_{\text{test}}|} \sum_{t \in \mathcal{T}_{\text{test}}} \left| R_{t:t+H}^{(i)} - \hat{R}_{t:t+H}^{(i)} \right|
+\text{MAE} = \frac{1}{|\mathcal{T}_{\text{test}}|} \sum_{t \in \mathcal{T}_{\text{test}}} \left| R_{t:t+H}^{(i)} - \hat{R}_{t:t+H}^{(i)} \right|.
 \]
+Lower MAE indicates forecasts that are closer to realized returns on average. The absolute value ignores whether a prediction was too high or too low on a given day; for example, if the actual return is $+5\%$ and the prediction is either $+2\%$ or $+8\%$, the per-day error is $3\%$ in both cases. Using signed errors instead would allow opposite misses to cancel: a $+5\%$ over-prediction and a $-5\%$ under-prediction would average to $0\%$ despite two $5\%$ mistakes. MAE prevents this cancellation when aggregating performance over the holdout set.
+
+MAE is an \emph{evaluation} metric only. During training, both backbones optimize a signed regression loss (squared error): gradient-boosted trees use the default squared-error objective and the LSTM minimizes mean squared error. Predictions therefore remain signed quantities (e.g.\ $+4\%$ or $-2\%$); absolute values are applied only when scoring the holdout set for logging, comparison, and neighbor ranking. The latest-point forecast returned by the service preserves this sign as \texttt{predicted\_return}.
 
 \subsection{Metadata Construction and Similarity Graph Logic}
 
@@ -493,7 +797,7 @@ The number of features is therefore \(p = 5 + 2 + 2|\mathcal{N}_i|\); for two ne
 \paragraph{Backbone-specific representation.}
 Both backbones consume the same \((X,y)\) produced above; they only differ in how each row is presented to the optimiser.
 
-\emph{Boosted trees.} XGBoost is fit directly on the tabular block \(X\in\mathbb{R}^{n\times p}\); each row is treated as an independent observation and tree splits are evaluated coordinate-wise on the engineered features. No additional reshape is required.
+\emph{Boosted trees.} XGBoost is fit directly on the tabular block \(X\in\mathbb{R}^{n\times p}\); each row is treated as an independent observation and tree splits are evaluated coordinate-wise on the engineered features. The default training objective is squared error; holdout quality is still reported with MAE (Section~3.1). No additional reshape is required.
 
 \emph{Stateless LSTM.} The LSTM operates on sliding sub-sequences of the same engineered features. With sequence length \(L=5\) (chosen to match the target lag depth, so the temporal context is consistent across backbones), the input at position \(t\) is the tensor
 \begin{equation}
@@ -506,14 +810,14 @@ Features are standardised using statistics estimated only on the training partit
 \(
 \tilde{x}_{t,\ell,k}=(x_{t,\ell,k}-\mu_k^{\text{train}})/\sigma_k^{\text{train}},
 \)
-to prevent test-side leakage of scale information. The network reads \(\mathbf{X}_t^{\text{seq}}\), takes the last hidden state \(\mathbf{h}_t\in\mathbb{R}^{d}\), and produces the prediction \(\hat{y}_t = \mathbf{w}^\top\mathbf{h}_t + b\). Crucially, the LSTM is \emph{stateless} across requests: hidden state is not carried across forecast calls or across heterogeneous neighbor sets, because changing \(\mathcal{N}_i\) changes the per-row feature identity (Eq.~\ref{eq:nbr-features}). The first \(L-1\) rows of any partition lack a full window and are handled by holding the first valid prediction constant rather than discarding the row, so the train/test split sizes remain identical across backbones.
+to prevent test-side leakage of scale information. The network is trained by minimizing mean squared error on the training partition; holdout quality is reported with MAE (Section~3.1). The network reads \(\mathbf{X}_t^{\text{seq}}\), takes the last hidden state \(\mathbf{h}_t\in\mathbb{R}^{d}\), and produces the prediction \(\hat{y}_t = \mathbf{w}^\top\mathbf{h}_t + b\). Crucially, the LSTM is \emph{stateless} across requests: hidden state is not carried across forecast calls or across heterogeneous neighbor sets, because changing \(\mathcal{N}_i\) changes the per-row feature identity (Eq.~\ref{eq:nbr-features}). The first \(L-1\) rows of any partition lack a full window and are handled by holding the first valid prediction constant rather than discarding the row, so the train/test split sizes remain identical across backbones.
 
 \paragraph{Why this design supports apples-to-apples comparison.}
 Because both backbones see (i) the same calendar-aligned date index, (ii) the same engineered feature columns produced by Eqs.~(\ref{eq:tgt-lags})--(\ref{eq:nbr-features}), (iii) the same cumulative-return label from Eq.~(\ref{eq:cumulative-target}), and (iv) the same horizon-purged 80/20 split from Eq.~(\ref{eq:purged-split}), any difference in MAE between the two arms is attributable to the model class and not to data, leakage, or pre-processing. This is the property we exploit in Sections~\ref{sec:xgb-vs-lstm-h10} and~\ref{sec:xgb-vs-lstm-h20} when we report head-to-head per-target comparisons and in Sections~\ref{sec:baseline-abc} and~\ref{sec:baseline-abc-h20} when we run Baseline A/B/Proposed under each backbone.
 
 \subsection{Experimentation and Results}
 
-We evaluate ECHO on the NIFTY 50 universe at two settled horizons, \(H=10\) and \(H=20\) trading days. Each horizon is tracked in its own experiment file, analysed independently, and visualised in the dashboard. MAE on the chronological holdout (Eq.~\ref{eq:purged-split}) is the sole evaluation metric throughout.
+We evaluate ECHO on the NIFTY 50 universe at two settled horizons, \(H=10\) and \(H=20\) trading days. Each horizon is tracked in its own experiment file, analysed independently, and visualised in the dashboard. Holdout MAE on the chronological test set (Section~3.1; split defined in Eq.~\ref{eq:purged-split}) is the sole \emph{reported} evaluation metric throughout; models are trained with squared-error loss as described above.
 
 \subsubsection{Experimental scope at \(H=10\)}
 \label{sec:scope-h10}
