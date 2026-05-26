@@ -79,16 +79,16 @@ if TORCH_AVAILABLE:
 
 
     class LSTMModel:
-        """LSTM regressor wrapper using tabular data reshaped into sequences.
+        """LSTM regressor wrapper for canonical sequence forecasting.
 
-        Uses a sliding window approach to create sequences from tabular features,
-        matching the lag structure already present in the feature engineering.
-        The sequence length defaults to 5 to align with the 5 lag features.
+        Uses sliding windows over per-timestep features (for example target and
+        neighbor returns) so temporal structure is learned by the recurrent layer
+        directly rather than duplicated via tabular lag expansion.
         """
 
         def __init__(
             self,
-            seq_len: int = 5,
+            seq_len: int = 20,
             hidden_size: int = 64,
             num_layers: int = 2,
             dropout: float = 0.2,
@@ -126,12 +126,7 @@ if TORCH_AVAILABLE:
             return (X - self.feature_mean) / self.feature_std
 
         def _create_sequences(self, X: np.ndarray, y: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray | None]:
-            """Create sequences for LSTM from tabular data using sliding window.
-
-            Since features already include lags (target_lag_1 through target_lag_5),
-            we create sequences by taking consecutive rows. This captures temporal
-            patterns while avoiding look-ahead bias (all lags are properly shifted).
-            """
+            """Create sliding-window sequences from ordered timestep features."""
             n_samples = len(X)
             if n_samples < self.seq_len:
                 if y is not None:

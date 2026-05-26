@@ -53,9 +53,41 @@ def load_returns(symbol: str) -> pd.DataFrame:
 
 
 def build_dataset(
-    target: str, neighbors: list[str], horizon: int
+    target: str,
+    neighbors: list[str],
+    horizon: int,
+    model_type: ModelType = "xgb",
 ) -> tuple[pd.DataFrame, pd.Series, list[str], pd.Series]:
     target_df = load_returns(target)
+
+    # Compute future return on target-only data to fix the date range.
+    # This ensures the test split (and mae_baseline_zero) is identical
+    # regardless of which neighbor set is used.
+    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
+
+    valid_neighbors: list[str] = []
+
+    if model_type == "lstm":
+        target_df["target_return"] = target_df["return"]
+        target_valid = target_df.dropna(subset=["target_return", "future_return"])
+
+        for neighbor in neighbors:
+            if neighbor == target:
+                continue
+            if not symbol_exists(neighbor):
+                continue
+            neighbor_df = load_returns(neighbor)
+            neighbor_ret = neighbor_df["return"].reindex(target_valid.index)
+            target_df[f"{neighbor}_return"] = neighbor_ret
+            valid_neighbors.append(neighbor)
+
+        target_df = target_df.loc[target_valid.index].dropna()
+        dates = target_df.index.to_series()
+        feature_cols = ["target_return"] + [f"{neighbor}_return" for neighbor in valid_neighbors]
+        X = target_df[feature_cols]
+        y = target_df["future_return"]
+
+        return X, y, valid_neighbors, dates
 
     for lag in range(1, 6):
         target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
@@ -63,13 +95,7 @@ def build_dataset(
     target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
     target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
-    # Compute future return on target-only data to fix the date range.
-    # This ensures the test split (and mae_baseline_zero) is identical
-    # regardless of which neighbor set is used.
-    target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
     target_valid = target_df.dropna()
-
-    valid_neighbors: list[str] = []
 
     for neighbor in neighbors:
         if neighbor == target:
@@ -89,7 +115,7 @@ def build_dataset(
     target_df = target_df.loc[target_valid.index].dropna()
     dates = target_df.index.to_series()
 
-    X = target_df.drop(columns=["Close", "return", "future_return"])
+    X = target_df.drop(columns=["Close", "return", "future_return", "target_return"], errors="ignore")
     y = target_df["future_return"]
 
     return X, y, valid_neighbors, dates
@@ -125,7 +151,7 @@ def evaluate_forecast(
     model_type: ModelType = "xgb",
 ) -> dict[str, Any]:
     """Train model on 80/20 chronological split; return metrics without logging."""
-    X, y, valid_neighbors, dates = build_dataset(target, neighbors, horizon)
+    X, y, valid_neighbors, dates = build_dataset(target, neighbors, horizon, model_type)
 
     if len(X) < 20:
         return {
@@ -170,8 +196,12 @@ def evaluate_forecast(
 
     model_final = get_model(model_type)
     model_final.fit(X, y)
-    latest = X.iloc[-1:]
-    prediction = float(model_final.predict(latest)[0])
+    if model_type == "lstm":
+        seq_len = max(1, int(getattr(model_final, "seq_len", 1)))
+        latest = X.iloc[-seq_len:]
+    else:
+        latest = X.iloc[-1:]
+    prediction = float(model_final.predict(latest)[-1])
 
     return {
         "target": target,
