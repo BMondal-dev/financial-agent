@@ -119,27 +119,56 @@ def load_returns(symbol: str):
 
 
 def build_dataset(
-    target: str, neighbors: list[str], horizon: int
+    target: str,
+    neighbors: list[str],
+    horizon: int,
+    model_type: ModelType = "xgb",
 ) -> tuple[pd.DataFrame, pd.Series, list[str], pd.Series]:
     target_df = load_returns(target)
-
-    # Target lag features
-    for lag in range(1, 6):
-        target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
-
-    # Rolling stats
-    target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
-    target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
 
     # Compute future return on target-only data to fix the date range.
     # This ensures the test split (and mae_baseline_zero) is identical
     # regardless of which neighbor set is used.
     target_df["future_return"] = target_df["Close"].shift(-horizon) / target_df["Close"] - 1
 
-    # Determine valid date range from target-only features before adding neighbors
-    target_valid = target_df.dropna()
-
     valid_neighbors = []
+
+    if model_type == "lstm":
+        # Canonical LSTM setup: use raw daily returns as timestep features.
+        target_df["target_return"] = target_df["return"]
+        target_valid = target_df.dropna(subset=["target_return", "future_return"])
+
+        for neighbor in neighbors:
+            # remove self-neighbor
+            if neighbor == target:
+                continue
+            if not symbol_exists(neighbor):
+                print(f"Skipping {neighbor} (not in dataset)")
+                continue
+
+            neighbor_df = load_returns(neighbor)
+
+            # Same-day neighbor return as parallel signal at each timestep.
+            nr = neighbor_df["return"].reindex(target_valid.index)
+            target_df[f"{neighbor}_return"] = nr
+            valid_neighbors.append(neighbor)
+
+        target_df = target_df.loc[target_valid.index].dropna()
+        dates = target_df.index.to_series()
+        feature_cols = ["target_return"] + [f"{neighbor}_return" for neighbor in valid_neighbors]
+        X = target_df[feature_cols]
+        y = target_df["future_return"]
+
+        return X, y, valid_neighbors, dates
+
+    # XGB tabular setup with explicit lag/rolling feature engineering.
+    for lag in range(1, 6):
+        target_df[f"target_lag_{lag}"] = target_df["return"].shift(lag)
+
+    target_df["rolling_mean_10"] = target_df["return"].rolling(10).mean()
+    target_df["rolling_std_10"] = target_df["return"].rolling(10).std()
+
+    target_valid = target_df.dropna()
 
     for neighbor in neighbors:
         # remove self-neighbor
@@ -169,11 +198,10 @@ def build_dataset(
     target_df = target_df.loc[target_valid.index].dropna()
     dates = target_df.index.to_series()
 
-    X = target_df.drop(columns=["Close", "return", "future_return"])
+    X = target_df.drop(columns=["Close", "return", "future_return", "target_return"], errors="ignore")
     y = target_df["future_return"]
 
     return X, y, valid_neighbors, dates
-
 
 def time_series_cv_mae(
     X: pd.DataFrame,
@@ -295,6 +323,7 @@ def run_forecast(req: ForecastRequest):
         req.target,
         req.neighbors,
         req.horizon,
+        req.model_type,
     )
 
     if len(X) < 20:
@@ -349,9 +378,13 @@ def run_forecast(req: ForecastRequest):
     model_final = get_model(req.model_type)
     model_final.fit(X, y)
 
-    latest = X.iloc[-1:]
+    if req.model_type == "lstm":
+        seq_len = max(1, int(getattr(model_final, "seq_len", 1)))
+        latest = X.iloc[-seq_len:]
+    else:
+        latest = X.iloc[-1:]
 
-    prediction = float(model_final.predict(latest)[0])
+    prediction = float(model_final.predict(latest)[-1])
 
     log_experiment(
         req.target,
